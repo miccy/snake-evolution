@@ -249,6 +249,10 @@ export function renderAnimatedSVG(
     const filterAttr = isGlass ? ' filter="url(#glass-glow)"' : "";
     const repeatCount = loop ? "indefinite" : "1";
 
+    // Skip segments that never appear in any frame
+    const everVisible = opacities.some((o) => o > 0);
+    if (!everVisible) continue;
+
     // Determine color for this segment
     let segmentColor: string;
     if (segIdx === 0) {
@@ -259,11 +263,12 @@ export function renderAnimatedSVG(
       segmentColor = palette.snake.body;
     }
 
-    // Initial values
-    const initX = xPositions[0];
-    const initY = yPositions[0];
-    const initSize = sizes[0];
-    const initOpacity = opacities[0];
+    // Find first frame where segment exists
+    const firstVisibleIdx = opacities.findIndex((o) => o > 0);
+    const initX = xPositions[firstVisibleIdx] ?? xPositions[0];
+    const initY = yPositions[firstVisibleIdx] ?? yPositions[0];
+    const initSize = sizes[firstVisibleIdx] ?? 0;
+    const initOpacity = 0; // Start hidden, animation will show it
 
     // Use rounded rect with variable size
     const rx = segIdx === 0 ? 4 : 2; // Head more rounded
@@ -275,11 +280,11 @@ export function renderAnimatedSVG(
     svg += `<animate attributeName="y" values="${yPositions.join(";")}" keyTimes="${keyTimes.join(";")}" dur="${totalDurationS.toFixed(2)}s" repeatCount="${repeatCount}" calcMode="linear"/>`;
 
     // Size animation
-    svg += `<animate attributeName="width" values="${sizes.join(";")}" keyTimes="${keyTimes.join(";")}" dur="${totalDurationS.toFixed(2)}s" repeatCount="${repeatCount}" calcMode="linear"/>`;
-    svg += `<animate attributeName="height" values="${sizes.join(";")}" keyTimes="${keyTimes.join(";")}" dur="${totalDurationS.toFixed(2)}s" repeatCount="${repeatCount}" calcMode="linear"/>`;
+    svg += `<animate attributeName="width" values="${sizes.join(";")}" keyTimes="${keyTimes.join(";")}" dur="${totalDurationS.toFixed(2)}s" repeatCount="${repeatCount}" calcMode="discrete"/>`;
+    svg += `<animate attributeName="height" values="${sizes.join(";")}" keyTimes="${keyTimes.join(";")}" dur="${totalDurationS.toFixed(2)}s" repeatCount="${repeatCount}" calcMode="discrete"/>`;
 
-    // Opacity animation
-    svg += `<animate attributeName="opacity" values="${opacities.join(";")}" keyTimes="${keyTimes.join(";")}" dur="${totalDurationS.toFixed(2)}s" repeatCount="${repeatCount}" calcMode="linear"/>`;
+    // Opacity animation - DISCRETE so segments appear/disappear instantly
+    svg += `<animate attributeName="opacity" values="${opacities.join(";")}" keyTimes="${keyTimes.join(";")}" dur="${totalDurationS.toFixed(2)}s" repeatCount="${repeatCount}" calcMode="discrete"/>`;
 
     svg += `</rect>`;
   }

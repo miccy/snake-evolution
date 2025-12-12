@@ -33,8 +33,8 @@ program
   .option("--animated", "Generate animated SVG (default: true)", true)
   .option("--static", "Generate static SVG (single frame)")
   .option("--frame-delay <ms>", "Delay between frames in ms", "150")
-  .option("--max-length <n>", "Maximum snake length", "10")
-  .option("--grow-every <n>", "Grow 1 segment every N contributions", "4")
+  .option("--max-length <n>", "Maximum snake length (0 = auto)", "0")
+  .option("--grow-every <n>", "Grow 1 segment every N contributions (0 = auto)", "0")
   .action(async (options) => {
     console.log(`🐍 Snake Evolution Generator`);
     console.log(`   Username: ${options.username}`);
@@ -57,14 +57,15 @@ program
       const palette = getTheme(options.theme);
       console.log(`🎨 Using theme: ${palette.name}`);
 
-      // Simulate snake
+      // Simulate snake (use defaults for dynamic calculation unless overridden)
       console.log("🎮 Simulating snake...");
-      const frames = simulateSnake(grid, {
-        maxLength: Number.parseInt(options.maxLength),
-        growEvery: Number.parseInt(options.growEvery),
-        frameMode: "every",
-      });
-      console.log(`   Generated ${frames.length} frames`);
+      const simOptions: Record<string, unknown> = { frameMode: "every" };
+      if (options.maxLength !== "0") simOptions.maxLength = Number.parseInt(options.maxLength);
+      if (options.growEvery !== "0") simOptions.growEvery = Number.parseInt(options.growEvery);
+
+      const frames = simulateSnake(grid, simOptions);
+      const maxSnakeLen = Math.max(...frames.map((f) => f.snake.segments.length));
+      console.log(`   Generated ${frames.length} frames (max snake length: ${maxSnakeLen})`);
 
       // Render
       let output: string;

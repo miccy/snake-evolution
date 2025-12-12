@@ -163,28 +163,57 @@ function oppositeDirection(dir: Direction): Direction {
 }
 
 /**
- * Find next direction to move towards nearest contribution using BFS
+ * Find next direction to move towards highest-value contribution
+ * Prioritizes: level 4 > 3 > 2 > 1 (makes animation more dynamic)
  * Returns null if no path exists
  */
 export function findNextDirection(grid: ContributionGrid, snake: SnakeState): Direction | null {
   const head = snake.segments[0];
   const currentDir = snake.direction;
 
-  // BFS to find nearest contribution
+  // Try each level from highest to lowest
+  for (let targetLevel = 4; targetLevel >= 1; targetLevel--) {
+    const result = findPathToLevel(grid, snake, head, currentDir, targetLevel);
+    if (result) return result;
+  }
+
+  // No path to any contribution - try to find any valid move
+  for (const dir of DIRECTIONS) {
+    if (dir === oppositeDirection(currentDir) && snake.length > 1) continue;
+
+    const delta = directionDelta(dir);
+    const nextPos = { x: head.x + delta.x, y: head.y + delta.y };
+
+    if (isInBounds(grid, nextPos) && !snakeOccupies(snake, nextPos)) {
+      return dir;
+    }
+  }
+
+  return null;
+}
+
+/**
+ * BFS to find path to contribution of specific level
+ */
+function findPathToLevel(
+  grid: ContributionGrid,
+  snake: SnakeState,
+  head: Position,
+  currentDir: Direction,
+  targetLevel: number,
+): Direction | null {
   const queue: Array<{ pos: Position; firstDir: Direction | null; dist: number }> = [];
   const visited = new Set<string>();
   const key = (p: Position) => `${p.x},${p.y}`;
 
   // Start from neighbors of head
   for (const dir of DIRECTIONS) {
-    // Can't go backwards
     if (dir === oppositeDirection(currentDir) && snake.length > 1) continue;
 
     const delta = directionDelta(dir);
     const nextPos = { x: head.x + delta.x, y: head.y + delta.y };
 
     if (!isInBounds(grid, nextPos)) continue;
-    // Exclude tail since it will move away (unless snake just ate and is growing)
     if (snakeOccupies(snake, nextPos, true)) continue;
 
     queue.push({ pos: nextPos, firstDir: dir, dist: 1 });
@@ -195,8 +224,9 @@ export function findNextDirection(grid: ContributionGrid, snake: SnakeState): Di
   while (queue.length > 0) {
     const current = queue.shift()!;
 
-    // Found a contribution!
-    if (hasContribution(grid, current.pos)) {
+    // Found a contribution of target level!
+    const level = getContributionLevel(grid, current.pos);
+    if (level === targetLevel) {
       return current.firstDir;
     }
 
@@ -215,19 +245,17 @@ export function findNextDirection(grid: ContributionGrid, snake: SnakeState): Di
     }
   }
 
-  // No path to any contribution - try to find any valid move
-  for (const dir of DIRECTIONS) {
-    if (dir === oppositeDirection(currentDir) && snake.length > 1) continue;
-
-    const delta = directionDelta(dir);
-    const nextPos = { x: head.x + delta.x, y: head.y + delta.y };
-
-    if (isInBounds(grid, nextPos) && !snakeOccupies(snake, nextPos)) {
-      return dir;
-    }
-  }
-
   return null;
+}
+
+/**
+ * Get contribution level at position (0-4)
+ */
+function getContributionLevel(grid: ContributionGrid, pos: Position): number {
+  const week = grid.weeks[pos.x];
+  if (!week) return 0;
+  const day = week[pos.y];
+  return day?.level ?? 0;
 }
 
 // ============================================
@@ -242,13 +270,17 @@ export function simulateSnake(
   initialGrid: ContributionGrid,
   options: SimulationOptions = {},
 ): SnakeFrame[] {
-  const {
-    startPosition = { x: 0, y: 3 },
-    maxLength = 10,
-    growEvery = 4,
-    maxSteps = 2000,
-    frameMode = "every",
-  } = options;
+  const { startPosition = { x: 0, y: 3 }, maxSteps = 2000, frameMode = "every" } = options;
+
+  // Calculate safe max length: 5% of total grid cells (conservative to avoid trapping)
+  const totalCells = initialGrid.weeks.length * 7; // 53 * 7 = 371
+  const safeMaxLength = options.maxLength || Math.floor(totalCells * 0.05); // ~18 if not specified
+
+  // Calculate dynamic growth rate: grow every N contributions so we reach max length
+  const totalContributions = countContributions(initialGrid);
+  const targetGrowth = safeMaxLength - 1; // We start at length 1
+  // Use ceiling so we reach max length by the end (e.g., 226 contributions / 91 growth = grow every 3)
+  const growEvery = options.growEvery || Math.max(1, Math.ceil(totalContributions / targetGrowth));
 
   const frames: SnakeFrame[] = [];
   let snake = createSnake(startPosition);
@@ -265,9 +297,20 @@ export function simulateSnake(
 
   let steps = 0;
   while (countContributions(grid) > 0 && steps < maxSteps) {
-    const direction = findNextDirection(grid, snake);
+    let direction = findNextDirection(grid, snake);
 
-    // No valid move - snake is stuck
+    // If stuck, try shrinking until we can move
+    while (!direction && snake.length > 1) {
+      // Shrink by removing tail
+      snake = {
+        ...snake,
+        segments: snake.segments.slice(0, -1),
+        length: snake.length - 1,
+      };
+      direction = findNextDirection(grid, snake);
+    }
+
+    // Still no valid move after shrinking to length 1 - truly stuck
     if (!direction) break;
 
     // Move snake
@@ -284,7 +327,7 @@ export function simulateSnake(
       eatenPosition = { ...head };
 
       // Grow snake only every N contributions and if under max length
-      if (snake.length < maxLength && contributionsEaten % growEvery === 0) {
+      if (snake.length < safeMaxLength && contributionsEaten % growEvery === 0) {
         snake = growSnake(snake, 1);
       }
     }
@@ -300,31 +343,54 @@ export function simulateSnake(
     }
   }
 
-  // Return journey - snake travels back to start
-  const returnSteps = 50; // Add some frames for return journey
-  const targetY = startPosition.y;
+  // Return journey - snake stays full length, uses safe pathfinding to exit
+  // Target: move left until completely off-screen
 
-  // First, move toward center Y
-  while (snake.segments[0].y !== targetY && steps < maxSteps + returnSteps) {
-    const dir = snake.segments[0].y > targetY ? "up" : "down";
-    snake = moveSnake(snake, dir as Direction);
-    steps++;
-    frames.push({
-      snake: { ...snake, segments: snake.segments.map((s) => ({ ...s })) },
-      grid,
-      frameIndex: frameIndex++,
-    });
-  }
+  while (snake.segments[0].x >= -snake.length && steps < maxSteps + 200) {
+    // Try to move left first
+    let moved = false;
+    const head = snake.segments[0];
 
-  // Then, move left back toward start
-  while (snake.segments[0].x > startPosition.x && steps < maxSteps + returnSteps) {
-    snake = moveSnake(snake, "left");
-    steps++;
-    frames.push({
-      snake: { ...snake, segments: snake.segments.map((s) => ({ ...s })) },
-      grid,
-      frameIndex: frameIndex++,
-    });
+    // Preferred directions: left, then up/down toward center
+    const preferredDirs: Direction[] = ["left"];
+    if (head.y > startPosition.y) preferredDirs.push("up");
+    if (head.y < startPosition.y) preferredDirs.push("down");
+    if (head.y === startPosition.y) {
+      preferredDirs.push("up", "down"); // either works
+    }
+    preferredDirs.push("right"); // last resort, go around
+
+    for (const dir of preferredDirs) {
+      // Don't go backwards
+      if (dir === oppositeDirection(snake.direction) && snake.length > 1) continue;
+
+      const delta = directionDelta(dir);
+      const nextPos = { x: head.x + delta.x, y: head.y + delta.y };
+
+      // Check if move is valid (don't collide with self, stay in reasonable bounds)
+      if (nextPos.y >= 0 && nextPos.y < 7 && !snakeOccupies(snake, nextPos, true)) {
+        snake = moveSnake(snake, dir);
+        steps++;
+        frames.push({
+          snake: { ...snake, segments: snake.segments.map((s) => ({ ...s })) },
+          grid,
+          frameIndex: frameIndex++,
+        });
+        moved = true;
+        break;
+      }
+    }
+
+    // If stuck, shrink by 1 to free up space
+    if (!moved && snake.length > 1) {
+      snake = {
+        ...snake,
+        segments: snake.segments.slice(0, -1),
+        length: snake.length - 1,
+      };
+    } else if (!moved) {
+      break; // Truly stuck at length 1
+    }
   }
 
   return frames;
