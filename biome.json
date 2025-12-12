@@ -93,5 +93,20 @@
       "allowComments": true,
       "allowTrailingCommas": false
     }
+  },
+  "css": {
+    "parser": {
+      "cssModules": true
+    },
+    "formatter": {
+      "enabled": true,
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "lineEnding": "lf",
+      "lineWidth": 100
+    },
+    "linter": {
+      "enabled": false
+    }
   }
 }

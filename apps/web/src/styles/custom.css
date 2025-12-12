@@ -1,0 +1,60 @@
+/* Snake Evolution - Custom Starlight Styles */
+@import "tailwindcss";
+
+/* Override Starlight colors with snake theme */
+:root {
+  --sl-color-accent-low: #0e4429;
+  --sl-color-accent: #26a641;
+  --sl-color-accent-high: #39d353;
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #f0f6fc;
+  --sl-color-gray-2: #c9d1d9;
+  --sl-color-gray-3: #8b949e;
+  --sl-color-gray-4: #6e7681;
+  --sl-color-gray-5: #484f58;
+  --sl-color-gray-6: #30363d;
+  --sl-color-black: #0d1117;
+}
+
+:root[data-theme="dark"] {
+  --sl-color-bg: #0d1117;
+  --sl-color-bg-nav: #161b22;
+  --sl-color-bg-sidebar: #161b22;
+}
+
+/* Snake animation styles */
+.snake-demo {
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.snake-demo svg {
+  width: 100%;
+  height: auto;
+}
+
+/* Hero section enhancements */
+.hero-gradient {
+  background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0e4429 100%);
+}
+
+/* Code blocks with GitHub dark theme */
+.astro-code {
+  border-radius: 0.5rem;
+  border: 1px solid #30363d;
+}
+
+/* Contribution grid animation */
+@keyframes snake-move {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-snake {
+  animation: snake-move 20s linear infinite;
+}

@@ -3,7 +3,12 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES2022"
+    ],
+    "jsx": "react-jsx",
     "strict": true,
     "skipLibCheck": true,
     "noUnusedLocals": true,
@@ -16,20 +21,47 @@
     "declaration": true,
     "declarationMap": true,
     "noEmit": true,
-    "types": ["bun"],
+    "types": [
+      "bun"
+    ],
     "baseUrl": ".",
     "paths": {
-      "@snake-evolution/types": ["./packages/types/src"],
-      "@snake-evolution/types/*": ["./packages/types/src/*"],
-      "@snake-evolution/ui": ["./packages/ui/src"],
-      "@snake-evolution/ui/*": ["./packages/ui/src/*"],
-      "@snake-evolution/engine": ["./packages/engine/src"],
-      "@snake-evolution/engine/*": ["./packages/engine/src/*"],
-      "@snake-evolution/renderer": ["./packages/renderer/src"],
-      "@snake-evolution/renderer/*": ["./packages/renderer/src/*"],
-      "@snake-evolution/github": ["./packages/github/src"],
-      "@snake-evolution/github/*": ["./packages/github/src/*"]
+      "@snake-evolution/types": [
+        "./packages/types/src"
+      ],
+      "@snake-evolution/types/*": [
+        "./packages/types/src/*"
+      ],
+      "@snake-evolution/ui": [
+        "./packages/ui/src"
+      ],
+      "@snake-evolution/ui/*": [
+        "./packages/ui/src/*"
+      ],
+      "@snake-evolution/engine": [
+        "./packages/engine/src"
+      ],
+      "@snake-evolution/engine/*": [
+        "./packages/engine/src/*"
+      ],
+      "@snake-evolution/renderer": [
+        "./packages/renderer/src"
+      ],
+      "@snake-evolution/renderer/*": [
+        "./packages/renderer/src/*"
+      ],
+      "@snake-evolution/github": [
+        "./packages/github/src"
+      ],
+      "@snake-evolution/github/*": [
+        "./packages/github/src/*"
+      ]
     }
   },
-  "exclude": ["node_modules", "**/dist", "**/build", "**/.turbo"]
+  "exclude": [
+    "node_modules",
+    "**/dist",
+    "**/build",
+    "**/.turbo"
+  ]
 }

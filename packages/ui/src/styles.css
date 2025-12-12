@@ -1,0 +1,52 @@
+/* Snake Evolution - Shared Styles */
+/* Plain CSS version - Tailwind classes are used directly in components */
+
+.snake-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  background-color: #1f2937;
+}
+
+.snake-grid {
+  display: grid;
+  gap: 0.125rem;
+}
+
+.snake-cell {
+  aspect-ratio: 1 / 1;
+  border-radius: 0.125rem;
+  transition: background-color 200ms;
+}
+
+.snake-cell-empty {
+  background-color: #1f2937;
+}
+
+.snake-cell-level-1 {
+  background-color: #14532d;
+}
+
+.snake-cell-level-2 {
+  background-color: #15803d;
+}
+
+.snake-cell-level-3 {
+  background-color: #22c55e;
+}
+
+.snake-cell-level-4 {
+  background-color: #4ade80;
+}
+
+.snake-head {
+  background-color: #60a5fa;
+}
+
+.snake-body {
+  background-color: #3b82f6;
+}
+
+.snake-tail {
+  background-color: #2563eb;
+}

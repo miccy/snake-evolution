@@ -1,27 +1,65 @@
 // @ts-check
 
 import starlight from "@astrojs/starlight";
+import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://snake-evolution.dev",
   integrations: [
     starlight({
-      title: "My Docs",
-      social: [{ icon: "github", label: "GitHub", href: "https://github.com/withastro/starlight" }],
+      title: "Snake Evolution",
+      description: "Transform your GitHub contribution graph into an epic snake animation",
+      logo: {
+        light: "./src/assets/logo-light.svg",
+        dark: "./src/assets/logo-dark.svg",
+        replacesTitle: false,
+      },
+      social: [
+        {
+          icon: "github",
+          label: "GitHub",
+          href: "https://github.com/miccy/snake-evolution",
+        },
+      ],
+      editLink: {
+        baseUrl: "https://github.com/miccy/snake-evolution/edit/main/apps/web/",
+      },
       sidebar: [
+        {
+          label: "Getting Started",
+          items: [
+            { label: "Introduction", slug: "guides/introduction" },
+            { label: "Quick Start", slug: "guides/quick-start" },
+            { label: "Installation", slug: "guides/installation" },
+          ],
+        },
         {
           label: "Guides",
           items: [
-            // Each item here is one entry in the navigation menu.
-            { label: "Example Guide", slug: "guides/example" },
+            { label: "GitHub Action", slug: "guides/github-action" },
+            { label: "Customization", slug: "guides/customization" },
+            { label: "Color Palettes", slug: "guides/palettes" },
           ],
         },
         {
           label: "Reference",
           autogenerate: { directory: "reference" },
         },
+        {
+          label: "Architecture",
+          items: [
+            { label: "Overview", slug: "architecture/overview" },
+            { label: "Evolu Integration", slug: "architecture/evolu" },
+            { label: "API Reference", slug: "architecture/api" },
+          ],
+        },
       ],
+      customCss: ["./src/styles/custom.css"],
+    }),
+    tailwind({
+      applyBaseStyles: false,
     }),
   ],
 });
