@@ -40,6 +40,30 @@ export interface SnakeState {
 }
 
 // ============================================
+// Simulation Types
+// ============================================
+
+export interface SnakeFrame {
+  snake: SnakeState;
+  grid: ContributionGrid;
+  eatenPosition?: Position;
+  frameIndex: number;
+}
+
+export interface SimulationOptions {
+  /** Starting position for snake (default: {x: 0, y: 3}) */
+  startPosition?: Position;
+  /** Maximum snake length - stops growing after this (default: 10) */
+  maxLength?: number;
+  /** Grow 1 segment every N contributions eaten (default: 4) */
+  growEvery?: number;
+  /** Maximum steps before ending (default: 2000) */
+  maxSteps?: number;
+  /** Generate frame on every move or only when eating (default: 'every') */
+  frameMode?: "every" | "eating-only";
+}
+
+// ============================================
 // Rendering Types
 // ============================================
 
