@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Discussions
+    url: https://github.com/miccy/snake-evolution/discussions
+    about: Ask questions and share ideas in GitHub Discussions
+  - name: 📚 Documentation
+    url: https://snake-evolution.dev/docs
+    about: Check the documentation for guides and references

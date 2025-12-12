@@ -1,8 +1,8 @@
 {
-    "folders": [
-        {
-            "name": "Snake Evolution",
-            "path": "../"
-        }
-    ]
+  "folders": [
+    {
+      "name": "Snake Evolution",
+      "path": "../"
+    }
+  ]
 }

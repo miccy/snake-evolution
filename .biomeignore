@@ -1,0 +1,19 @@
+# Biome ignore patterns
+
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+.next/
+.astro/
+
+# Turbo
+.turbo/
+
+# Lock files (handled by package manager)
+bun.lock
+package-lock.json
+pnpm-lock.yaml
+yarn.lock

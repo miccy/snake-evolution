@@ -2,7 +2,7 @@
 
 > Transform your GitHub contribution graph into an epic snake animation that devours your contributions and grows longer!
 
-[![GitHub Stars](https://img.shields.io/github/stars/miccy/contributions-devouring-snake?style=flat-square)](https://github.com/miccy/contributions-devouring-snake/stargazers)
+[![GitHub Stars](https://img.shields.io/github/stars/miccy/snake-evolution?style=flat-square)](https://github.com/miccy/snake-evolution/stargazers)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
@@ -104,7 +104,7 @@ jobs:
       - uses: actions/checkout@v3
       
       - name: Generate Snake
-        uses: miccy/contributions-devouring-snake@v1
+        uses: miccy/snake-evolution@v1
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
@@ -148,16 +148,16 @@ snake preview --username miccy
 
 ### Prerequisites
 
-- [Bun](https://bun.sh) >= 1.3.1 (recommended)
-- [Node.js](https://nodejs.org) >= 18 (alternative)
+- [Bun](https://bun.sh) >= 1.3.0 (recommended)
+- [Node.js](https://nodejs.org) >= 24 (alternative)
 - [Git](https://git-scm.com)
 
 ### Setup
 
 ```bash
 # Clone the repository
-git clone https://github.com/miccy/contributions-devouring-snake.git
-cd contributions-devouring-snake
+git clone https://github.com/miccy/snake-evolution.git
+cd snake-evolution
 
 # Install dependencies
 bun install
@@ -182,7 +182,7 @@ bun run quality
 ### Project Structure
 
 ```
-contributions-devouring-snake/
+snake-evolution/
 ├── apps/
 │   ├── web/              # Main website + playground
 │   ├── docs/             # Documentation
@@ -224,7 +224,7 @@ Check out our [Contributing Guide](CONTRIBUTING.md) to get started.
 
 ### Good First Issues
 
-Looking to contribute? Check out issues labeled [`good first issue`](https://github.com/miccy/contributions-devouring-snake/labels/good%20first%20issue)
+Looking to contribute? Check out issues labeled [`good first issue`](https://github.com/miccy/snake-evolution/labels/good%20first%20issue)
 
 ## 📖 Documentation
 
@@ -268,7 +268,7 @@ If you find this project useful, please:
 
 - Original snake concept by [Platane](https://github.com/Platane)
 - Built with ❤️ by [@miccy](https://github.com/miccy)
-- Community contributors (see [Contributors](https://github.com/miccy/contributions-devouring-snake/graphs/contributors))
+- Community contributors (see [Contributors](https://github.com/miccy/snake-evolution/graphs/contributors))
 
 ## 📄 License
 

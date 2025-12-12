@@ -1,0 +1,13 @@
+{
+  "name": "@snake-evolution/biome-config",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "description": "Shared Biome configuration for snake-evolution monorepo",
+  "exports": {
+    ".": "./biome.json"
+  },
+  "files": [
+    "biome.json"
+  ]
+}

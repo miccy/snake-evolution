@@ -1,4 +1,4 @@
-# Contributing to Contributions Devouring Snake 🐍
+# Contributing to Snake Evolution 🐍
 
 First off, thank you for considering contributing! This project exists because of people like you.
 
@@ -18,8 +18,9 @@ There are many ways to contribute:
 
 ### Prerequisites
 
-- [Bun](https://bun.sh) >= 1.3.1 (primary) or [Node.js](https://nodejs.org) >= 18
+- [Bun](https://bun.sh) >= 1.3.0 (primary) or [Node.js](https://nodejs.org) >= 24
 - [Git](https://git-scm.com)
+- [Docker](https://docker.com) (for local backend)
 - GitHub account
 
 ### Setup Development Environment
@@ -29,19 +30,22 @@ There are many ways to contribute:
 # Click "Fork" on GitHub
 
 # 2. Clone your fork
-git clone https://github.com/YOUR_USERNAME/contributions-devouring-snake.git
-cd contributions-devouring-snake
+git clone https://github.com/YOUR_USERNAME/snake-evolution.git
+cd snake-evolution
 
 # 3. Add upstream remote
-git remote add upstream https://github.com/miccy/contributions-devouring-snake.git
+git remote add upstream https://github.com/miccy/snake-evolution.git
 
 # 4. Install dependencies
 bun install
 
-# 5. Create a branch
+# 5. Start Docker services (optional, for backend)
+docker compose -f docker/docker-compose.yml up -d
+
+# 6. Create a branch
 git checkout -b feature/your-feature-name
 
-# 6. Start development
+# 7. Start development
 bun run dev
 ```
 
@@ -49,8 +53,8 @@ bun run dev
 
 ### 1. Pick an Issue
 
-- Browse [open issues](https://github.com/miccy/contributions-devouring-snake/issues)
-- Look for [`good first issue`](https://github.com/miccy/contributions-devouring-snake/labels/good%20first%20issue) label
+- Browse [open issues](https://github.com/miccy/snake-evolution/issues)
+- Look for [`good first issue`](https://github.com/miccy/snake-evolution/labels/good%20first%20issue) label
 - Comment on the issue to claim it
 - Wait for assignment (prevents duplicate work)
 
@@ -324,7 +328,7 @@ apps/docs/
 
 ### Before Submitting
 
-1. Check [existing issues](https://github.com/miccy/contributions-devouring-snake/issues)
+1. Check [existing issues](https://github.com/miccy/snake-evolution/issues)
 2. Try the latest version
 3. Gather relevant information
 
@@ -470,7 +474,7 @@ We follow the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md).
 ## ❓ Questions?
 
 - Check [documentation](#)
-- Search [GitHub Discussions](https://github.com/miccy/contributions-devouring-snake/discussions)
+- Search [GitHub Discussions](https://github.com/miccy/snake-evolution/discussions)
 - Join our [Discord](#)
 - Email: your@email.com
 
@@ -489,4 +493,4 @@ Happy coding! 🐍✨
 
 ---
 
-**Have questions?** Open a [discussion](https://github.com/miccy/contributions-devouring-snake/discussions) or join our [Discord](#)!
+**Have questions?** Open a [discussion](https://github.com/miccy/snake-evolution/discussions) or join our [Discord](#)!

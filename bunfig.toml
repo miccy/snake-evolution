@@ -1,0 +1,8 @@
+[install]
+# Save exact versions (no ^ or ~)
+exact = false
+
+[test]
+# Test runner configuration
+coverage = false
+

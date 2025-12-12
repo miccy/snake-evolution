@@ -1,0 +1,81 @@
+# Snake Evolution - Docker Development Stack
+# Start with: docker compose up -d
+# Stop with: docker compose down
+
+services:
+  # Appwrite - Backend as a Service
+  appwrite:
+    image: appwrite/appwrite:1.6
+    container_name: snake-appwrite
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - appwrite-data:/storage/uploads
+      - appwrite-config:/storage/config
+      - appwrite-cache:/storage/cache
+      - appwrite-certificates:/storage/certificates
+      - appwrite-functions:/storage/functions
+    environment:
+      - _APP_ENV=development
+      - _APP_LOCALE=en
+      - _APP_OPTIONS_ABUSE=disabled
+      - _APP_OPENSSL_KEY_V1=your-secret-key
+      - _APP_DOMAIN=localhost
+      - _APP_DOMAIN_TARGET=localhost
+      - _APP_REDIS_HOST=redis
+      - _APP_REDIS_PORT=6379
+      - _APP_DB_HOST=mariadb
+      - _APP_DB_PORT=3306
+      - _APP_DB_SCHEMA=appwrite
+      - _APP_DB_USER=user
+      - _APP_DB_PASS=password
+      - _APP_SMTP_HOST=maildev
+      - _APP_SMTP_PORT=1025
+    depends_on:
+      - redis
+      - mariadb
+
+  # MariaDB for Appwrite
+  mariadb:
+    image: mariadb:10.11
+    container_name: snake-mariadb
+    restart: unless-stopped
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=appwrite
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    command: --max-allowed-packet=128MB
+
+  # Redis for caching and queues
+  redis:
+    image: redis:7-alpine
+    container_name: snake-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+
+  # MailDev for local email testing
+  maildev:
+    image: maildev/maildev:2.1.0
+    container_name: snake-maildev
+    restart: unless-stopped
+    ports:
+      - "1080:1080"  # Web UI
+      - "1025:1025"  # SMTP
+
+volumes:
+  appwrite-data:
+  appwrite-config:
+  appwrite-cache:
+  appwrite-certificates:
+  appwrite-functions:
+  mariadb-data:
+  redis-data:

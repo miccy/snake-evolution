@@ -12,17 +12,17 @@
   "scripts": {
     "dev": "turbo run dev",
     "dev:web": "turbo run dev --filter=@snake-evolution/web",
-    "dev:docs": "turbo run dev --filter=@snake-evolution/docs",
+    "dev:api": "turbo run dev --filter=@snake-evolution/api",
     "build": "turbo run build",
     "build:web": "turbo run build --filter=@snake-evolution/web",
-    "build:docs": "turbo run build --filter=@snake-evolution/docs",
-    "build:action": "turbo run build --filter=@snake-evolution/action",
+    "build:api": "turbo run build --filter=@snake-evolution/api",
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
-    "lint": "turbo run lint",
+    "lint": "biome check .",
+    "lint:fix": "biome check --fix .",
     "format": "biome format --write .",
     "format:check": "biome format .",
-    "type-check": "turbo run type-check",
+    "type-check": "tsc --noEmit",
     "clean": "turbo run clean && rm -rf node_modules .turbo",
     "quality": "bun run lint && bun run format:check && bun run type-check && bun run test"
   },
@@ -33,13 +33,18 @@
     "typescript": "5.9.3"
   },
   "engines": {
-    "node": ">=22",
+    "node": ">=24",
     "bun": ">=1.3.0"
   },
   "packageManager": "bun@1.3.4",
   "workspaces": [
     "apps/*",
-    "packages/*",
-    "tooling/*"
-  ]
+    "packages/*"
+  ],
+  "resolutions": {
+    "cross-spawn": "^7.0.3",
+    "http-cache-semantics": "^4.1.1",
+    "semver-regex": "^3.1.4",
+    "uuid": "^9.0.1"
+  }
 }
