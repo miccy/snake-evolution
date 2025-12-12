@@ -3,12 +3,12 @@
 // Snake Evolution CLI
 // Generate GitHub contribution snake animations
 
+import { writeFileSync } from "node:fs";
+import { resolve } from "node:path";
 import { simulateSnake } from "@snake-evolution/engine";
 import { fetchContributions } from "@snake-evolution/github";
 import { getTheme, renderAnimatedSVG, renderStaticSVG } from "@snake-evolution/renderer";
 import { Command } from "commander";
-import { writeFileSync } from "node:fs";
-import { resolve } from "node:path";
 
 const program = new Command();
 
@@ -24,7 +24,7 @@ program
   .option("-o, --output <path>", "Output file path", "snake.svg")
   .option(
     "-t, --theme <theme>",
-    "Theme name (github-light, github-dark, glass, ocean, sunset, neon-gamer)",
+    "Theme name (github-light, github-dark, ocean, sunset, neon-gamer)",
     "github-dark",
   )
   .option("-f, --format <format>", "Output format (svg, gif)", "svg")
@@ -49,7 +49,7 @@ program
       const grid = await fetchContributions(
         options.username,
         options.token,
-        Number.parseInt(options.year),
+        Number.parseInt(options.year, 10),
       );
       console.log(`   Found ${grid.totalContributions} contributions`);
 
@@ -60,8 +60,8 @@ program
       // Simulate snake (use defaults for dynamic calculation unless overridden)
       console.log("🎮 Simulating snake...");
       const simOptions: Record<string, unknown> = { frameMode: "every" };
-      if (options.maxLength !== "0") simOptions.maxLength = Number.parseInt(options.maxLength);
-      if (options.growEvery !== "0") simOptions.growEvery = Number.parseInt(options.growEvery);
+      if (options.maxLength !== "0") simOptions.maxLength = Number.parseInt(options.maxLength, 10);
+      if (options.growEvery !== "0") simOptions.growEvery = Number.parseInt(options.growEvery, 10);
 
       const frames = simulateSnake(grid, simOptions);
       const maxSnakeLen = Math.max(...frames.map((f) => f.snake.segments.length));
@@ -71,7 +71,7 @@ program
       let output: string;
       const renderOptions = {
         palette,
-        frameDelay: Number.parseInt(options.frameDelay),
+        frameDelay: Number.parseInt(options.frameDelay, 10),
       };
 
       if (options.format === "gif") {

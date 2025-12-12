@@ -85,7 +85,6 @@ This monorepo contains:
 | 🌊 `ocean` | Cool blue tones |
 | 🌅 `sunset` | Warm orange/pink gradient |
 | 🎮 `neon-gamer` | Vibrant purple and green |
-| 🪟 `glass` | iOS-style liquid glass effect |
 
 ## 🎮 Coming Soon: PvP Mode!
 
