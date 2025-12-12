@@ -1,135 +1,294 @@
-# Turborepo starter
+# 🐍 Contributions Devouring Snake
 
-This Turborepo starter is maintained by the Turborepo core team.
+> Transform your GitHub contribution graph into an epic snake animation that devours your contributions and grows longer!
 
-## Using this example
+[![GitHub Stars](https://img.shields.io/github/stars/miccy/contributions-devouring-snake?style=flat-square)](https://github.com/miccy/contributions-devouring-snake/stargazers)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](CONTRIBUTING.md)
 
-Run the following command:
+[🎮 Live Playground](#) | [📚 Documentation](#) | [🎨 Gallery](#) | [💬 Discord](#)
 
-```sh
-npx create-turbo@latest
+## ✨ What Makes This Different?
+
+Unlike other GitHub snake generators, ours features:
+
+- **🎮 Interactive Playground** - Try it instantly in your browser, no installation needed
+- **🎨 10+ Visual Templates** - Neon Gamer, Minimal Pro, Matrix Hacker, and more
+- **🐍 Growing Snake** - Gets longer as it devours contributions (just like the classic game!)
+- **🌈 Full Customization** - Colors, growth rate, animation speed
+- **💾 Local-First** - Uses Evolu for offline support and privacy
+- **🎯 Share Instantly** - Auto-generated social media cards
+- **🚀 Multiple Formats** - SVG, GIF, or live web component
+
+## 🎬 See It In Action
+
+<!-- VIDEO DEMO WILL GO HERE -->
+
+## 🚀 Quick Start
+
+### For GitHub Profile README
+
+Add this to your `README.md`:
+
+```markdown
+![Snake animation](https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_USERNAME/output/github-snake.svg)
 ```
 
-## What's inside?
+Then set up the GitHub Action (see [GitHub Action Guide](#github-action))
 
-This Turborepo includes the following packages/apps:
+### Try It Online
 
-### Apps and Packages
+1. Visit [our playground](#)
+2. Enter your GitHub username
+3. Pick a template or customize colors
+4. Download or share!
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@snake-evolution/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@snake-evolution/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@snake-evolution/typescript-config`: `tsconfig.json`s used throughout the monorepo
+## 📦 What's Included
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+This monorepo contains:
 
-### Utilities
+### 🌐 Apps
 
-This Turborepo has some additional tools already setup for you:
+- **[apps/web](./apps/web)** - Astro + React playground with Evolu database
+- **[apps/docs](./apps/docs)** - Comprehensive documentation site (Astro Starlight)
+- **[apps/action](./apps/action)** - GitHub Action for automated generation
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+### 📚 Packages
 
-### Build
+- **[packages/engine](./packages/engine)** - Core snake logic and pathfinding
+- **[packages/renderer](./packages/renderer)** - SVG/GIF/Canvas rendering
+- **[packages/github](./packages/github)** - GitHub API integration
+- **[packages/cli](./packages/cli)** - Command-line tool
 
-To build all apps and packages, run the following command:
+### 🔧 Tooling
 
-```
-cd my-turborepo
+- **[tooling/eslint-config](./tooling/eslint-config)** - Shared ESLint configuration
+- **[tooling/typescript-config](./tooling/typescript-config)** - Shared TypeScript configs
+- **[tooling/tailwind-config](./tooling/tailwind-config)** - Shared Tailwind configuration
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
+## 🎨 Templates
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
-```
+We have 10+ pre-made visual styles:
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+| Template | Description | Preview |
+|----------|-------------|---------|
+| 🎮 Neon Gamer | Vibrant purple and green | [Preview](#) |
+| ⚫ Minimal Pro | Clean black and white | [Preview](#) |
+| 💚 Matrix Hacker | Green on black terminal style | [Preview](#) |
+| 🌅 Sunset Vibes | Warm orange and pink gradient | [Preview](#) |
+| 🌊 Ocean Deep | Cool blue tones | [Preview](#) |
+| 🌈 Rainbow Party | Full spectrum colors | [Preview](#) |
+| 🍂 Autumn Forest | Earth tones | [Preview](#) |
+| 💜 Purple Dream | Purple gradient | [Preview](#) |
+| 🌸 Cherry Blossom | Soft pink theme | [Preview](#) |
+| 🔥 Fire & Ice | Red and blue contrast | [Preview](#) |
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+[View all templates →](#)
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+## 🛠️ GitHub Action
 
-### Develop
+Add to `.github/workflows/snake.yml`:
 
-To develop all apps and packages, run the following command:
+```yaml
+name: Generate Snake
 
-```
-cd my-turborepo
+on:
+  schedule:
+    - cron: "0 0 * * *" # Daily at midnight
+  workflow_dispatch:
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
-
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Generate Snake
+        uses: miccy/contributions-devouring-snake@v1
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-snake.svg
+            dist/github-snake-dark.svg?palette=github-dark
+            dist/ocean.gif?palette=ocean&snake_length_increment=2
+      
+      - name: Push to output branch
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+[Full GitHub Action Guide →](#)
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+## 💻 CLI Usage
+
+```bash
+# Install globally
+bun add -g @snake/cli
+
+# Generate snake
+snake generate --username miccy --output snake.svg
+
+# Watch mode (auto-regenerate)
+snake watch --username miccy
+
+# Batch generate for multiple users
+snake batch --users miccy,platane,torvalds
+
+# Preview in browser
+snake preview --username miccy
+```
+
+[Full CLI Documentation →](#)
+
+## 🏗️ Development
+
+### Prerequisites
+
+- [Bun](https://bun.sh) >= 1.3.1 (recommended)
+- [Node.js](https://nodejs.org) >= 18 (alternative)
+- [Git](https://git-scm.com)
+
+### Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/miccy/contributions-devouring-snake.git
+cd contributions-devouring-snake
+
+# Install dependencies
+bun install
+
+# Start development servers (all apps)
+bun run dev
+
+# Or start specific app
+bun run dev:web
+bun run dev:docs
+
+# Run tests
+bun test
+
+# Build everything
+bun run build
+
+# Check code quality
+bun run quality
+```
+
+### Project Structure
 
 ```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+contributions-devouring-snake/
+├── apps/
+│   ├── web/              # Main website + playground
+│   ├── docs/             # Documentation
+│   └── action/           # GitHub Action
+├── packages/
+│   ├── engine/           # Snake engine
+│   ├── renderer/         # Rendering
+│   ├── github/           # GitHub API
+│   └── cli/              # CLI tool
+├── tooling/              # Shared configs
+├── examples/             # Usage examples
+└── docs/                 # Project documentation
+    ├── AGENTS.md         # AI agent orchestration
+    ├── ARCHITECTURE.md   # Technical architecture
+    ├── ROADMAP.md        # Development roadmap
+    ├── EVOLU_GUIDE.md    # Evolu integration
+    └── APPWRITE_SETUP.md # Appwrite setup
 ```
 
-## Useful Links
+### Tech Stack
 
-Learn more about the power of Turborepo:
+- **Frontend**: [Astro](https://astro.build), [React](https://react.dev), [Tailwind CSS](https://tailwindcss.com)
+- **Database**: [Evolu](https://evolu.dev) (local-first SQLite + CRDT)
+- **Backend**: [Appwrite](https://appwrite.io) (auth, storage, functions)
+- **Build**: [Turborepo](https://turbo.build), [Bun](https://bun.sh)
+- **Deployment**: GitHub Pages (primary), Vercel (backup)
 
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+## 🤝 Contributing
+
+We love contributions! Whether it's:
+
+- 🐛 Bug reports
+- 💡 Feature requests
+- 📝 Documentation improvements
+- 🎨 New visual templates
+- 🔧 Code contributions
+
+Check out our [Contributing Guide](CONTRIBUTING.md) to get started.
+
+### Good First Issues
+
+Looking to contribute? Check out issues labeled [`good first issue`](https://github.com/miccy/contributions-devouring-snake/labels/good%20first%20issue)
+
+## 📖 Documentation
+
+- [Getting Started Guide](#)
+- [API Reference](#)
+- [Customization Guide](#)
+- [GitHub Action Guide](#)
+- [CLI Documentation](#)
+- [Contributing Guide](CONTRIBUTING.md)
+- [Architecture Documentation](docs/ARCHITECTURE.md)
+
+## 🎓 Learning Resources
+
+This project was built to learn and demonstrate:
+
+- **Local-First Architecture** with Evolu
+- **GitHub Apps Development**
+- **Appwrite Integration**
+- **AI Agent Orchestration**
+- **Modern Monorepo Patterns**
+
+Read about our journey:
+- [Building a Local-First App with Evolu](#) (Coming soon)
+- [Orchestrating AI Agents for Development](#) (Coming soon)
+- [From Idea to 10k GitHub Stars](#) (Coming soon)
+
+## 🌟 Show Your Support
+
+If you find this project useful, please:
+
+- ⭐ Star the repository
+- 🐦 Share on Twitter
+- 💬 Join our Discord
+- 💰 [Sponsor on GitHub](https://github.com/sponsors/miccy)
+
+## 📊 Project Stats
+
+<!-- Add shields.io badges here -->
+
+## 🙏 Acknowledgments
+
+- Original snake concept by [Platane](https://github.com/Platane)
+- Built with ❤️ by [@miccy](https://github.com/miccy)
+- Community contributors (see [Contributors](https://github.com/miccy/contributions-devouring-snake/graphs/contributors))
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🔗 Links
+
+- [Website](#)
+- [Documentation](#)
+- [Discord Community](#)
+- [Twitter](https://twitter.com/YOUR_HANDLE)
+- [Blog](https://YOUR_BLOG.com)
+
+---
+
+<div align="center">
+  <p>
+    <sub>Built with 🐍 by <a href="https://github.com/miccy">@miccy</a></sub>
+  </p>
+  <p>
+    <sub>Want to contribute? Check out <a href="CONTRIBUTING.md">CONTRIBUTING.md</a></sub>
+  </p>
+</div>

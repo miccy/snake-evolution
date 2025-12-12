@@ -1,0 +1,50 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":timezone(Europe/Prague)"
+  ],
+  "schedule": ["before 3am on Monday"],
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "description": "Automerge non-major updates",
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash"
+    },
+    {
+      "description": "Group Bun updates",
+      "matchPackageNames": ["bun", "@types/bun"],
+      "groupName": "Bun"
+    },
+    {
+      "description": "Group TypeScript updates",
+      "matchPackageNames": ["typescript"],
+      "groupName": "TypeScript"
+    },
+    {
+      "description": "Group GitHub Actions",
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions",
+      "automerge": true
+    },
+    {
+      "description": "Separate major updates",
+      "matchUpdateTypes": ["major"],
+      "labels": ["dependencies", "major-update"],
+      "automerge": false
+    }
+  ],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": ["before 3am on the first day of the month"]
+  },
+  "vulnerabilityAlerts": {
+    "labels": ["security"],
+    "assignees": ["@miccy"]
+  }
+}

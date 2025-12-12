@@ -1,0 +1,26 @@
+# Dependabot configuration
+# Only security updates - Renovate handles version updates
+
+version: 2
+updates:
+  # Security updates only for npm
+  - package-ecosystem: "bun"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    open-pull-requests-limit: 0 # Disable version updates
+    # Security updates are always created regardless of this setting
+
+  # Security updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 0 # Let Renovate handle it
+
+  # Security updates for Docker
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 0 # Let Renovate handle it
