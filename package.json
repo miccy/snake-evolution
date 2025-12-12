@@ -16,6 +16,7 @@
     "build": "turbo run build",
     "build:web": "turbo run build --filter=@snake-evolution/web",
     "build:api": "turbo run build --filter=@snake-evolution/api",
+    "build:cli": "turbo run build --filter=@snake-evolution/cli",
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
     "lint": "biome check .",
@@ -24,7 +25,9 @@
     "format:check": "biome format .",
     "type-check": "tsc --noEmit",
     "clean": "turbo run clean && rm -rf node_modules .turbo",
-    "quality": "bun run lint && bun run format:check && bun run type-check && bun run test"
+    "quality": "bun run lint && bun run format:check && bun run type-check && bun run test",
+    "snake": "bun run packages/cli/src/index.ts",
+    "generate": "bun run packages/cli/src/index.ts generate"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3.8",

@@ -1,0 +1,47 @@
+# Generate snake for this repository's README demo
+name: Generate Demo Snake
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'  # Every 6 hours
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'packages/engine/**'
+      - 'packages/renderer/**'
+      - 'packages/cli/**'
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Generate Dark Theme
+        run: bun run packages/cli/src/index.ts generate -u miccy -t github-dark -o snake.svg
+
+      - name: Generate Light Theme
+        run: bun run packages/cli/src/index.ts generate -u miccy -t github-light -o snake-light.svg
+
+      - name: Push to output branch
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: .
+          keep_history: false
+          allow_empty_commit: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

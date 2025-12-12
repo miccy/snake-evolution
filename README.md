@@ -1,4 +1,8 @@
-# 🐍 Contributions Devouring Snake
+<p align="center">
+  <img src=".github/banner.png" alt="Snake Evolution Banner" width="100%">
+</p>
+
+# 🐍 Snake Evolution
 
 > Transform your GitHub contribution graph into an epic snake animation that devours your contributions and grows longer!
 
@@ -22,7 +26,13 @@ Unlike other GitHub snake generators, ours features:
 
 ## 🎬 See It In Action
 
-<!-- VIDEO DEMO WILL GO HERE -->
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/miccy/snake-evolution/output/snake.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/miccy/snake-evolution/output/snake-light.svg">
+    <img alt="Snake eating contributions" src="https://raw.githubusercontent.com/miccy/snake-evolution/output/snake.svg">
+  </picture>
+</p>
 
 ## 🚀 Quick Start
 
@@ -66,24 +76,28 @@ This monorepo contains:
 - **[tooling/typescript-config](./tooling/typescript-config)** - Shared TypeScript configs
 - **[tooling/tailwind-config](./tooling/tailwind-config)** - Shared Tailwind configuration
 
-## 🎨 Templates
+## 🎨 Themes
 
-We have 10+ pre-made visual styles:
+| Theme | Description |
+|-------|-------------|
+| 🌑 `github-dark` | GitHub's dark mode (default) |
+| ☀️ `github-light` | Classic GitHub light |
+| 🌊 `ocean` | Cool blue tones |
+| 🌅 `sunset` | Warm orange/pink gradient |
+| 🎮 `neon-gamer` | Vibrant purple and green |
+| 🪟 `glass` | iOS-style liquid glass effect |
 
-| Template | Description | Preview |
-|----------|-------------|---------|
-| 🎮 Neon Gamer | Vibrant purple and green | [Preview](#) |
-| ⚫ Minimal Pro | Clean black and white | [Preview](#) |
-| 💚 Matrix Hacker | Green on black terminal style | [Preview](#) |
-| 🌅 Sunset Vibes | Warm orange and pink gradient | [Preview](#) |
-| 🌊 Ocean Deep | Cool blue tones | [Preview](#) |
-| 🌈 Rainbow Party | Full spectrum colors | [Preview](#) |
-| 🍂 Autumn Forest | Earth tones | [Preview](#) |
-| 💜 Purple Dream | Purple gradient | [Preview](#) |
-| 🌸 Cherry Blossom | Soft pink theme | [Preview](#) |
-| 🔥 Fire & Ice | Red and blue contrast | [Preview](#) |
+## 🎮 Coming Soon: PvP Mode!
 
-[View all templates →](#)
+> **Challenge friends to snake battles!**
+
+- 🏆 **Leaderboards** - Global rankings
+- ⚔️ **1v1 Challenges** - Battle friends or colleagues  
+- 👥 **Team Battles** - Company vs company (B2B)
+- ⚡ **Power-ups** - Shrink, teleport, shield
+- 📈 **Progressive difficulty** - Each round faster!
+
+[View full roadmap →](./docs/ROADMAP.md)
 
 ## 🛠️ GitHub Action
 
@@ -96,53 +110,75 @@ on:
   schedule:
     - cron: "0 0 * * *" # Daily at midnight
   workflow_dispatch:
+  push:
+    branches: [main]
 
 jobs:
   generate:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       
       - name: Generate Snake
-        uses: miccy/snake-evolution@v1
+        uses: miccy/snake-evolution@main
         with:
           github_user_name: ${{ github.repository_owner }}
-          outputs: |
-            dist/github-snake.svg
-            dist/github-snake-dark.svg?palette=github-dark
-            dist/ocean.gif?palette=ocean&snake_length_increment=2
+          outputs: dist/snake.svg
+          theme: github-dark
       
-      - name: Push to output branch
-        uses: crazy-max/ghaction-github-pages@v3
+      - name: Commit and Push
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          target_branch: output
-          build_dir: dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          commit_message: '🐍 Update snake animation'
+          file_pattern: 'dist/*.svg'
 ```
 
-[Full GitHub Action Guide →](#)
+Then add to your profile README:
+
+```markdown
+![Snake animation](./dist/snake.svg)
+```
 
 ## 💻 CLI Usage
 
 ```bash
-# Install globally
-bun add -g @snake/cli
+# Clone and install
+git clone https://github.com/miccy/snake-evolution.git
+cd snake-evolution
+bun install
 
-# Generate snake
-snake generate --username miccy --output snake.svg
+# Generate snake animation
+bun run generate -u YOUR_USERNAME -o snake.svg
 
-# Watch mode (auto-regenerate)
-snake watch --username miccy
+# With options
+bun run generate -u miccy -t github-dark -o my-snake.svg --year 2024
 
-# Batch generate for multiple users
-snake batch --users miccy,platane,torvalds
-
-# Preview in browser
-snake preview --username miccy
+# List available themes
+bun run snake themes
 ```
 
-[Full CLI Documentation →](#)
+### CLI Options
+
+| Option | Description | Default |
+|--------|-------------|---------|
+| `-u, --username` | GitHub username (required) | - |
+| `-o, --output` | Output file path | `snake.svg` |
+| `-t, --theme` | Color theme | `github-dark` |
+| `-y, --year` | Year to generate | Current year |
+| `--token` | GitHub token (optional) | - |
+| `--static` | Static SVG (no animation) | `false` |
+
+### Available Themes
+
+- `github-light` - GitHub's light theme
+- `github-dark` - GitHub's dark mode  
+- `ocean` - Cool blue tones
+- `sunset` - Warm orange/pink
+- `neon-gamer` - Vibrant purple/green
+- `glass` - iOS-style liquid glass effect
 
 ## 🏗️ Development
 
