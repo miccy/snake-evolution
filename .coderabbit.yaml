@@ -1,0 +1,53 @@
+# CodeRabbit Configuration File
+# Documentation: https://coderabbit.ai/docs/using-coderabbit/configuration
+
+
+# Language for reviews and chat
+language: "en-US"
+
+# Tone of the review
+tone_instructions: "friendly"
+
+# Enable early access to new features
+early_access: true
+
+reviews:
+  # Enable high-level summary of changes
+  high_level_summary: true
+
+  # Enable auto-review on pull requests
+  auto_review:
+    enabled: true
+    drafts: false # Don't review draft PRs automatically
+
+  # Feedback filter
+  profile: "chill"
+
+  # Approve the review once CodeRabbit’s comments are resolved
+  request_changes_workflow: true
+
+  # Tools to run during review
+  tools:
+    shellcheck:
+      enabled: true
+    markdownlint:
+      enabled: true
+    actionlint:
+      enabled: true
+    gitleaks:
+      enabled: true
+    yamllint:
+      enabled: true
+
+  # Auto-generate PR title following Conventional Commits
+  auto_title_instructions: "Generate the PR title following the Conventional Commits specification (e.g., 'feat:', 'fix:', 'chore:', 'docs:'). Keep it concise and descriptive."
+
+chat:
+  # Enable conversational bot on PRs
+  auto_reply: true
+
+  integrations:
+    jira:
+      usage: disabled
+    linear:
+      usage: disabled
