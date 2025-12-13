@@ -45,6 +45,8 @@ npx @snake-evolution/cli generate -u YOUR_USERNAME -o snake.svg
 
 That's it! Open `snake.svg` and watch the magic 🎉
 
+> 💡 **Tip:** CLI accepts any output path. GitHub Actions typically use `dist/snake.svg` for file organization.
+
 ---
 
 ## ✨ Why Snake Evolution?
