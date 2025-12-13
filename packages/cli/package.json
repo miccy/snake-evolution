@@ -38,7 +38,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "commander": "^12.1.0"
+    "commander": "^14.0.2"
   },
   "bundledDependencies": [
     "@snake-evolution/engine",
@@ -51,7 +51,7 @@
     "@snake-evolution/github": "workspace:*",
     "@snake-evolution/renderer": "workspace:*",
     "@snake-evolution/types": "workspace:*",
-    "@types/node": "^22.15.29",
+    "@types/node": "^25.0.1",
     "typescript": "^5.9.3"
   },
   "engines": {

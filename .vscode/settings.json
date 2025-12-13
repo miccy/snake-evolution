@@ -88,6 +88,9 @@
   "[markdown]": {
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
     "editor.wordWrap": "on",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.markdownlint": "explicit"
+    },
     "editor.quickSuggestions": {
       "comments": "off",
       "strings": "off",
