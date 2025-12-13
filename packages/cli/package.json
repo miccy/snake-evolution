@@ -1,6 +1,6 @@
 {
   "name": "@snake-evolution/cli",
-  "version": "1.0.0",
+  "version": "1.0.0-beta.1",
   "description": "Generate animated snake eating your GitHub contributions",
   "license": "MIT",
   "author": "Miccy <support@miccy.dev>",
