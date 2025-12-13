@@ -3,6 +3,8 @@
 # To enable: remove the 'if: false' condition from jobs
 
 name: CI
+permissions:
+  contents: read
 
 on:
   push:
