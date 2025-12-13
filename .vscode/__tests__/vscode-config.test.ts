@@ -1,36 +1,23 @@
 import { beforeAll, describe, expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { type ParseError, parse as parseJsonc, printParseErrorCode } from "jsonc-parser";
 
 /**
- * Strip comments from JSONC (JSON with Comments) content
+ * Parse JSONC file and throw descriptive error if parsing fails
  */
-function parseJsonc(content: string): unknown {
-  // Remove single-line comments (// ...) - but not inside strings
-  let result = "";
-  let inString = false;
-  let i = 0;
-  while (i < content.length) {
-    if (content[i] === '"' && (i === 0 || content[i - 1] !== "\\")) {
-      inString = !inString;
-      result += content[i];
-      i++;
-    } else if (!inString && content[i] === "/" && content[i + 1] === "/") {
-      // Skip until end of line
-      while (i < content.length && content[i] !== "\n") i++;
-    } else if (!inString && content[i] === "/" && content[i + 1] === "*") {
-      // Skip until */
-      i += 2;
-      while (i < content.length - 1 && !(content[i] === "*" && content[i + 1] === "/")) i++;
-      i += 2;
-    } else {
-      result += content[i];
-      i++;
-    }
+function parseJsoncFile(content: string, filePath: string): unknown {
+  const errors: ParseError[] = [];
+  const result = parseJsonc(content, errors, { allowTrailingComma: true });
+
+  if (errors.length > 0) {
+    const errorMessages = errors
+      .map((e) => `  - ${printParseErrorCode(e.error)} at offset ${e.offset}`)
+      .join("\n");
+    throw new Error(`Failed to parse ${filePath}:\n${errorMessages}`);
   }
-  // Remove trailing commas before } or ]
-  result = result.replace(/,(\s*[}\]])/g, "$1");
-  return JSON.parse(result);
+
+  return result;
 }
 
 describe("VSCode Configuration", () => {
@@ -42,7 +29,7 @@ describe("VSCode Configuration", () => {
     };
 
     beforeAll(() => {
-      config = parseJsonc(readFileSync(extPath, "utf-8")) as typeof config;
+      config = parseJsoncFile(readFileSync(extPath, "utf-8"), extPath) as typeof config;
     });
 
     test("should be valid JSON", () => {
@@ -84,7 +71,7 @@ describe("VSCode Configuration", () => {
     };
 
     beforeAll(() => {
-      config = parseJsonc(readFileSync(launchPath, "utf-8")) as typeof config;
+      config = parseJsoncFile(readFileSync(launchPath, "utf-8"), launchPath) as typeof config;
     });
 
     test("should be valid JSON", () => {
@@ -132,7 +119,7 @@ describe("VSCode Configuration", () => {
     let config: Record<string, unknown>;
 
     beforeAll(() => {
-      config = parseJsonc(readFileSync(settingsPath, "utf-8")) as typeof config;
+      config = parseJsoncFile(readFileSync(settingsPath, "utf-8"), settingsPath) as typeof config;
     });
 
     test("should be valid JSON", () => {
@@ -190,7 +177,7 @@ describe("VSCode Configuration", () => {
     };
 
     beforeAll(() => {
-      config = parseJsonc(readFileSync(tasksPath, "utf-8")) as typeof config;
+      config = parseJsoncFile(readFileSync(tasksPath, "utf-8"), tasksPath) as typeof config;
     });
 
     test("should be valid JSON", () => {
@@ -252,7 +239,7 @@ describe("VSCode Configuration", () => {
     };
 
     beforeAll(() => {
-      config = parseJsonc(readFileSync(workspacePath, "utf-8")) as typeof config;
+      config = parseJsoncFile(readFileSync(workspacePath, "utf-8"), workspacePath) as typeof config;
     });
 
     test("should be valid JSON", () => {

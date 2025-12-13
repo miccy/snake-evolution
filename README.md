@@ -179,7 +179,7 @@ bun run generate -u YOUR_USERNAME -o test.svg
 
 ## 🤝 Contributing
 
-We love contributions! See [CONTRIBUTING.md](CONTRIBUTING.md)
+We love contributions! See [CONTRIBUTING.md](.github/CONTRIBUTING.md)
 
 - 🐛 [Report bugs](https://github.com/miccy/snake-evolution/issues)
 - 💡 [Request features](https://github.com/miccy/snake-evolution/issues)

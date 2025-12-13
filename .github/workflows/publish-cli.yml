@@ -16,6 +16,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Verify NPM_TOKEN exists
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -z "$NPM_TOKEN" ]; then
+            echo "::error::NPM_TOKEN secret is not set. Please add it to repository secrets."
+            exit 1
+          fi
+          echo "NPM_TOKEN is configured"
+
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
@@ -33,16 +43,6 @@ jobs:
       - name: Build CLI
         working-directory: packages/cli
         run: bun run build
-
-      - name: Verify NPM_TOKEN exists
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          if [ -z "$NPM_TOKEN" ]; then
-            echo "::error::NPM_TOKEN secret is not set. Please add it to repository secrets."
-            exit 1
-          fi
-          echo "NPM_TOKEN is configured"
 
       - name: Publish to npm
         working-directory: packages/cli

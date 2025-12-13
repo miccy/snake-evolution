@@ -3,14 +3,12 @@ title: Installation
 description: Set up Snake Evolution for local development.
 ---
 
-# Installation
-
 This guide covers setting up Snake Evolution for local development.
 
 ## Prerequisites
 
 - [Bun](https://bun.sh) >= 1.3.0
-- [Node.js](https://nodejs.org) >= 24 (optional, for compatibility)
+- [Node.js](https://nodejs.org) >= 22 (optional, for compatibility)
 - [Docker](https://docker.com) (optional, for backend services)
 - [Git](https://git-scm.com)
 
@@ -48,13 +46,13 @@ docker compose -f docker/docker-compose.yml up -d
 
 This starts:
 
-- **Appwrite** at <http://localhost> (Console)
-- **Redis** at localhost:6379
-- **MailDev** at <http://localhost:1080> (Email testing)
+- **Appwrite** at `http://localhost` (Console)
+- **Redis** at `localhost:6379`
+- **MailDev** at `http://localhost:1080` (Email testing)
 
 ## Project Structure
 
-```
+```text
 snake-evolution/
 ├── apps/
 │   ├── web/          # Astro + Starlight docs

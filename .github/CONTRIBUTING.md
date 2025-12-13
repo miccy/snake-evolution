@@ -595,3 +595,9 @@ git commit -m "docs(readme): přidány příklady použití CLI"
 Vaše příspěvky činí tento projekt lepším pro všechny. Ať už jde o kód, dokumentaci, hlášení chyb nebo jen šíření slova - každý příspěvek má význam.
 
 Šťastné kódování! 🐍✨
+
+---
+
+### 📖 Více detailů
+
+Úplné pokyny (včetně vytváření šablon, detailní dokumentaci, hlášení chyb a procesu review) naleznete v [anglické sekci výše](#english).
