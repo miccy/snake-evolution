@@ -30,17 +30,21 @@ describe("VSCode Configuration", () => {
 
     beforeAll(() => {
       const parsed = parseJsoncFile(readFileSync(extPath, "utf-8"), extPath);
+      if (typeof parsed !== "object" || parsed === null) {
+        throw new Error(`Invalid structure in ${extPath}`);
+      }
+      const obj = parsed as Record<string, unknown>;
+      const recommendations = obj.recommendations;
+      const unwantedRecommendations = obj.unwantedRecommendations;
       if (
-        typeof parsed !== "object" ||
-        parsed === null ||
-        !("recommendations" in parsed) ||
-        !Array.isArray(parsed.recommendations) ||
-        !("unwantedRecommendations" in parsed) ||
-        !Array.isArray(parsed.unwantedRecommendations)
+        !Array.isArray(recommendations) ||
+        !recommendations.every((x): x is string => typeof x === "string") ||
+        !Array.isArray(unwantedRecommendations) ||
+        !unwantedRecommendations.every((x): x is string => typeof x === "string")
       ) {
         throw new Error(`Invalid structure in ${extPath}`);
       }
-      config = parsed as typeof config;
+      config = { recommendations, unwantedRecommendations };
     });
 
     test("should be valid JSON", () => {

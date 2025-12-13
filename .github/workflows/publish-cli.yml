@@ -2,8 +2,8 @@
 # Primary publishing is now handled by .github/workflows/release.yml via Changesets
 #
 # To use this workflow manually:
-# 1. Create a GitHub Release
-# 2. This workflow will trigger and publish to npm
+# 1. Go to Actions > Publish CLI (Manual) > Run workflow
+# 2. This workflow will build and publish to npm
 
 name: Publish CLI (Manual)
 
@@ -11,19 +11,15 @@ on:
   release:
     types: [published]
   workflow_dispatch:
-    inputs:
-      version:
-        description: 'Version to publish (must match package.json)'
-        required: true
-        type: string
+
+permissions:
+  contents: read
+  id-token: write
 
 jobs:
   publish:
     name: Publish to npm
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
 
     steps:
       - name: Checkout
