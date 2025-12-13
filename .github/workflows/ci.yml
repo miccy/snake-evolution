@@ -14,8 +14,6 @@ on:
 
 jobs:
   quality:
-    # DISABLED: Remove this line to enable
-    if: false
     runs-on: ubuntu-latest
 
     steps:
@@ -49,8 +47,6 @@ jobs:
         run: bun test
 
   build:
-    # DISABLED: Remove this line to enable
-    if: false
     runs-on: ubuntu-latest
     needs: quality
 

@@ -5,6 +5,9 @@ on:
   pull_request:
     branches: [main]
 
+permissions:
+  contents: read
+
 jobs:
   check:
     name: Changeset Status
@@ -25,8 +28,11 @@ jobs:
 
       - name: Check for changeset
         run: |
+          # Fetch base branch for comparison
+          git fetch origin ${{ github.base_ref }} --depth=1
+
           # Check if there are changes to packages that would need a changeset
-          CHANGED_FILES=$(git diff --name-only origin/main...HEAD)
+          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
 
           # Check if any package source files changed (excluding tests, configs)
           if echo "$CHANGED_FILES" | grep -qE '^packages/(cli|engine|renderer|github|types)/src/'; then
