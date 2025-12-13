@@ -71,7 +71,7 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - uses: miccy/snake-evolution@main
+      - uses: miccy/snake-evolution@v1
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: dist/snake.svg
@@ -81,6 +81,7 @@ jobs:
 ```
 
 Then in your README:
+
 ```markdown
 ![Snake](./dist/snake.svg)
 ```
@@ -105,7 +106,7 @@ bun run generate -u YOUR_USERNAME -o snake.svg
 | `neon-gamer` | Vibrant purple/green |
 | `glass` | iOS-style liquid glass |
 
-## 🎮 Coming Soon: PvP Mode!
+## 🎮 Coming Soon: PvP Mode
 
 This is where it gets exciting. I'm building **competitive snake battles**:
 

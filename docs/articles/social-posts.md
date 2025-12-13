@@ -3,6 +3,7 @@
 ## Twitter/X (280 chars max)
 
 ### Launch Tweet
+
 ```
 🐍 Just launched Snake Evolution!
 
@@ -18,6 +19,7 @@ Try it: github.com/miccy/snake-evolution
 ```
 
 ### Thread Tweet 1
+
 ```
 🧵 I built a snake game where YOUR GitHub contributions are the food.
 
@@ -31,6 +33,7 @@ Let me show you 👇
 ```
 
 ### Thread Tweet 2
+
 ```
 The snake isn't random - it PRIORITIZES.
 
@@ -42,6 +45,7 @@ More interesting to watch! 🎯
 ```
 
 ### Thread Tweet 3
+
 ```
 Coming soon: PvP MODE 🎮
 
@@ -58,6 +62,7 @@ Who wants to battle their coworkers? 😈
 ## Bluesky (300 chars)
 
 ### Launch Post
+
 ```
 🐍 Just shipped Snake Evolution!
 
@@ -75,6 +80,7 @@ github.com/miccy/snake-evolution
 ```
 
 ### Follow-up
+
 ```
 The cool part: the snake HUNTS by priority
 
@@ -90,6 +96,7 @@ Next up: multiplayer PvP battles against friends 🎮
 ## LinkedIn
 
 ### Launch Post
+
 ```
 🐍 Excited to announce Snake Evolution!
 
@@ -114,11 +121,13 @@ Try it: github.com/miccy/snake-evolution
 ## Reddit (r/programming, r/github, r/webdev)
 
 ### Title
+
 ```
 I built a snake game that eats your GitHub contributions - and PvP mode is coming
 ```
 
 ### Body
+
 ```
 Hey everyone! 
 
@@ -149,11 +158,13 @@ Would love feedback! Would you battle your coworkers in snake? 😄
 ## Hacker News
 
 ### Title
+
 ```
 Show HN: Snake Evolution – Turn GitHub contributions into an animated snake game
 ```
 
 ### Body
+
 ```
 Hi HN!
 

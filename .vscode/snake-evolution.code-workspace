@@ -1,8 +1,49 @@
 {
   "folders": [
     {
-      "name": "Snake Evolution",
-      "path": "../"
+      "name": "🐍 root",
+      "path": ".."
+    },
+    {
+      "name": "📦 packages/cli",
+      "path": "../packages/cli"
+    },
+    {
+      "name": "📦 packages/engine",
+      "path": "../packages/engine"
+    },
+    {
+      "name": "📦 packages/renderer",
+      "path": "../packages/renderer"
+    },
+    {
+      "name": "📦 packages/github",
+      "path": "../packages/github"
+    },
+    {
+      "name": "📦 packages/types",
+      "path": "../packages/types"
+    },
+    {
+      "name": "🌐 apps/web",
+      "path": "../apps/web"
+    },
+    {
+      "name": "⚡ apps/api",
+      "path": "../apps/api"
     }
-  ]
+  ],
+  "extensions": {
+    "recommendations": [
+      "biomejs.biome",
+      "oven.bun-vscode",
+      "eamodio.gitlens",
+      "GitHub.vscode-github-actions"
+    ]
+  },
+  "launch": {
+    "version": "0.2.0",
+    "configurations": [],
+    "compounds": []
+  }
 }

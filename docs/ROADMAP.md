@@ -6,23 +6,24 @@ Make Snake Evolution the most fun way to visualize GitHub contributions - from s
 
 ---
 
-## ✅ v1.0 - MVP (Current Release)
+## ✅ Phase 1: v1.0 - MVP (Current Release)
 
 *Released: December 2025*
 
-- [x] CLI tool for snake generation
-- [x] 6 beautiful themes (github-dark, github-light, ocean, sunset, neon-gamer, glass)
+- [x] CLI tool for snake generation (`npx @snake-evolution/cli`)
+- [x] 5 beautiful themes (github-dark, github-light, ocean, sunset, neon-gamer)
 - [x] GitHub Action for automated generation
 - [x] Smart pathfinding (priority-based hunting)
 - [x] Smooth SMIL animations
 - [x] Visual snake gradient (larger head, fading tail)
 - [x] Works for any GitHub user
+- [x] Published to npm (zero-install with npx)
 
 ---
 
-## 🚧 v1.1 - Polish & Performance
+## 🚧 Phase 2: v1.1 - Polish & Performance
 
-*Target: January 2025*
+*Target: Q1 2026*
 
 - [ ] GIF output format
 - [ ] Smaller SVG file sizes (optimize animation data)
@@ -32,9 +33,9 @@ Make Snake Evolution the most fun way to visualize GitHub contributions - from s
 
 ---
 
-## 🎮 v2.0 - Interactive Web Playground
+## 🎮 Phase 3: v2.0 - Interactive Web Playground
 
-*Target: Q1 2025*
+*Target: Q2 2026*
 
 - [ ] Web app with live preview
 - [ ] Theme customizer (create your own colors)
@@ -44,9 +45,9 @@ Make Snake Evolution the most fun way to visualize GitHub contributions - from s
 
 ---
 
-## 🏆 v3.0 - PvP Mode (Coming Soon!)
+## 🏆 Phase 4: v3.0 - PvP Mode (Coming Soon!)
 
-*Target: Q2 2025*
+*Target: Q3 2026*
 
 **Challenge your friends to a snake battle!**
 
@@ -56,7 +57,7 @@ Make Snake Evolution the most fun way to visualize GitHub contributions - from s
 - [ ] **Team battles** - Company vs company competitions (B2B)
 - [ ] **Power-ups**:
   - 🔄 Shrink - Reduce snake length
-  - ⚡ Speed boost - Temporary speed increase  
+  - ⚡ Speed boost - Temporary speed increase
   - 🌀 Teleport - Jump to random position
   - 🛡️ Shield - Pass through yourself once
 
@@ -79,6 +80,10 @@ Have a feature request? [Open an issue](https://github.com/miccy/snake-evolution
 
 ### Under Consideration
 
+- ✉️ **Email Signature Mode** - Animated GIF for email footers
+- 🔤 **Custom Text Mode** - Type your own text (e.g., "miccy.dev") and watch the snake eat it!
+- 📜 **Scrolling Text Mode** - Marquee-style text animation in contribution grid (no snake)
+- 🎨 **Email Styling Tools Integration** - Canva, Mailchimp, etc.
 - 🎵 Sound effects and music
 - 📱 Mobile app (React Native)
 - 🤖 AI opponent mode
@@ -93,6 +98,7 @@ Have a feature request? [Open an issue](https://github.com/miccy/snake-evolution
 Want to help build PvP mode? Check out our [Contributing Guide](../CONTRIBUTING.md)!
 
 Priority areas:
+
 - Web app development (Astro + React)
 - Game mechanics implementation
 - Backend for multiplayer (Appwrite)

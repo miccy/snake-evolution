@@ -1,0 +1,87 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "🐍 Debug CLI",
+      "type": "bun",
+      "request": "launch",
+      "program": "${workspaceFolder}/packages/cli/src/index.ts",
+      "args": [
+        "generate",
+        "-u",
+        "${input:githubUsername}",
+        "-t",
+        "${input:theme}",
+        "-o",
+        "${input:outputPath}"
+      ],
+      "cwd": "${workspaceFolder}",
+      "stopOnEntry": false,
+      "internalConsoleOptions": "openOnSessionStart"
+    },
+    {
+      "name": "🌐 Debug Web Dev Server",
+      "type": "bun",
+      "request": "launch",
+      "program": "${workspaceFolder}/apps/web/src/index.ts",
+      "cwd": "${workspaceFolder}/apps/web",
+      "stopOnEntry": false,
+      "internalConsoleOptions": "openOnSessionStart"
+    },
+    {
+      "name": "⚡ Debug API",
+      "type": "bun",
+      "request": "launch",
+      "program": "${workspaceFolder}/apps/api/src/index.ts",
+      "cwd": "${workspaceFolder}/apps/api",
+      "stopOnEntry": false,
+      "internalConsoleOptions": "openOnSessionStart"
+    },
+    {
+      "name": "🧪 Debug Current Test File",
+      "type": "bun",
+      "request": "launch",
+      "program": "${file}",
+      "cwd": "${workspaceFolder}",
+      "stopOnEntry": false,
+      "internalConsoleOptions": "openOnSessionStart"
+    },
+    {
+      "name": "📄 Debug Current File",
+      "type": "bun",
+      "request": "launch",
+      "program": "${file}",
+      "cwd": "${workspaceFolder}",
+      "stopOnEntry": false,
+      "internalConsoleOptions": "openOnSessionStart"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "🚀 Full Stack (Web + API)",
+      "configurations": ["🌐 Debug Web Dev Server", "⚡ Debug API"],
+      "stopAll": true
+    }
+  ],
+  "inputs": [
+    {
+      "id": "githubUsername",
+      "type": "promptString",
+      "description": "GitHub username to generate snake for",
+      "default": "miccy"
+    },
+    {
+      "id": "theme",
+      "type": "pickString",
+      "description": "Theme for the snake animation",
+      "options": ["github-dark", "github-light", "glass", "ocean", "sunset", "neon-gamer"],
+      "default": "github-dark"
+    },
+    {
+      "id": "outputPath",
+      "type": "promptString",
+      "description": "Output file path (relative to workspace)",
+      "default": "dist/snake.svg"
+    }
+  ]
+}

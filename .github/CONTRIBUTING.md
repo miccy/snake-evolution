@@ -1,4 +1,12 @@
-# Contributing to Snake Evolution 🐍
+# Contributing to Snake Evolution / Přispívání do Snake Evolution
+
+<span aria-hidden="true">🐍</span>
+
+**Languages / Jazyky:** [🇬🇧 English](#english) | [🇨🇿 Čeština](#čeština)
+
+---
+
+## English
 
 First off, thank you for considering contributing! This project exists because of people like you.
 
@@ -18,7 +26,7 @@ There are many ways to contribute:
 
 ### Prerequisites
 
-- [Bun](https://bun.sh) >= 1.3.0 (primary) or [Node.js](https://nodejs.org) >= 24
+- [Bun](https://bun.sh) >= 1.3.0 (primary) or [Node.js](https://nodejs.org) >= 22
 - [Git](https://git-scm.com)
 - [Docker](https://docker.com) (for local backend)
 - GitHub account
@@ -76,6 +84,7 @@ git checkout -b docs/improve-readme
 Follow our coding standards:
 
 **TypeScript**:
+
 ```typescript
 // Use descriptive names
 function generateSnakeAnimation(options: SnakeOptions): Animation {
@@ -96,7 +105,8 @@ export async function renderSnake(
 ```
 
 **File Organization**:
-```
+
+```text
 packages/engine/src/
 ├── types/          # Type definitions
 ├── operations/     # Pure functions
@@ -105,6 +115,7 @@ packages/engine/src/
 ```
 
 **Naming Conventions**:
+
 - Files: `camelCase.ts` or `PascalCase.tsx`
 - Functions: `camelCase()`
 - Classes: `PascalCase`
@@ -124,20 +135,21 @@ describe('growSnake', () => {
   it('should increase snake length by growth amount', () => {
     const snake = createSnake([{ x: 0, y: 0 }])
     const grown = growSnake(snake, 3)
-    
+
     expect(getSnakeLength(grown)).toBe(4)
   })
 
   it('should handle zero growth', () => {
     const snake = createSnake([{ x: 0, y: 0 }])
     const result = growSnake(snake, 0)
-    
+
     expect(result).toEqual(snake)
   })
 })
 ```
 
 Run tests:
+
 ```bash
 # Run all tests
 bun test
@@ -186,6 +198,7 @@ git commit -m "chore(deps): update dependencies"
 ```
 
 **Types**:
+
 - `feat`: New feature
 - `fix`: Bug fix
 - `docs`: Documentation only
@@ -196,6 +209,7 @@ git commit -m "chore(deps): update dependencies"
 - `chore`: Maintenance tasks
 
 **Scopes** (examples):
+
 - `engine`: Core snake logic
 - `renderer`: Rendering system
 - `web`: Web application
@@ -224,7 +238,7 @@ Want to add a new visual template? Here's how:
 
 export const TEMPLATES = {
   // ... existing templates
-  
+
   'your-template-name': {
     name: 'Your Template Name',
     description: 'Brief description of the aesthetic',
@@ -284,6 +298,7 @@ describe('Your Template Name', () => {
 ### 4. Submit PR
 
 Include in PR description:
+
 - Screenshot of the template
 - Description of the aesthetic
 - Inspiration (if any)
@@ -437,9 +452,10 @@ Contributors are recognized in:
 - [README.md](README.md) contributors section
 - GitHub contributors page
 - Release notes
-- Our [Discord](#) server
+- Our community (coming soon)
 
 Top contributors may receive:
+
 - Contributor badge
 - Priority support
 - Early access to features
@@ -460,12 +476,14 @@ We follow the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md).
 ### Our Standards
 
 **Positive behavior**:
+
 - Being respectful and inclusive
 - Accepting constructive criticism
 - Focusing on what's best for the community
 - Showing empathy
 
 **Unacceptable behavior**:
+
 - Harassment or discrimination
 - Trolling or insulting comments
 - Public or private harassment
@@ -473,10 +491,9 @@ We follow the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## ❓ Questions?
 
-- Check [documentation](#)
+- Check our [documentation](https://github.com/miccy/snake-evolution#readme)
 - Search [GitHub Discussions](https://github.com/miccy/snake-evolution/discussions)
-- Join our [Discord](#)
-- Email: your@email.com
+- Email: <support@miccy.dev>
 
 ## 📚 Additional Resources
 
@@ -485,7 +502,7 @@ We follow the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md).
 - [Semantic Versioning](https://semver.org/)
 - [Keep a Changelog](https://keepachangelog.com/)
 
-## 🎉 Thank You!
+## 🎉 Thank You
 
 Your contributions make this project better for everyone. Whether it's code, documentation, bug reports, or just spreading the word - every contribution matters.
 
@@ -493,4 +510,94 @@ Happy coding! 🐍✨
 
 ---
 
-**Have questions?** Open a [discussion](https://github.com/miccy/snake-evolution/discussions) or join our [Discord](#)!
+**Have questions?** Open a [discussion](https://github.com/miccy/snake-evolution/discussions)!
+
+---
+
+## Čeština
+
+### Jak můžete přispět?
+
+Existuje mnoho způsobů, jak přispět:
+
+- 🐛 **Hlásit chyby** - Pomozte nám zlepšit se
+- 💡 **Navrhovat funkce** - Podělte se o své nápady
+- 📝 **Vylepšit dokumentaci** - Učiňte ji jasnější
+- 🎨 **Vytvářet šablony** - Navrhněte nové vizuální styly
+- 🔧 **Odesílat kód** - Opravujte chyby nebo přidávejte funkce
+- 🌍 **Překládat** - Pomozte nám expandovat globálně
+- 💬 **Pomáhat ostatním** - Odpovídejte na otázky v diskuzích
+
+### Začínáme
+
+#### Předpoklady
+
+- [Bun](https://bun.sh) >= 1.3.0 (primární) nebo [Node.js](https://nodejs.org) >= 22
+- [Git](https://git-scm.com)
+- [Docker](https://docker.com) (pro místní backend)
+- GitHub účet
+
+#### Nastavení vývojového prostředí
+
+```bash
+# 1. Forkněte repozitář
+# Klikněte na "Fork" na GitHubu
+
+# 2. Naklonujte svůj fork
+git clone https://github.com/VAS_USERNAME/snake-evolution.git
+cd snake-evolution
+
+# 3. Přidejte upstream remote
+git remote add upstream https://github.com/miccy/snake-evolution.git
+
+# 4. Nainstalujte závislosti
+bun install
+
+# 5. Spusťte Docker služby (volitelné, pro backend)
+docker compose -f docker/docker-compose.yml up -d
+
+# 6. Vytvořte větev
+git checkout -b feature/nazev-vasi-funkce
+
+# 7. Spusťte vývoj
+bun run dev
+```
+
+### Pracovní postup
+
+1. **Vyberte issue** - Prohlédněte [otevřené issues](https://github.com/miccy/snake-evolution/issues)
+2. **Vytvořte větev** - `git checkout -b feature/nova-funkce`
+3. **Proveďte změny** - Dodržujte naše kódovací standardy
+4. **Napište testy** - Každá změna by měla obsahovat testy
+5. **Formátujte a lintujte** - `bun run quality`
+6. **Commitujte** - Používejte [Conventional Commits](https://www.conventionalcommits.org/)
+7. **Vytvořte PR** - Vyplňte šablonu PR
+
+### Konvence commitů
+
+```bash
+git commit -m "feat(renderer): přidán neonový efekt záře"
+git commit -m "fix(engine): opravena vlastní kolize hada"
+git commit -m "docs(readme): přidány příklady použití CLI"
+```
+
+### Kodex chování
+
+Řídíme se [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md).
+
+### Otázky?
+
+- Prohledejte [GitHub Diskuze](https://github.com/miccy/snake-evolution/discussions)
+- Email: <support@miccy.dev>
+
+### 🎉 Děkujeme
+
+Vaše příspěvky činí tento projekt lepším pro všechny. Ať už jde o kód, dokumentaci, hlášení chyb nebo jen šíření slova - každý příspěvek má význam.
+
+Šťastné kódování! 🐍✨
+
+---
+
+### 📖 Více detailů
+
+Úplné pokyny (včetně vytváření šablon, detailní dokumentaci, hlášení chyb a procesu review) naleznete v [anglické sekci výše](#english).

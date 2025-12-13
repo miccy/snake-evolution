@@ -1,0 +1,187 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=827846 for task.json docs
+  "version": "2.0.0",
+  "tasks": [
+    // ═══════════════════════════════════════════════════════════════════
+    // Development
+    // ═══════════════════════════════════════════════════════════════════
+    {
+      "label": "🚀 Dev: All",
+      "type": "shell",
+      "command": "bun run dev",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🌐 Dev: Web",
+      "type": "shell",
+      "command": "bun run dev:web",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "⚡ Dev: API",
+      "type": "shell",
+      "command": "bun run dev:api",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "problemMatcher": []
+    },
+
+    // ═══════════════════════════════════════════════════════════════════
+    // Build
+    // ═══════════════════════════════════════════════════════════════════
+    {
+      "label": "📦 Build: All",
+      "type": "shell",
+      "command": "bun run build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "📦 Build: Web",
+      "type": "shell",
+      "command": "bun run build:web",
+      "group": "build",
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "📦 Build: CLI",
+      "type": "shell",
+      "command": "bun run build:cli",
+      "group": "build",
+      "problemMatcher": ["$tsc"]
+    },
+
+    // ═══════════════════════════════════════════════════════════════════
+    // Quality
+    // ═══════════════════════════════════════════════════════════════════
+    {
+      "label": "✅ Quality Check",
+      "type": "shell",
+      "command": "bun run quality",
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🧹 Lint",
+      "type": "shell",
+      "command": "bun run lint",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "🔧 Lint: Fix",
+      "type": "shell",
+      "command": "bun run lint:fix",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "🎨 Format",
+      "type": "shell",
+      "command": "bun run format",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "📝 Type Check",
+      "type": "shell",
+      "command": "bun run type-check",
+      "group": "test",
+      "problemMatcher": ["$tsc"]
+    },
+
+    // ═══════════════════════════════════════════════════════════════════
+    // Testing
+    // ═══════════════════════════════════════════════════════════════════
+    {
+      "label": "🧪 Test",
+      "type": "shell",
+      "command": "bun run test",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🧪 Test: Watch",
+      "type": "shell",
+      "command": "bun run test:watch",
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+
+    // ═══════════════════════════════════════════════════════════════════
+    // Snake CLI
+    // ═══════════════════════════════════════════════════════════════════
+    {
+      "label": "🐍 Snake: Generate (miccy)",
+      "type": "shell",
+      "command": "bun run generate -u miccy -t github-dark -o dist/snake.svg",
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "🐍 Snake: Help",
+      "type": "shell",
+      "command": "bun run snake --help",
+      "group": "none",
+      "problemMatcher": []
+    },
+
+    // ═══════════════════════════════════════════════════════════════════
+    // Utilities
+    // ═══════════════════════════════════════════════════════════════════
+    {
+      "label": "🗑️ Clean",
+      "type": "shell",
+      "command": "bun run clean",
+      "group": "none",
+      "problemMatcher": []
+    },
+    {
+      "label": "📥 Install Dependencies",
+      "type": "shell",
+      "command": "bun install",
+      "group": "none",
+      "problemMatcher": []
+    }
+  ]
+}

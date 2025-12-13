@@ -52,6 +52,7 @@ GitHub API → packages/github → packages/engine → packages/renderer → Out
 ### Local-First Architecture
 
 Using Evolu for local-first data storage with:
+
 - Offline capability
 - End-to-end encryption
 - CRDT-based conflict resolution
@@ -60,6 +61,7 @@ Using Evolu for local-first data storage with:
 ### Snake Engine
 
 The snake engine implements:
+
 - A* pathfinding algorithm
 - Growth mechanics based on contribution intensity
 - Animation frame generation
