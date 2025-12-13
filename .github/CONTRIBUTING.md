@@ -530,7 +530,7 @@ Existuje mnoho způsobů, jak přispět:
 
 #### Předpoklady
 
-- [Bun](https://bun.sh) >= 1.3.0 (primární) nebo [Node.js](https://nodejs.org) >= 24
+- [Bun](https://bun.sh) >= 1.3.0 (primární) nebo [Node.js](https://nodejs.org) >= 22
 - [Git](https://git-scm.com)
 - [Docker](https://docker.com) (pro místní backend)
 - GitHub účet
