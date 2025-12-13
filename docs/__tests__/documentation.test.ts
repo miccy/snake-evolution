@@ -173,7 +173,7 @@ describe("Documentation Files", () => {
     });
 
     test("should document Phase 1 as released", () => {
-      content = readFileSync(readmePath, "utf-8");
+      content = readFileSync(roadmapPath, "utf-8");
       expect(content).toMatch(/Phase 1/i);
       expect(content).toMatch(/released|complete/i);
     });
