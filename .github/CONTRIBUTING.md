@@ -532,30 +532,11 @@ Existuje mnoho způsobů, jak přispět:
 
 - [Bun](https://bun.sh) >= 1.3.0 (primární) nebo [Node.js](https://nodejs.org) >= 24
 - [Git](https://git-scm.com)
+- [Docker](https://docker.com) (pro místní backend)
 - GitHub účet
 
 #### Nastavení vývojového prostředí
 
-```bash
-# 1. Forkněte repozitář
-# Klikněte na "Fork" na GitHubu
-
-# 2. Naklonujte svůj fork
-git clone https://github.com/VAŠE_JMÉNO/snake-evolution.git
-cd snake-evolution
-
-# 3. Přidejte upstream remote
-git remote add upstream https://github.com/miccy/snake-evolution.git
-
-# 4. Nainstalujte závislosti
-bun install
-
-# 5. Vytvořte větev
-git checkout -b feature/nazev-vasi-funkce
-
-# 6. Spusťte vývoj
-bun run dev
-```
 
 ### Pracovní postup
 
