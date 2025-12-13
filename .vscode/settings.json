@@ -10,9 +10,7 @@
   },
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
-  "editor.rulers": [
-    100
-  ],
+  "editor.rulers": [100],
   "editor.wordWrap": "off",
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": true,
@@ -104,6 +102,8 @@
   "git.enableSmartCommit": true,
   // ═══════════════════════════════════════════════════════════════════
   // Terminal
+  // NOTE: These settings are macOS-specific. Windows/Linux users may need
+  // to adjust terminal.integrated.defaultProfile and fontFamily settings.
   // ═══════════════════════════════════════════════════════════════════
   "terminal.integrated.defaultProfile.osx": "zsh",
   "terminal.integrated.fontFamily": "MesloLGS NF, Menlo, Monaco, 'Courier New', monospace",
