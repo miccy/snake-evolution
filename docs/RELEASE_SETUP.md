@@ -34,7 +34,7 @@ github-action snake contributions svg animation typescript bun cli github-profil
 
 ### Social Preview
 
-Upload `.github/banner.png`
+Upload `.github/banner.jpg`
 
 ## Step 3: Make Repository Public
 
