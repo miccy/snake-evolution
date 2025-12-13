@@ -1,27 +1,63 @@
 {
   "name": "@snake-evolution/cli",
-  "version": "0.0.1",
-  "private": true,
+  "version": "1.0.0",
+  "description": "Generate animated snake eating your GitHub contributions",
+  "license": "MIT",
+  "author": "Miccy <support@miccy.dev>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/miccy/snake-evolution.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/miccy/snake-evolution",
+  "bugs": {
+    "url": "https://github.com/miccy/snake-evolution/issues"
+  },
+  "keywords": [
+    "github",
+    "contributions",
+    "snake",
+    "animation",
+    "svg",
+    "cli",
+    "github-action",
+    "profile-readme"
+  ],
   "type": "module",
   "bin": {
     "snake-evolution": "./dist/index.js"
   },
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
+  "main": "./dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "bun run src/index.ts",
-    "build": "bun build ./src/index.ts --outdir ./dist --target node",
+    "build": "bun build ./src/index.ts --outdir ./dist --target node --minify",
+    "prepublishOnly": "bun run build",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "commander": "^12.1.0"
+  },
+  "bundledDependencies": [
+    "@snake-evolution/engine",
+    "@snake-evolution/github",
+    "@snake-evolution/renderer",
+    "@snake-evolution/types"
+  ],
+  "devDependencies": {
     "@snake-evolution/engine": "workspace:*",
     "@snake-evolution/github": "workspace:*",
     "@snake-evolution/renderer": "workspace:*",
     "@snake-evolution/types": "workspace:*",
-    "commander": "^12.1.0"
-  },
-  "devDependencies": {
     "@types/node": "^22.15.29",
     "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

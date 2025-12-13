@@ -143,20 +143,37 @@ Then add to your profile README:
 
 ## 💻 CLI Usage
 
+### Quick Start (No Install)
+
+```bash
+# Using npx (no installation required)
+npx @snake-evolution/cli generate -u YOUR_USERNAME -o snake.svg
+
+# Using bunx
+bunx @snake-evolution/cli generate -u YOUR_USERNAME -o snake.svg
+```
+
+### Global Install
+
+```bash
+# Install globally
+npm install -g @snake-evolution/cli
+
+# Then use anywhere
+snake-evolution generate -u miccy -t github-dark -o snake.svg
+snake-evolution themes
+```
+
+### From Source
+
 ```bash
 # Clone and install
 git clone https://github.com/miccy/snake-evolution.git
 cd snake-evolution
 bun install
 
-# Generate snake animation
+# Generate
 bun run generate -u YOUR_USERNAME -o snake.svg
-
-# With options
-bun run generate -u miccy -t github-dark -o my-snake.svg --year 2024
-
-# List available themes
-bun run snake themes
 ```
 
 ### CLI Options

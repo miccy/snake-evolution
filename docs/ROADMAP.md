@@ -10,13 +10,14 @@ Make Snake Evolution the most fun way to visualize GitHub contributions - from s
 
 *Released: December 2025*
 
-- [x] CLI tool for snake generation
-- [x] 6 beautiful themes (github-dark, github-light, ocean, sunset, neon-gamer, glass)
+- [x] CLI tool for snake generation (`npx @snake-evolution/cli`)
+- [x] 5 beautiful themes (github-dark, github-light, ocean, sunset, neon-gamer)
 - [x] GitHub Action for automated generation
 - [x] Smart pathfinding (priority-based hunting)
 - [x] Smooth SMIL animations
 - [x] Visual snake gradient (larger head, fading tail)
 - [x] Works for any GitHub user
+- [x] Published to npm (zero-install with npx)
 
 ---
 
@@ -79,6 +80,10 @@ Have a feature request? [Open an issue](https://github.com/miccy/snake-evolution
 
 ### Under Consideration
 
+- ✉️ **Email Signature Mode** - Animated GIF for email footers
+- 🔤 **Custom Text Mode** - Type your own text (e.g., "miccy.dev") and watch the snake eat it!
+- 📜 **Scrolling Text Mode** - Marquee-style text animation in contribution grid (no snake)
+- 🎨 **Email Styling Tools Integration** - Canva, Mailchimp, etc.
 - 🎵 Sound effects and music
 - 📱 Mobile app (React Native)
 - 🤖 AI opponent mode
