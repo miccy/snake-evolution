@@ -10,7 +10,8 @@
     "./styles": "./src/styles.css"
   },
   "scripts": {
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf node_modules"
   },
   "dependencies": {
     "react": "^19.0.0"

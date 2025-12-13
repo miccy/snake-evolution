@@ -1,12 +1,15 @@
 // @ts-check
 
 import starlight from "@astrojs/starlight";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://snake-evolution.dev",
+  vite: {
+    plugins: [tailwindcss()],
+  },
   integrations: [
     starlight({
       title: "Snake Evolution",
@@ -57,9 +60,6 @@ export default defineConfig({
         },
       ],
       customCss: ["./src/styles/custom.css"],
-    }),
-    tailwind({
-      applyBaseStyles: false,
     }),
   ],
 });

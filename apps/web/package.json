@@ -7,11 +7,13 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "type-check": "astro check"
+    "type-check": "astro check",
+    "clean": "rm -rf dist .astro node_modules"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.37.1",
-    "@astrojs/tailwind": "^6.0.2",
+    "@tailwindcss/postcss": "^4.1.18",
+    "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.6.1",
     "sharp": "^0.34.2",
     "tailwindcss": "^4.1.18"
