@@ -1,4 +1,6 @@
-# Contributing to Snake Evolution 🐍 / Přispívání do Snake Evolution
+# Contributing to Snake Evolution / Přispívání do Snake Evolution
+
+<span aria-hidden="true">🐍</span>
 
 **Languages / Jazyky:** [🇬🇧 English](#english) | [🇨🇿 Čeština](#čeština)
 
@@ -536,7 +538,6 @@ Existuje mnoho způsobů, jak přispět:
 - GitHub účet
 
 #### Nastavení vývojového prostředí
-
 
 ### Pracovní postup
 
