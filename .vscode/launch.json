@@ -6,7 +6,15 @@
       "type": "bun",
       "request": "launch",
       "program": "${workspaceFolder}/packages/cli/src/index.ts",
-      "args": ["generate", "-u", "miccy", "-t", "github-dark", "-o", "dist/snake.svg"],
+      "args": [
+        "generate",
+        "-u",
+        "${input:githubUsername}",
+        "-t",
+        "${input:theme}",
+        "-o",
+        "${input:outputPath}"
+      ],
       "cwd": "${workspaceFolder}",
       "stopOnEntry": false,
       "internalConsoleOptions": "openOnSessionStart"
@@ -53,6 +61,27 @@
       "name": "🚀 Full Stack (Web + API)",
       "configurations": ["🌐 Debug Web Dev Server", "⚡ Debug API"],
       "stopAll": true
+    }
+  ],
+  "inputs": [
+    {
+      "id": "githubUsername",
+      "type": "promptString",
+      "description": "GitHub username to generate snake for",
+      "default": "miccy"
+    },
+    {
+      "id": "theme",
+      "type": "pickString",
+      "description": "Theme for the snake animation",
+      "options": ["github-dark", "github-light", "glass", "ocean", "sunset", "neon-gamer"],
+      "default": "github-dark"
+    },
+    {
+      "id": "outputPath",
+      "type": "promptString",
+      "description": "Output file path (relative to workspace)",
+      "default": "dist/snake.svg"
     }
   ]
 }

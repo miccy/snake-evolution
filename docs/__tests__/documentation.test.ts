@@ -159,7 +159,7 @@ describe("Documentation Files", () => {
 
     test("should provide checklist items", () => {
       content = readFileSync(releasePath, "utf-8");
-      expect(content).toMatch(/\[.\]/); // Markdown checkboxes
+      expect(content).toMatch(/\[[xX ]\]/); // Markdown checkboxes
     });
   });
 
@@ -212,10 +212,10 @@ describe("Documentation Files", () => {
       docs.forEach((docPath) => {
         const fullPath = resolve(__dirname, docPath);
         const content = readFileSync(fullPath, "utf-8");
-        
+
         // Should start with h1
         expect(content).toMatch(/^#\s+/m);
-        
+
         // Should have at least one h2
         expect(content).toMatch(/^##\s+/m);
       });
@@ -237,11 +237,7 @@ describe("Documentation Files", () => {
     });
 
     test("no documentation should contain placeholder TODO", () => {
-      const docs = [
-        "../../README.md",
-        "../../.github/CONTRIBUTING.md",
-        "../RELEASE_SETUP.md",
-      ];
+      const docs = ["../../README.md", "../../.github/CONTRIBUTING.md", "../RELEASE_SETUP.md"];
 
       docs.forEach((docPath) => {
         const fullPath = resolve(__dirname, docPath);
