@@ -51,8 +51,7 @@
     "@snake-evolution/github": "workspace:*",
     "@snake-evolution/renderer": "workspace:*",
     "@snake-evolution/types": "workspace:*",
-    "@types/node": "^25.0.1",
-    "typescript": "^5.9.3"
+    "@types/node": "^22.15.29"
   },
   "engines": {
     "node": ">=22"
