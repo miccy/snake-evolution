@@ -47,9 +47,10 @@ docker compose -f docker/docker-compose.yml up -d
 ```
 
 This starts:
-- **Appwrite** at http://localhost (Console)
+
+- **Appwrite** at <http://localhost> (Console)
 - **Redis** at localhost:6379
-- **MailDev** at http://localhost:1080 (Email testing)
+- **MailDev** at <http://localhost:1080> (Email testing)
 
 ## Project Structure
 

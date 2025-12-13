@@ -5,6 +5,7 @@
 ## Overview
 
 [Evolu](https://evolu.dev) provides local-first data storage with:
+
 - SQLite-based local storage
 - CRDT-based conflict resolution
 - End-to-end encrypted sync

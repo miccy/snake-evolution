@@ -1,0 +1,13 @@
+{
+  "extends": "markdownlint/style/relaxed",
+  "default": true,
+  "MD013": false,
+  "MD024": false,
+  "MD025": false,
+  "MD033": false,
+  "MD036": false,
+  "MD041": false,
+  "MD026": false,
+  "MD042": false,
+  "MD060": false
+}

@@ -148,7 +148,7 @@ snake-evolution generate -u miccy -o snake.svg
 
 ---
 
-## 🎮 Coming Soon: PvP Mode!
+## 🎮 Coming Soon: PvP Mode
 
 <p align="center">
   <img src="https://img.shields.io/badge/STATUS-COMING%20SOON-ff6b6b?style=for-the-badge" alt="Coming Soon">

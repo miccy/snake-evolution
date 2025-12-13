@@ -12,10 +12,11 @@
 If you discover a security vulnerability, please report it by:
 
 1. **DO NOT** open a public GitHub issue
-2. Email us at: security@miccy.dev
+2. Email us at: <security@miccy.dev>
 3. Or use [GitHub Security Advisories](https://github.com/miccy/snake-evolution/security/advisories/new)
 
 We will respond within 48 hours and work with you to:
+
 - Confirm the vulnerability
 - Develop a fix
 - Release a patched version

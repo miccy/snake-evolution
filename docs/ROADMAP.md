@@ -98,6 +98,7 @@ Have a feature request? [Open an issue](https://github.com/miccy/snake-evolution
 Want to help build PvP mode? Check out our [Contributing Guide](../CONTRIBUTING.md)!
 
 Priority areas:
+
 - Web app development (Astro + React)
 - Game mechanics implementation
 - Backend for multiplayer (Appwrite)

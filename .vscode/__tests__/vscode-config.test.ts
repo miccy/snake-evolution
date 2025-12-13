@@ -2,6 +2,37 @@ import { beforeAll, describe, expect, test } from "bun:test";
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
+/**
+ * Strip comments from JSONC (JSON with Comments) content
+ */
+function parseJsonc(content: string): unknown {
+  // Remove single-line comments (// ...) - but not inside strings
+  let result = "";
+  let inString = false;
+  let i = 0;
+  while (i < content.length) {
+    if (content[i] === '"' && (i === 0 || content[i - 1] !== "\\")) {
+      inString = !inString;
+      result += content[i];
+      i++;
+    } else if (!inString && content[i] === "/" && content[i + 1] === "/") {
+      // Skip until end of line
+      while (i < content.length && content[i] !== "\n") i++;
+    } else if (!inString && content[i] === "/" && content[i + 1] === "*") {
+      // Skip until */
+      i += 2;
+      while (i < content.length - 1 && !(content[i] === "*" && content[i + 1] === "/")) i++;
+      i += 2;
+    } else {
+      result += content[i];
+      i++;
+    }
+  }
+  // Remove trailing commas before } or ]
+  result = result.replace(/,(\s*[}\]])/g, "$1");
+  return JSON.parse(result);
+}
+
 describe("VSCode Configuration", () => {
   describe("extensions.json", () => {
     const extPath = resolve(__dirname, "../extensions.json");
@@ -11,7 +42,7 @@ describe("VSCode Configuration", () => {
     };
 
     beforeAll(() => {
-      config = JSON.parse(readFileSync(extPath, "utf-8"));
+      config = parseJsonc(readFileSync(extPath, "utf-8")) as typeof config;
     });
 
     test("should be valid JSON", () => {
@@ -53,7 +84,7 @@ describe("VSCode Configuration", () => {
     };
 
     beforeAll(() => {
-      config = JSON.parse(readFileSync(launchPath, "utf-8"));
+      config = parseJsonc(readFileSync(launchPath, "utf-8")) as typeof config;
     });
 
     test("should be valid JSON", () => {
@@ -101,7 +132,7 @@ describe("VSCode Configuration", () => {
     let config: Record<string, unknown>;
 
     beforeAll(() => {
-      config = JSON.parse(readFileSync(settingsPath, "utf-8"));
+      config = parseJsonc(readFileSync(settingsPath, "utf-8")) as typeof config;
     });
 
     test("should be valid JSON", () => {
@@ -159,7 +190,7 @@ describe("VSCode Configuration", () => {
     };
 
     beforeAll(() => {
-      config = JSON.parse(readFileSync(tasksPath, "utf-8"));
+      config = parseJsonc(readFileSync(tasksPath, "utf-8")) as typeof config;
     });
 
     test("should be valid JSON", () => {
@@ -221,7 +252,7 @@ describe("VSCode Configuration", () => {
     };
 
     beforeAll(() => {
-      config = JSON.parse(readFileSync(workspacePath, "utf-8"));
+      config = parseJsonc(readFileSync(workspacePath, "utf-8")) as typeof config;
     });
 
     test("should be valid JSON", () => {

@@ -539,6 +539,30 @@ Existuje mnoho způsobů, jak přispět:
 
 #### Nastavení vývojového prostředí
 
+```bash
+# 1. Forkněte repozitář
+# Klikněte na "Fork" na GitHubu
+
+# 2. Naklonujte svůj fork
+git clone https://github.com/VAS_USERNAME/snake-evolution.git
+cd snake-evolution
+
+# 3. Přidejte upstream remote
+git remote add upstream https://github.com/miccy/snake-evolution.git
+
+# 4. Nainstalujte závislosti
+bun install
+
+# 5. Spusťte Docker služby (volitelné, pro backend)
+docker compose -f docker/docker-compose.yml up -d
+
+# 6. Vytvořte větev
+git checkout -b feature/nazev-vasi-funkce
+
+# 7. Spusťte vývoj
+bun run dev
+```
+
 ### Pracovní postup
 
 1. **Vyberte issue** - Prohlédněte [otevřené issues](https://github.com/miccy/snake-evolution/issues)

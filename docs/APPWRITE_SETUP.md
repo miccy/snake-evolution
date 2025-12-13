@@ -5,6 +5,7 @@
 ## Overview
 
 [Appwrite](https://appwrite.io) provides:
+
 - Authentication
 - File storage (for generated GIFs)
 - Serverless functions
@@ -20,6 +21,7 @@ docker compose up -d
 ```
 
 This starts:
+
 - Appwrite at `http://localhost`
 - MariaDB
 - Redis
