@@ -112,7 +112,8 @@ describe("GitHub Workflows", () => {
     });
 
     test("should use NODE_AUTH_TOKEN from secrets", () => {
-      expect(publishContent).toContain("NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}");
+      // Using concatenation to avoid lint error for template-like string
+      expect(publishContent).toContain("NODE_AUTH_TOKEN: $" + "{{ secrets.NPM_TOKEN }}");
     });
   });
 });
