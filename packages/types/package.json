@@ -9,9 +9,8 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf node_modules"
   },
-  "devDependencies": {
-    "typescript": "^5.9.3"
-  }
+  "devDependencies": {}
 }

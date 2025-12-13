@@ -10,12 +10,11 @@
   },
   "scripts": {
     "type-check": "tsc --noEmit",
-    "test": "bun test"
+    "test": "bun test",
+    "clean": "rm -rf node_modules"
   },
   "dependencies": {
     "@snake-evolution/types": "workspace:*"
   },
-  "devDependencies": {
-    "typescript": "^5.9.3"
-  }
+  "devDependencies": {}
 }

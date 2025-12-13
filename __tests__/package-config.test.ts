@@ -54,9 +54,8 @@ describe("Package Configuration", () => {
       const scripts = pkg.scripts as Record<string, string>;
       const qualityScript = scripts.quality;
 
-      expect(qualityScript).toContain("lint");
-      expect(qualityScript).toContain("format");
-      expect(qualityScript).toContain("type-check");
+      // Quality script should run check (which includes lint, format, type-check) and test
+      expect(qualityScript).toContain("check");
       expect(qualityScript).toContain("test");
     });
 

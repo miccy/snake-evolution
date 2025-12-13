@@ -10,14 +10,14 @@
     "./styles": "./src/styles.css"
   },
   "scripts": {
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf node_modules"
   },
   "dependencies": {
     "react": "^19.0.0"
   },
   "devDependencies": {
-    "@types/react": "^19.0.0",
-    "typescript": "^5.9.3"
+    "@types/react": "^19.0.0"
   },
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0"

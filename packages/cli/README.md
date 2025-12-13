@@ -64,7 +64,6 @@ snake-evolution themes
 |-------|-------------|
 | `github-dark` | GitHub's dark mode (default) |
 | `github-light` | Classic GitHub light theme |
-| `glass` | iOS-style liquid glass effect |
 | `ocean` | Cool blue ocean tones |
 | `sunset` | Warm sunset vibes |
 | `neon-gamer` | Vibrant neon purple/green |

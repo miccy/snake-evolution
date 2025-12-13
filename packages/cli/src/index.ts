@@ -112,7 +112,6 @@ program
     console.log("Available themes:");
     console.log("  github-light  - GitHub's default light theme");
     console.log("  github-dark   - GitHub's dark mode");
-    console.log("  glass         - iOS 26 liquid glass effect");
     console.log("  ocean         - Cool blue ocean tones");
     console.log("  sunset        - Warm sunset vibes");
     console.log("  neon-gamer    - Vibrant neon purple/green");

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.0.5/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  "commit": false,
+  "fixed": [],
+  "linked": [
+    [
+      "@snake-evolution/engine",
+      "@snake-evolution/renderer",
+      "@snake-evolution/types",
+      "@snake-evolution/github"
+    ]
+  ],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": [
+    "@snake-evolution/biome-config",
+    "@snake-evolution/typescript-config",
+    "@snake-evolution/ui"
+  ],
+  "privatePackages": {
+    "version": true,
+    "tag": true
+  }
+}

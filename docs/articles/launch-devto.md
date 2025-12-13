@@ -3,7 +3,7 @@ title: I Built a Snake Game That Eats Your GitHub Contributions 🐍
 published: false
 description: Turn your GitHub contribution graph into an epic snake animation - and soon, compete with friends in PvP battles!
 tags: opensource, github, typescript, gamedev
-cover_image: https://raw.githubusercontent.com/miccy/snake-evolution/main/.github/banner.png
+cover_image: https://raw.githubusercontent.com/miccy/snake-evolution/main/.github/banner.jpg
 ---
 
 # I Built a Snake Game That Eats Your GitHub Contributions 🐍

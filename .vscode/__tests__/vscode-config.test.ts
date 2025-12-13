@@ -29,7 +29,22 @@ describe("VSCode Configuration", () => {
     };
 
     beforeAll(() => {
-      config = parseJsoncFile(readFileSync(extPath, "utf-8"), extPath) as typeof config;
+      const parsed = parseJsoncFile(readFileSync(extPath, "utf-8"), extPath);
+      if (typeof parsed !== "object" || parsed === null) {
+        throw new Error(`Invalid structure in ${extPath}`);
+      }
+      const obj = parsed as Record<string, unknown>;
+      const recommendations = obj.recommendations;
+      const unwantedRecommendations = obj.unwantedRecommendations;
+      if (
+        !Array.isArray(recommendations) ||
+        !recommendations.every((x): x is string => typeof x === "string") ||
+        !Array.isArray(unwantedRecommendations) ||
+        !unwantedRecommendations.every((x): x is string => typeof x === "string")
+      ) {
+        throw new Error(`Invalid structure in ${extPath}`);
+      }
+      config = { recommendations, unwantedRecommendations };
     });
 
     test("should be valid JSON", () => {
@@ -136,9 +151,12 @@ describe("VSCode Configuration", () => {
     });
 
     test("should configure Biome code actions on save", () => {
-      const codeActions = config["editor.codeActionsOnSave"] as Record<string, string>;
-      expect(codeActions["source.organizeImports.biome"]).toBe("explicit");
-      expect(codeActions["source.fixAll.biome"]).toBe("explicit");
+      const codeActions = config["editor.codeActionsOnSave"];
+      expect(typeof codeActions).toBe("object");
+      expect(codeActions).not.toBeNull();
+      const actions = codeActions as Record<string, string>;
+      expect(actions["source.organizeImports.biome"]).toBe("explicit");
+      expect(actions["source.fixAll.biome"]).toBe("explicit");
     });
 
     test("should disable ESLint and Prettier", () => {
@@ -156,10 +174,13 @@ describe("VSCode Configuration", () => {
     });
 
     test("should exclude build artifacts from search", () => {
-      const searchExclude = config["search.exclude"] as Record<string, boolean>;
-      expect(searchExclude["**/node_modules"]).toBe(true);
-      expect(searchExclude["**/dist"]).toBe(true);
-      expect(searchExclude["**/.turbo"]).toBe(true);
+      const searchExclude = config["search.exclude"];
+      expect(typeof searchExclude).toBe("object");
+      expect(searchExclude).not.toBeNull();
+      const excludes = searchExclude as Record<string, boolean>;
+      expect(excludes["**/node_modules"]).toBe(true);
+      expect(excludes["**/dist"]).toBe(true);
+      expect(excludes["**/.turbo"]).toBe(true);
     });
 
     test("should disable telemetry", () => {
