@@ -1,0 +1,81 @@
+name: 'Snake Evolution'
+description: 'Generate an animated snake eating your GitHub contributions'
+author: 'miccy'
+branding:
+  icon: 'activity'
+  color: 'green'
+
+inputs:
+  github_user_name:
+    description: 'GitHub username to generate snake for'
+    required: true
+  
+  github_token:
+    description: 'GitHub token for API access (optional, uses public scraping if not provided)'
+    required: false
+    default: ''
+  
+  outputs:
+    description: 'Output file path(s), comma-separated for multiple formats'
+    required: false
+    default: 'dist/snake.svg'
+  
+  theme:
+    description: 'Color theme (github-light, github-dark, ocean, sunset, neon-gamer, glass)'
+    required: false
+    default: 'github-dark'
+  
+  year:
+    description: 'Year to generate contributions for'
+    required: false
+    default: ''  # Current year if empty
+
+outputs:
+  svg_path:
+    description: 'Path to generated SVG file'
+    value: ${{ steps.generate.outputs.svg_path }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup Bun
+      uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: latest
+
+    - name: Install dependencies
+      shell: bash
+      run: |
+        cd ${{ github.action_path }}/..
+        bun install --frozen-lockfile
+
+    - name: Generate Snake
+      id: generate
+      shell: bash
+      run: |
+        cd ${{ github.action_path }}/..
+        
+        # Parse outputs
+        OUTPUT="${{ inputs.outputs }}"
+        THEME="${{ inputs.theme }}"
+        YEAR="${{ inputs.year }}"
+        USERNAME="${{ inputs.github_user_name }}"
+        TOKEN="${{ inputs.github_token }}"
+        
+        # Build command
+        CMD="bun run packages/cli/src/index.ts generate -u $USERNAME -t $THEME -o $OUTPUT"
+        
+        if [ -n "$YEAR" ]; then
+          CMD="$CMD -y $YEAR"
+        fi
+        
+        if [ -n "$TOKEN" ]; then
+          CMD="$CMD --token $TOKEN"
+        fi
+        
+        # Run generation
+        echo "Running: $CMD"
+        eval $CMD
+        
+        # Set output
+        echo "svg_path=$OUTPUT" >> $GITHUB_OUTPUT

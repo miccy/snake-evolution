@@ -1,0 +1,39 @@
+# Example workflow to generate contribution snake
+# Copy this to your repository's .github/workflows/ folder
+
+name: Generate Snake
+
+on:
+  # Run daily at midnight
+  schedule:
+    - cron: '0 0 * * *'
+  
+  # Allow manual trigger
+  workflow_dispatch:
+  
+  # Run on push to main (for testing)
+  push:
+    branches: [main]
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Generate Snake Animation
+        uses: miccy/snake-evolution@main
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: dist/snake.svg
+          theme: github-dark
+      
+      - name: Commit and Push
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: '🐍 Update snake animation'
+          file_pattern: 'dist/*.svg'

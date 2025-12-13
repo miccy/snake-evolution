@@ -4,7 +4,7 @@
 version: 2
 updates:
   # Security updates only for npm
-  - package-ecosystem: "bun"
+  - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "daily"
