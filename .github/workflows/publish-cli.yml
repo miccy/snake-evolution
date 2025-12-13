@@ -11,7 +11,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
-    
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -34,6 +34,16 @@ jobs:
         run: |
           cd packages/cli
           bun run build
+
+      - name: Verify NPM_TOKEN exists
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -z "$NPM_TOKEN" ]; then
+            echo "::error::NPM_TOKEN secret is not set. Please add it to repository secrets."
+            exit 1
+          fi
+          echo "NPM_TOKEN is configured"
 
       - name: Publish to npm
         run: |

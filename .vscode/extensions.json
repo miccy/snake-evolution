@@ -1,0 +1,48 @@
+{
+  "recommendations": [
+    // ═══════════════════════════════════════════════════════════════════
+    // Core - Required
+    // ═══════════════════════════════════════════════════════════════════
+    "biomejs.biome", // Formatter & Linter
+    "oven.bun-vscode", // Bun runtime support
+
+    // ═══════════════════════════════════════════════════════════════════
+    // TypeScript & JavaScript
+    // ═══════════════════════════════════════════════════════════════════
+    "ms-vscode.vscode-typescript-next", // Latest TypeScript features
+
+    // ═══════════════════════════════════════════════════════════════════
+    // Git & GitHub
+    // ═══════════════════════════════════════════════════════════════════
+    "eamodio.gitlens", // Git supercharged
+    "GitHub.vscode-pull-request-github", // GitHub PRs and Issues
+    "GitHub.vscode-github-actions", // GitHub Actions support
+
+    // ═══════════════════════════════════════════════════════════════════
+    // Markdown & Documentation
+    // ═══════════════════════════════════════════════════════════════════
+    "DavidAnson.vscode-markdownlint", // Markdown linting
+    "yzhang.markdown-all-in-one", // Markdown utilities
+    "bierner.markdown-mermaid", // Mermaid diagrams support
+
+    // ═══════════════════════════════════════════════════════════════════
+    // Developer Experience
+    // ═══════════════════════════════════════════════════════════════════
+    "EditorConfig.EditorConfig", // EditorConfig support
+    "aaron-bond.better-comments", // Colored comments
+    "usernamehw.errorlens", // Inline error display
+    "streetsidesoftware.code-spell-checker", // Spell checking
+    "Gruntfuggly.todo-tree", // TODO highlighting
+
+    // ═══════════════════════════════════════════════════════════════════
+    // File Types
+    // ═══════════════════════════════════════════════════════════════════
+    "redhat.vscode-yaml", // YAML support
+    "tamasfe.even-better-toml" // TOML support (bunfig.toml)
+  ],
+  "unwantedRecommendations": [
+    // Disabled - we use Biome instead
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint"
+  ]
+}

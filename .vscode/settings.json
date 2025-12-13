@@ -1,5 +1,116 @@
 {
-  "kiroAgent.configureMCP": "Enabled",
+  // ═══════════════════════════════════════════════════════════════════
+  // Editor
+  // ═══════════════════════════════════════════════════════════════════
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports.biome": "explicit",
+    "source.fixAll.biome": "explicit"
+  },
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.rulers": [
+    100
+  ],
+  "editor.wordWrap": "off",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+  "editor.minimap.enabled": false,
+  "editor.inlineSuggest.enabled": true,
+  // ═══════════════════════════════════════════════════════════════════
+  // Files
+  // ═══════════════════════════════════════════════════════════════════
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "**/.turbo": true,
+    "**/.next": true,
+    "**/dist": true,
+    "**/coverage": true
+  },
+  "files.watcherExclude": {
+    "**/node_modules/**": true,
+    "**/.turbo/**": true,
+    "**/.next/**": true,
+    "**/dist/**": true
+  },
+  // ═══════════════════════════════════════════════════════════════════
+  // Search
+  // ═══════════════════════════════════════════════════════════════════
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bun.lock": true,
+    "**/.turbo": true,
+    "**/dist": true,
+    "**/coverage": true
+  },
+  // ═══════════════════════════════════════════════════════════════════
+  // TypeScript
+  // ═══════════════════════════════════════════════════════════════════
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  // ═══════════════════════════════════════════════════════════════════
+  // Biome (Formatter & Linter)
+  // ═══════════════════════════════════════════════════════════════════
+  "biome.enabled": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  // ═══════════════════════════════════════════════════════════════════
+  // Disable competing formatters/linters
+  // ═══════════════════════════════════════════════════════════════════
+  "eslint.enable": false,
+  "prettier.enable": false,
+  // ═══════════════════════════════════════════════════════════════════
+  // Markdown
+  // ═══════════════════════════════════════════════════════════════════
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    }
+  },
+  // ═══════════════════════════════════════════════════════════════════
+  // Git
+  // ═══════════════════════════════════════════════════════════════════
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  // ═══════════════════════════════════════════════════════════════════
+  // Terminal
+  // ═══════════════════════════════════════════════════════════════════
+  "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.fontFamily": "MesloLGS NF, Menlo, Monaco, 'Courier New', monospace",
+  // ═══════════════════════════════════════════════════════════════════
+  // Telemetry (disabled)
+  // ═══════════════════════════════════════════════════════════════════
+  "telemetry.telemetryLevel": "off",
   "amazonQ.telemetry": false,
   "aws.telemetry": false
 }
