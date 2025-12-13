@@ -26,7 +26,7 @@ There are many ways to contribute:
 
 ### Prerequisites
 
-- [Bun](https://bun.sh) >= 1.3.0 (primary) or [Node.js](https://nodejs.org) >= 24
+- [Bun](https://bun.sh) >= 1.3.0 (primary) or [Node.js](https://nodejs.org) >= 22
 - [Git](https://git-scm.com)
 - [Docker](https://docker.com) (for local backend)
 - GitHub account

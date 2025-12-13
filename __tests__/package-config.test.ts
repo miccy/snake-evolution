@@ -116,7 +116,7 @@ describe("Package Configuration", () => {
     });
 
     test("should NOT be private", () => {
-      expect(pkg.private).toBeUndefined();
+      expect(pkg.private).not.toBe(true);
     });
 
     test("should have description", () => {

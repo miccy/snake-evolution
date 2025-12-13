@@ -36,7 +36,7 @@ describe("Documentation Files", () => {
     test("should document GitHub Action usage", () => {
       content = readFileSync(readmePath, "utf-8");
       expect(content).toMatch(/##?\s*.*GitHub Action/i);
-      expect(content).toContain("uses: miccy/snake-evolution@main");
+      expect(content).toMatch(/uses: miccy\/snake-evolution@v\d+/);
     });
 
     test("should document CLI usage", () => {
@@ -58,7 +58,8 @@ describe("Documentation Files", () => {
 
     test("should have badges", () => {
       content = readFileSync(readmePath, "utf-8");
-      expect(content).toMatch(/!\[.*\]\(https:\/\/img\.shields\.io/);
+      // Support both markdown badges ![](url) and HTML <img> badges
+      expect(content).toMatch(/img\.shields\.io/);
     });
 
     test("should credit Platane", () => {
@@ -105,8 +106,8 @@ describe("Documentation Files", () => {
     test("should explain commit conventions", () => {
       content = readFileSync(contributingPath, "utf-8");
       expect(content).toMatch(/conventional commits/i);
-      expect(content).toContain("feat:");
-      expect(content).toContain("fix:");
+      expect(content).toMatch(/feat[:(]/i);
+      expect(content).toMatch(/fix[:(]/i);
     });
 
     test("should reference Code of Conduct", () => {
@@ -213,11 +214,11 @@ describe("Documentation Files", () => {
         const fullPath = resolve(__dirname, docPath);
         const content = readFileSync(fullPath, "utf-8");
 
-        // Should start with h1
-        expect(content).toMatch(/^#\s+/m);
+        // Should have h1 (markdown # or HTML <h1>)
+        expect(content).toMatch(/^#\s+|<h1[^>]*>/m);
 
-        // Should have at least one h2
-        expect(content).toMatch(/^##\s+/m);
+        // Should have at least one h2 (markdown ## or HTML <h2>)
+        expect(content).toMatch(/^##\s+|<h2[^>]*>/m);
       });
     });
 

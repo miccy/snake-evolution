@@ -71,7 +71,7 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - uses: miccy/snake-evolution@main
+      - uses: miccy/snake-evolution@v1
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: dist/snake.svg
