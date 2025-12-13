@@ -1,12 +1,25 @@
-# Publish CLI to npm when a new release is created
-name: Publish CLI
+# DEPRECATED: This workflow is kept for manual/emergency releases
+# Primary publishing is now handled by .github/workflows/release.yml via Changesets
+#
+# To use this workflow manually:
+# 1. Create a GitHub Release
+# 2. This workflow will trigger and publish to npm
+
+name: Publish CLI (Manual)
 
 on:
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to publish (must match package.json)'
+        required: true
+        type: string
 
 jobs:
   publish:
+    name: Publish to npm
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -29,7 +42,7 @@ jobs:
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: 1.3.4
+          bun-version: latest
 
       - name: Setup Node.js
         uses: actions/setup-node@v4

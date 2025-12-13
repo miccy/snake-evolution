@@ -1,0 +1,48 @@
+# Validates that PRs with package changes include a changeset
+name: Changeset Check
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  check:
+    name: Changeset Status
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Check for changeset
+        run: |
+          # Check if there are changes to packages that would need a changeset
+          CHANGED_FILES=$(git diff --name-only origin/main...HEAD)
+
+          # Check if any package source files changed (excluding tests, configs)
+          if echo "$CHANGED_FILES" | grep -qE '^packages/(cli|engine|renderer|github|types)/src/'; then
+            echo "📦 Package source files changed, checking for changeset..."
+
+            # Check if a changeset was added
+            if echo "$CHANGED_FILES" | grep -qE '^\.changeset/.*\.md$'; then
+              echo "✅ Changeset found!"
+            else
+              echo "⚠️ No changeset found. If this PR includes user-facing changes, please run:"
+              echo ""
+              echo "  bun changeset"
+              echo ""
+              echo "If this is an internal change (tests, refactoring), you can ignore this warning."
+              # Don't fail - just warn
+            fi
+          else
+            echo "ℹ️ No package source changes detected, changeset not required"
+          fi

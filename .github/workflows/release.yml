@@ -1,30 +1,40 @@
-# Release Workflow
-# Currently disabled - enable when project is ready
-# To enable: remove the 'if: false' condition
-
+# Release workflow using Changesets
+# Creates a Release PR when changesets are merged, and publishes when merged
 name: Release
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   release:
-    # DISABLED: Remove this line to enable
-    if: false
+    name: Release
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      pull-requests: write
+      id-token: write
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - uses: oven-sh/setup-bun@v2
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          bun-version: 1.3.4
+          bun-version: latest
+
+      - name: Setup Node.js (for npm publish)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Cache Bun dependencies
         uses: actions/cache@v4
@@ -37,12 +47,27 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Build
+      - name: Build packages
         run: bun run build
 
-      - name: Create Release
+      - name: Create Release Pull Request or Publish
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: bun run version
+          publish: bun run release
+          title: "chore: release packages"
+          commit: "chore: version packages"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create GitHub Release
+        if: steps.changesets.outputs.published == 'true'
         uses: softprops/action-gh-release@v2
         with:
           generate_release_notes: true
+          tag_name: v${{ fromJSON(steps.changesets.outputs.publishedPackages)[0].version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
