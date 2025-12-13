@@ -3,12 +3,12 @@
 // Snake Evolution CLI
 // Generate GitHub contribution snake animations
 
-import { writeFileSync } from "node:fs";
-import { resolve } from "node:path";
 import { simulateSnake } from "@snake-evolution/engine";
 import { fetchContributions } from "@snake-evolution/github";
 import { getTheme, renderAnimatedSVG, renderStaticSVG } from "@snake-evolution/renderer";
 import { Command } from "commander";
+import { writeFileSync } from "node:fs";
+import { resolve } from "node:path";
 
 const program = new Command();
 
@@ -112,7 +112,6 @@ program
     console.log("Available themes:");
     console.log("  github-light  - GitHub's default light theme");
     console.log("  github-dark   - GitHub's dark mode");
-    console.log("  glass         - iOS 26 liquid glass effect");
     console.log("  ocean         - Cool blue ocean tones");
     console.log("  sunset        - Warm sunset vibes");
     console.log("  neon-gamer    - Vibrant neon purple/green");

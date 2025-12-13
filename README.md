@@ -27,9 +27,9 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/miccy/snake-evolution/output/snake.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/miccy/snake-evolution/output/snake-light.svg">
-    <img alt="Snake eating contributions" src="https://raw.githubusercontent.com/miccy/snake-evolution/output/snake.svg" width="100%">
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/examples/github-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/examples/github-light.svg">
+    <img alt="Snake eating contributions" src="./assets/examples/github-dark.svg" width="100%">
   </picture>
 </p>
 
@@ -55,7 +55,7 @@ That's it! Open `snake.svg` and watch the magic 🎉
 |---------|-----------------|--------|
 | 🧠 Smart pathfinding | ✅ Hunts high-value contributions first | ❌ Random/linear |
 | 🐍 Growing snake | ✅ Gets longer as it eats | ❌ Static size |
-| 🎨 Multiple themes | ✅ 5 beautiful themes | ❌ 1-2 themes |
+| 🎨 Multiple themes | ✅ 5 themes (github, ocean, sunset, neon) | ❌ 1-2 themes |
 | 📦 Zero install | ✅ `npx` just works | ⚠️ Requires setup |
 | 🎮 PvP Mode | 🔜 Coming soon! | ❌ Not planned |
 
@@ -63,18 +63,25 @@ That's it! Open `snake.svg` and watch the magic 🎉
 
 ## 🎨 Themes
 
-<table>
-<tr>
-<td align="center"><strong>🌑 github-dark</strong><br><sub>Default</sub></td>
-<td align="center"><strong>☀️ github-light</strong><br><sub>Classic</sub></td>
-<td align="center"><strong>🌊 ocean</strong><br><sub>Cool blues</sub></td>
-</tr>
-<tr>
-<td align="center"><strong>🌅 sunset</strong><br><sub>Warm vibes</sub></td>
-<td align="center"><strong>🎮 neon-gamer</strong><br><sub>Purple & green</sub></td>
-<td align="center"><strong>🔜 More coming!</strong><br><sub>PRs welcome</sub></td>
-</tr>
-</table>
+### 🌑 GitHub Dark (Default)
+
+![GitHub Dark](./assets/examples/github-dark.svg)
+
+### ☀️ GitHub Light
+
+![GitHub Light](./assets/examples/github-light.svg)
+
+### 🌊 Ocean
+
+![Ocean](./assets/examples/ocean.svg)
+
+### 🌅 Sunset
+
+![Sunset](./assets/examples/sunset.svg)
+
+### 🎮 Neon Gamer
+
+![Neon Gamer](./assets/examples/neon-gamer.svg)
 
 ```bash
 npx @snake-evolution/cli generate -u YOUR_USERNAME -t ocean -o snake.svg
