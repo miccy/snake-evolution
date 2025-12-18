@@ -3,10 +3,22 @@
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.2.0] - 2025-12-18
+## [1.2.3] - 2025-12-18
+
+### Fixed
+
+- **CLI npx/npm Support** - Fixed shebang bundling to enable `npx @snake-evolution/cli` execution
+- Removed duplicate shebang that prevented npm package managers from running the CLI
+
+### Changed
+
+- CLI package is now truly standalone with zero runtime dependencies
+- All dependencies bundled into single executable file
+
+## [1.2.0] - 2024-12-138
 
 ### Changed
 
