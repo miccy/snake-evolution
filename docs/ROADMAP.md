@@ -6,7 +6,7 @@ Make Snake Evolution the most fun way to visualize GitHub contributions - from s
 
 ---
 
-## ✅ v1.2 - Current Release (December 2024)
+## ✅ v1.2 - Current Release (December 2024) (December 2024)
 
 **What's Live:**
 - ✅ CLI tool with npm support (`npx @snake-evolution/cli@latest`)

@@ -55,7 +55,7 @@ See [🤖 GitHub Action](#-github-action) section below.
 git clone https://github.com/miccy/snake-evolution.git
 cd snake-evolution
 bun install
-bun run generate -u YOUR_USERNAME -o snake.svg
+npx @snake-evolution/cli generate -u YOUR_USERNAME -o snake.svg
 ```
 
 ---
