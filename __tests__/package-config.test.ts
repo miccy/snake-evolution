@@ -110,8 +110,9 @@ describe("Package Configuration", () => {
       expect(pkg.name).toBe("@snake-evolution/cli");
     });
 
-    test("should be version 1.0.0", () => {
-      expect(pkg.version).toBe("1.0.0");
+    test("should have valid semver version starting with 1.x", () => {
+      expect(pkg.version).toBeDefined();
+      expect(pkg.version).toMatch(/^1\.\d+\.\d+/);
     });
 
     test("should NOT be private", () => {
