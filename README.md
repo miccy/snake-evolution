@@ -169,7 +169,7 @@ npx @snake-evolution/cli generate -u YOUR_USERNAME -o snake.svg
 
 # Or global install:
 npm install -g @snake-evolution/cli
-snake-evolution generate -u miccy -o snake.svg
+snake generate -u miccy -o snake.svg
 ```
 
 ### Options
