@@ -11,6 +11,8 @@
 <p align="center">
   <a href="https://github.com/miccy/snake-evolution/stargazers"><img src="https://img.shields.io/github/stars/miccy/snake-evolution?style=for-the-badge&logo=github&color=yellow" alt="Stars"></a>
   <a href="https://www.npmjs.com/package/@snake-evolution/cli"><img src="https://img.shields.io/npm/v/@snake-evolution/cli?style=for-the-badge&logo=npm&color=red" alt="npm"></a>
+  <a href="https://www.npmjs.com/package/@snake-evolution/cli"><img src="https://img.shields.io/npm/dm/@snake-evolution/cli?style=for-the-badge&logo=npm&color=red" alt="downloads"></a>
+  <a href="https://github.com/miccy/snake-evolution/releases"><img src="https://img.shields.io/github/v/release/miccy/snake-evolution?style=for-the-badge&logo=github&color=green" alt="release"></a>
   <a href="https://github.com/miccy/snake-evolution/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge" alt="License"></a>
   <a href="https://github.com/miccy/snake-evolution/actions"><img src="https://img.shields.io/github/actions/workflow/status/miccy/snake-evolution/ci.yml?style=for-the-badge&logo=github-actions&logoColor=white" alt="CI"></a>
 </p>
@@ -53,20 +55,42 @@ See [🤖 GitHub Action](#-github-action) section below.
 git clone https://github.com/miccy/snake-evolution.git
 cd snake-evolution
 bun install
-bun run generate -u YOUR_USERNAME -o snake.svg
+npx @snake-evolution/cli generate -u YOUR_USERNAME -o snake.svg
 ```
 
 ---
 
 ## ✨ Why Snake Evolution?
 
-| Feature | Snake Evolution | Others |
-|---------|-----------------|--------|
-| 🧠 Smart pathfinding | ✅ Hunts high-value contributions first | ❌ Random/linear |
-| 🐍 Growing snake | ✅ Gets longer as it eats | ❌ Static size |
-| 🎨 Multiple themes | ✅ 6 SVG themes + 1 GIF-only (glass) | ❌ 1-2 themes |
-| 📦 Zero install | ✅ `npx` just works | ⚠️ Requires setup |
-| 🎮 PvP Mode | 🔜 Coming soon! | ❌ Not planned |
+- **🎨 7 Beautiful Themes** - Match your profile's aesthetic
+- **🧠 Smart Pathfinding** - Snake hunts high-value contributions first
+- **⚡ Zero-Install CLI** - `npx @snake-evolution/cli@latest` - no setup needed
+- **🤖 GitHub Action** - Automated daily updates
+- **📦 Full Monorepo** - Engine, renderer, and themes are separate packages
+- **🎯 Production Ready** - Used by developers worldwide
+
+## 🎨 Showcase
+
+Explore all available themes:
+
+````carousel
+![GitHub Dark Theme](./assets/examples/github-dark.svg)
+<!-- slide -->
+![Ocean Theme](./assets/examples/ocean.svg)
+<!-- slide -->
+![Sunset Theme](./assets/examples/sunset.svg)
+<!-- slide -->
+![Neon Gamer Theme](./assets/examples/neon-gamer.svg)
+<!-- slide -->
+![CypherPunk Theme](./assets/examples/cypherpunk.svg)
+````
+
+**Real-world examples:**
+
+- 💼 Portfolio README animations
+- 📚 Documentation sites with contribution graphs
+- 🎤 Conference presentation slides
+- ✍️ Technical articles and blog posts
 
 ---
 

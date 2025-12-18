@@ -1,10 +1,11 @@
 # @snake-evolution/cli
 
-## 1.3.0
+## 1.2.3
 
-### Minor Changes
+### Patch Changes
 
-- feat: rename CLI command to `snake` and ensure binary has executable permissions
+- fix: npx/bunx compatibility - ensure CLI binary has shebang for standalone execution
+  <!-- cSpell:ignore bunx -->
 
 ## 1.2.0
 
@@ -14,6 +15,6 @@
 
 ## 1.1.1
 
-### Patch Changes
+### Bug Fixes
 
 - fix: ensure CLI binary has executable permissions and rename command to `snake`

@@ -2,7 +2,40 @@ MIT License
 
 Copyright (c) 2025 Miccy (Milos Macek)
 
+================================================================================
+ATTRIBUTION AND PROJECT RELATIONSHIP
+================================================================================
+
+This project ("Snake Evolution") was inspired by the original snake contribution
+graph concept by Platane (Arthur Brongniart) - https://github.com/Platane/snk
+
+However, Snake Evolution is NOT a fork. It is a complete independent rewrite
+with the following key differences:
+
+ORIGINAL CONCEPT (Platane/snk):
+- Original snake eating contributions idea
+- Basic pathfinding implementation
+- Single rendering approach
+
+SNAKE EVOLUTION (this project):
+- Complete rewrite in TypeScript with modern stack (Bun, monorepo)
+- Brand new pathfinding engine with priority-based hunting algorithm
+- Entirely new SMIL-based renderer with advanced animations
+- 7 custom themes (github-dark, github-light, ocean, sunset, neon-gamer,
+  cypherpunk, glass) - all original design
+- CLI tool with zero-install npm package support
+- GitHub Action with extended customization options
+- Modular architecture with separate engine, renderer, and theme packages
+
+The only shared concept is "snake eats GitHub contributions". Everything else
+(code, implementation, algorithms, themes, architecture) is original work.
+
 Original work Copyright (c) Platane (Arthur Brongniart)
+Modifications and new implementation Copyright (c) 2025 Miccy (Milos Macek)
+
+================================================================================
+MIT LICENSE TERMS
+================================================================================
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

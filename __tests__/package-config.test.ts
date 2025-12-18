@@ -168,14 +168,10 @@ describe("Package Configuration", () => {
       expect(scripts.prepublishOnly).toContain("build");
     });
 
-    test("should bundle dependencies", () => {
-      expect(pkg.bundledDependencies).toBeDefined();
-      const bundled = pkg.bundledDependencies as string[];
-
-      expect(bundled).toContain("@snake-evolution/engine");
-      expect(bundled).toContain("@snake-evolution/github");
-      expect(bundled).toContain("@snake-evolution/renderer");
-      expect(bundled).toContain("@snake-evolution/types");
+    test("should NOT bundle dependencies (standalone)", () => {
+      // CLI is now standalone - dependencies bundled via Bun build
+      // bundledDependencies removed in v1.2.1+
+      expect(pkg.bundledDependencies).toBeUndefined();
     });
 
     test("should have publishConfig for public access", () => {
@@ -185,11 +181,16 @@ describe("Package Configuration", () => {
       expect(publishConfig.access).toBe("public");
     });
 
-    test("should depend on commander", () => {
-      expect(pkg.dependencies).toBeDefined();
-      const deps = pkg.dependencies as Record<string, string>;
+    test("commander should be in devDependencies (bundled by Bun)", () => {
+      expect(pkg.devDependencies).toBeDefined();
+      const devDeps = pkg.devDependencies as Record<string, string>;
 
-      expect(deps.commander).toBeDefined();
+      // Commander is bundled by Bun, so it's in devDependencies
+      expect(devDeps.commander).toBeDefined();
+
+      // Should NOT be in dependencies (standalone bundle)
+      const deps = pkg.dependencies as Record<string, string> | undefined;
+      expect(deps?.commander).toBeUndefined();
     });
 
     test("should require Node.js >= 22", () => {
