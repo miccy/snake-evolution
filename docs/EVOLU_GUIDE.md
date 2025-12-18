@@ -1,5 +1,7 @@
 # Evolu Integration Guide
 
+> 🚧 **Status: Planned** - This integration is not yet implemented. See [ROADMAP.md](./ROADMAP.md) for timeline.
+
 > Local-first database setup for Snake Evolution
 
 ## Overview

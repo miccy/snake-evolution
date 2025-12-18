@@ -6,18 +6,19 @@ Make Snake Evolution the most fun way to visualize GitHub contributions - from s
 
 ---
 
-## ✅ Phase 1: v1.0 - MVP (Current Release)
+## 🚧 Phase 1: v1.0 - MVP (In Development)
 
-*Released: December 2025*
+*Target: December 2025*
 
-- [x] CLI tool for snake generation (`npx @snake-evolution/cli`)
-- [x] 5 beautiful themes (github-dark, github-light, ocean, sunset, neon-gamer)
+- [x] CLI tool for snake generation (`bun run generate`)
+- [x] 7 themes (github-dark, github-light, ocean, sunset, neon-gamer, glass, cypherpunk)
 - [x] GitHub Action for automated generation
 - [x] Smart pathfinding (priority-based hunting)
 - [x] Smooth SMIL animations
 - [x] Visual snake gradient (larger head, fading tail)
 - [x] Works for any GitHub user
-- [x] Published to npm (zero-install with npx)
+- [ ] Publish to npm (`npx @snake-evolution/cli`)
+- [ ] First stable release (v1.0.0)
 
 ---
 

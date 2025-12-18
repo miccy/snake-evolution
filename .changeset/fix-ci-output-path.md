@@ -22,3 +22,9 @@ fix(ci): resolve ENOENT error and improve security
 - Add native git pre-commit hook for automatic lint/format checks
 - No additional dependencies (no Husky, no Lefthook)
 - Auto-configured via `prepare` script on `bun install`
+
+**Documentation:**
+- Fix misleading claims (npm publish status, release status)
+- Mark planned features clearly with 🚧 status
+- Update GitHub Action examples to use native bash instead of third-party actions
+- Correct theme count (7 themes, not 5)

@@ -6,50 +6,72 @@
 
 Snake Evolution is a monorepo project that transforms GitHub contribution graphs into animated snake visualizations.
 
+> ⚠️ **Note:** This document describes both current implementation and planned architecture. Items marked with 🚧 are not yet implemented.
+
 ## Tech Stack
 
-| Category | Technology | Purpose |
-|----------|------------|---------|
-| Runtime | Bun | JavaScript runtime with native SQLite |
-| Monorepo | Turborepo | Build system and task orchestration |
-| Web | Astro + Starlight | Website and documentation |
-| UI | React 19 | Interactive components |
-| Styling | Tailwind CSS 4 | Utility-first CSS |
-| Database | Evolu | Local-first with CRDT sync |
-| API | ElysiaJS | Type-safe API server |
-| Linting | Biome | Lint and format |
-| Types | TypeScript 5.9 | Type safety |
+| Category | Technology | Status | Purpose |
+|----------|------------|--------|---------|
+| Runtime | Bun | ✅ | JavaScript runtime |
+| Monorepo | Turborepo | ✅ | Build system and task orchestration |
+| CLI | Commander | ✅ | Command-line interface |
+| Linting | Biome | ✅ | Lint and format |
+| Types | TypeScript 5.9 | ✅ | Type safety |
+| Web | Astro + Starlight | 🚧 | Website and documentation |
+| UI | React 19 | 🚧 | Interactive components |
+| Styling | Tailwind CSS 4 | 🚧 | Utility-first CSS |
+| Database | Evolu | 🚧 | Local-first with CRDT sync |
+| API | ElysiaJS | 🚧 | Type-safe API server |
+| Backend | Appwrite | 🚧 | Backend-as-a-Service |
 
 ## Project Structure
 
 ```
 snake-evolution/
 ├── apps/
-│   ├── web/                # Astro + Starlight unified app
-│   └── api/                # ElysiaJS API server
+│   ├── web/                # 🚧 Astro + Starlight (scaffolded)
+│   ├── api/                # 🚧 ElysiaJS API server (scaffolded)
+│   └── docs/               # 🚧 Documentation site
 ├── packages/
-│   ├── types/              # Shared TypeScript types
-│   ├── ui/                 # Shared React components
-│   ├── engine/             # Snake game logic
-│   ├── renderer/           # SVG/GIF rendering
-│   ├── github/             # GitHub API client
-│   ├── biome-config/       # Shared Biome config
-│   └── typescript-config/  # Shared TS configs
-├── docker/                 # Docker setup
+│   ├── types/              # ✅ Shared TypeScript types
+│   ├── ui/                 # 🚧 Shared React components
+│   ├── engine/             # ✅ Snake game logic
+│   ├── renderer/           # ✅ SVG rendering
+│   ├── github/             # ✅ GitHub API client
+│   ├── cli/                # ✅ Command-line interface
+│   ├── biome-config/       # ✅ Shared Biome config
+│   └── typescript-config/  # ✅ Shared TS configs
+├── docker/                 # 🚧 Docker setup
 └── docs/                   # Technical documentation
 ```
 
-## Data Flow
+## Current Data Flow (v1.0)
+
+```
+GitHub API → packages/github → packages/engine → packages/renderer → SVG Output
+```
+
+## Planned Data Flow (v2.0+)
 
 ```
 GitHub API → packages/github → packages/engine → packages/renderer → Output (SVG/GIF)
                                      ↓
                               Evolu (local-first storage)
+                                     ↓
+                              Appwrite (sync & multiplayer)
 ```
 
 ## Key Concepts
 
-### Local-First Architecture
+### Snake Engine (✅ Implemented)
+
+The snake engine implements:
+
+- Priority-based pathfinding (hunts high-value contributions first)
+- Growth mechanics based on contribution intensity
+- Animation frame generation
+
+### Local-First Architecture (🚧 Planned)
 
 Using Evolu for local-first data storage with:
 
@@ -58,14 +80,6 @@ Using Evolu for local-first data storage with:
 - CRDT-based conflict resolution
 - Cross-device sync
 
-### Snake Engine
-
-The snake engine implements:
-
-- A* pathfinding algorithm
-- Growth mechanics based on contribution intensity
-- Animation frame generation
-
 ---
 
-*This document is auto-imported into Starlight at `/docs` route.*
+*See [ROADMAP.md](./ROADMAP.md) for implementation timeline.*
