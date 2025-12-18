@@ -67,6 +67,8 @@ snake themes
 | `ocean` | Cool blue ocean tones |
 | `sunset` | Warm sunset vibes |
 | `neon-gamer` | Vibrant neon purple/green |
+| `cypherpunk` | Blue/magenta cyberpunk vibes |
+| `glass` | Liquid glass effect (requires GIF output, coming soon) |
 
 ## Examples
 
