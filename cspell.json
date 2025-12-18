@@ -1,6 +1,15 @@
 {
   "version": "0.2",
   "language": "en",
-  "words": ["cypherpunk", "SMIL", "Appwrite", "Evolu", "pathfinding", "miccy", "Platane", "gifsicle"],
+  "words": [
+    "cypherpunk",
+    "SMIL",
+    "Appwrite",
+    "Evolu",
+    "pathfinding",
+    "miccy",
+    "Platane",
+    "gifsicle"
+  ],
   "ignorePaths": ["node_modules", "dist", ".git", "*.lock", "bun.lockb"]
 }
