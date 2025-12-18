@@ -10,6 +10,7 @@
 
 <p align="center">
   <a href="https://github.com/miccy/snake-evolution/stargazers"><img src="https://img.shields.io/github/stars/miccy/snake-evolution?style=for-the-badge&logo=github&color=yellow" alt="Stars"></a>
+  <a href="https://www.npmjs.com/package/@snake-evolution/cli"><img src="https://img.shields.io/npm/v/@snake-evolution/cli?style=for-the-badge&logo=npm&color=red" alt="npm"></a>
   <a href="https://github.com/miccy/snake-evolution/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge" alt="License"></a>
   <a href="https://github.com/miccy/snake-evolution/actions"><img src="https://img.shields.io/github/actions/workflow/status/miccy/snake-evolution/ci.yml?style=for-the-badge&logo=github-actions&logoColor=white" alt="CI"></a>
 </p>
@@ -36,7 +37,13 @@
 
 ## ⚡ Quick Start
 
-**Using GitHub Action (recommended):**
+**Using npx (zero-install):**
+
+```bash
+npx @snake-evolution/cli@latest generate -u YOUR_USERNAME
+```
+
+**Using GitHub Action:**
 
 See [🤖 GitHub Action](#-github-action) section below.
 
@@ -48,8 +55,6 @@ cd snake-evolution
 bun install
 bun run generate -u YOUR_USERNAME -o snake.svg
 ```
-
-> 🚧 **Coming soon:** `npx @snake-evolution/cli` - zero-install CLI via npm
 
 ---
 
@@ -152,24 +157,44 @@ Then in your **README.md**:
 
 ## 💻 CLI
 
-### Local Development
+[![npm version](https://img.shields.io/npm/v/@snake-evolution/cli)](https://www.npmjs.com/package/@snake-evolution/cli)
+[![npm downloads](https://img.shields.io/npm/dm/@snake-evolution/cli)](https://www.npmjs.com/package/@snake-evolution/cli)
+
+### Zero-Install (Recommended)
+
+No installation required! Use `npx` or `bunx`:
 
 ```bash
-git clone https://github.com/miccy/snake-evolution.git
-cd snake-evolution
-bun install
-bun run generate -u YOUR_USERNAME -o snake.svg
+# Using npx
+npx @snake-evolution/cli@latest generate -u YOUR_USERNAME
+
+# Using bunx (faster)
+bunx @snake-evolution/cli@latest generate -u YOUR_USERNAME
+
+# With custom options
+npx @snake-evolution/cli@latest generate -u YOUR_USERNAME -t ocean -o snake.svg
 ```
 
-### Coming Soon: npm Package
+### Global Installation
 
 ```bash
-# After npm publish:
-npx @snake-evolution/cli generate -u YOUR_USERNAME -o snake.svg
-
-# Or global install:
+# Using npm
 npm install -g @snake-evolution/cli
-snake generate -u miccy -o snake.svg
+
+# Using bun
+bun add -g @snake-evolution/cli
+
+# Then use anywhere
+snake generate -u YOUR_USERNAME
+snake themes  # List available themes
+```
+
+### Local Project
+
+```bash
+npm install @snake-evolution/cli
+# or
+bun add @snake-evolution/cli
 ```
 
 ### Options

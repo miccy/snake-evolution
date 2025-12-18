@@ -86,7 +86,7 @@ snake generate -u miccy --frame-delay 300
 
 ## Version
 
-Current version: **1.2.0**
+Current version: **1.2.3**
 
 ## License
 
