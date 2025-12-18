@@ -21,7 +21,7 @@ inputs:
     default: 'dist/snake.svg'
 
   theme:
-    description: 'Color theme (github-light, github-dark, ocean, sunset, neon-gamer, glass)'
+    description: 'Color theme (github-light, github-dark, ocean, sunset, neon-gamer, cypherpunk)'
     required: false
     default: 'github-dark'
 
