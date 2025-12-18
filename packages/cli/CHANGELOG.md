@@ -5,6 +5,7 @@
 ### Patch Changes
 
 - fix: npx/bunx compatibility - ensure CLI binary has shebang for standalone execution
+  <!-- cSpell:ignore bunx -->
 
 ## 1.2.0
 
