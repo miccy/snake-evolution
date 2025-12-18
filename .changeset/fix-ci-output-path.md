@@ -7,6 +7,7 @@ fix(ci): resolve ENOENT error and improve security
 **CLI fixes:**
 - Add `mkdirSync` with `recursive: true` before writing output file
 - Fixes ENOENT error when output path like `dist/snake.svg` is specified
+- Read version from package.json instead of hardcoding (single source of truth)
 
 **Action fixes:**
 - Output files now correctly go to `github.workspace` instead of `github.action_path`

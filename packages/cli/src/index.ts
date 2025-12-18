@@ -9,13 +9,15 @@ import { simulateSnake } from "@snake-evolution/engine";
 import { fetchContributions } from "@snake-evolution/github";
 import { getTheme, renderAnimatedSVG, renderStaticSVG } from "@snake-evolution/renderer";
 import { Command } from "commander";
+// @ts-expect-error - JSON import works in Bun
+import pkg from "../package.json" with { type: "json" };
 
 const program = new Command();
 
 program
   .name("snake-evolution")
   .description("Generate GitHub contribution snake animations")
-  .version("1.0.0-beta.1");
+  .version(pkg.version);
 
 program
   .command("generate")
