@@ -110,6 +110,27 @@ export const glass: GlassTheme = {
 };
 
 // ============================================
+// Cypherpunk Theme (Blue/Magenta - no filters for performance)
+// ============================================
+
+export const cypherpunk: ColorPalette = {
+  name: "Cypherpunk",
+  background: "#0d1117", // GitHub dark background
+  empty: "#161b22", // GitHub dark empty cell
+  levels: [
+    "#1a3a6b", // darkest blue
+    "#2857a4", // medium blue
+    "#386df5", // main blue (miccy)
+    "#5a8aff", // lighter blue
+  ],
+  snake: {
+    head: "#ff2cea", // magenta (dev)
+    body: "#e025d0",
+    tail: "#c01eb6",
+  },
+};
+
+// ============================================
 // Theme Registry
 // ============================================
 
@@ -120,6 +141,7 @@ export const themes: Record<string, ColorPalette | GlassTheme> = {
   sunset,
   "neon-gamer": neonGamer,
   glass,
+  cypherpunk,
 };
 
 export function getTheme(name: string): ColorPalette {
@@ -144,7 +166,7 @@ export function getGlassFilterDefs(theme: GlassTheme): string {
     <defs>
       <filter id="glass-blur" x="-50%" y="-50%" width="200%" height="200%">
         <feGaussianBlur in="SourceGraphic" stdDeviation="${theme.glass.blur}" result="blur" />
-        <feColorMatrix in="blur" type="matrix" 
+        <feColorMatrix in="blur" type="matrix"
           values="1 0 0 0 0
                   0 1 0 0 0
                   0 0 1 0 0

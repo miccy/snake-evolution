@@ -53,17 +53,20 @@ runs:
       id: generate
       shell: bash
       run: |
-        cd ${{ github.action_path }}
-
-        # Parse outputs
+        # Parse inputs
         OUTPUT="${{ inputs.outputs }}"
         THEME="${{ inputs.theme }}"
         YEAR="${{ inputs.year }}"
         USERNAME="${{ inputs.github_user_name }}"
         TOKEN="${{ inputs.github_token }}"
+        ACTION_PATH="${{ github.action_path }}"
+        WORKSPACE="${{ github.workspace }}"
 
-        # Build command
-        CMD="bun run packages/cli/src/index.ts generate -u $USERNAME -t $THEME -o $OUTPUT"
+        # Build output path (relative to workspace, not action path)
+        OUTPUT_PATH="${WORKSPACE}/${OUTPUT}"
+
+        # Build command (run from action path, output to workspace)
+        CMD="bun run ${ACTION_PATH}/packages/cli/src/index.ts generate -u $USERNAME -t $THEME -o $OUTPUT_PATH"
 
         if [ -n "$YEAR" ]; then
           CMD="$CMD -y $YEAR"
@@ -77,5 +80,5 @@ runs:
         echo "Running: $CMD"
         eval $CMD
 
-        # Set output
+        # Set output (relative path for user convenience)
         echo "svg_path=$OUTPUT" >> $GITHUB_OUTPUT

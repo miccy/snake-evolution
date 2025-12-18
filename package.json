@@ -10,6 +10,7 @@
   "author": "Miccy <support@miccy.dev>",
   "license": "MIT",
   "scripts": {
+    "prepare": "git config core.hooksPath .githooks",
     "dev": "turbo run dev",
     "dev:web": "turbo run dev --filter=@snake-evolution/web",
     "dev:api": "turbo run dev --filter=@snake-evolution/api",
@@ -40,7 +41,7 @@
     "release": "changeset publish"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.3.8",
+    "@biomejs/biome": "^2.3.10",
     "@changesets/cli": "^2.29.8",
     "@types/bun": "^1.3.4",
     "jsonc-parser": "^3.3.1",

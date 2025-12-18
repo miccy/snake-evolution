@@ -33,7 +33,9 @@ jobs:
           theme: github-dark
       
       - name: Commit and Push
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: '🐍 Update snake animation'
-          file_pattern: 'dist/*.svg'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dist/*.svg
+          git diff --staged --quiet || git commit -m "🐍 Update snake animation"
+          git push

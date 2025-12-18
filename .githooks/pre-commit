@@ -1,0 +1,42 @@
+#!/bin/sh
+# Pre-commit hook for snake-evolution
+# Runs linting and formatting checks before allowing commit
+
+set -e
+
+echo "🔍 Running pre-commit checks..."
+
+# Get list of staged files
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACMR)
+
+if [ -z "$STAGED_FILES" ]; then
+  echo "✅ No staged files to check"
+  exit 0
+fi
+
+# Check if any TS/JS/JSON files are staged
+TS_FILES=$(echo "$STAGED_FILES" | grep -E '\.(ts|tsx|js|jsx|json)$' || true)
+
+if [ -n "$TS_FILES" ]; then
+  echo "📝 Checking TypeScript/JavaScript files..."
+  
+  # Run Biome check (lint + format) on staged files only
+  echo "$TS_FILES" | xargs bun run biome check --no-errors-on-unmatched
+  
+  if [ $? -ne 0 ]; then
+    echo ""
+    echo "❌ Lint/format errors found!"
+    echo "   Run 'bun run fix' to auto-fix, then stage changes again."
+    exit 1
+  fi
+fi
+
+# Check if any MD files are staged
+MD_FILES=$(echo "$STAGED_FILES" | grep -E '\.md$' || true)
+
+if [ -n "$MD_FILES" ]; then
+  echo "📄 Checking Markdown files..."
+  echo "$MD_FILES" | xargs bun run markdownlint-cli2 --config .markdownlint.jsonc 2>/dev/null || true
+fi
+
+echo "✅ Pre-commit checks passed!"

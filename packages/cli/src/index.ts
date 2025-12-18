@@ -3,19 +3,21 @@
 // Snake Evolution CLI
 // Generate GitHub contribution snake animations
 
+import { mkdirSync, writeFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
 import { simulateSnake } from "@snake-evolution/engine";
 import { fetchContributions } from "@snake-evolution/github";
 import { getTheme, renderAnimatedSVG, renderStaticSVG } from "@snake-evolution/renderer";
 import { Command } from "commander";
-import { writeFileSync } from "node:fs";
-import { resolve } from "node:path";
+
+const pkg = { version: "1.0.0-beta.1" };
 
 const program = new Command();
 
 program
   .name("snake-evolution")
   .description("Generate GitHub contribution snake animations")
-  .version("1.0.0-beta.1");
+  .version(pkg.version);
 
 program
   .command("generate")
@@ -24,7 +26,7 @@ program
   .option("-o, --output <path>", "Output file path", "snake.svg")
   .option(
     "-t, --theme <theme>",
-    "Theme name (github-light, github-dark, ocean, sunset, neon-gamer)",
+    "Theme name (github-light, github-dark, ocean, sunset, neon-gamer, cypherpunk, glass)",
     "github-dark",
   )
   .option("-f, --format <format>", "Output format (svg, gif)", "svg")
@@ -95,6 +97,7 @@ program
 
       // Write output
       const outputPath = resolve(process.cwd(), options.output);
+      mkdirSync(dirname(outputPath), { recursive: true });
       writeFileSync(outputPath, output);
       console.log("");
       console.log(`✅ Saved to: ${outputPath}`);
@@ -115,6 +118,8 @@ program
     console.log("  ocean         - Cool blue ocean tones");
     console.log("  sunset        - Warm sunset vibes");
     console.log("  neon-gamer    - Vibrant neon purple/green");
+    console.log("  cypherpunk    - Blue/magenta cyberpunk vibes");
+    console.log("  glass         - Liquid glass effect (requires GIF output)");
   });
 
 program.parse();

@@ -5,7 +5,7 @@
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "biomejs.biome",
   "editor.codeActionsOnSave": {
-    "source.organizeImports.biome": "explicit",
+    "source.organizeImports.biome": "never",
     "source.fixAll.biome": "explicit"
   },
   "editor.tabSize": 2,
@@ -115,5 +115,9 @@
   // ═══════════════════════════════════════════════════════════════════
   "telemetry.telemetryLevel": "off",
   "amazonQ.telemetry": false,
-  "aws.telemetry": false
+  "aws.telemetry": false,
+  // ═══════════════════════════════════════════════════════════════════
+  // cSpell (Spell Checker)
+  // ═══════════════════════════════════════════════════════════════════
+  "cSpell.words": ["cypherpunk", "cyberpunk"]
 }

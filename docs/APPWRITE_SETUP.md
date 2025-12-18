@@ -1,5 +1,7 @@
 # Appwrite Setup Guide
 
+> 🚧 **Status: Planned** - This integration is not yet implemented. See [ROADMAP.md](./ROADMAP.md) for timeline.
+
 > Backend-as-a-Service configuration for Snake Evolution
 
 ## Overview
