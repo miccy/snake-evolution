@@ -15,6 +15,6 @@
 
 ## 1.1.1
 
-### Patch Changes
+### Bug Fixes
 
 - fix: ensure CLI binary has executable permissions and rename command to `snake`
