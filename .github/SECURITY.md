@@ -2,7 +2,7 @@
 
 
 
-### Supported Versions
+## Supported Versions
 
 We release patches for security vulnerabilities. Which versions are eligible for receiving such patches depends on the CVSS v3.0 Rating:
 
@@ -24,7 +24,7 @@ If you discover a security vulnerability, please follow these steps:
 3. Allow up to 48 hours for initial response
 4. Work with maintainers to understand and address the issue
 
-### Security Update Process
+## Security Update Process
 
 1. Security issue is received and assigned a priority
 2. Fix is developed and tested in a private repository
@@ -32,7 +32,7 @@ If you discover a security vulnerability, please follow these steps:
 4. Patch is released with security advisory
 5. Users are notified through GitHub releases and security advisories
 
-### Security Best Practices for Users
+## Security Best Practices for Users
 
 When using this GitHub Action:
 
@@ -42,7 +42,7 @@ When using this GitHub Action:
 4. **Branch Protection**: Use branch protection rules for output branches
 5. **Monitor Dependencies**: Watch for Dependabot alerts
 
-### Known Security Considerations
+## Known Security Considerations
 
 - This action requires `contents: write` permission to push generated files
 - GitHub token is used to fetch contribution data via GraphQL API
