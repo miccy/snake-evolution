@@ -1,5 +1,6 @@
-# DEPRECATED: This workflow is kept for manual/emergency releases
-# Primary publishing is now handled by .github/workflows/release.yml via Changesets
+# Manual CLI Publishing Workflow
+# This workflow publishes the CLI package to npm when triggered manually
+# or when a release is published on GitHub.
 #
 # To use this workflow manually:
 # 1. Go to Actions > Publish CLI (Manual) > Run workflow

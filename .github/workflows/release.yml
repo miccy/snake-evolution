@@ -63,19 +63,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Create GitHub Release
-        if: steps.changesets.outputs.published == 'true'
-        run: |
-          # Parse published packages and create deterministic tag
-          # Using @snake-evolution/cli version as canonical since it's the only published package
-          CLI_VERSION=$(echo '${{ steps.changesets.outputs.publishedPackages }}' | jq -r '.[] | select(.name == "@snake-evolution/cli") | .version' || echo "")
-
-          if [ -n "$CLI_VERSION" ]; then
-            TAG="cli-v${CLI_VERSION}"
-            echo "Creating release for CLI version: $CLI_VERSION"
-            gh release create "$TAG" --generate-notes --title "CLI v${CLI_VERSION}"
-          else
-            echo "No @snake-evolution/cli in published packages, skipping release"
-          fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Note: CLI releases are published to npm only, not GitHub Releases
+      # GitHub Releases are used for the GitHub Action (manual tags like v1.2.0)
