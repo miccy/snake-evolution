@@ -7,8 +7,8 @@ import { simulateSnake } from "@snake-evolution/engine";
 import { fetchContributions } from "@snake-evolution/github";
 import { getTheme, renderAnimatedSVG, renderStaticSVG } from "@snake-evolution/renderer";
 import { Command } from "commander";
-import { writeFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { mkdirSync, writeFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
 
 const program = new Command();
 
@@ -95,6 +95,7 @@ program
 
       // Write output
       const outputPath = resolve(process.cwd(), options.output);
+      mkdirSync(dirname(outputPath), { recursive: true });
       writeFileSync(outputPath, output);
       console.log("");
       console.log(`✅ Saved to: ${outputPath}`);
