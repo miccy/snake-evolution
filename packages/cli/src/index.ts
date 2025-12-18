@@ -3,19 +3,19 @@
 // Snake Evolution CLI
 // Generate GitHub contribution snake animations
 
-import { mkdirSync, writeFileSync } from "node:fs";
-import { dirname, resolve } from "node:path";
 import { simulateSnake } from "@snake-evolution/engine";
 import { fetchContributions } from "@snake-evolution/github";
 import { getTheme, renderAnimatedSVG, renderStaticSVG } from "@snake-evolution/renderer";
 import { Command } from "commander";
+import { mkdirSync, writeFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
 
 const pkg = { version: "1.1.0" };
 
 const program = new Command();
 
 program
-  .name("snake-evolution")
+  .name("snake")
   .description("Generate GitHub contribution snake animations")
   .version(pkg.version);
 
