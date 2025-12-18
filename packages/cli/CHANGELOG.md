@@ -1,5 +1,11 @@
 # @snake-evolution/cli
 
+## 1.3.0
+
+### Minor Changes
+
+- feat: rename CLI command to `snake` and ensure binary has executable permissions
+
 ## 1.2.0
 
 ### Minor Changes
