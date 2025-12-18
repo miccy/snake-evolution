@@ -62,13 +62,34 @@ bun run generate -u YOUR_USERNAME -o snake.svg
 
 ## ✨ Why Snake Evolution?
 
-| Feature | Snake Evolution | Others |
-|---------|-----------------|--------|
-| 🧠 Smart pathfinding | ✅ Hunts high-value contributions first | ❌ Random/linear |
-| 🐍 Growing snake | ✅ Gets longer as it eats | ❌ Static size |
-| 🎨 Multiple themes | ✅ 6 SVG themes + 1 GIF-only (glass) | ❌ 1-2 themes |
-| 📦 Zero install | ✅ `npx` just works | ⚠️ Requires setup |
-| 🎮 PvP Mode | 🔜 Coming soon! | ❌ Not planned |
+- **🎨 7 Beautiful Themes** - Match your profile's aesthetic
+- **🧠 Smart Pathfinding** - Snake hunts high-value contributions first
+- **⚡ Zero-Install CLI** - `npx @snake-evolution/cli@latest` - no setup needed
+- **🤖 GitHub Action** - Automated daily updates
+- **📦 Full Monorepo** - Engine, renderer, and themes are separate packages
+- **🎯 Production Ready** - Used by developers worldwide
+
+## 🎨 Showcase
+
+Explore all available themes:
+
+````carousel
+![GitHub Dark Theme](./assets/examples/github-dark.svg)
+<!-- slide -->
+![Ocean Theme](./assets/examples/ocean.svg)
+<!-- slide -->
+![Sunset Theme](./assets/examples/sunset.svg)
+<!-- slide -->
+![Neon Gamer Theme](./assets/examples/neon-gamer.svg)
+<!-- slide -->
+![CypherPunk Theme](./assets/examples/cypherpunk.svg)
+````
+
+**Real-world examples:**
+- 💼 Portfolio README animations
+- 📚 Documentation sites with contribution graphs
+- 🎤 Conference presentation slides
+- ✍️ Technical articles and blog posts
 
 ---
 
