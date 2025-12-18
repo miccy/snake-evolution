@@ -1,24 +1,16 @@
-import { describe, expect, test } from "bun:test";
-import type t ContributionGrid SnakeFrame SnakeState   themes@snake-evolutiontypes
-} from "
-  getTheme,
-  isGlassTheme
-  renderAnimatedSVG,
-  renderStaticSVG,
-  themes,
-index
-import GlgetGlassFilterDefslaglass.s";../srcthemes
+import type { ContributionGrid, SnakeFrame, SnakeState } from '@snake-evolution/types';
+import { describe, expect, test } from 'bun:test';
+import { getTheme, renderAnimatedSVG, renderStaticSVG, themes } from './index';
 
 // ============================================
 // Test Fixtures
 // ============================================
-
 function createMockGrid(): ContributionGrid {
   const weeks = Array.from({ length: 53 }, () =>
     Array.from({ length: 7 }, () => ({
       date: "2025-01-01",
       count: 0,
-      level: 0 as const,
+      level: 0 as 0 | 1 | 2 | 3 | 4,
     })),
   );
 
@@ -95,12 +87,11 @@ describe("Renderer - Themes", () => {
       expect(themes.ocean).toBeDefined();
       expect(themes.sunset).toBeDefined();
       expect(themes["neon-gamer"]).toBeDefined();
-      expect(themes.glass).toBeDefined();
       expect(themes.cypherpunk).toBeDefined();
     });
 
     test("each theme should have required properties", () => {
-      for (const [name, theme] of Object.entries(themes)) {
+      for (const [_name, theme] of Object.entries(themes)) {
         expect(theme.name).toBeDefined();
         expect(theme.background).toBeDefined();
         expect(theme.empty).toBeDefined();
@@ -131,30 +122,6 @@ describe("Renderer - Themes", () => {
     test("should return cypherpunk theme", () => {
       const theme = getTheme("cypherpunk");
       expect(theme.name).toBe("Cypherpunk");
-    });
-  });
-
-  describe("isGlassTheme", () => {
-    test("should return true for glass theme", () => {
-      expect(isGlassTheme(glass)).toBe(true);
-    });
-
-    test("should return false for regular themes", () => {
-      expect(isGlassTheme(themes["github-dark"])).toBe(false);
-      expect(isGlassTheme(themes.ocean)).toBe(false);
-    });
-  });
-
-  describe("getGlassFilterDefs", () => {
-    test("should return SVG filter definitions", () => {
-      const defs = getGlassFilterDefs(glass);
-
-      expect(defs).toContain("<defs>");
-      expect(defs).toContain("</defs>");
-      expect(defs).toContain('id="glass-blur"');
-      expect(defs).toContain('id="glass-gradient"');
-      expect(defs).toContain('id="glass-glow"');
-      expect(defs).toContain("feGaussianBlur");
     });
   });
 });
@@ -208,24 +175,6 @@ describe("Renderer - Static SVG", () => {
 
       // Ocean theme background color
       expect(svg).toContain("#0a192f");
-    });
-
-    test("should handle glass theme", () => {
-      const grid = createMockGrid();
-      const snake = createMockSnake();
-      const svg = renderStaticSVG(grid, snake, { palette: glass });
-
-      // Should include glass filter
-      expect(svg).toContain('filter="url(#glass-blur)"');
-    });
-
-    test("should handle transparent background", () => {
-      const grid = createMockGrid();
-      const snake = createMockSnake();
-      const svg = renderStaticSVG(grid, snake, { palette: glass });
-
-      // Glass theme has transparent background - no background rect with fill
-      expect(svg).not.toContain('fill="transparent"');
     });
   });
 });
@@ -309,13 +258,6 @@ describe("Renderer - Animated SVG", () => {
 
       // Should have cell animations
       expect(svg).toContain('attributeName="fill"');
-    });
-
-    test("should handle glass theme in animated mode", () => {
-      const frames = createMockFrames();
-      const svg = renderAnimatedSVG(frames, { palette: glass });
-
-      expect(svg).toContain('id="glass-blur"');
     });
   });
 });
