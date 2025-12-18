@@ -6,9 +6,9 @@ Make Snake Evolution the most fun way to visualize GitHub contributions - from s
 
 ---
 
-## 🚧 Phase 1: v1.0 - MVP (In Development)
+## ✅ Phase 1: v1.0 - MVP (Released)
 
-*Target: December 2025*
+*Released: December 2025*
 
 - [x] CLI tool for snake generation (`bun run generate`)
 - [x] 6 SVG themes + 1 GIF-only (glass requires GIF for blur effects)

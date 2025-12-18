@@ -112,7 +112,7 @@ describe("Package Configuration", () => {
 
     test("should have valid semver version starting with 1.x", () => {
       expect(pkg.version).toBeDefined();
-      expect(pkg.version).toMatch(/^1\.\d+\.\d+/);
+      expect(pkg.version).toMatch(/^1\.\d+\.\d+(-[\w.]+)?$/);
     });
 
     test("should NOT be private", () => {
