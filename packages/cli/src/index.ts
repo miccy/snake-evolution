@@ -26,7 +26,7 @@ program
   .option("-o, --output <path>", "Output file path", "snake.svg")
   .option(
     "-t, --theme <theme>",
-    "Theme name (github-light, github-dark, ocean, sunset, neon-gamer)",
+    "Theme name (github-light, github-dark, ocean, sunset, neon-gamer, cypherpunk, glass)",
     "github-dark",
   )
   .option("-f, --format <format>", "Output format (svg, gif)", "svg")
@@ -118,6 +118,8 @@ program
     console.log("  ocean         - Cool blue ocean tones");
     console.log("  sunset        - Warm sunset vibes");
     console.log("  neon-gamer    - Vibrant neon purple/green");
+    console.log("  cypherpunk    - Blue/magenta cyberpunk vibes");
+    console.log("  glass         - Liquid glass effect (requires GIF output)");
   });
 
 program.parse();

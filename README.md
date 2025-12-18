@@ -59,7 +59,7 @@ bun run generate -u YOUR_USERNAME -o snake.svg
 |---------|-----------------|--------|
 | 🧠 Smart pathfinding | ✅ Hunts high-value contributions first | ❌ Random/linear |
 | 🐍 Growing snake | ✅ Gets longer as it eats | ❌ Static size |
-| 🎨 Multiple themes | ✅ 7 themes (github, ocean, sunset, neon, glass, cypherpunk) | ❌ 1-2 themes |
+| 🎨 Multiple themes | ✅ 6 SVG themes + 1 GIF-only (glass) | ❌ 1-2 themes |
 | 📦 Zero install | ✅ `npx` just works | ⚠️ Requires setup |
 | 🎮 PvP Mode | 🔜 Coming soon! | ❌ Not planned |
 
@@ -87,8 +87,18 @@ bun run generate -u YOUR_USERNAME -o snake.svg
 
 ![Neon Gamer](./assets/examples/neon-gamer.svg)
 
+### 🔵 Cypherpunk
+
+![Cypherpunk](./assets/examples/cypherpunk.svg)
+
+### 🧊 Glass (GIF only)
+
+> ⚠️ **Note:** Glass theme uses blur/transparency effects that require GIF output. SVG cannot render these effects properly.
+
+*Coming with GIF support in v1.1*
+
 ```bash
-npx @snake-evolution/cli generate -u YOUR_USERNAME -t ocean -o snake.svg
+bun run generate -u YOUR_USERNAME -t ocean -o snake.svg
 ```
 
 ---
