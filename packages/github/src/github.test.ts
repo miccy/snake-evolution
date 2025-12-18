@@ -104,8 +104,8 @@ describe("GitHub - Utilities", () => {
         ],
       ];
 
-      const contributionCount = weeks.flat().filter((d) => d.count > 0).length;
-      expect(contributionCount).toBe(4);
+      const contributionCount = weeks.flat().reduce((sum, d) => sum + d.count, 0);
+      expect(contributionCount).toBe(19); // 5 + 1 + 10 + 3 = 19
     });
   });
 
@@ -163,18 +163,31 @@ describe("GitHub - Mock Data", () => {
     // Simulate a developer's contribution pattern
     const weeks: GitHubContribution[][] = [];
 
+    const getLevel = (count: number): 0 | 1 | 2 | 3 | 4 => {
+      if (count === 0) return 0;
+      if (count <= 2) return 1;
+      if (count <= 4) return 2;
+      if (count <= 6) return 3;
+      return 4;
+    };
+
+    const startDate = new Date("2025-01-01");
     for (let w = 0; w < 53; w++) {
       const week: GitHubContribution[] = [];
       for (let d = 0; d < 7; d++) {
+        const currentDate = new Date(startDate);
+        currentDate.setDate(startDate.getDate() + w * 7 + d);
+        const dateStr = currentDate.toISOString().split("T")[0];
+
         // Weekdays (Mon-Fri, indices 1-5) have more contributions
         const isWeekday = d >= 1 && d <= 5;
         const count = isWeekday ? Math.floor(Math.random() * 8) : Math.floor(Math.random() * 3);
-        const level = count === 0 ? 0 : count <= 2 ? 1 : count <= 4 ? 2 : count <= 6 ? 3 : 4;
+        const level = getLevel(count);
 
         week.push({
-          date: `2025-${String(Math.floor(w / 4) + 1).padStart(2, "0")}-${String((w % 28) + d + 1).padStart(2, "0")}`,
+          date: dateStr,
           count,
-          level: level as 0 | 1 | 2 | 3 | 4,
+          level,
         });
       }
       weeks.push(week);

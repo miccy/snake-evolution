@@ -218,9 +218,7 @@ function parseContributionCalendar(html: string, username: string, year: number)
   for (const day of days) {
     const count = day.level > 0 ? day.level * 3 : 0; // Approximate contribution count from level
 
-    if (day.level > 0) {
-      totalContributions++;
-    }
+    totalContributions += count;
 
     currentWeek.push({
       date: day.date,
