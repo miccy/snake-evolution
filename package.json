@@ -10,7 +10,7 @@
   "author": "Miccy <support@miccy.dev>",
   "license": "MIT",
   "scripts": {
-    "prepare": "git config core.hooksPath .githooks",
+    "prepare": "git config core.hooksPath .githooks 2>/dev/null || true",
     "dev": "turbo run dev",
     "dev:web": "turbo run dev --filter=@snake-evolution/web",
     "dev:api": "turbo run dev --filter=@snake-evolution/api",
