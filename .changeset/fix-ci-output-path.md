@@ -16,3 +16,8 @@ fix(ci): resolve ENOENT error and improve security
 - Replace `JamesIves/github-pages-deploy-action` with native bash
 - Replace `stefanzweifel/git-auto-commit-action` with native bash
 - Reduces supply chain attack surface by removing third-party community actions
+
+**DX improvements:**
+- Add native git pre-commit hook for automatic lint/format checks
+- No additional dependencies (no Husky, no Lefthook)
+- Auto-configured via `prepare` script on `bun install`
