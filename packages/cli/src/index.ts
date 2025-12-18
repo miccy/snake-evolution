@@ -10,7 +10,7 @@ import { fetchContributions } from "@snake-evolution/github";
 import { getTheme, renderAnimatedSVG, renderStaticSVG } from "@snake-evolution/renderer";
 import { Command } from "commander";
 
-const pkg = { version: "1.0.0-beta.1" };
+const pkg = { version: "1.1.0" };
 
 const program = new Command();
 

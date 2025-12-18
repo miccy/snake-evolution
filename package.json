@@ -1,7 +1,7 @@
 {
   "name": "snake-evolution",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Transform your GitHub contribution graph into an epic snake animation",
   "repository": {
     "type": "git",
@@ -43,7 +43,7 @@
   "devDependencies": {
     "@biomejs/biome": "^2.3.10",
     "@changesets/cli": "^2.29.8",
-    "@types/bun": "^1.3.4",
+    "@types/bun": "1.3.4",
     "jsonc-parser": "^3.3.1",
     "markdownlint-cli2": "^0.20.0",
     "turbo": "^2.6.3",
@@ -54,7 +54,7 @@
     "node": ">=22",
     "bun": ">=1.3.0"
   },
-  "packageManager": "bun@1.3.4",
+  "packageManager": "bun@1.3.5",
   "workspaces": [
     "apps/*",
     "packages/*"
