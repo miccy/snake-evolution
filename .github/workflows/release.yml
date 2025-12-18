@@ -64,4 +64,4 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       # Note: CLI releases are published to npm only, not GitHub Releases
-      # GitHub Releases are used for the GitHub Action (manual tags like v1.2.0)
+      # GitHub Releases are used for the GitHub Action (manual tags like v1.2.3)
