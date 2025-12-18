@@ -86,7 +86,7 @@ snake-evolution generate -u miccy --frame-delay 300
 
 ## Version
 
-Current version: **1.0.0-beta.1**
+Current version: **1.1.0**
 
 ## License
 

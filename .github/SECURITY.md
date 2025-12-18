@@ -1,10 +1,6 @@
-# Security Policy / Bezpečnostní politika
+# Security Policy
 
-**Languages / Jazyky:** [🇬🇧 English](#english) | [🇨🇿 Čeština](#čeština)
 
----
-
-## English
 
 ### Supported Versions
 
@@ -64,66 +60,3 @@ We regularly update dependencies to address security vulnerabilities:
 ### Acknowledgments
 
 We thank security researchers and community members who responsibly disclose vulnerabilities.
-
----
-
-## Čeština
-
-### Podporované verze
-
-Vydáváme opravy pro bezpečnostní zranitelnosti. Které verze jsou způsobilé pro přijímání takových oprav závisí na hodnocení CVSS v3.0:
-
-| Verze   | Podporováno        |
-| ------- | ------------------ |
-| 1.x.x   | :white_check_mark: |
-| < 1.0   | :x:                |
-
-### Hlášení zranitelnosti
-
-Pokud objevíte bezpečnostní zranitelnost, postupujte podle těchto kroků:
-
-1. **NEOTEVÍREJTE** veřejný issue
-2. Napište správci přímo e-mail s podrobnostmi:
-   - Popis zranitelnosti
-   - Kroky k reprodukci
-   - Potenciální dopad
-   - Navrhovaná oprava (pokud existuje)
-3. Počkejte až 48 hodin na prvotní odpověď
-4. Spolupracujte se správci na pochopení a řešení problému
-
-### Proces bezpečnostní aktualizace
-
-1. Bezpečnostní problém je přijat a přiřazena priorita
-2. Oprava je vyvinuta a otestována v soukromém repozitáři
-3. Je vytvořeno bezpečnostní upozornění
-4. Oprava je vydána s bezpečnostním upozorněním
-5. Uživatelé jsou informováni prostřednictvím GitHub releases a bezpečnostních upozornění
-
-### Bezpečnostní osvědčené postupy pro uživatele
-
-Při použití této GitHub Action:
-
-1. **Oprávnění tokenu**: Používejte tokeny s minimálními požadovanými oprávněními
-2. **Aktualizace závislostí**: Udržujte akci aktualizovanou s nejnovější verzí
-3. **Kontrola generovaných souborů**: Zkontrolujte generované SVG/GIF soubory před nasazením
-4. **Ochrana větví**: Používejte pravidla ochrany větví pro výstupní větve
-5. **Sledování závislostí**: Sledujte upozornění Dependabotu
-
-### Známé bezpečnostní aspekty
-
-- Tato akce vyžaduje oprávnění `contents: write` pro push generovaných souborů
-- GitHub token se používá k načítání dat o příspěvcích přes GraphQL API
-- Generované soubory jsou commitovány do repozitáře (pečlivě zkontrolujte)
-- Docker image obsahuje nativní závislosti (canvas, gifsicle)
-
-### Závislosti třetích stran
-
-Pravidelně aktualizujeme závislosti pro řešení bezpečnostních zranitelností:
-
-- Automaticky: Dependabot pro bezpečnostní opravy
-- Automaticky: Renovate pro aktualizace verzí
-- Manuálně: Pravidelné bezpečnostní audity závislostí
-
-### Poděkování
-
-Děkujeme bezpečnostním výzkumníkům a členům komunity, kteří odpovědně zveřejňují zranitelnosti.

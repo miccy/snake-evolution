@@ -78,10 +78,9 @@ describe("Documentation Files", () => {
       expect(content.length).toBeGreaterThan(500);
     });
 
-    test("should be bilingual (English and Czech)", () => {
+    test("should be English only", () => {
       content = readFileSync(contributingPath, "utf-8");
-      expect(content).toContain("English");
-      expect(content).toContain("Čeština");
+      expect(content).not.toContain("Čeština"); // cspell:disable-line
     });
 
     test("should document prerequisites", () => {
