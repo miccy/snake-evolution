@@ -2,7 +2,17 @@
 "@snake-evolution/cli": patch
 ---
 
-fix(cli): create output directory if it doesn't exist
+fix(ci): resolve ENOENT error and improve security
 
+**CLI fixes:**
 - Add `mkdirSync` with `recursive: true` before writing output file
 - Fixes ENOENT error when output path like `dist/snake.svg` is specified
+
+**Action fixes:**
+- Output files now correctly go to `github.workspace` instead of `github.action_path`
+- Fixes issue where generated SVGs weren't accessible after action completion
+
+**Security improvements:**
+- Replace `JamesIves/github-pages-deploy-action` with native bash
+- Replace `stefanzweifel/git-auto-commit-action` with native bash
+- Reduces supply chain attack surface by removing third-party community actions

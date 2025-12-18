@@ -37,8 +37,13 @@ jobs:
         run: bun run packages/cli/src/index.ts generate -u miccy -t github-light -o dist/snake-light.svg
 
       - name: Push to output branch
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          branch: output
-          folder: dist
-          clean: true
+        run: |
+          cd dist
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "chore: update snake animation [skip ci]"
+          git push --force "https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git" HEAD:output
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
