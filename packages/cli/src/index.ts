@@ -46,6 +46,14 @@ program
     console.log("");
 
     try {
+      // Block glass theme for SVG (too heavy, freezes PC)
+      if (options.theme === "glass" && options.format !== "gif") {
+        console.error("❌ Error: Glass theme requires GIF output format.");
+        console.error("   Glass uses blur/transparency effects that are too heavy for SVG.");
+        console.error("   GIF support coming in v1.1. For now, try: --theme cypherpunk");
+        process.exit(1);
+      }
+
       // Fetch contributions
       console.log("📊 Fetching GitHub contributions...");
       const grid = await fetchContributions(
