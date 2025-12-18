@@ -9,6 +9,7 @@ Make Snake Evolution the most fun way to visualize GitHub contributions - from s
 ## ✅ v1.2 - Current Release (December 2024) (December 2024)
 
 **What's Live:**
+
 - ✅ CLI tool with npm support (`npx @snake-evolution/cli@latest`)
 - ✅ 7 stunning themes (6 SVG + 1 GIF-only glass theme)
 - ✅ GitHub Action for automated generation
@@ -38,6 +39,7 @@ Make Snake Evolution the most fun way to visualize GitHub contributions - from s
 **Focus:** Web app with live customization
 
 ### Core Features
+
 - [ ] **Astro web app** with React islands
 - [ ] **Live playground** - Real-time preview as you type
 - [ ] **Theme customizer** - Create custom color palettes
@@ -46,6 +48,7 @@ Make Snake Evolution the most fun way to visualize GitHub contributions - from s
 - [ ] **Evolu integration** - Save preferences locally (offline-first)
 
 ### Technical Stack
+
 - Frontend: Astro + React 19 + Tailwind CSS 4
 - Database: Evolu (local-first CRDT)
 - Backend: Appwrite (auth, storage)
@@ -58,12 +61,14 @@ Make Snake Evolution the most fun way to visualize GitHub contributions - from s
 **Challenge your friends to a snake battle!**
 
 ### Game Mechanics
+
 - [ ] **Leaderboards** - Global rankings by score
 - [ ] **Rounds system** - Each round gets faster, snake grows
 - [ ] **PvP Challenges** - Battle friends or colleagues
 - [ ] **Team battles** - Company vs company (B2B feature)
 
 ### Power-ups
+
 - 🔄 **Shrink** - Reduce snake length
 - ⚡ **Speed Boost** - Temporary speed increase
 - 🌀 **Teleport** - Jump to random position
@@ -85,12 +90,14 @@ Make Snake Evolution the most fun way to visualize GitHub contributions - from s
 Vote on features at [GitHub Discussions](https://github.com/miccy/snake-evolution/discussions)!
 
 ### Most Requested
+
 - ✉️ **Email Signature Mode** - Animated GIF for email footers (high demand!)
 - 🔤 **Custom Text Mode** - Type your own text (e.g., "your-name.dev") and watch snake eat it
 - 📜 **Scrolling Text Mode** - Marquee-style text animation (no snake)
 - 🎨 **Email Tool Integration** - Canva, Mailchimp, etc.
 
 ### Future Explorations
+
 - 🎵 Sound effects and music
 - 📱 Mobile app (React Native)
 - 🤖 AI opponent mode
@@ -105,6 +112,7 @@ Vote on features at [GitHub Discussions](https://github.com/miccy/snake-evolutio
 ## 📅 Detailed Development Timeline
 
 ### Phase 1: Foundation ✅ (Completed)
+
 *Week 1-2 - November 2024*
 
 - ✅ Monorepo setup with Turborepo
@@ -114,6 +122,7 @@ Vote on features at [GitHub Discussions](https://github.com/miccy/snake-evolutio
 - ✅ CI/CD pipeline
 
 ### Phase 2: Web Platform 🚧 (Planned Q1 2025)
+
 *Week 2-4 - January 2025*
 
 - [ ] Astro landing page
@@ -122,6 +131,7 @@ Vote on features at [GitHub Discussions](https://github.com/miccy/snake-evolutio
 - [ ] Appwrite backend setup
 
 ### Phase 3: Gallery & Social 🚧 (Planned Q1 2025)
+
 *Week 4-6 - February 2025*
 
 - [ ] Community snake gallery
@@ -130,6 +140,7 @@ Vote on features at [GitHub Discussions](https://github.com/miccy/snake-evolutio
 - [ ] GitHub OAuth authentication
 
 ### Phase 4: Templates & Colors 🚧 (Planned Q2 2025)
+
 *Week 6-8 - March 2025*
 
 - [ ] 20+ visual templates
@@ -138,6 +149,7 @@ Vote on features at [GitHub Discussions](https://github.com/miccy/snake-evolutio
 - [ ] Real-time preview
 
 ### Phase 5: Launch 🚧 (Planned Q2 2025)
+
 *Week 8-10 - April 2025*
 
 - [ ] Product Hunt launch
@@ -152,6 +164,7 @@ Vote on features at [GitHub Discussions](https://github.com/miccy/snake-evolutio
 Want to help build the future of GitHub profile visualizations?
 
 **Priority Areas:**
+
 - 🎨 **Design** - Theme creation, UI/UX improvements
 - 🔧 **Development** - Web app (Astro + React), game mechanics
 - 📚 **Documentation** - Tutorials, examples, translations
@@ -164,12 +177,14 @@ See [CONTRIBUTING.md](../CONTRIBUTING.md) for details!
 ## 📊 Success Metrics
 
 ### Current (v1.2)
+
 - ⭐ GitHub Stars: [Current count]
 - 📦 npm Downloads: [Monthly count]
 - 🎨 Themes: 7
 - 👥 Contributors: Growing!
 
 ### Target (End 2025)
+
 - ⭐ 10,000+ GitHub stars
 - 👤 50,000+ active users
 - 🎨 100+ community templates
