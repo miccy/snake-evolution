@@ -86,6 +86,7 @@ Explore all available themes:
 ````
 
 **Real-world examples:**
+
 - 💼 Portfolio README animations
 - 📚 Documentation sites with contribution graphs
 - 🎤 Conference presentation slides
