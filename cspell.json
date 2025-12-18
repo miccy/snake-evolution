@@ -1,15 +1,6 @@
 {
   "version": "0.2",
   "language": "en",
-  "words": [
-    "cypherpunk",
-    "SMIL"
-  ],
-  "ignorePaths": [
-    "node_modules",
-    "dist",
-    ".git",
-    "*.lock",
-    "bun.lockb"
-  ]
+  "words": ["cypherpunk", "SMIL"],
+  "ignorePaths": ["node_modules", "dist", ".git", "*.lock", "bun.lockb"]
 }

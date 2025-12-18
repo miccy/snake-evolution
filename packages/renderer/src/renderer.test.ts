@@ -1,6 +1,6 @@
-import type { ContributionGrid, SnakeFrame, SnakeState } from '@snake-evolution/types';
-import { describe, expect, test } from 'bun:test';
-import { getTheme, renderAnimatedSVG, renderStaticSVG, themes } from './index';
+import { describe, expect, test } from "bun:test";
+import type { ContributionGrid, SnakeFrame, SnakeState } from "@snake-evolution/types";
+import { getTheme, renderAnimatedSVG, renderStaticSVG, themes } from "./index";
 
 // ============================================
 // Test Fixtures
