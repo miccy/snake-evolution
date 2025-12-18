@@ -10,7 +10,7 @@
   },
   "scripts": {
     "type-check": "tsc --noEmit",
-    "test": "echo 'No tests yet'",
+    "test": "bun test",
     "clean": "rm -rf node_modules"
   },
   "dependencies": {
