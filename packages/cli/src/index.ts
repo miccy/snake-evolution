@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 // Snake Evolution CLI
 // Generate GitHub contribution snake animations
 
