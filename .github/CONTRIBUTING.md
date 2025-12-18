@@ -368,7 +368,7 @@ If applicable, add screenshots.
 **Environment:**
 - OS: [e.g. macOS 14.0]
 - Browser: [e.g. Chrome 120]
-- Version: [e.g. 1.1.0]
+- Version: [e.g. 1.2.0]
 
 **Additional context**
 Any other relevant information.

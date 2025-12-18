@@ -30,10 +30,10 @@ bun add -d @snake-evolution/cli
 
 ```bash
 # Basic usage
-snake-evolution generate -u YOUR_USERNAME
+snake generate -u YOUR_USERNAME
 
 # With options
-snake-evolution generate -u miccy -o dist/snake.svg -t ocean
+snake generate -u miccy -o dist/snake.svg -t ocean
 
 # Using npx
 npx @snake-evolution/cli generate -u YOUR_USERNAME -t neon-gamer
@@ -42,7 +42,7 @@ npx @snake-evolution/cli generate -u YOUR_USERNAME -t neon-gamer
 ### List Available Themes
 
 ```bash
-snake-evolution themes
+snake themes
 ```
 
 ## CLI Options
@@ -72,21 +72,21 @@ snake-evolution themes
 
 ```bash
 # Generate with sunset theme
-snake-evolution generate -u miccy -t sunset -o my-snake.svg
+snake generate -u miccy -t sunset -o my-snake.svg
 
 # Generate for a specific year
-snake-evolution generate -u miccy -y 2023 -o snake-2023.svg
+snake generate -u miccy -y 2023 -o snake-2023.svg
 
 # Generate static (no animation)
-snake-evolution generate -u miccy --static -o static-snake.svg
+snake generate -u miccy --static -o static-snake.svg
 
 # With custom frame delay (slower animation)
-snake-evolution generate -u miccy --frame-delay 300
+snake generate -u miccy --frame-delay 300
 ```
 
 ## Version
 
-Current version: **1.1.0**
+Current version: **1.2.0**
 
 ## License
 

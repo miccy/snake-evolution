@@ -8,7 +8,8 @@
       "@snake-evolution/engine",
       "@snake-evolution/renderer",
       "@snake-evolution/types",
-      "@snake-evolution/github"
+      "@snake-evolution/github",
+      "@snake-evolution/cli"
     ]
   ],
   "access": "public",

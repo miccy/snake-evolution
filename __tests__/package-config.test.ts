@@ -141,7 +141,7 @@ describe("Package Configuration", () => {
       expect(pkg.bin).toBeDefined();
       const bin = pkg.bin as Record<string, string>;
 
-      expect(bin["snake-evolution"]).toBe("./dist/index.js");
+      expect(bin["snake"]).toBe("./dist/index.js");
     });
 
     test("should have keywords for npm discovery", () => {

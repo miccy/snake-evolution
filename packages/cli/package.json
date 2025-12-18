@@ -1,6 +1,6 @@
 {
   "name": "@snake-evolution/cli",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Generate animated snake eating your GitHub contributions",
   "license": "MIT",
   "author": "Miccy <support@miccy.dev>",
@@ -25,7 +25,7 @@
   ],
   "type": "module",
   "bin": {
-    "snake-evolution": "./dist/index.js"
+    "snake": "./dist/index.js"
   },
   "main": "./dist/index.js",
   "files": [
@@ -34,7 +34,7 @@
   ],
   "scripts": {
     "dev": "bun run src/index.ts",
-    "build": "bun build ./src/index.ts --outdir ./dist --target node --minify",
+    "build": "bun build ./src/index.ts --outdir ./dist --target node --minify && chmod +x dist/index.js",
     "prepublishOnly": "bun run build",
     "type-check": "tsc --noEmit",
     "clean": "rm -rf dist node_modules"

@@ -10,12 +10,14 @@ import { fetchContributions } from "@snake-evolution/github";
 import { getTheme, renderAnimatedSVG, renderStaticSVG } from "@snake-evolution/renderer";
 import { Command } from "commander";
 
-const pkg = { version: "1.1.0" };
+import data from "../package.json";
+
+const pkg = { version: data.version };
 
 const program = new Command();
 
 program
-  .name("snake-evolution")
+  .name("snake")
   .description("Generate GitHub contribution snake animations")
   .version(pkg.version);
 
