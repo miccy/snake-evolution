@@ -34,7 +34,11 @@ program
   .option("--token <token>", "GitHub personal access token for higher rate limits")
   .option("--animated", "Generate animated SVG (default: true)", true)
   .option("--static", "Generate static SVG (single frame)")
-  .option("--frame-delay <ms>", "Delay between frames in ms", "150")
+  .option("--frame-delay <ms>", "Delay between frames in ms (default: 150)", "150")
+  .option(
+    "-d, --duration <seconds>",
+    "Total animation duration in seconds (overrides frame delay when set)",
+  )
   .option("--max-length <n>", "Maximum snake length (0 = auto)", "0")
   .option("--grow-every <n>", "Grow 1 segment every N contributions (0 = auto)", "0")
   .action(async (options) => {
@@ -43,6 +47,14 @@ program
     console.log(`   Theme: ${options.theme}`);
     console.log(`   Format: ${options.format}`);
     console.log(`   Year: ${options.year}`);
+    console.log(
+      `   Frame delay: ${Number.parseInt(options.frameDelay, 10)}ms${
+        options.duration ? " (duration override enabled)" : ""
+      }`,
+    );
+    if (options.duration) {
+      console.log(`   Duration: ${options.duration}s`);
+    }
     console.log("");
 
     try {
@@ -79,6 +91,7 @@ program
 
       // Render
       let output: string;
+      const duration = options.duration ? Number.parseFloat(options.duration) : undefined;
       const renderOptions = {
         palette,
         frameDelay: Number.parseInt(options.frameDelay, 10),
@@ -86,7 +99,10 @@ program
 
       if (options.format === "gif") {
         console.log("🎬 GIF generation not yet implemented, falling back to animated SVG");
-        output = renderAnimatedSVG(frames, renderOptions);
+        output = renderAnimatedSVG(frames, {
+          ...renderOptions,
+          ...(duration ? { duration } : {}),
+        });
       } else if (options.static) {
         console.log("🖼️  Rendering static SVG...");
         const lastFrame = frames[frames.length - 1];
@@ -99,6 +115,7 @@ program
         console.log("🎬 Rendering animated SVG...");
         output = renderAnimatedSVG(frames, {
           ...renderOptions,
+          ...(duration ? { duration } : {}),
           loop: true,
         });
       }

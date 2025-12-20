@@ -222,6 +222,13 @@ describe("Renderer - Animated SVG", () => {
       expect(svg).toMatch(/dur="10(\.00)?s"/);
     });
 
+    test("should derive duration from frameDelay when provided", () => {
+      const frames = createMockFrames();
+      const svg = renderAnimatedSVG(frames, { frameDelay: 200 });
+
+      expect(svg).toContain('dur="0.60s"');
+    });
+
     test("should set repeatCount to indefinite by default", () => {
       const frames = createMockFrames();
       const svg = renderAnimatedSVG(frames);

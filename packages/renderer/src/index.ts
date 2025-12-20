@@ -125,8 +125,11 @@ export function renderAnimatedSVG(
   const opts = { ...DEFAULT_OPTIONS, ...options };
   const { cellSize, gap, palette } = opts;
 
-  // Duration in seconds (faster default: 60ms per frame)
-  const frameDurationMs = options.duration ? (options.duration * 1000) / frames.length : 60;
+  // Duration in seconds derived from provided duration or frame delay (fallback 60ms)
+  const frameDurationMs =
+    options.duration !== undefined && options.duration !== null
+      ? (options.duration * 1000) / frames.length
+      : opts.frameDelay ?? 60;
   const totalDurationS = (frames.length * frameDurationMs) / 1000;
   const loop = options.loop ?? true;
 
