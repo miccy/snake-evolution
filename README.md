@@ -229,7 +229,7 @@ bun add @snake-evolution/cli
 | `-o, --output` | Output file path | `snake.svg` |
 | `-t, --theme` | Color theme | `github-dark` |
 | `-y, --year` | Year to generate | current |
-| `--static` | No animation | `false` |
+| `--static` | Static SVG (final frame with snake) | `false` |
 
 ---
 

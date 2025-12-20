@@ -54,7 +54,7 @@ snake themes
 | `-t, --theme <name>` | Color theme | `github-dark` |
 | `-y, --year <year>` | Year to generate | current year |
 | `-f, --format <format>` | Output format (svg, gif) | `svg` |
-| `--static` | Generate static SVG (no animation) | `false` |
+| `--static` | Generate static SVG (final frame with snake) | `false` |
 | `--frame-delay <ms>` | Delay between frames | `150` |
 | `--token <token>` | GitHub token for higher rate limits | - |
 
@@ -80,7 +80,7 @@ snake generate -u miccy -y 2024
 snake generate -u miccy -o snake-dark.svg -t github-dark
 snake generate -u miccy -o snake-light.svg -t github-light
 
-# Generate static (no animation)
+# Generate static render (final snake state, no animation)
 snake generate -u miccy --static -o static-snake.svg
 
 # With custom frame delay (slower animation)

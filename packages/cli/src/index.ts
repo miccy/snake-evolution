@@ -33,7 +33,7 @@ program
   .option("-y, --year <year>", "Year to generate for", String(new Date().getFullYear()))
   .option("--token <token>", "GitHub personal access token for higher rate limits")
   .option("--animated", "Generate animated SVG (default: true)", true)
-  .option("--static", "Generate static SVG (single frame)")
+  .option("--static", "Generate static SVG (single frame with the final snake)")
   .option("--frame-delay <ms>", "Delay between frames in ms", "150")
   .option("--max-length <n>", "Maximum snake length (0 = auto)", "0")
   .option("--grow-every <n>", "Grow 1 segment every N contributions (0 = auto)", "0")
