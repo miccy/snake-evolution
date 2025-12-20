@@ -128,6 +128,44 @@ describe("GitHub - Utilities", () => {
       expect(endOfYear.getMonth()).toBe(11);
     });
   });
+
+  describe("HTML parsing", () => {
+    test("should sum contributions from data-count and keep date order", async () => {
+      const html = `
+        <table>
+          <tr>
+            <td data-date="2024-12-28" data-count="1" data-level="1"></td>
+            <td data-level="2" data-count="4" data-date="2024-12-29"></td>
+            <td data-level="3" data-date="2024-12-30"></td>
+          </tr>
+        </table>
+      `;
+
+      const originalFetch = globalThis.fetch;
+      const mockFetch: typeof fetch = async () =>
+        new Response(html, {
+          status: 200,
+          headers: { "Content-Type": "text/html" },
+        });
+
+      globalThis.fetch = mockFetch;
+
+      try {
+        const { fetchPublicContributions } = await import("../src/index");
+        const grid = await fetchPublicContributions("octocat", 2024);
+        const parsedDays = grid.weeks.flat().filter((d) => d.date);
+
+        expect(grid.totalContributions).toBe(14); // 1 + 4 + fallback 9 from level 3
+        expect(parsedDays.slice(0, 3)).toEqual([
+          { date: "2024-12-28", count: 1, level: 1 },
+          { date: "2024-12-29", count: 4, level: 2 },
+          { date: "2024-12-30", count: 9, level: 3 },
+        ]);
+      } finally {
+        globalThis.fetch = originalFetch;
+      }
+    });
+  });
 });
 
 // ============================================
