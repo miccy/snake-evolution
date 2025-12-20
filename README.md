@@ -62,7 +62,7 @@ npx @snake-evolution/cli generate -u YOUR_USERNAME -o snake.svg
 
 ## ✨ Why Snake Evolution?
 
-- **🎨 7 Beautiful Themes** - Match your profile's aesthetic
+- **🎨 6 Beautiful Themes** - Match your profile's aesthetic (Glass arrives with GIF support)
 - **🧠 Smart Pathfinding** - Snake hunts high-value contributions first
 - **⚡ Zero-Install CLI** - `npx @snake-evolution/cli@latest` - no setup needed
 - **🤖 GitHub Action** - Automated daily updates
@@ -120,15 +120,9 @@ Explore all available themes:
 
 ![Cypherpunk](./assets/examples/cypherpunk.svg)
 
-### 🧊 Glass (GIF only)
+### 🧊 Glass (Coming Soon)
 
-> ⚠️ **Note:** Glass theme uses blur/transparency effects that require GIF output. SVG cannot render these effects properly.
-
-*Coming with GIF support in v1.1*
-
-```bash
-bun run generate -u YOUR_USERNAME -t ocean -o snake.svg
-```
+> GIF rendering is still in progress. The Glass theme will unlock once GIF output is available.
 
 ---
 
@@ -228,8 +222,11 @@ bun add @snake-evolution/cli
 | `-u, --username` | GitHub username | *required* |
 | `-o, --output` | Output file path | `snake.svg` |
 | `-t, --theme` | Color theme | `github-dark` |
+| `-f, --format` | Output format (svg only; GIF not supported yet) | `svg` |
 | `-y, --year` | Year to generate | current |
 | `--static` | No animation | `false` |
+
+> ℹ️ GIF output is not available yet. The CLI will stop with a clear error if you request `--format gif` or the Glass theme.
 
 ---
 
