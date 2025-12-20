@@ -159,7 +159,10 @@ jobs:
       - uses: miccy/snake-evolution@v1
         with:
           github_user_name: ${{ github.repository_owner }}
-          outputs: dist/snake.svg
+          outputs: |
+            dist/snake.svg
+            dist/snake-dark.svg?palette=github-dark
+            dist/snake.gif?palette=ocean&format=gif
           theme: github-dark
 
       - name: Commit and Push
@@ -176,6 +179,8 @@ Then in your **README.md**:
 ```markdown
 ![Snake](./dist/snake.svg)
 ```
+
+**Outputs input:** You can provide multiple outputs separated by commas or new lines. Each entry is written inside `github.workspace` and can optionally include query params for per-output overrides, e.g. `dist/snake.svg?palette=ocean&format=svg`.
 
 ---
 
