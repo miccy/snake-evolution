@@ -51,5 +51,14 @@ export function sanitizeSvgContent(svgContent: string): string {
 const isUnsafeHref = (name: string, value: string) =>
   (name === "href" || name === "xlink:href") && UNSAFE_PROTOCOL.test(value);
 
-const stripScriptTags = (content: string) =>
-  content.replaceAll(/<script[\s\S]*?<\/script>/gi, "");
+const stripScriptTags = (content: string) => {
+  let previous: string;
+  let current = content;
+
+  do {
+    previous = current;
+    current = current.replace(/<script[\s\S]*?<\/script>/gi, "");
+  } while (current !== previous);
+
+  return current;
+};
