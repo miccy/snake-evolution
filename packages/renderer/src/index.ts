@@ -1,4 +1,4 @@
-// Snake Evolution - SVG/GIF Renderer
+// Snake Evolution - SVG Renderer (GIF planned)
 
 import type {
   ColorPalette,

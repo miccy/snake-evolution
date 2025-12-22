@@ -91,14 +91,9 @@ outputs: dist/snake.svg?
   rounded=true
 ```
 
-### GIF Options
+### GIF Options (Planned)
 
-```yaml
-outputs: dist/snake.gif?
-  animated=true&
-  loop=true&
-  quality=high
-```
+GIF rendering is not available yet. Stick with SVG outputs until GIF support lands.
 
 ## Environment Variables
 

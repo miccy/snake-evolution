@@ -16,12 +16,12 @@ inputs:
     default: ''
 
   outputs:
-    description: 'Output file path(s), comma-separated for multiple formats'
+    description: 'Output file path(s) - SVG only while GIF support is in progress'
     required: false
     default: 'dist/snake.svg'
 
   theme:
-    description: 'Color theme (github-light, github-dark, ocean, sunset, neon-gamer, cypherpunk)'
+    description: 'Color theme (github-light, github-dark, ocean, sunset, neon-gamer, cypherpunk; glass planned with future GIF support)'
     required: false
     default: 'github-dark'
 
