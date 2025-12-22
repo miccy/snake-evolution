@@ -114,12 +114,16 @@ runs:
 
           OUTPUT_PATH_ABS="${WORKSPACE}/${OUTPUT_PATH_REL}"
 
-          # Validate path is within workspace (resolve symlinks and check prefix)
-          RESOLVED_PATH="$(cd "$(dirname "$OUTPUT_PATH_ABS")" 2>/dev/null && pwd -P)/$(basename "$OUTPUT_PATH_ABS")" || {
-            echo "Error: Invalid output path: $OUTPUT_PATH_REL"
-            continue
-          }
-          if [[ "$RESOLVED_PATH" != "$WORKSPACE"* ]]; then
+          # Ensure parent directory exists to allow path resolution
+          mkdir -p "$(dirname "$OUTPUT_PATH_ABS")"
+
+          # Resolve paths to handle symlinks and ensure robust comparison
+          RESOLVED_DIR="$(cd "$(dirname "$OUTPUT_PATH_ABS")" >/dev/null 2>&1 && pwd -P)"
+          RESOLVED_WORKSPACE="$(cd "$WORKSPACE" >/dev/null 2>&1 && pwd -P)"
+
+          # Check if the resolved directory is within the workspace
+          # We append a slash to both to prevent partial matches (e.g. /work/repo2 vs /work/repo)
+          if [[ "${RESOLVED_DIR}/" != "${RESOLVED_WORKSPACE}/"* ]]; then
             echo "Error: Output path escapes workspace: $OUTPUT_PATH_REL"
             continue
           fi

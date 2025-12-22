@@ -156,7 +156,7 @@ jobs:
           outputs: |
             dist/snake.svg
             dist/snake-dark.svg?palette=github-dark
-            dist/snake.gif?palette=ocean&format=gif
+            # dist/snake.gif?palette=ocean&format=gif  # ⚠️ GIF support pending
           theme: github-dark
 
       - name: Commit and Push

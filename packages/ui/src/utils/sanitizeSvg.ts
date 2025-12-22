@@ -18,7 +18,11 @@ export function sanitizeSvgContent(svgContent: string): string {
   const parsed = parser.parseFromString(svgContent, "image/svg+xml");
   const root = parsed.documentElement;
 
-  if (root.nodeName === "parsererror") {
+  if (
+    root.nodeName === "parsererror" ||
+    parsed.querySelector("parsererror") ||
+    root.nodeName.toLowerCase() !== "svg"
+  ) {
     return "";
   }
 
