@@ -7,7 +7,7 @@ export function validateOutputFormat(
 ):
   | { ok: true; normalizedFormat: "svg" }
   | { ok: false; normalizedFormat: string; reason: string; hint?: string } {
-  const normalizedFormat = (rawFormat ?? "svg").toLowerCase();
+  const normalizedFormat = (rawFormat || "svg").toLowerCase();
   const normalizedTheme = (theme ?? "").toLowerCase();
 
   if (normalizedFormat === "gif") {

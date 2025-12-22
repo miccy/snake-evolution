@@ -58,12 +58,27 @@ const stripScriptTags = (content: string) => {
     return "";
   }
 
+  // Basic structure check - must look like SVG
+  if (!/<svg[\s\S]*<\/svg>/i.test(content)) {
+    return "";
+  }
+
   let previous: string;
   let current = content;
 
   do {
     previous = current;
+    // Remove script tags
     current = current.replace(/<script\b[\s\S]*?<\/script[^>]*>/gi, "");
+
+    // Remove event handlers (onclick, onload, etc.)
+    current = current.replace(/\s+on[a-z]+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, "");
+
+    // Remove javascript: URLs in href and xlink:href
+    current = current.replace(
+      /\s+(?:xlink:)?href\s*=\s*(?:"\s*javascript:[^"]*"|'\s*javascript:[^']*'|[^\s>]*javascript:[^\s>]*)/gi,
+      "",
+    );
   } while (current !== previous);
 
   return current;
