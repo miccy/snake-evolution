@@ -27,7 +27,7 @@ describe("validateOutputFormat", () => {
 
     expect(result.ok).toBe(false);
     if (!result.ok) {
-      expect(result.reason).toContain("Unsupported format \"png\"");
+      expect(result.reason).toContain('Unsupported format "png"');
       expect(result.hint).toContain("Use --format svg");
     }
   });
