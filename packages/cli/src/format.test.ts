@@ -191,12 +191,12 @@ describe("validateOutputFormat", () => {
       expect(result).toEqual({ ok: true, normalizedFormat: "svg" });
     });
 
-    test("rejects empty string format", () => {
+    test("handles empty string format", () => {
       const result = validateOutputFormat("", "github-dark");
 
-      expect(result.ok).toBe(false);
-      if (!result.ok) {
-        expect(result.reason).toContain('Unsupported format ""');
+      expect(result.ok).toBe(true);
+      if (result.ok) {
+        expect(result.normalizedFormat).toBe("svg");
       }
     });
 
