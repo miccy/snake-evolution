@@ -57,7 +57,7 @@ const stripScriptTags = (content: string) => {
 
   do {
     previous = current;
-    current = current.replace(/<script[\s\S]*?<\/script>/gi, "");
+    current = current.replace(/<script\b[\s\S]*?<\/script[^>]*>/gi, "");
   } while (current !== previous);
 
   return current;
