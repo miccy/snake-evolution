@@ -247,4 +247,41 @@ describe("Documentation Files", () => {
       });
     });
   });
+
+  describe("CHANGELOG.md", () => {
+    const changelogPath = resolve(__dirname, "../../CHANGELOG.md");
+
+    test("release dates should use valid YYYY-MM-DD format and be chronological", () => {
+      const content = readFileSync(changelogPath, "utf-8");
+      const entries = [
+        ...content.matchAll(/^## \[(?<version>[^\]]+)] - (?<date>\d{4}-\d{2}-\d{2})/gm),
+      ];
+
+      expect(entries.length).toBeGreaterThan(0);
+
+      const parsed = entries.map(({ groups }) => {
+        if (!groups?.date) {
+          throw new Error("Missing release date in changelog entry");
+        }
+
+        const [year, month, day] = groups.date.split("-").map(Number);
+        const date = new Date(Date.UTC(year, month - 1, day));
+        const iso = date.toISOString().slice(0, 10);
+
+        expect(iso).toBe(groups.date);
+        expect(month).toBeGreaterThanOrEqual(1);
+        expect(month).toBeLessThanOrEqual(12);
+        expect(day).toBeGreaterThanOrEqual(1);
+        expect(day).toBeLessThanOrEqual(31);
+
+        return { version: groups.version, date: iso };
+      });
+
+      for (let i = 1; i < parsed.length; i += 1) {
+        const prev = parsed[i - 1].date;
+        const current = parsed[i].date;
+        expect(prev >= current).toBe(true);
+      }
+    });
+  });
 });

@@ -1,4 +1,4 @@
-// Snake Evolution - SVG/GIF Renderer
+// Snake Evolution - SVG Renderer (GIF planned)
 
 import type {
   ColorPalette,
@@ -74,35 +74,34 @@ export function renderStaticSVG(
   }
 
   // Snake
-  renderSnakeSegments(svg, snake, opts);
+  svg += renderSnakeSegments(snake, opts);
 
   svg += "</svg>";
   return svg;
 }
 
-function renderSnakeSegments(svgRef: string, snake: SnakeState, opts: RenderOptions): string {
+function renderSnakeSegments(snake: SnakeState, opts: RenderOptions): string {
   const { cellSize, gap, palette } = opts;
-  let svg = svgRef;
+  const isGlass = isGlassTheme(palette);
 
-  snake.segments.forEach((segment, i) => {
-    const cellX = gap + segment.x * (cellSize + gap);
-    const cellY = gap + segment.y * (cellSize + gap);
+  return snake.segments
+    .map((segment, i) => {
+      const cellX = gap + segment.x * (cellSize + gap);
+      const cellY = gap + segment.y * (cellSize + gap);
 
-    let color: string;
-    if (i === 0) {
-      color = palette.snake.head;
-    } else if (i === snake.segments.length - 1) {
-      color = palette.snake.tail;
-    } else {
-      color = palette.snake.body;
-    }
+      let color: string;
+      if (i === 0) {
+        color = palette.snake.head;
+      } else if (i === snake.segments.length - 1) {
+        color = palette.snake.tail;
+      } else {
+        color = palette.snake.body;
+      }
 
-    const isGlass = isGlassTheme(palette);
-    const filterAttr = isGlass ? ' filter="url(#glass-glow)"' : "";
-    svg += `<rect x="${cellX}" y="${cellY}" width="${cellSize}" height="${cellSize}" fill="${color}" rx="2"${filterAttr}/>`;
-  });
-
-  return svg;
+      const filterAttr = isGlass ? ' filter="url(#glass-glow)"' : "";
+      return `<rect x="${cellX}" y="${cellY}" width="${cellSize}" height="${cellSize}" fill="${color}" rx="2"${filterAttr}/>`;
+    })
+    .join("");
 }
 
 // ============================================
@@ -125,8 +124,11 @@ export function renderAnimatedSVG(
   const opts = { ...DEFAULT_OPTIONS, ...options };
   const { cellSize, gap, palette } = opts;
 
-  // Duration in seconds (faster default: 60ms per frame)
-  const frameDurationMs = options.duration ? (options.duration * 1000) / frames.length : 60;
+  // Duration in seconds derived from provided duration or frame delay (fallback 60ms)
+  const frameDurationMs =
+    options.duration !== undefined && options.duration !== null
+      ? (options.duration * 1000) / frames.length
+      : (opts.frameDelay ?? 60);
   const totalDurationS = (frames.length * frameDurationMs) / 1000;
   const loop = options.loop ?? true;
 

@@ -1,5 +1,12 @@
 # @snake-evolution/cli
 
+## 1.2.4
+
+### Security
+
+- Replaced regex-based SVG sanitization with `isomorphic-dompurify` for robust sanitization
+- Fixed ReDoS vulnerability in SVG structure validation
+
 ## 1.2.3
 
 ### Patch Changes

@@ -128,6 +128,44 @@ describe("GitHub - Utilities", () => {
       expect(endOfYear.getMonth()).toBe(11);
     });
   });
+
+  describe("HTML parsing", () => {
+    test("should sum contributions from data-count and keep date order", async () => {
+      const html = `
+        <table>
+          <tr>
+            <td data-date="2024-12-28" data-count="1" data-level="1"></td>
+            <td data-level="2" data-count="4" data-date="2024-12-29"></td>
+            <td data-level="3" data-date="2024-12-30"></td>
+          </tr>
+        </table>
+      `;
+
+      const originalFetch = globalThis.fetch;
+      const mockFetch = (async () =>
+        new Response(html, {
+          status: 200,
+          headers: { "Content-Type": "text/html" },
+        })) as unknown as typeof fetch;
+
+      globalThis.fetch = mockFetch;
+
+      try {
+        const { fetchPublicContributions } = await import("../src/index");
+        const grid = await fetchPublicContributions("octocat", 2024);
+        const parsedDays = grid.weeks.flat().filter((d) => d.date);
+
+        expect(grid.totalContributions).toBe(14); // 1 + 4 + fallback 9 from level 3
+        expect(parsedDays.slice(0, 3)).toEqual([
+          { date: "2024-12-28", count: 1, level: 1 },
+          { date: "2024-12-29", count: 4, level: 2 },
+          { date: "2024-12-30", count: 9, level: 3 },
+        ]);
+      } finally {
+        globalThis.fetch = originalFetch;
+      }
+    });
+  });
 });
 
 // ============================================
@@ -222,5 +260,258 @@ describe("GitHub - Mock Data", () => {
 
     expect(grid.totalContributions).toBe(0);
     expect(grid.weeks.flat().every((d) => d.count === 0)).toBe(true);
+  });
+});
+
+// ============================================
+// contributionCountFromLevel Tests
+// ============================================
+
+describe("GitHub - Contribution Count Approximation", () => {
+  describe("contributionCountFromLevel helper (via HTML parsing)", () => {
+    test("should approximate count from level when data-count is missing", async () => {
+      const html = `
+        <table>
+          <tr>
+            <td data-date="2024-12-20" data-level="0"></td>
+            <td data-date="2024-12-21" data-level="1"></td>
+            <td data-date="2024-12-22" data-level="2"></td>
+            <td data-date="2024-12-23" data-level="3"></td>
+            <td data-date="2024-12-24" data-level="4"></td>
+          </tr>
+        </table>
+      `;
+
+      const originalFetch = globalThis.fetch;
+      const mockFetch = (async () =>
+        new Response(html, {
+          status: 200,
+          headers: { "Content-Type": "text/html" },
+        })) as unknown as typeof fetch;
+
+      globalThis.fetch = mockFetch;
+
+      try {
+        const { fetchPublicContributions } = await import("../src/index");
+        const grid = await fetchPublicContributions("octocat", 2024);
+        const days = grid.weeks.flat().filter((d) => d.date);
+
+        // Level 0 = 0, Level 1 = 3, Level 2 = 6, Level 3 = 9, Level 4 = 12
+        expect(days[0].count).toBe(0);
+        expect(days[1].count).toBe(3);
+        expect(days[2].count).toBe(6);
+        expect(days[3].count).toBe(9);
+        expect(days[4].count).toBe(12);
+      } finally {
+        globalThis.fetch = originalFetch;
+      }
+    });
+
+    test("should prefer data-count over level approximation when available", async () => {
+      const html = `
+        <table>
+          <tr>
+            <td data-date="2024-12-20" data-count="15" data-level="4"></td>
+            <td data-date="2024-12-21" data-count="7" data-level="3"></td>
+          </tr>
+        </table>
+      `;
+
+      const originalFetch = globalThis.fetch;
+      const mockFetch = (async () =>
+        new Response(html, {
+          status: 200,
+          headers: { "Content-Type": "text/html" },
+        })) as unknown as typeof fetch;
+
+      globalThis.fetch = mockFetch;
+
+      try {
+        const { fetchPublicContributions } = await import("../src/index");
+        const grid = await fetchPublicContributions("octocat", 2024);
+        const days = grid.weeks.flat().filter((d) => d.date);
+
+        // Should use actual data-count values, not level * 3
+        expect(days[0].count).toBe(15);
+        expect(days[1].count).toBe(7);
+      } finally {
+        globalThis.fetch = originalFetch;
+      }
+    });
+
+    test("should handle mixed availability of data-count attribute", async () => {
+      const html = `
+        <table>
+          <tr>
+            <td data-date="2024-12-20" data-count="5" data-level="2"></td>
+            <td data-date="2024-12-21" data-level="3"></td>
+            <td data-date="2024-12-22" data-count="1" data-level="1"></td>
+            <td data-date="2024-12-23" data-level="0"></td>
+          </tr>
+        </table>
+      `;
+
+      const originalFetch = globalThis.fetch;
+      const mockFetch = (async () =>
+        new Response(html, {
+          status: 200,
+          headers: { "Content-Type": "text/html" },
+        })) as unknown as typeof fetch;
+
+      globalThis.fetch = mockFetch;
+
+      try {
+        const { fetchPublicContributions } = await import("../src/index");
+        const grid = await fetchPublicContributions("octocat", 2024);
+        const days = grid.weeks.flat().filter((d) => d.date);
+
+        expect(days[0].count).toBe(5); // Has data-count
+        expect(days[1].count).toBe(9); // No data-count, level 3 = 9
+        expect(days[2].count).toBe(1); // Has data-count
+        expect(days[3].count).toBe(0); // No data-count, level 0 = 0
+      } finally {
+        globalThis.fetch = originalFetch;
+      }
+    });
+
+    test("should clamp level to valid range (0-4)", async () => {
+      const html = `
+        <table>
+          <tr>
+            <td data-date="2024-12-20" data-level="-1"></td>
+            <td data-date="2024-12-21" data-level="5"></td>
+            <td data-date="2024-12-22" data-level="10"></td>
+          </tr>
+        </table>
+      `;
+
+      const originalFetch = globalThis.fetch;
+      const mockFetch = (async () =>
+        new Response(html, {
+          status: 200,
+          headers: { "Content-Type": "text/html" },
+        })) as unknown as typeof fetch;
+
+      globalThis.fetch = mockFetch;
+
+      try {
+        const { fetchPublicContributions } = await import("../src/index");
+        const grid = await fetchPublicContributions("octocat", 2024);
+        const days = grid.weeks.flat().filter((d) => d.date);
+
+        // Levels should be clamped to 0-4
+        expect(days[0].level).toBe(0); // -1 clamped to 0
+        expect(days[1].level).toBe(4); // 5 clamped to 4
+        expect(days[2].level).toBe(4); // 10 clamped to 4
+
+        // Count approximations based on clamped levels
+        expect(days[0].count).toBe(0);
+        expect(days[1].count).toBe(12);
+        expect(days[2].count).toBe(12);
+      } finally {
+        globalThis.fetch = originalFetch;
+      }
+    });
+  });
+
+  describe("HTML pattern matching edge cases", () => {
+    test("should handle alternate attribute order (level before date)", async () => {
+      const html = `
+        <table>
+          <tr>
+            <td data-level="2" data-date="2024-12-20"></td>
+            <td data-level="3" data-count="10" data-date="2024-12-21"></td>
+          </tr>
+        </table>
+      `;
+
+      const originalFetch = globalThis.fetch;
+      const mockFetch = (async () =>
+        new Response(html, {
+          status: 200,
+          headers: { "Content-Type": "text/html" },
+        })) as unknown as typeof fetch;
+
+      globalThis.fetch = mockFetch;
+
+      try {
+        const { fetchPublicContributions } = await import("../src/index");
+        const grid = await fetchPublicContributions("octocat", 2024);
+        const days = grid.weeks.flat().filter((d) => d.date);
+
+        expect(days).toHaveLength(2);
+        expect(days[0].date).toBe("2024-12-20");
+        expect(days[0].level).toBe(2);
+        expect(days[1].count).toBe(10);
+      } finally {
+        globalThis.fetch = originalFetch;
+      }
+    });
+
+    test("should avoid duplicate entries when both patterns match", async () => {
+      const html = `
+        <table>
+          <tr>
+            <td data-date="2024-12-20" data-level="2"></td>
+          </tr>
+        </table>
+      `;
+
+      const originalFetch = globalThis.fetch;
+      const mockFetch = (async () =>
+        new Response(html, {
+          status: 200,
+          headers: { "Content-Type": "text/html" },
+        })) as unknown as typeof fetch;
+
+      globalThis.fetch = mockFetch;
+
+      try {
+        const { fetchPublicContributions } = await import("../src/index");
+        const grid = await fetchPublicContributions("octocat", 2024);
+        const days = grid.weeks.flat().filter((d) => d.date);
+
+        // Should only have one entry, not duplicates
+        const uniqueDates = new Set(days.map((d) => d.date));
+        expect(uniqueDates.size).toBe(days.length);
+      } finally {
+        globalThis.fetch = originalFetch;
+      }
+    });
+
+    test("should sort days by date chronologically", async () => {
+      const html = `
+        <table>
+          <tr>
+            <td data-date="2024-12-25" data-level="1"></td>
+            <td data-date="2024-12-20" data-level="2"></td>
+            <td data-date="2024-12-23" data-level="3"></td>
+            <td data-date="2024-12-21" data-level="1"></td>
+          </tr>
+        </table>
+      `;
+
+      const originalFetch = globalThis.fetch;
+      const mockFetch = (async () =>
+        new Response(html, {
+          status: 200,
+          headers: { "Content-Type": "text/html" },
+        })) as unknown as typeof fetch;
+
+      globalThis.fetch = mockFetch;
+
+      try {
+        const { fetchPublicContributions } = await import("../src/index");
+        const grid = await fetchPublicContributions("octocat", 2024);
+        const days = grid.weeks.flat().filter((d) => d.date);
+
+        expect(days[0].date).toBe("2024-12-20");
+        expect(days[1].date).toBe("2024-12-21");
+        expect(days[2].date).toBe("2024-12-23");
+        expect(days[3].date).toBe("2024-12-25");
+      } finally {
+        globalThis.fetch = originalFetch;
+      }
+    });
   });
 });

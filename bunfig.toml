@@ -5,4 +5,3 @@ exact = false
 [test]
 # Test runner configuration
 coverage = false
-

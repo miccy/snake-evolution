@@ -178,6 +178,12 @@ async function fetchContributionsHTML(username: string, year?: number): Promise<
   return parseContributionCalendar(html, username, targetYear);
 }
 
+// We approximate missing counts from the visual level so the grid stays usable even without data-count.
+function contributionCountFromLevel(level: number): number {
+  if (level <= 0) return 0;
+  return level * 3;
+}
+
 function parseContributionCalendar(html: string, username: string, year: number): ContributionGrid {
   // Parse the contribution calendar from GitHub's HTML
   // The calendar contains <td> elements with data-date and data-level attributes
@@ -187,26 +193,30 @@ function parseContributionCalendar(html: string, username: string, year: number)
   let totalContributions = 0;
 
   // Match all contribution day cells
-  // GitHub uses: <td ... data-date="2025-01-01" data-level="0" ...>
-  const dayPattern = /data-date="(\d{4}-\d{2}-\d{2})"[^>]*data-level="(\d)"[^>]*>/g;
-  const days: Array<{ date: string; level: number }> = [];
+  // GitHub uses: <td ... data-date="2025-01-01" data-count="4" data-level="3" ...>
+  const dayPattern =
+    /<td[^>]*data-date="(\d{4}-\d{2}-\d{2})"[^>]*?(?:data-count="(\d+)"[^>]*?)?data-level="(-?\d+)"[^>]*>/g;
+  const days: Array<{ date: string; level: number; count?: number }> = [];
 
   for (const match of html.matchAll(dayPattern)) {
     days.push({
       date: match[1],
-      level: Number.parseInt(match[2], 10),
+      level: Number.parseInt(match[3], 10),
+      count: match[2] ? Number.parseInt(match[2], 10) : undefined,
     });
   }
 
   // Also try the alternate pattern (data-level before data-date)
-  const altPattern = /data-level="(\d)"[^>]*data-date="(\d{4}-\d{2}-\d{2})"/g;
+  const altPattern =
+    /<td[^>]*data-level="(-?\d+)"[^>]*?(?:data-count="(\d+)"[^>]*?)?data-date="(\d{4}-\d{2}-\d{2})"[^>]*>/g;
   for (const match of html.matchAll(altPattern)) {
     // Avoid duplicates
-    const date = match[2];
+    const date = match[3];
     if (!days.some((d) => d.date === date)) {
       days.push({
         date,
         level: Number.parseInt(match[1], 10),
+        count: match[2] ? Number.parseInt(match[2], 10) : undefined,
       });
     }
   }
@@ -216,14 +226,15 @@ function parseContributionCalendar(html: string, username: string, year: number)
 
   // Group into weeks (7 days each)
   for (const day of days) {
-    const count = day.level > 0 ? day.level * 3 : 0; // Approximate contribution count from level
+    const level = Math.max(0, Math.min(4, day.level)) as 0 | 1 | 2 | 3 | 4;
+    const count = day.count ?? contributionCountFromLevel(level);
 
     totalContributions += count;
 
     currentWeek.push({
       date: day.date,
       count,
-      level: day.level as 0 | 1 | 2 | 3 | 4,
+      level,
     });
 
     // New week every 7 days

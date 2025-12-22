@@ -6,7 +6,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.2.3] - 2025-12-18
+## [1.2.4] - 2025-12-22
+
+### Security
+
+- **SVG Sanitization** - Replaced fragile regex-based sanitization with `isomorphic-dompurify` for robust, isomorphic SVG sanitization in both browser and server environments
+- **ReDoS Fix** - Fixed polynomial regex vulnerability by replacing with O(1) string checks
+
+### Fixed
+
+- Removed deprecated `@types/dompurify` package (dompurify has built-in types)
+- Fixed test for empty format string to correctly expect "svg" default
+
+### Removed
+
+- `@happy-dom/global-registrator` dependency (no longer needed with isomorphic-dompurify)
+
+## [1.2.3] - 2025-12-20
 
 ### Fixed
 
@@ -18,7 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CLI package is now truly standalone with zero runtime dependencies
 - All dependencies bundled into single executable file
 
-## [1.2.0] - 2024-12-138
+## [1.2.0] - 2025-12-19
 
 ### Changed
 
