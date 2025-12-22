@@ -14,12 +14,8 @@
       "persistent": true
     },
     "test": {
-      "outputs": ["coverage/**"],
-      "cache": true
-    },
-    "test:watch": {
-      "cache": false,
-      "persistent": true
+      "outputs": [],
+      "cache": false
     },
     "lint": {
       "outputs": [],
@@ -28,14 +24,6 @@
     "lint:fix": {
       "outputs": [],
       "cache": false
-    },
-    "format": {
-      "outputs": [],
-      "cache": false
-    },
-    "format:check": {
-      "outputs": [],
-      "cache": true
     },
     "type-check": {
       "dependsOn": ["^build"],

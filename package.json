@@ -11,31 +11,31 @@
   "license": "MIT",
   "scripts": {
     "prepare": "git config core.hooksPath .githooks 2>/dev/null || true",
+
     "dev": "turbo run dev",
     "dev:web": "turbo run dev --filter=@snake-evolution/web",
     "dev:api": "turbo run dev --filter=@snake-evolution/api",
+
     "build": "turbo run build",
     "build:web": "turbo run build --filter=@snake-evolution/web",
-    "build:api": "turbo run build --filter=@snake-evolution/api",
     "build:cli": "turbo run build --filter=@snake-evolution/cli",
+
     "test": "turbo run test",
-    "test:watch": "turbo run test:watch",
-    "lint": "biome check . && bun run lint:md",
-    "lint:fix": "biome check --fix . && bun run lint:md:fix",
-    "lint:md": "markdownlint-cli2 '*.md' 'docs/**/*.md' '.github/**/*.md' --config .markdownlint.jsonc",
-    "lint:md:fix": "markdownlint-cli2 --fix '*.md' 'docs/**/*.md' '.github/**/*.md' --config .markdownlint.jsonc",
-    "format": "biome format --write .",
-    "format:check": "biome format .",
-    "type-check": "tsc --noEmit && turbo run type-check --filter=@snake-evolution/web",
-    "clean": "turbo run clean && rm -rf .turbo",
-    "clean:all": "turbo run clean && rm -rf node_modules .turbo bun.lock && find . -name 'node_modules' -type d -prune -exec rm -rf {} + 2>/dev/null || true",
-    "reinstall": "bun run clean:all && bun install",
-    "fix": "bun run lint:fix && bun run format",
-    "check": "bun run lint && bun run format:check && bun run type-check",
-    "quality": "bun run check && bun run test",
-    "precommit": "bun run check",
+
+    "lint": "biome check . && markdownlint-cli2 '*.md' 'docs/**/*.md' '.github/**/*.md' 'apps/*/src/**/*.md' 'apps/*/*.md' 'packages/*/*.md' 'packages/*/src/**/*.md' 'docker/*.md' 'scripts/*.md' '__tests__/*.md' --config .markdownlint.jsonc",
+    "lint:fix": "biome check --fix --write . && markdownlint-cli2 --fix '*.md' 'docs/**/*.md' '.github/**/*.md' 'apps/*/src/**/*.md' 'apps/*/*.md' 'packages/*/*.md' 'packages/*/src/**/*.md' 'docker/*.md' 'scripts/*.md' '__tests__/*.md' --config .markdownlint.jsonc",
+
+    "typecheck": "tsc --noEmit && turbo run type-check",
+
+    "check": "bun run lint && bun run typecheck",
+    "fix": "bun run lint:fix",
+
+    "clean": "turbo run clean && rm -rf .turbo node_modules",
+    "reinstall": "bun run clean && bun install",
+
     "snake": "bun run packages/cli/src/index.ts",
     "generate": "bun run packages/cli/src/index.ts generate",
+
     "changeset": "changeset",
     "version": "changeset version",
     "release": "changeset publish"

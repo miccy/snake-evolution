@@ -69,10 +69,11 @@ snake-evolution/
 ## Verify Installation
 
 ```bash
-# Run quality checks
-bun run lint
-bun run format:check
-bun run type-check
+# Run all quality checks (lint + typecheck)
+bun run check
+
+# Or run tests too
+bun run check && bun run test
 ```
 
 ## Troubleshooting
