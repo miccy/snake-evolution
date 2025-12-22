@@ -130,7 +130,10 @@ runs:
           fi
 
           echo "Running: ${CMD[*]}"
-          "${CMD[@]}"
+          if ! "${CMD[@]}"; then
+            echo "Error: Failed to generate output for: $OUTPUT_PATH_REL"
+            exit 1
+          fi
         done
 
         # Set output (relative path for user convenience)
