@@ -22,7 +22,9 @@ export function sanitizeSvgContent(svgContent: string): string {
     return "";
   }
 
-  parsed.querySelectorAll("script").forEach((node) => node.remove());
+  parsed.querySelectorAll("script").forEach((node) => {
+    node.remove();
+  });
 
   const walker = parsed.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
   let current: Element | null = root;

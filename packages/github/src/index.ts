@@ -195,7 +195,7 @@ function parseContributionCalendar(html: string, username: string, year: number)
   // Match all contribution day cells
   // GitHub uses: <td ... data-date="2025-01-01" data-count="4" data-level="3" ...>
   const dayPattern =
-    /<td[^>]*data-date="(\d{4}-\d{2}-\d{2})"[^>]*?(?:data-count="(\d+)"[^>]*?)?data-level="(\d)"[^>]*>/g;
+    /<td[^>]*data-date="(\d{4}-\d{2}-\d{2})"[^>]*?(?:data-count="(\d+)"[^>]*?)?data-level="(-?\d+)"[^>]*>/g;
   const days: Array<{ date: string; level: number; count?: number }> = [];
 
   for (const match of html.matchAll(dayPattern)) {
@@ -208,7 +208,7 @@ function parseContributionCalendar(html: string, username: string, year: number)
 
   // Also try the alternate pattern (data-level before data-date)
   const altPattern =
-    /<td[^>]*data-level="(\d)"[^>]*?(?:data-count="(\d+)"[^>]*?)?data-date="(\d{4}-\d{2}-\d{2})"[^>]*>/g;
+    /<td[^>]*data-level="(-?\d+)"[^>]*?(?:data-count="(\d+)"[^>]*?)?data-date="(\d{4}-\d{2}-\d{2})"[^>]*>/g;
   for (const match of html.matchAll(altPattern)) {
     // Avoid duplicates
     const date = match[3];

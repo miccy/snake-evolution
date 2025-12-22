@@ -253,7 +253,9 @@ describe("Documentation Files", () => {
 
     test("release dates should use valid YYYY-MM-DD format and be chronological", () => {
       const content = readFileSync(changelogPath, "utf-8");
-      const entries = [...content.matchAll(/^## \[(?<version>[^\]]+)] - (?<date>\d{4}-\d{2}-\d{2})/gm)];
+      const entries = [
+        ...content.matchAll(/^## \[(?<version>[^\]]+)] - (?<date>\d{4}-\d{2}-\d{2})/gm),
+      ];
 
       expect(entries.length).toBeGreaterThan(0);
 

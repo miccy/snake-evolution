@@ -5,6 +5,7 @@ This document summarizes the thorough unit tests generated for the changes in th
 ## Overview
 
 Generated comprehensive test coverage for all modified code files, focusing on:
+
 - Edge cases and boundary conditions
 - Error handling and validation
 - Type safety and API contracts
@@ -14,9 +15,11 @@ Generated comprehensive test coverage for all modified code files, focusing on:
 ## Test Files Enhanced
 
 ### 1. `packages/cli/src/format.test.ts` 
+
 **Lines: 40 → 320+ (8x increase)**
 
 #### Coverage Areas:
+
 - **Successful validations** (8 tests)
   - Default SVG format acceptance
   - Case-insensitive format handling
@@ -55,9 +58,11 @@ Generated comprehensive test coverage for all modified code files, focusing on:
   - Error response shape
 
 ### 2. `packages/ui/src/utils/sanitizeSvg.test.ts`
+
 **Lines: 14 → 370+ (26x increase)**
 
 #### Coverage Areas:
+
 - **Script tag removal** (7 tests)
   - Simple script tags
   - Scripts with attributes
@@ -99,9 +104,11 @@ Generated comprehensive test coverage for all modified code files, focusing on:
   - Animated snake SVGs with SMIL
 
 ### 3. `packages/github/src/github.test.ts`
+
 **Lines: 264 → 400+ (new section added)**
 
 #### New Coverage Areas:
+
 - **contributionCountFromLevel function** (5 tests)
   - Level-to-count approximation (0→0, 1→3, 2→6, 3→9, 4→12)
   - Preference for actual data-count over approximation
@@ -114,9 +121,11 @@ Generated comprehensive test coverage for all modified code files, focusing on:
   - Chronological date sorting
 
 ### 4. `packages/renderer/src/renderer.test.ts`
+
 **Lines: 332 → 520+ (new sections added)**
 
 #### New Coverage Areas:
+
 - **Duration calculation** (10 tests)
   - Total duration to per-frame calculation
   - Duration overriding frameDelay
@@ -146,18 +155,21 @@ Generated comprehensive test coverage for all modified code files, focusing on:
 ## Test Quality Metrics
 
 ### Coverage Improvements
+
 - **Format validation**: 100% code coverage, all branches tested
 - **SVG sanitization**: 100% security attack vectors covered
 - **GitHub parsing**: New parsing logic fully tested
 - **Renderer timing**: All calculation paths tested
 
 ### Test Organization
+
 - Clear describe blocks for logical grouping
 - Descriptive test names following "should..." pattern
 - Consistent expect assertions
 - Proper setup/teardown where needed
 
 ### Edge Case Coverage
+
 - ✅ Null/undefined inputs
 - ✅ Empty strings
 - ✅ Very large inputs
@@ -167,6 +179,7 @@ Generated comprehensive test coverage for all modified code files, focusing on:
 - ✅ Special characters
 
 ### Security Testing
+
 - ✅ XSS via script tags
 - ✅ XSS via event handlers
 - ✅ XSS via javascript: protocol
@@ -203,7 +216,9 @@ bun test --coverage
 ## Key Testing Insights
 
 ### Format Validation
+
 The `validateOutputFormat` function now has exhaustive testing covering:
+
 - All supported formats (currently only SVG)
 - All unsupported formats (GIF, PNG, JPEG, etc.)
 - Glass theme blocking (waiting for GIF support)
@@ -211,21 +226,27 @@ The `validateOutputFormat` function now has exhaustive testing covering:
 - Error message quality
 
 ### SVG Sanitization
+
 The `sanitizeSvgContent` function is battle-tested against:
+
 - Common XSS attack vectors
 - Real-world snake animation SVGs
 - GitHub contribution grid structures
 - Edge cases and malformed input
 
 ### GitHub Parsing
+
 The new `contributionCountFromLevel` approximation is verified to:
+
 - Correctly map levels to counts
 - Prefer actual data when available
 - Handle mixed data availability
 - Clamp levels to valid ranges
 
 ### Renderer Timing
+
 Duration calculation is thoroughly tested for:
+
 - Explicit duration parameter
 - FrameDelay fallback
 - Edge cases (0, negative, very large)
@@ -234,6 +255,7 @@ Duration calculation is thoroughly tested for:
 ## Conclusion
 
 These comprehensive tests provide:
+
 - **High confidence** in code correctness
 - **Security assurance** for user-provided SVG content
 - **Documentation** of expected behavior

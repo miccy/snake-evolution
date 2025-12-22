@@ -7,11 +7,13 @@ Generated **80+ comprehensive unit tests** for all code changes in this branch, 
 ## Files Modified/Created
 
 ### 1. **packages/cli/src/format.test.ts** ✨
+
 - **Before:** 40 lines, 4 basic tests
 - **After:** 303 lines, 36 comprehensive tests
 - **Increase:** 7.5x expansion
 
 #### Test Coverage:
+
 - ✅ Successful validations (7 tests)
 - ✅ GIF format rejections (4 tests)
 - ✅ Glass theme rejections (5 tests)
@@ -25,11 +27,13 @@ Generated **80+ comprehensive unit tests** for all code changes in this branch, 
 ---
 
 ### 2. **packages/ui/src/utils/sanitizeSvg.test.ts** ✨
+
 - **Before:** 14 lines, 1 basic test
 - **After:** 359 lines, 35 comprehensive tests
 - **Increase:** 25x expansion
 
 #### Test Coverage:
+
 - ✅ Script tag removal (7 tests)
   - Simple, nested, multiple, with CDATA, various formatting
 - ✅ Event handler removal (6 tests)
@@ -45,11 +49,13 @@ Generated **80+ comprehensive unit tests** for all code changes in this branch, 
 ---
 
 ### 3. **packages/github/src/github.test.ts** ➕
+
 - **Before:** 264 lines
 - **After:** 517 lines (added 253 lines)
 - **New Tests:** 8 comprehensive tests
 
 #### New Test Coverage:
+
 - ✅ contributionCountFromLevel approximation (5 tests)
   - Level-to-count mapping (0→0, 1→3, 2→6, 3→9, 4→12)
   - Preference for actual data-count over approximation
@@ -63,11 +69,13 @@ Generated **80+ comprehensive unit tests** for all code changes in this branch, 
 ---
 
 ### 4. **packages/renderer/src/renderer.test.ts** ➕
+
 - **Before:** 332 lines
 - **After:** 659 lines (added 327 lines)
 - **New Tests:** 30+ comprehensive tests
 
 #### New Test Coverage:
+
 - ✅ Duration calculation (10 tests)
   - Total duration to per-frame calculation
   - Duration overriding frameDelay
@@ -89,6 +97,7 @@ Generated **80+ comprehensive unit tests** for all code changes in this branch, 
 ## Test Quality Highlights
 
 ### Security Testing (XSS Prevention)
+
 - ✅ Script tag injection (7 variants)
 - ✅ Event handler injection (6 variants)
 - ✅ javascript: protocol attacks (4 variants)
@@ -97,6 +106,7 @@ Generated **80+ comprehensive unit tests** for all code changes in this branch, 
 - ✅ Encoded content handling
 
 ### Edge Case Coverage
+
 - ✅ Null/undefined inputs
 - ✅ Empty strings
 - ✅ Very large inputs (1000+ elements)
@@ -106,12 +116,14 @@ Generated **80+ comprehensive unit tests** for all code changes in this branch, 
 - ✅ Special characters and whitespace
 
 ### Error Handling
+
 - ✅ User-friendly error messages
 - ✅ Actionable hints for resolution
 - ✅ Complete error response shapes
 - ✅ Consistent error structure
 
 ### Type Safety
+
 - ✅ Success response shape validation
 - ✅ Error response shape validation
 - ✅ TypeScript compile-time checks
@@ -134,6 +146,7 @@ Generated **80+ comprehensive unit tests** for all code changes in this branch, 
 ## Code Changes Tested
 
 ### New Functions/Features:
+
 - ✅ `validateOutputFormat()` - Format and theme validation
 - ✅ `sanitizeSvgContent()` - XSS prevention for SVG content
 - ✅ `contributionCountFromLevel()` - Contribution approximation from visual level
@@ -141,6 +154,7 @@ Generated **80+ comprehensive unit tests** for all code changes in this branch, 
 - ✅ Refactored `renderSnakeSegments()` function
 
 ### Changed Behavior:
+
 - ✅ HTML parsing with optional data-count attribute
 - ✅ Duration vs frameDelay precedence
 - ✅ Level clamping to valid range (0-4)
@@ -186,7 +200,9 @@ bun test --coverage
 ## Key Testing Insights
 
 ### 1. Format Validation (`format.ts`)
+
 Exhaustive testing ensures:
+
 - Only SVG format is currently accepted
 - GIF/PNG/JPEG/etc. are properly rejected with helpful messages
 - Glass theme is blocked until GIF support arrives
@@ -194,7 +210,9 @@ Exhaustive testing ensures:
 - Error messages guide users to solutions
 
 ### 2. SVG Sanitization (`sanitizeSvg.ts`)
+
 Battle-tested against:
+
 - All common XSS attack vectors
 - Real-world GitHub contribution SVGs
 - Animated snake SVGs with SMIL
@@ -202,7 +220,9 @@ Battle-tested against:
 - Performance with large SVGs (1000+ elements)
 
 ### 3. GitHub Parsing (`github/index.ts`)
+
 Verified behavior:
+
 - Correct approximation when data-count is missing
 - Preference for actual data when available
 - Proper level clamping to prevent invalid values
@@ -210,7 +230,9 @@ Verified behavior:
 - Handling of alternate HTML attribute ordering
 
 ### 4. Renderer Timing (`renderer/index.ts`)
+
 Comprehensive validation:
+
 - Duration parameter takes precedence over frameDelay
 - Correct per-frame calculation for any frame count
 - Proper fallback to frameDelay (default 150ms)
@@ -235,6 +257,7 @@ Comprehensive validation:
 These comprehensive unit tests provide a solid foundation for the codebase changes. With **80+ new tests** covering happy paths, edge cases, security concerns, and real-world scenarios, the code is well-protected against regressions and provides clear documentation of expected behavior.
 
 **Total Test Coverage Increase:**
+
 - Format validation: **40 → 303 lines** (7.5x)
 - SVG sanitization: **14 → 359 lines** (25x)
 - GitHub parsing: **+253 lines** (new coverage)

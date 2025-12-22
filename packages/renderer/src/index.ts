@@ -128,7 +128,7 @@ export function renderAnimatedSVG(
   const frameDurationMs =
     options.duration !== undefined && options.duration !== null
       ? (options.duration * 1000) / frames.length
-      : opts.frameDelay ?? 60;
+      : (opts.frameDelay ?? 60);
   const totalDurationS = (frames.length * frameDurationMs) / 1000;
   const loop = options.loop ?? true;
 

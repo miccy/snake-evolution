@@ -26,7 +26,7 @@ describe("sanitizeSvgContent", () => {
 
     test("removes multiple script tags", () => {
       const dirtySvg =
-        '<svg><script>alert(1)</script><rect /><script>alert(2)</script><circle /></svg>';
+        "<svg><script>alert(1)</script><rect /><script>alert(2)</script><circle /></svg>";
 
       const sanitized = sanitizeSvgContent(dirtySvg);
 
@@ -37,8 +37,7 @@ describe("sanitizeSvgContent", () => {
     });
 
     test("removes nested script tags", () => {
-      const dirtySvg =
-        '<svg><g><script>alert(1)</script></g><rect /></svg>';
+      const dirtySvg = "<svg><g><script>alert(1)</script></g><rect /></svg>";
 
       const sanitized = sanitizeSvgContent(dirtySvg);
 
@@ -48,8 +47,7 @@ describe("sanitizeSvgContent", () => {
     });
 
     test("removes script tags with various spacing", () => {
-      const dirtySvg =
-        '<svg><script   type="text/javascript"  >alert(1)</script  ><rect /></svg>';
+      const dirtySvg = '<svg><script   type="text/javascript"  >alert(1)</script  ><rect /></svg>';
 
       const sanitized = sanitizeSvgContent(dirtySvg);
 
@@ -71,8 +69,7 @@ describe("sanitizeSvgContent", () => {
     });
 
     test("removes script with CDATA", () => {
-      const dirtySvg =
-        '<svg><script><![CDATA[alert(1)]]></script><rect /></svg>';
+      const dirtySvg = "<svg><script><![CDATA[alert(1)]]></script><rect /></svg>";
 
       const sanitized = sanitizeSvgContent(dirtySvg);
 
@@ -83,8 +80,7 @@ describe("sanitizeSvgContent", () => {
 
   describe("event handler removal", () => {
     test("removes onclick handlers", () => {
-      const dirtySvg =
-        '<svg><rect onclick="alert(1)" width="10" height="10" fill="red" /></svg>';
+      const dirtySvg = '<svg><rect onclick="alert(1)" width="10" height="10" fill="red" /></svg>';
 
       const sanitized = sanitizeSvgContent(dirtySvg);
 
@@ -94,8 +90,7 @@ describe("sanitizeSvgContent", () => {
     });
 
     test("removes onload handlers", () => {
-      const dirtySvg =
-        '<svg onload="alert(1)"><rect /></svg>';
+      const dirtySvg = '<svg onload="alert(1)"><rect /></svg>';
 
       const sanitized = sanitizeSvgContent(dirtySvg);
 
@@ -104,8 +99,7 @@ describe("sanitizeSvgContent", () => {
     });
 
     test("removes onmouseover handlers", () => {
-      const dirtySvg =
-        '<svg><circle onmouseover="alert(1)" r="5" /></svg>';
+      const dirtySvg = '<svg><circle onmouseover="alert(1)" r="5" /></svg>';
 
       const sanitized = sanitizeSvgContent(dirtySvg);
 
@@ -113,8 +107,7 @@ describe("sanitizeSvgContent", () => {
     });
 
     test("removes onerror handlers", () => {
-      const dirtySvg =
-        '<svg><image onerror="alert(1)" href="broken.jpg" /></svg>';
+      const dirtySvg = '<svg><image onerror="alert(1)" href="broken.jpg" /></svg>';
 
       const sanitized = sanitizeSvgContent(dirtySvg);
 
@@ -133,8 +126,7 @@ describe("sanitizeSvgContent", () => {
     });
 
     test("removes event handlers with mixed case", () => {
-      const dirtySvg =
-        '<svg><rect onClick="alert(1)" onLoad="alert(2)" /></svg>';
+      const dirtySvg = '<svg><rect onClick="alert(1)" onLoad="alert(2)" /></svg>';
 
       const sanitized = sanitizeSvgContent(dirtySvg);
 
@@ -145,8 +137,7 @@ describe("sanitizeSvgContent", () => {
 
   describe("href sanitization", () => {
     test("removes javascript: protocol from href", () => {
-      const dirtySvg =
-        '<svg><a href="javascript:alert(1)"><text>Click</text></a></svg>';
+      const dirtySvg = '<svg><a href="javascript:alert(1)"><text>Click</text></a></svg>';
 
       const sanitized = sanitizeSvgContent(dirtySvg);
 
@@ -156,8 +147,7 @@ describe("sanitizeSvgContent", () => {
     });
 
     test("removes javascript: protocol from xlink:href", () => {
-      const dirtySvg =
-        '<svg><use xlink:href="javascript:alert(1)" /></svg>';
+      const dirtySvg = '<svg><use xlink:href="javascript:alert(1)" /></svg>';
 
       const sanitized = sanitizeSvgContent(dirtySvg);
 
@@ -165,8 +155,7 @@ describe("sanitizeSvgContent", () => {
     });
 
     test("allows safe http URLs in href", () => {
-      const safeSvg =
-        '<svg><a href="https://example.com"><text>Link</text></a></svg>';
+      const safeSvg = '<svg><a href="https://example.com"><text>Link</text></a></svg>';
 
       const sanitized = sanitizeSvgContent(safeSvg);
 
@@ -174,8 +163,7 @@ describe("sanitizeSvgContent", () => {
     });
 
     test("allows safe relative URLs in href", () => {
-      const safeSvg =
-        '<svg><a href="#section"><text>Link</text></a></svg>';
+      const safeSvg = '<svg><a href="#section"><text>Link</text></a></svg>';
 
       const sanitized = sanitizeSvgContent(safeSvg);
 
@@ -183,8 +171,7 @@ describe("sanitizeSvgContent", () => {
     });
 
     test("removes javascript: with mixed case", () => {
-      const dirtySvg =
-        '<svg><a href="JaVaScRiPt:alert(1)"><text>Click</text></a></svg>';
+      const dirtySvg = '<svg><a href="JaVaScRiPt:alert(1)"><text>Click</text></a></svg>';
 
       const sanitized = sanitizeSvgContent(dirtySvg);
 
@@ -192,8 +179,7 @@ describe("sanitizeSvgContent", () => {
     });
 
     test("removes javascript: with whitespace", () => {
-      const dirtySvg =
-        '<svg><a href="  javascript:alert(1)"><text>Click</text></a></svg>';
+      const dirtySvg = '<svg><a href="  javascript:alert(1)"><text>Click</text></a></svg>';
 
       const sanitized = sanitizeSvgContent(dirtySvg);
 
@@ -222,7 +208,7 @@ describe("sanitizeSvgContent", () => {
     });
 
     test("handles malformed XML", () => {
-      const malformed = '<svg><rect><unclosed>';
+      const malformed = "<svg><rect><unclosed>";
 
       const sanitized = sanitizeSvgContent(malformed);
 
@@ -264,8 +250,9 @@ describe("sanitizeSvgContent", () => {
     });
 
     test("handles very large SVG", () => {
-      const largeRects = Array.from({ length: 1000 }, (_, i) =>
-        `<rect x="${i}" y="${i}" width="10" height="10" />`
+      const largeRects = Array.from(
+        { length: 1000 },
+        (_, i) => `<rect x="${i}" y="${i}" width="10" height="10" />`,
       ).join("");
       const largeSvg = `<svg>${largeRects}</svg>`;
 
@@ -290,8 +277,7 @@ describe("sanitizeSvgContent", () => {
     });
 
     test("handles script in comment", () => {
-      const dirtySvg =
-        '<svg><!-- <script>alert(1)</script> --><rect /></svg>';
+      const dirtySvg = "<svg><!-- <script>alert(1)</script> --><rect /></svg>";
 
       const sanitized = sanitizeSvgContent(dirtySvg);
 
@@ -300,8 +286,7 @@ describe("sanitizeSvgContent", () => {
     });
 
     test("handles encoded script tags", () => {
-      const dirtySvg =
-        '<svg><rect />&lt;script&gt;alert(1)&lt;/script&gt;</svg>';
+      const dirtySvg = "<svg><rect />&lt;script&gt;alert(1)&lt;/script&gt;</svg>";
 
       const sanitized = sanitizeSvgContent(dirtySvg);
 

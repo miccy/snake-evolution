@@ -410,7 +410,12 @@ describe("Renderer - Duration and Frame Timing", () => {
     test("should calculate per-frame duration correctly for many frames", () => {
       const grid = createMockGrid();
       const manyFrames: SnakeFrame[] = Array.from({ length: 100 }, (_, i) => ({
-        snake: { segments: [{ x: i % 53, y: i % 7, direction: "right" }], direction: "right", length: 1, score: 0 },
+        snake: {
+          segments: [{ x: i % 53, y: i % 7, direction: "right" }],
+          direction: "right",
+          length: 1,
+          score: 0,
+        },
         grid,
         frameIndex: i,
       }));
@@ -620,7 +625,8 @@ describe("Renderer - Snake Segment Rendering", () => {
 
       const rxMatches = svg.match(/rx="2"/g);
       expect(rxMatches).toBeTruthy();
-      expect(rxMatches!.length).toBe(snake.segments.length);
+      // 371 grid cells + 3 snake segments = 374 elements with rounded corners
+      expect(rxMatches!.length).toBe(371 + snake.segments.length);
     });
 
     test("should render segments in correct order (head first)", () => {

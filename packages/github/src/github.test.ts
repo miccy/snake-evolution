@@ -142,11 +142,11 @@ describe("GitHub - Utilities", () => {
       `;
 
       const originalFetch = globalThis.fetch;
-      const mockFetch: typeof fetch = async () =>
+      const mockFetch = (async () =>
         new Response(html, {
           status: 200,
           headers: { "Content-Type": "text/html" },
-        });
+        })) as unknown as typeof fetch;
 
       globalThis.fetch = mockFetch;
 
@@ -283,11 +283,11 @@ describe("GitHub - Contribution Count Approximation", () => {
       `;
 
       const originalFetch = globalThis.fetch;
-      const mockFetch: typeof fetch = async () =>
+      const mockFetch = (async () =>
         new Response(html, {
           status: 200,
           headers: { "Content-Type": "text/html" },
-        });
+        })) as unknown as typeof fetch;
 
       globalThis.fetch = mockFetch;
 
@@ -318,11 +318,11 @@ describe("GitHub - Contribution Count Approximation", () => {
       `;
 
       const originalFetch = globalThis.fetch;
-      const mockFetch: typeof fetch = async () =>
+      const mockFetch = (async () =>
         new Response(html, {
           status: 200,
           headers: { "Content-Type": "text/html" },
-        });
+        })) as unknown as typeof fetch;
 
       globalThis.fetch = mockFetch;
 
@@ -352,11 +352,11 @@ describe("GitHub - Contribution Count Approximation", () => {
       `;
 
       const originalFetch = globalThis.fetch;
-      const mockFetch: typeof fetch = async () =>
+      const mockFetch = (async () =>
         new Response(html, {
           status: 200,
           headers: { "Content-Type": "text/html" },
-        });
+        })) as unknown as typeof fetch;
 
       globalThis.fetch = mockFetch;
 
@@ -386,11 +386,11 @@ describe("GitHub - Contribution Count Approximation", () => {
       `;
 
       const originalFetch = globalThis.fetch;
-      const mockFetch: typeof fetch = async () =>
+      const mockFetch = (async () =>
         new Response(html, {
           status: 200,
           headers: { "Content-Type": "text/html" },
-        });
+        })) as unknown as typeof fetch;
 
       globalThis.fetch = mockFetch;
 
@@ -426,11 +426,11 @@ describe("GitHub - Contribution Count Approximation", () => {
       `;
 
       const originalFetch = globalThis.fetch;
-      const mockFetch: typeof fetch = async () =>
+      const mockFetch = (async () =>
         new Response(html, {
           status: 200,
           headers: { "Content-Type": "text/html" },
-        });
+        })) as unknown as typeof fetch;
 
       globalThis.fetch = mockFetch;
 
@@ -458,11 +458,11 @@ describe("GitHub - Contribution Count Approximation", () => {
       `;
 
       const originalFetch = globalThis.fetch;
-      const mockFetch: typeof fetch = async () =>
+      const mockFetch = (async () =>
         new Response(html, {
           status: 200,
           headers: { "Content-Type": "text/html" },
-        });
+        })) as unknown as typeof fetch;
 
       globalThis.fetch = mockFetch;
 
@@ -492,11 +492,11 @@ describe("GitHub - Contribution Count Approximation", () => {
       `;
 
       const originalFetch = globalThis.fetch;
-      const mockFetch: typeof fetch = async () =>
+      const mockFetch = (async () =>
         new Response(html, {
           status: 200,
           headers: { "Content-Type": "text/html" },
-        });
+        })) as unknown as typeof fetch;
 
       globalThis.fetch = mockFetch;
 

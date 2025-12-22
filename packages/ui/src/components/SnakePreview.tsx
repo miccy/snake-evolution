@@ -13,11 +13,7 @@ export interface SnakePreviewProps {
 /**
  * Displays provided SVG markup after sanitization to avoid XSS in previews.
  */
-export function SnakePreview({
-  svgContent,
-  className = "",
-  unsafe = false,
-}: SnakePreviewProps) {
+export function SnakePreview({ svgContent, className = "", unsafe = false }: SnakePreviewProps) {
   const safeSvg = useMemo(
     () => (unsafe ? svgContent : sanitizeSvgContent(svgContent)),
     [svgContent, unsafe],

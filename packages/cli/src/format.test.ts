@@ -29,14 +29,7 @@ describe("validateOutputFormat", () => {
     });
 
     test("accepts all valid themes with svg", () => {
-      const themes = [
-        "github-dark",
-        "github-light",
-        "ocean",
-        "sunset",
-        "neon-gamer",
-        "cypherpunk",
-      ];
+      const themes = ["github-dark", "github-light", "ocean", "sunset", "neon-gamer", "cypherpunk"];
 
       for (const theme of themes) {
         const result = validateOutputFormat("svg", theme);
