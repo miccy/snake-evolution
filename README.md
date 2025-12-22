@@ -10,6 +10,9 @@
 
 <p align="center">
   <a href="https://github.com/miccy/snake-evolution/stargazers"><img src="https://img.shields.io/github/stars/miccy/snake-evolution?style=for-the-badge&logo=github&color=yellow" alt="Stars"></a>
+  <a href="https://www.npmjs.com/package/@snake-evolution/cli"><img src="https://img.shields.io/npm/v/@snake-evolution/cli?style=for-the-badge&logo=npm&color=red" alt="npm"></a>
+  <a href="https://www.npmjs.com/package/@snake-evolution/cli"><img src="https://img.shields.io/npm/dm/@snake-evolution/cli?style=for-the-badge&logo=npm&color=red" alt="downloads"></a>
+  <a href="https://github.com/miccy/snake-evolution/releases"><img src="https://img.shields.io/github/v/release/miccy/snake-evolution?style=for-the-badge&logo=github&color=green" alt="release"></a>
   <a href="https://github.com/miccy/snake-evolution/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue?style=for-the-badge" alt="License"></a>
   <a href="https://github.com/miccy/snake-evolution/actions"><img src="https://img.shields.io/github/actions/workflow/status/miccy/snake-evolution/ci.yml?style=for-the-badge&logo=github-actions&logoColor=white" alt="CI"></a>
 </p>
@@ -36,7 +39,13 @@
 
 ## ⚡ Quick Start
 
-**Using GitHub Action (recommended):**
+**Using npx (zero-install):**
+
+```bash
+npx @snake-evolution/cli@latest generate -u YOUR_USERNAME
+```
+
+**Using GitHub Action:**
 
 See [🤖 GitHub Action](#-github-action) section below.
 
@@ -46,22 +55,42 @@ See [🤖 GitHub Action](#-github-action) section below.
 git clone https://github.com/miccy/snake-evolution.git
 cd snake-evolution
 bun install
-bun run generate -u YOUR_USERNAME -o snake.svg
+npx @snake-evolution/cli generate -u YOUR_USERNAME -o snake.svg
 ```
-
-> 🚧 **Coming soon:** `npx @snake-evolution/cli` - zero-install CLI via npm
 
 ---
 
 ## ✨ Why Snake Evolution?
 
-| Feature | Snake Evolution | Others |
-|---------|-----------------|--------|
-| 🧠 Smart pathfinding | ✅ Hunts high-value contributions first | ❌ Random/linear |
-| 🐍 Growing snake | ✅ Gets longer as it eats | ❌ Static size |
-| 🎨 Multiple themes | ✅ 6 SVG themes + 1 GIF-only (glass) | ❌ 1-2 themes |
-| 📦 Zero install | ✅ `npx` just works | ⚠️ Requires setup |
-| 🎮 PvP Mode | 🔜 Coming soon! | ❌ Not planned |
+- **🎨 7 Beautiful Themes** - Match your profile's aesthetic
+- **🧠 Smart Pathfinding** - Snake hunts high-value contributions first
+- **⚡ Zero-Install CLI** - `npx @snake-evolution/cli@latest` - no setup needed
+- **🤖 GitHub Action** - Automated daily updates
+- **📦 Full Monorepo** - Engine, renderer, and themes are separate packages
+- **🎯 Production Ready** - Used by developers worldwide
+
+## 🎨 Showcase
+
+Explore all available themes:
+
+````carousel
+![GitHub Dark Theme](./assets/examples/github-dark.svg)
+<!-- slide -->
+![Ocean Theme](./assets/examples/ocean.svg)
+<!-- slide -->
+![Sunset Theme](./assets/examples/sunset.svg)
+<!-- slide -->
+![Neon Gamer Theme](./assets/examples/neon-gamer.svg)
+<!-- slide -->
+![CypherPunk Theme](./assets/examples/cypherpunk.svg)
+````
+
+**Real-world examples:**
+
+- 💼 Portfolio README animations
+- 📚 Documentation sites with contribution graphs
+- 🎤 Conference presentation slides
+- ✍️ Technical articles and blog posts
 
 ---
 
@@ -152,24 +181,44 @@ Then in your **README.md**:
 
 ## 💻 CLI
 
-### Local Development
+[![npm version](https://img.shields.io/npm/v/@snake-evolution/cli)](https://www.npmjs.com/package/@snake-evolution/cli)
+[![npm downloads](https://img.shields.io/npm/dm/@snake-evolution/cli)](https://www.npmjs.com/package/@snake-evolution/cli)
+
+### Zero-Install (Recommended)
+
+No installation required! Use `npx` or `bunx`:
 
 ```bash
-git clone https://github.com/miccy/snake-evolution.git
-cd snake-evolution
-bun install
-bun run generate -u YOUR_USERNAME -o snake.svg
+# Using npx
+npx @snake-evolution/cli@latest generate -u YOUR_USERNAME
+
+# Using bunx (faster)
+bunx @snake-evolution/cli@latest generate -u YOUR_USERNAME
+
+# With custom options
+npx @snake-evolution/cli@latest generate -u YOUR_USERNAME -t ocean -o snake.svg
 ```
 
-### Coming Soon: npm Package
+### Global Installation
 
 ```bash
-# After npm publish:
-npx @snake-evolution/cli generate -u YOUR_USERNAME -o snake.svg
-
-# Or global install:
+# Using npm
 npm install -g @snake-evolution/cli
-snake-evolution generate -u miccy -o snake.svg
+
+# Using bun
+bun add -g @snake-evolution/cli
+
+# Then use anywhere
+snake generate -u YOUR_USERNAME
+snake themes  # List available themes
+```
+
+### Local Project
+
+```bash
+npm install @snake-evolution/cli
+# or
+bun add @snake-evolution/cli
 ```
 
 ### Options
@@ -180,7 +229,7 @@ snake-evolution generate -u miccy -o snake.svg
 | `-o, --output` | Output file path | `snake.svg` |
 | `-t, --theme` | Color theme | `github-dark` |
 | `-y, --year` | Year to generate | current |
-| `--static` | No animation | `false` |
+| `--static` | Static SVG (final frame with snake) | `false` |
 
 ---
 

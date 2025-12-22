@@ -1,5 +1,6 @@
 import { cors } from "@elysiajs/cors";
 import { swagger } from "@elysiajs/swagger";
+// cspell:ignore elysiajs Elysia elysia
 import { Elysia } from "elysia";
 
 const app = new Elysia()
@@ -9,7 +10,7 @@ const app = new Elysia()
       documentation: {
         info: {
           title: "Snake Evolution API",
-          version: "0.0.1",
+          version: "1.2.3",
           description: "API for generating GitHub contribution snake animations",
         },
       },
@@ -17,7 +18,7 @@ const app = new Elysia()
   )
   .get("/", () => ({
     name: "Snake Evolution API",
-    version: "0.0.1",
+    version: "1.2.3",
     docs: "/swagger",
   }))
   .group("/api/v1", (app) =>

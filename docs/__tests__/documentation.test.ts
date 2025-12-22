@@ -47,7 +47,8 @@ describe("Documentation Files", () => {
 
     test("should mention PvP mode as coming soon", () => {
       content = readFileSync(readmePath, "utf-8");
-      expect(content).toMatch(/PvP.*coming soon/i);
+      // Matches both "PvP mode coming soon" and "Coming Soon: PvP Mode"
+      expect(content).toMatch(/(?:pvp.*coming|coming.*pvp)/i);
     });
 
     test("should have license information", () => {
@@ -78,10 +79,9 @@ describe("Documentation Files", () => {
       expect(content.length).toBeGreaterThan(500);
     });
 
-    test("should be bilingual (English and Czech)", () => {
+    test("should be English only", () => {
       content = readFileSync(contributingPath, "utf-8");
-      expect(content).toContain("English");
-      expect(content).toContain("Čeština");
+      expect(content).not.toContain("Čeština"); // cspell:disable-line
     });
 
     test("should document prerequisites", () => {

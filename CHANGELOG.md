@@ -1,9 +1,62 @@
+<!-- cspell:ignore stefanzweifel ENOENT -->
 # Changelog
 
 All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.2.3] - 2025-12-18
+
+### Fixed
+
+- **CLI npx/npm Support** - Fixed shebang bundling to enable `npx @snake-evolution/cli` execution
+- Removed duplicate shebang that prevented npm package managers from running the CLI
+
+### Changed
+
+- CLI package is now truly standalone with zero runtime dependencies
+- All dependencies bundled into single executable file
+
+## [1.2.0] - 2024-12-138
+
+### Changed
+
+- **CLI:** Renamed command from `snake-evolution` to `snake` (**BREAKING CHANGE**).
+- **Monorepo:** Synchronized all packages to version 1.2.0.
+
+### Fixed
+
+- **CLI:** Added executable permissions (`chmod +x`) to the distributed binary.
+
+## [1.1.0] - 2025-12-18
+
+### Fixed
+
+- **CLI fixes:**
+  - Added `mkdirSync` with `recursive: true` before writing output file to fix `ENOENT` errors when output path directory doesn't exist.
+  - Fixed version reading to use `package.json` as the single source of truth instead of hardcoded values.
+
+- **Action fixes:**
+  - Output files now correctly resolve to `github.workspace` instead of `github.action_path`, ensuring generated SVGs are accessible after action completion.
+
+### Security
+
+- **Supply Chain Security:**
+  - Replaced `JamesIves/github-pages-deploy-action` with native bash implementation.
+  - Replaced `stefanzweifel/git-auto-commit-action` with native bash implementation.
+  - Reduced dependencies to minimize attack surface.
+
+### Improvements
+
+- **DX & Documentation:**
+  - Added native git pre-commit hook for automatic lint/format checks.
+  - Removed Husky and Lefthook dependencies.
+  - Fixed misleading claims in documentation regarding npm publish status.
+  - Updated GitHub Action examples to use native bash.
+  - Corrected theme count documentation.
+
+
 
 ## [1.0.0] - 2025-12-12
 

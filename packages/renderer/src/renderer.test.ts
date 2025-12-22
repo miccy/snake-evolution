@@ -158,6 +158,24 @@ describe("Renderer - Static SVG", () => {
       expect(svg).toContain("<rect");
     });
 
+    test("should render snake segments with color and position", () => {
+      const grid = createMockGrid();
+      const snake = createMockSnake();
+      const svg = renderStaticSVG(grid, snake);
+
+      const headColor = themes["github-dark"].snake.head;
+      const cellSize = 11;
+      const gap = 3;
+      const headX = gap + snake.segments[0].x * (cellSize + gap);
+      const headY = gap + snake.segments[0].y * (cellSize + gap);
+
+      const headRectPattern = new RegExp(
+        `<rect[^>]*x="${headX}"[^>]*y="${headY}"[^>]*fill="${headColor}"`,
+      );
+
+      expect(svg).toMatch(headRectPattern);
+    });
+
     test("should render grid cells", () => {
       const grid = createMockGrid();
       const snake = createMockSnake();

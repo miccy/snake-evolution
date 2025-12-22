@@ -6,108 +6,214 @@ Make Snake Evolution the most fun way to visualize GitHub contributions - from s
 
 ---
 
-## ✅ Phase 1: v1.0 - MVP (Released)
+## ✅ v1.2 - Current Release (December 2024) (December 2024)
 
-*Released: December 2025*
+**What's Live:**
 
-- [x] CLI tool for snake generation (`bun run generate`)
-- [x] 6 SVG themes + 1 GIF-only (glass requires GIF for blur effects)
-- [x] GitHub Action for automated generation
-- [x] Smart pathfinding (priority-based hunting)
-- [x] Smooth SMIL animations
-- [x] Visual snake gradient (larger head, fading tail)
-- [x] Works for any GitHub user
-- [ ] Publish to npm (`npx @snake-evolution/cli`)
-- [ ] First stable release (v1.0.0)
-
----
-
-## 🚧 Phase 2: v1.1 - Polish & Performance
-
-*Target: Q1 2026*
-
-- [ ] GIF output format (enables glass theme)
-- [ ] **Package manager support:** npm, yarn, pnpm (currently Bun-only)
-- [ ] Smaller SVG file sizes (optimize animation data)
-- [ ] More themes (community submissions welcome!)
-- [ ] Speed control option
-- [ ] Preview mode in CLI
+- ✅ CLI tool with npm support (`npx @snake-evolution/cli@latest`)
+- ✅ 7 stunning themes (6 SVG + 1 GIF-only glass theme)
+- ✅ GitHub Action for automated generation
+- ✅ Smart pathfinding (priority-based hunting - eats darkest squares first)
+- ✅ Smooth SMIL animations with visual gradient
+- ✅ Works for any GitHub user
+- ✅ Zero-install via npx/bunx
+- ✅ Monorepo architecture (Turborepo + Bun)
 
 ---
 
-## 🎮 Phase 3: v2.0 - Interactive Web Playground
+## 🚧 v1.3 - Polish & Glass Theme (Q1 2025)
 
-*Target: Q2 2026*
+**Focus:** Performance, GIF support, and the stunning Glass theme
 
-- [ ] Web app with live preview
-- [ ] Theme customizer (create your own colors)
-- [ ] Download in multiple formats
-- [ ] Share links with custom settings
-- [ ] Evolu integration (save preferences locally)
+- [ ] **GIF output format** - Enables glass theme with blur effects
+- [ ] **Glass theme fully supported** - Liquid glass visual effects
+- [ ] **Smaller file sizes** - Optimize SVG animation data
+- [ ] **Speed control** - Adjust animation speed
+- [ ] **CLI preview mode** - Local preview server
+- [ ] **More community themes** - Submissions welcome!
 
 ---
 
-## 🏆 Phase 4: v3.0 - PvP Mode (Coming Soon!)
+## 🎮 v2.0 - Interactive Web Playground (Q2 2025)
 
-*Target: Q3 2026*
+**Focus:** Web app with live customization
+
+### Core Features
+
+- [ ] **Astro web app** with React islands
+- [ ] **Live playground** - Real-time preview as you type
+- [ ] **Theme customizer** - Create custom color palettes
+- [ ] **Multi-format** download (SVG, GIF, PNG)
+- [ ] **Share links** with custom settings
+- [ ] **Evolu integration** - Save preferences locally (offline-first)
+
+### Technical Stack
+
+- Frontend: Astro + React 19 + Tailwind CSS 4
+- Database: Evolu (local-first CRDT)
+- Backend: Appwrite (auth, storage)
+- Deployment: GitHub Pages + Vercel
+
+---
+
+## 🏆 v3.0 - PvP Mode (Q3 2025)
 
 **Challenge your friends to a snake battle!**
 
+### Game Mechanics
+
 - [ ] **Leaderboards** - Global rankings by score
 - [ ] **Rounds system** - Each round gets faster, snake grows
-- [ ] **PvP Challenges** - Send battle invites to friends or colleagues
-- [ ] **Team battles** - Company vs company competitions (B2B)
-- [ ] **Power-ups**:
-  - 🔄 Shrink - Reduce snake length
-  - ⚡ Speed boost - Temporary speed increase
-  - 🌀 Teleport - Jump to random position
-  - 🛡️ Shield - Pass through yourself once
+- [ ] **PvP Challenges** - Battle friends or colleagues
+- [ ] **Team battles** - Company vs company (B2B feature)
+
+### Power-ups
+
+- 🔄 **Shrink** - Reduce snake length
+- ⚡ **Speed Boost** - Temporary speed increase
+- 🌀 **Teleport** - Jump to random position
+- 🛡️ **Shield** - Pass through yourself once
 
 ### Scoring System
 
-| Contribution Level | Points |
-|--------------------|--------|
-| Level 1 (light)    | 1 pt   |
-| Level 2 (medium)   | 2 pts  |
-| Level 3 (dark)     | 3 pts  |
-| Level 4 (darkest)  | 5 pts  |
-
-**Round multipliers:** 1x → 1.5x → 2x → 3x → 5x
+| Contribution Level | Points | Round Multiplier |
+|--------------------|--------|------------------|
+| Level 1 (light)    | 1 pt   | 1x → 1.5x → 2x → 3x → 5x |
+| Level 2 (medium)   | 2 pts  | |
+| Level 3 (dark)     | 3 pts  | |
+| Level 4 (darkest)  | 5 pts  | |
 
 ---
 
-## 🌟 Community Ideas
+## 🌟 Community Ideas & Under Consideration
 
-Have a feature request? [Open an issue](https://github.com/miccy/snake-evolution/issues/new?template=feature_request.yml)!
+Vote on features at [GitHub Discussions](https://github.com/miccy/snake-evolution/discussions)!
 
-### Under Consideration
+### Most Requested
 
-- ✉️ **Email Signature Mode** - Animated GIF for email footers
-- 🔤 **Custom Text Mode** - Type your own text (e.g., "miccy.dev") and watch the snake eat it!
-- 📜 **Scrolling Text Mode** - Marquee-style text animation in contribution grid (no snake)
-- 🎨 **Email Styling Tools Integration** - Canva, Mailchimp, etc.
+- ✉️ **Email Signature Mode** - Animated GIF for email footers (high demand!)
+- 🔤 **Custom Text Mode** - Type your own text (e.g., "your-name.dev") and watch snake eat it
+- 📜 **Scrolling Text Mode** - Marquee-style text animation (no snake)
+- 🎨 **Email Tool Integration** - Canva, Mailchimp, etc.
+
+### Future Explorations
+
 - 🎵 Sound effects and music
 - 📱 Mobile app (React Native)
 - 🤖 AI opponent mode
 - 📊 Statistics dashboard
 - 🏅 Achievement badges
 - 🎨 Custom snake skins
+- 🔌 Plugin system
+- 🌐 API for third-party integrations
 
 ---
 
-## 💡 Contributing
+## 📅 Detailed Development Timeline
 
-Want to help build PvP mode? Check out our [Contributing Guide](../CONTRIBUTING.md)!
+### Phase 1: Foundation ✅ (Completed)
 
-Priority areas:
+*Week 1-2 - November 2024*
 
-- Web app development (Astro + React)
-- Game mechanics implementation
-- Backend for multiplayer (Appwrite)
-- UI/UX design
+- ✅ Monorepo setup with Turborepo
+- ✅ Core snake engine ported
+- ✅ Pathfinding algorithms
+- ✅ Basic SVG rendering
+- ✅ CI/CD pipeline
+
+### Phase 2: Web Platform 🚧 (Planned Q1 2025)
+
+*Week 2-4 - January 2025*
+
+- [ ] Astro landing page
+- [ ] Interactive playground
+- [ ] Evolu database integration
+- [ ] Appwrite backend setup
+
+### Phase 3: Gallery & Social 🚧 (Planned Q1 2025)
+
+*Week 4-6 - February 2025*
+
+- [ ] Community snake gallery
+- [ ] Voting system
+- [ ] Social sharing with OG images
+- [ ] GitHub OAuth authentication
+
+### Phase 4: Templates & Colors 🚧 (Planned Q2 2025)
+
+*Week 6-8 - March 2025*
+
+- [ ] 20+ visual templates
+- [ ] Template browser UI
+- [ ] Advanced color customization
+- [ ] Real-time preview
+
+### Phase 5: Launch 🚧 (Planned Q2 2025)
+
+*Week 8-10 - April 2025*
+
+- [ ] Product Hunt launch
+- [ ] Dev.to article series
+- [ ] Video demos and tutorials
+- [ ] Press kit and outreach
+
+---
+
+## 💡 How to Contribute
+
+Want to help build the future of GitHub profile visualizations?
+
+**Priority Areas:**
+
+- 🎨 **Design** - Theme creation, UI/UX improvements
+- 🔧 **Development** - Web app (Astro + React), game mechanics
+- 📚 **Documentation** - Tutorials, examples, translations
+- 🌐 **Community** - Discord moderation, issue triage
+
+See [CONTRIBUTING.md](../CONTRIBUTING.md) for details!
+
+---
+
+## 📊 Success Metrics
+
+### Current (v1.2)
+
+- ⭐ GitHub Stars: [Current count]
+- 📦 npm Downloads: [Monthly count]
+- 🎨 Themes: 7
+- 👥 Contributors: Growing!
+
+### Target (End 2025)
+
+- ⭐ 10,000+ GitHub stars
+- 👤 50,000+ active users
+- 🎨 100+ community templates
+- 🌍 Featured in GitHub Explore
+
+---
+
+## 🎯 Release Schedule
+
+```
+v1.2.0  ✅  Dec 2024   Current release
+v1.3.0  🚧  Q1 2025    Glass theme + GIF support
+v2.0.0  🚧  Q2 2025    Web playground launch
+v2.1.0  🚧  Q3 2025    Gallery & community
+v3.0.0  🚧  Q4 2025    PvP Mode 🎮
+```
 
 ---
 
 <p align="center">
-  <b>Star ⭐ the repo to show support and stay updated!</b>
+  <b>⭐ Star the repo to show support and stay updated!</b>
 </p>
+
+<p align="center">
+  <a href="https://github.com/miccy/snake-evolution/issues/new?template=feature_request.yml">📝 Request a Feature</a> •
+  <a href="https://github.com/miccy/snake-evolution/discussions">💬 Discussions</a>
+</p>
+
+---
+
+**Last Updated:** December 18, 2024
+**Maintained By:** [@miccy](https://github.com/miccy)

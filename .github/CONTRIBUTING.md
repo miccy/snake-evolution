@@ -1,12 +1,12 @@
-# Contributing to Snake Evolution / Přispívání do Snake Evolution
+# Contributing to Snake Evolution
 
 <span aria-hidden="true">🐍</span>
 
-**Languages / Jazyky:** [🇬🇧 English](#english) | [🇨🇿 Čeština](#čeština)
+
 
 ---
 
-## English
+
 
 First off, thank you for considering contributing! This project exists because of people like you.
 
@@ -368,7 +368,7 @@ If applicable, add screenshots.
 **Environment:**
 - OS: [e.g. macOS 14.0]
 - Browser: [e.g. Chrome 120]
-- Version: [e.g. 1.0.0]
+- Version: [e.g. 1.2.3]
 
 **Additional context**
 Any other relevant information.
@@ -514,90 +514,6 @@ Happy coding! 🐍✨
 
 ---
 
-## Čeština
+### 📖 More Details
 
-### Jak můžete přispět?
-
-Existuje mnoho způsobů, jak přispět:
-
-- 🐛 **Hlásit chyby** - Pomozte nám zlepšit se
-- 💡 **Navrhovat funkce** - Podělte se o své nápady
-- 📝 **Vylepšit dokumentaci** - Učiňte ji jasnější
-- 🎨 **Vytvářet šablony** - Navrhněte nové vizuální styly
-- 🔧 **Odesílat kód** - Opravujte chyby nebo přidávejte funkce
-- 🌍 **Překládat** - Pomozte nám expandovat globálně
-- 💬 **Pomáhat ostatním** - Odpovídejte na otázky v diskuzích
-
-### Začínáme
-
-#### Předpoklady
-
-- [Bun](https://bun.sh) >= 1.3.0 (primární) nebo [Node.js](https://nodejs.org) >= 22
-- [Git](https://git-scm.com)
-- [Docker](https://docker.com) (pro místní backend)
-- GitHub účet
-
-#### Nastavení vývojového prostředí
-
-```bash
-# 1. Forkněte repozitář
-# Klikněte na "Fork" na GitHubu
-
-# 2. Naklonujte svůj fork
-git clone https://github.com/VAS_USERNAME/snake-evolution.git
-cd snake-evolution
-
-# 3. Přidejte upstream remote
-git remote add upstream https://github.com/miccy/snake-evolution.git
-
-# 4. Nainstalujte závislosti
-bun install
-
-# 5. Spusťte Docker služby (volitelné, pro backend)
-docker compose -f docker/docker-compose.yml up -d
-
-# 6. Vytvořte větev
-git checkout -b feature/nazev-vasi-funkce
-
-# 7. Spusťte vývoj
-bun run dev
-```
-
-### Pracovní postup
-
-1. **Vyberte issue** - Prohlédněte [otevřené issues](https://github.com/miccy/snake-evolution/issues)
-2. **Vytvořte větev** - `git checkout -b feature/nova-funkce`
-3. **Proveďte změny** - Dodržujte naše kódovací standardy
-4. **Napište testy** - Každá změna by měla obsahovat testy
-5. **Formátujte a lintujte** - `bun run quality`
-6. **Commitujte** - Používejte [Conventional Commits](https://www.conventionalcommits.org/)
-7. **Vytvořte PR** - Vyplňte šablonu PR
-
-### Konvence commitů
-
-```bash
-git commit -m "feat(renderer): přidán neonový efekt záře"
-git commit -m "fix(engine): opravena vlastní kolize hada"
-git commit -m "docs(readme): přidány příklady použití CLI"
-```
-
-### Kodex chování
-
-Řídíme se [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md).
-
-### Otázky?
-
-- Prohledejte [GitHub Diskuze](https://github.com/miccy/snake-evolution/discussions)
-- Email: <support@miccy.dev>
-
-### 🎉 Děkujeme
-
-Vaše příspěvky činí tento projekt lepším pro všechny. Ať už jde o kód, dokumentaci, hlášení chyb nebo jen šíření slova - každý příspěvek má význam.
-
-Šťastné kódování! 🐍✨
-
----
-
-### 📖 Více detailů
-
-Úplné pokyny (včetně vytváření šablon, detailní dokumentaci, hlášení chyb a procesu review) naleznete v [anglické sekci výše](#english).
+Full guidelines (including creating templates, detailed documentation, bug reporting, and review process) can be found in the sections above.
