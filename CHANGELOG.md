@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.2.3] - 2024-12-20
+## [1.2.3] - 2025-12-20
 
 ### Fixed
 
@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CLI package is now truly standalone with zero runtime dependencies
 - All dependencies bundled into single executable file
 
-## [1.2.0] - 2024-12-19
+## [1.2.0] - 2025-12-19
 
 ### Changed
 
@@ -29,7 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **CLI:** Added executable permissions (`chmod +x`) to the distributed binary.
 
-## [1.1.0] - 2024-12-18
+## [1.1.0] - 2025-12-18
 
 ### Fixed
 
@@ -58,7 +58,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 
-## [1.0.0] - 2024-12-12
+## [1.0.0] - 2025-12-12
 
 ### 🎉 Initial Release
 
