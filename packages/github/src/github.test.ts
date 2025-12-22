@@ -403,7 +403,7 @@ describe("GitHub - Contribution Count Approximation", () => {
         expect(days[0].level).toBe(0); // -1 clamped to 0
         expect(days[1].level).toBe(4); // 5 clamped to 4
         expect(days[2].level).toBe(4); // 10 clamped to 4
-        
+
         // Count approximations based on clamped levels
         expect(days[0].count).toBe(0);
         expect(days[1].count).toBe(12);

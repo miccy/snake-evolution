@@ -390,7 +390,12 @@ describe("Renderer - Duration and Frame Timing", () => {
       const grid = createMockGrid();
       const singleFrame: SnakeFrame[] = [
         {
-          snake: { segments: [{ x: 0, y: 0, direction: "right" }], direction: "right", length: 1, score: 0 },
+          snake: {
+            segments: [{ x: 0, y: 0, direction: "right" }],
+            direction: "right",
+            length: 1,
+            score: 0,
+          },
           grid,
           frameIndex: 0,
         },
