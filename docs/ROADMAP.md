@@ -6,33 +6,73 @@ Make Snake Evolution the most fun way to visualize GitHub contributions - from s
 
 ---
 
-## ✅ v1.2 - Current Release (December 2024) (December 2024)
+## ✅ v1.2.4 - Current Release (December 2025)
 
 **What's Live:**
 
 - ✅ CLI tool with npm support (`npx @snake-evolution/cli@latest`)
-- ✅ 6 stunning themes (Glass planned once GIF rendering ships)
+- ✅ 7 themes: github-light, github-dark, ocean, sunset, neon-gamer, cypherpunk, glass (GIF only)
 - ✅ GitHub Action for automated generation
 - ✅ Smart pathfinding (priority-based hunting - eats darkest squares first)
 - ✅ Smooth SMIL animations with visual gradient
 - ✅ Works for any GitHub user
 - ✅ Zero-install via npx/bunx
-- ✅ Monorepo architecture (Turborepo + Bun)
+- ✅ Monorepo architecture (Turborepo + Bun 1.3.5)
+- ✅ Consolidated scripts (30 → 21)
+- ✅ Professional README files for all packages
 
 ---
 
-## 🚧 v1.3 - Polish & Glass Theme (Q1 2025)
+## 🚧 v1.3.0 - GIF Output & Glass Theme (January 2025)
 
-**Focus:** Performance, GIF support, and the stunning Glass theme
+**Focus:** GIF format, Glass theme, Bun 1.3.5 integration
 
-- [ ] **GIF output format** - Enables glass theme with blur effects
-- [ ] **Glass theme fully supported** - Liquid glass visual effects
-- [ ] **Smaller file sizes** - Optimize SVG animation data
-- [ ] **Speed control** - Adjust animation speed
-- [ ] **CLI preview mode** - Local preview server
-- [ ] **More community themes** - Submissions welcome!
+### Features
+
+- [ ] **GIF output format** (`--format gif`) - Enables embedding everywhere
+- [ ] **Glass theme fully supported** - Pre-rendered blur effects in GIF
+- [ ] **CLI progress indicator** - Frame rendering progress
+- [ ] **Frame sampling** - Smaller files for large animations
+
+### Technical Implementation (Research Dec 2025)
+
+**Architecture:**
+
+```
+Static SVG → resvg-js (Rust/WASM) → gifenc (pure JS) → GIF
+```
+
+**Dependencies:**
+
+| Library | Version | Purpose | Bun 1.3.5 |
+|---------|---------|---------|-----------|
+| `@resvg/resvg-js` | 2.6.2 | SVG → PNG pixels (WASM) | ✅ Full |
+| `gifenc` | 1.0.3 | PNG → GIF encoding | ✅ Full |
+
+**Why not Platane's approach:**
+
+- ❌ `node-canvas` requires native cairo compilation
+- ❌ `gifsicle` requires binary installation
+- ✅ Our stack = zero native deps, works in Bun
+
+**Glass Theme:**
+
+- SVG blur filters too heavy for browsers
+- GIF pre-renders blur → zero runtime cost
+- Works everywhere: email, README, social media
+
+### Bun 1.3.5 Features We Can Use
+
+| Feature | Use Case |
+|---------|----------|
+| `CompressionStream` | Compressed GIF responses in API |
+| Built-in Redis | GitHub API response caching |
+| S3 support | Store generated GIFs |
+| `Bun.Terminal` | Rich CLI progress display |
+| Compile-time flags | Dev/prod build optimization |
 
 ---
+
 
 ## 🎮 v2.0 - Interactive Web Playground (Q2 2025)
 
