@@ -44,6 +44,14 @@ program
     console.log(`   Theme: ${options.theme}`);
     console.log(`   Format: ${options.format}`);
     console.log(`   Year: ${options.year}`);
+    console.log(
+      `   Frame delay: ${Number.parseInt(options.frameDelay, 10)}ms${
+        options.duration ? " (duration override enabled)" : ""
+      }`,
+    );
+    if (options.duration) {
+      console.log(`   Duration: ${options.duration}s`);
+    }
     console.log("");
 
     try {
@@ -80,12 +88,19 @@ program
 
       // Render
       let output: string;
+      const duration = options.duration ? Number.parseFloat(options.duration) : undefined;
       const renderOptions = {
         palette,
         frameDelay: Number.parseInt(options.frameDelay, 10),
       };
 
-      if (options.static) {
+      if (options.format === "gif") {
+        console.log("🎬 GIF generation not yet implemented, falling back to animated SVG");
+        output = renderAnimatedSVG(frames, {
+          ...renderOptions,
+          ...(duration ? { duration } : {}),
+        });
+      } else if (options.static) {
         console.log("🖼️  Rendering static SVG...");
         const lastFrame = frames[frames.length - 1];
         if (lastFrame) {
@@ -97,6 +112,7 @@ program
         console.log("🎬 Rendering animated SVG...");
         output = renderAnimatedSVG(frames, {
           ...renderOptions,
+          ...(duration ? { duration } : {}),
           loop: true,
         });
       }
