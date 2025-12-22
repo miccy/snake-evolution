@@ -1,89 +1,57 @@
-const UNSAFE_PROTOCOL = /^javascript:/i;
+import DOMPurify from "isomorphic-dompurify";
 
-const isDomParserAvailable = typeof DOMParser !== "undefined";
+/**
+ * DOMPurify configuration for SVG sanitization.
+ * Uses the SVG profile with additional SMIL animation support.
+ */
+const DOMPURIFY_SVG_CONFIG = {
+  USE_PROFILES: { svg: true, svgFilters: true },
+  // Add SMIL animation elements that may not be in default profile
+  ADD_TAGS: ["animate", "animateTransform", "animateMotion", "set"] as string[],
+  ADD_ATTR: [
+    // Animation attributes
+    "attributeName",
+    "begin",
+    "dur",
+    "end",
+    "repeatCount",
+    "values",
+    "keyTimes",
+    "keySplines",
+    "calcMode",
+    "from",
+    "to",
+    "by",
+  ] as string[],
+  RETURN_DOM: false as const,
+  RETURN_DOM_FRAGMENT: false as const,
+};
 
 /**
  * Sanitizes SVG markup by removing scripts and dangerous attributes.
+ * Uses isomorphic-dompurify for robust sanitization in both browser and server environments.
  */
 export function sanitizeSvgContent(svgContent: string): string {
   if (!svgContent) {
     return "";
   }
 
-  if (!isDomParserAvailable) {
-    return stripScriptTags(svgContent);
-  }
-
-  const parser = new DOMParser();
-  const parsed = parser.parseFromString(svgContent, "image/svg+xml");
-  const root = parsed.documentElement;
-
-  if (
-    root.nodeName === "parsererror" ||
-    parsed.querySelector("parsererror") ||
-    root.nodeName.toLowerCase() !== "svg"
-  ) {
-    return "";
-  }
-
-  parsed.querySelectorAll("script").forEach((node) => {
-    node.remove();
-  });
-
-  const walker = parsed.createTreeWalker(root, NodeFilter.SHOW_ELEMENT);
-  let current: Element | null = root;
-
-  while (current) {
-    Array.from(current.attributes).forEach((attribute) => {
-      const name = attribute.name.toLowerCase();
-      const value = attribute.value.trim();
-
-      if (name.startsWith("on")) {
-        current?.removeAttribute(attribute.name);
-      }
-
-      if (isUnsafeHref(name, value)) {
-        current?.removeAttribute(attribute.name);
-      }
-    });
-
-    current = walker.nextNode() as Element | null;
-  }
-
-  return root.outerHTML;
-}
-
-const isUnsafeHref = (name: string, value: string) =>
-  (name === "href" || name === "xlink:href") && UNSAFE_PROTOCOL.test(value);
-
-const stripScriptTags = (content: string) => {
-  // Mitigate ReDoS by limiting input length
-  if (content.length > 100000) {
-    return "";
-  }
-
   // Basic structure check - must look like SVG
-  if (!/<svg[\s\S]*<\/svg>/i.test(content)) {
+  if (!/<svg[\s\S]*<\/svg>/i.test(svgContent)) {
     return "";
   }
 
-  let previous: string;
-  let current = content;
+  try {
+    const sanitized = DOMPurify.sanitize(svgContent, DOMPURIFY_SVG_CONFIG);
 
-  do {
-    previous = current;
-    // Remove script tags
-    current = current.replace(/<script\b[\s\S]*?<\/script[^>]*>/gi, "");
+    // DOMPurify returns empty string for completely invalid content
+    if (!sanitized) {
+      return "";
+    }
 
-    // Remove event handlers (onclick, onload, etc.)
-    current = current.replace(/\s+on[a-z]+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, "");
-
-    // Remove javascript: URLs in href and xlink:href
-    current = current.replace(
-      /\s+(?:xlink:)?href\s*=\s*(?:"\s*javascript:[^"]*"|'\s*javascript:[^']*'|[^\s>]*javascript:[^\s>]*)/gi,
-      "",
-    );
-  } while (current !== previous);
-
-  return current;
-};
+    return sanitized as string;
+  } catch {
+    // If sanitization fails for any reason, return empty string for safety
+    return "";
+  }
+}
