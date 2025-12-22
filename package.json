@@ -1,7 +1,7 @@
 {
   "name": "snake-evolution",
   "private": true,
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Transform your GitHub contribution graph into an epic snake animation",
   "repository": {
     "type": "git",
