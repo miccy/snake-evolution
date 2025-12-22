@@ -52,6 +52,11 @@ const isUnsafeHref = (name: string, value: string) =>
   (name === "href" || name === "xlink:href") && UNSAFE_PROTOCOL.test(value);
 
 const stripScriptTags = (content: string) => {
+  // Mitigate ReDoS by limiting input length
+  if (content.length > 100000) {
+    return "";
+  }
+
   let previous: string;
   let current = content;
 
