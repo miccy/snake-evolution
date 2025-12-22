@@ -28,7 +28,7 @@ snake-evolution/
 ├── packages/
 │   ├── types/            # Shared TypeScript types
 │   ├── engine/           # Snake game logic
-│   ├── renderer/         # SVG/GIF rendering
+│   ├── renderer/         # SVG rendering (GIF planned)
 │   ├── github/           # GitHub API client
 │   └── ui/               # React components
 └── docker/               # Docker setup
@@ -43,7 +43,7 @@ packages/github (fetch contributions)
     ↓
 packages/engine (calculate snake path)
     ↓
-packages/renderer (generate SVG/GIF)
+packages/renderer (generate SVG; GIF planned)
     ↓
 Output file or API response
 ```
@@ -62,9 +62,9 @@ The engine calculates the optimal path for the snake:
 
 Supports multiple output formats:
 
-- **SVG** - Vector graphics, scales perfectly
-- **GIF** - Animated, compatible everywhere
-- **PNG** - Static image for embedding
+- **SVG** - Vector graphics, scales perfectly (current)
+- **GIF** - Planned animated output
+- **PNG** - Planned static raster output
 
 ### GitHub Client
 

@@ -32,22 +32,18 @@ jobs:
 |-------|-------------|---------|
 | `github_user_name` | GitHub username to generate snake for | Required |
 | `github_token` | GitHub token for API access | `${{ github.token }}` |
-| `outputs` | Output file paths and formats | `dist/snake.svg` |
-| `palette` | Color palette name | `github` |
-| `animated` | Enable animation | `false` |
+| `outputs` | Output file paths (SVG only) | `dist/snake.svg` |
+| `theme` | Color theme | `github-dark` |
+| `year` | Contribution year | Current year |
 
 ## Output Formats
+
+> GIF output is not available yet. Use SVG outputs until GIF rendering ships.
 
 ### Static SVG
 
 ```yaml
 outputs: dist/snake.svg
-```
-
-### Animated GIF
-
-```yaml
-outputs: dist/snake.gif?animated=true
 ```
 
 ### Multiple Outputs
@@ -56,7 +52,6 @@ outputs: dist/snake.gif?animated=true
 outputs: |
   dist/snake.svg
   dist/snake-dark.svg?palette=github-dark
-  dist/snake.gif?animated=true&palette=ocean
 ```
 
 ## Full Example
@@ -87,7 +82,6 @@ jobs:
           outputs: |
             dist/snake.svg
             dist/snake-dark.svg?palette=github-dark
-            dist/snake.gif?animated=true
 
       - name: Push to output branch
         uses: crazy-max/ghaction-github-pages@v4

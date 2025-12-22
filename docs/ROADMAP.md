@@ -11,7 +11,7 @@ Make Snake Evolution the most fun way to visualize GitHub contributions - from s
 **What's Live:**
 
 - ✅ CLI tool with npm support (`npx @snake-evolution/cli@latest`)
-- ✅ 7 stunning themes (6 SVG + 1 GIF-only glass theme)
+- ✅ 6 stunning themes (Glass planned once GIF rendering ships)
 - ✅ GitHub Action for automated generation
 - ✅ Smart pathfinding (priority-based hunting - eats darkest squares first)
 - ✅ Smooth SMIL animations with visual gradient

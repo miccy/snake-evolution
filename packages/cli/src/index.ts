@@ -9,6 +9,7 @@ import { getTheme, renderAnimatedSVG, renderStaticSVG } from "@snake-evolution/r
 import { Command } from "commander";
 
 import data from "../package.json";
+import { validateOutputFormat } from "./format";
 
 const pkg = { version: data.version };
 
@@ -29,11 +30,11 @@ program
     "Theme name (github-light, github-dark, ocean, sunset, neon-gamer, cypherpunk, glass)",
     "github-dark",
   )
-  .option("-f, --format <format>", "Output format (svg, gif)", "svg")
+  .option("-f, --format <format>", "Output format (svg only for now)", "svg")
   .option("-y, --year <year>", "Year to generate for", String(new Date().getFullYear()))
   .option("--token <token>", "GitHub personal access token for higher rate limits")
   .option("--animated", "Generate animated SVG (default: true)", true)
-  .option("--static", "Generate static SVG (single frame)")
+  .option("--static", "Generate static SVG (single frame with the final snake)")
   .option("--frame-delay <ms>", "Delay between frames in ms", "150")
   .option("--max-length <n>", "Maximum snake length (0 = auto)", "0")
   .option("--grow-every <n>", "Grow 1 segment every N contributions (0 = auto)", "0")
@@ -46,14 +47,14 @@ program
     console.log("");
 
     try {
-      // Block glass theme for SVG (too heavy, freezes PC)
-      if (options.theme === "glass" && options.format !== "gif") {
-        console.error("❌ Error: Glass theme requires GIF output format.");
-        console.error("   Glass uses blur/transparency effects that are too heavy for SVG.");
-        console.error("   GIF support coming in v1.1. For now, try: --theme cypherpunk");
+      const formatCheck = validateOutputFormat(options.format, options.theme);
+      if (!formatCheck.ok) {
+        console.error("❌ Error:", formatCheck.reason);
+        if (formatCheck.hint) {
+          console.error(`   ${formatCheck.hint}`);
+        }
         process.exit(1);
       }
-
       // Fetch contributions
       console.log("📊 Fetching GitHub contributions...");
       const grid = await fetchContributions(
@@ -84,10 +85,7 @@ program
         frameDelay: Number.parseInt(options.frameDelay, 10),
       };
 
-      if (options.format === "gif") {
-        console.log("🎬 GIF generation not yet implemented, falling back to animated SVG");
-        output = renderAnimatedSVG(frames, renderOptions);
-      } else if (options.static) {
+      if (options.static) {
         console.log("🖼️  Rendering static SVG...");
         const lastFrame = frames[frames.length - 1];
         if (lastFrame) {
@@ -127,7 +125,7 @@ program
     console.log("  sunset        - Warm sunset vibes");
     console.log("  neon-gamer    - Vibrant neon purple/green");
     console.log("  cypherpunk    - Blue/magenta cyberpunk vibes");
-    console.log("  glass         - Liquid glass effect (requires GIF output)");
+    console.log("  glass         - Liquid glass effect (coming when GIF output ships)");
   });
 
 program.parse();

@@ -54,7 +54,7 @@ GitHub API → packages/github → packages/engine → packages/renderer → SVG
 ## Planned Data Flow (v2.0+)
 
 ```
-GitHub API → packages/github → packages/engine → packages/renderer → Output (SVG/GIF)
+GitHub API → packages/github → packages/engine → packages/renderer → Output (SVG; GIF planned)
                                      ↓
                               Evolu (local-first storage)
                                      ↓
