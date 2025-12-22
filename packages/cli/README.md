@@ -53,8 +53,8 @@ snake themes
 | `-o, --output <path>` | Output file path | `snake.svg` |
 | `-t, --theme <name>` | Color theme | `github-dark` |
 | `-y, --year <year>` | Year to generate | current year |
-| `-f, --format <format>` | Output format (svg, gif) | `svg` |
-| `--static` | Generate static SVG (final frame with snake) | `false` |
+| `-f, --format <format>` | Output format (svg only; GIF not supported yet) | `svg` |
+| `--static` | Generate static SVG (no animation) | `false` |
 | `--frame-delay <ms>` | Delay between frames | `150` |
 | `--token <token>` | GitHub token for higher rate limits | - |
 
@@ -68,7 +68,7 @@ snake themes
 | `sunset` | Warm sunset vibes |
 | `neon-gamer` | Vibrant neon purple/green |
 | `cypherpunk` | Blue/magenta cyberpunk vibes |
-| `glass` | Liquid glass effect (requires GIF output, coming soon) |
+| `glass` | Planned liquid glass effect (blocked until GIF output is available) |
 
 ## Examples
 
@@ -177,7 +177,7 @@ snake generate -u YOUR_USERNAME
 
 ### Theme Not Rendering
 
-Glass theme requires GIF output (coming in v1.3):
+Glass theme is temporarily disabled until GIF output lands:
 
 ```bash
 # Use alternative themes for SVG

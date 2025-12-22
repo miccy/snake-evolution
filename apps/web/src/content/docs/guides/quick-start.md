@@ -33,7 +33,6 @@ jobs:
           outputs: |
             dist/snake.svg
             dist/snake-dark.svg?palette=github-dark
-            dist/snake.gif?animated=true
 
       - uses: actions/upload-artifact@v4
         with:

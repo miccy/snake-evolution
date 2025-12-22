@@ -60,7 +60,7 @@ snake-evolution/
 ├── packages/
 │   ├── types/        # Shared TypeScript types
 │   ├── engine/       # Snake game logic
-│   ├── renderer/     # SVG/GIF rendering
+│   ├── renderer/     # SVG rendering (GIF planned)
 │   ├── github/       # GitHub API client
 │   └── ui/           # Shared React components
 └── docker/           # Docker setup
