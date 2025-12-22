@@ -36,8 +36,10 @@ export function sanitizeSvgContent(svgContent: string): string {
     return "";
   }
 
-  // Basic structure check - must look like SVG
-  if (!/<svg[\s\S]*<\/svg>/i.test(svgContent)) {
+  // Basic structure check - must contain SVG tags (O(1) check to avoid ReDoS)
+  const hasOpenTag = svgContent.includes("<svg");
+  const hasCloseTag = svgContent.includes("</svg>");
+  if (!hasOpenTag || !hasCloseTag) {
     return "";
   }
 
