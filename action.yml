@@ -54,7 +54,7 @@ runs:
       shell: bash
       run: |
         # Parse inputs
-        OUTPUT="${{ inputs.outputs }}"
+        OUTPUTS_RAW="${{ inputs.outputs }}"
         THEME="${{ inputs.theme }}"
         YEAR="${{ inputs.year }}"
         USERNAME="${{ inputs.github_user_name }}"
@@ -62,23 +62,81 @@ runs:
         ACTION_PATH="${{ github.action_path }}"
         WORKSPACE="${{ github.workspace }}"
 
-        # Build output path (relative to workspace, not action path)
-        OUTPUT_PATH="${WORKSPACE}/${OUTPUT}"
+        # Split outputs on commas and newlines
+        mapfile -t OUTPUTS <<< "$(printf '%s\n' "$OUTPUTS_RAW" | tr ',' '\n')"
 
-        # Build command (run from action path, output to workspace)
-        CMD="bun run ${ACTION_PATH}/packages/cli/src/index.ts generate -u $USERNAME -t $THEME -o $OUTPUT_PATH"
+        # Base CLI command (run from action path)
+        CMD_BASE=(bun run "${ACTION_PATH}/packages/cli/src/index.ts" generate -u "$USERNAME")
 
         if [ -n "$YEAR" ]; then
-          CMD="$CMD -y $YEAR"
+          CMD_BASE+=( -y "$YEAR" )
         fi
 
         if [ -n "$TOKEN" ]; then
-          CMD="$CMD --token $TOKEN"
+          CMD_BASE+=( --token "$TOKEN" )
         fi
 
-        # Run generation
-        echo "Running: $CMD"
-        eval $CMD
+        FIRST_OUTPUT=""
+
+        for RAW_OUTPUT in "${OUTPUTS[@]}"; do
+          ENTRY="$(echo "$RAW_OUTPUT" | xargs)"
+
+          # Skip empty lines
+          if [ -z "$ENTRY" ]; then
+            continue
+          fi
+
+          # Extract path and query params
+          OUTPUT_PATH_REL="${ENTRY%%\?*}"
+          OUTPUT_PALETTE="$THEME"
+          OUTPUT_FORMAT=""
+
+          if [[ "$ENTRY" == *"?"* ]]; then
+            QUERY_STRING="${ENTRY#*\?}"
+            IFS='&' read -ra PARAMS <<< "$QUERY_STRING"
+            for PARAM in "${PARAMS[@]}"; do
+              KEY="${PARAM%%=*}"
+              VALUE="${PARAM#*=}"
+              case "$KEY" in
+                palette)
+                  OUTPUT_PALETTE="$VALUE"
+                  ;;
+                format)
+                  OUTPUT_FORMAT="$VALUE"
+                  ;;
+              esac
+            done
+          fi
+
+          if [ -z "$FIRST_OUTPUT" ]; then
+            FIRST_OUTPUT="$OUTPUT_PATH_REL"
+          fi
+
+          OUTPUT_PATH_ABS="${WORKSPACE}/${OUTPUT_PATH_REL}"
+
+          # Validate path is within workspace (resolve symlinks and check prefix)
+          RESOLVED_PATH="$(cd "$(dirname "$OUTPUT_PATH_ABS")" 2>/dev/null && pwd -P)/$(basename "$OUTPUT_PATH_ABS")" || {
+            echo "Error: Invalid output path: $OUTPUT_PATH_REL"
+            continue
+          }
+          if [[ "$RESOLVED_PATH" != "$WORKSPACE"* ]]; then
+            echo "Error: Output path escapes workspace: $OUTPUT_PATH_REL"
+            continue
+          fi
+
+          CMD=("${CMD_BASE[@]}" -t "$OUTPUT_PALETTE" -o "$OUTPUT_PATH_ABS")
+          if [ -n "$OUTPUT_FORMAT" ]; then
+            CMD+=( -f "$OUTPUT_FORMAT" )
+          fi
+
+          echo "Running: ${CMD[*]}"
+          if ! "${CMD[@]}"; then
+            echo "Error: Failed to generate output for: $OUTPUT_PATH_REL"
+            exit 1
+          fi
+        done
 
         # Set output (relative path for user convenience)
-        echo "svg_path=$OUTPUT" >> $GITHUB_OUTPUT
+        if [ -n "$FIRST_OUTPUT" ]; then
+          echo "svg_path=$FIRST_OUTPUT" >> $GITHUB_OUTPUT
+        fi
