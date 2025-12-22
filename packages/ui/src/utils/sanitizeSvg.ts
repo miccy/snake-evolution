@@ -34,7 +34,6 @@ export function sanitizeSvgContent(svgContent: string): string {
 
       if (name.startsWith("on")) {
         current?.removeAttribute(attribute.name);
-        return;
       }
 
       if (isUnsafeHref(name, value)) {
