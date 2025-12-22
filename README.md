@@ -224,7 +224,7 @@ bun add @snake-evolution/cli
 | `-t, --theme` | Color theme | `github-dark` |
 | `-f, --format` | Output format (svg only; GIF not supported yet) | `svg` |
 | `-y, --year` | Year to generate | current |
-| `--static` | No animation | `false` |
+| `--static` | Static SVG (final frame with snake) | `false` |
 
 > ℹ️ GIF output is not available yet. The CLI will stop with a clear error if you request `--format gif` or the Glass theme.
 

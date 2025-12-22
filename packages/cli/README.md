@@ -80,7 +80,7 @@ snake generate -u miccy -y 2024
 snake generate -u miccy -o snake-dark.svg -t github-dark
 snake generate -u miccy -o snake-light.svg -t github-light
 
-# Generate static (no animation)
+# Generate static render (final snake state, no animation)
 snake generate -u miccy --static -o static-snake.svg
 
 # With custom frame delay (slower animation)
