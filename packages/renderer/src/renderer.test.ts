@@ -330,3 +330,335 @@ describe("Renderer - Edge Cases", () => {
     expect(svg).toContain("<svg");
   });
 });
+
+// ============================================
+// Duration Calculation Tests
+// ============================================
+
+describe("Renderer - Duration and Frame Timing", () => {
+  describe("duration option", () => {
+    test("should calculate frame duration from total duration", () => {
+      const frames = createMockFrames();
+      const svg = renderAnimatedSVG(frames, { duration: 3.0 });
+
+      // 3 frames, 3 seconds = 1 second per frame
+      expect(svg).toContain('dur="3.00s"');
+    });
+
+    test("should override frameDelay when duration is provided", () => {
+      const frames = createMockFrames();
+      const svg = renderAnimatedSVG(frames, {
+        duration: 1.5,
+        frameDelay: 500, // Should be ignored
+      });
+
+      // 3 frames, 1.5 seconds = 0.5 seconds per frame
+      expect(svg).toContain('dur="1.50s"');
+    });
+
+    test("should use frameDelay when duration is not provided", () => {
+      const frames = createMockFrames();
+      const svg = renderAnimatedSVG(frames, { frameDelay: 200 });
+
+      // 3 frames, 200ms each = 0.6 seconds total
+      expect(svg).toContain('dur="0.60s"');
+    });
+
+    test("should handle duration of 0", () => {
+      const frames = createMockFrames();
+      const svg = renderAnimatedSVG(frames, { duration: 0 });
+
+      // 0 duration means 0ms per frame
+      expect(svg).toContain('dur="0.00s"');
+    });
+
+    test("should handle very short duration", () => {
+      const frames = createMockFrames();
+      const svg = renderAnimatedSVG(frames, { duration: 0.1 });
+
+      expect(svg).toContain('dur="0.10s"');
+    });
+
+    test("should handle very long duration", () => {
+      const frames = createMockFrames();
+      const svg = renderAnimatedSVG(frames, { duration: 60 });
+
+      expect(svg).toContain('dur="60.00s"');
+    });
+
+    test("should handle single frame with duration", () => {
+      const grid = createMockGrid();
+      const singleFrame: SnakeFrame[] = [
+        {
+          snake: {
+            segments: [{ x: 0, y: 0, direction: "right" }],
+            direction: "right",
+            length: 1,
+            score: 0,
+          },
+          grid,
+          frameIndex: 0,
+        },
+      ];
+
+      const svg = renderAnimatedSVG(singleFrame, { duration: 5 });
+
+      // 1 frame, 5 seconds
+      expect(svg).toContain('dur="5.00s"');
+    });
+
+    test("should calculate per-frame duration correctly for many frames", () => {
+      const grid = createMockGrid();
+      const manyFrames: SnakeFrame[] = Array.from({ length: 100 }, (_, i) => ({
+        snake: { segments: [{ x: i % 53, y: i % 7, direction: "right" }], direction: "right", length: 1, score: 0 },
+        grid,
+        frameIndex: i,
+      }));
+
+      const svg = renderAnimatedSVG(manyFrames, { duration: 10 });
+
+      // 100 frames, 10 seconds = 0.1s per frame
+      expect(svg).toContain('dur="10.00s"');
+    });
+  });
+
+  describe("frameDelay fallback", () => {
+    test("should use default frameDelay when neither duration nor frameDelay provided", () => {
+      const frames = createMockFrames();
+      const svg = renderAnimatedSVG(frames, {});
+
+      // Default is 150ms from DEFAULT_OPTIONS, 3 frames = 450ms = 0.45s
+      expect(svg).toContain('dur="0.45s"');
+    });
+
+    test("should fall back to 60ms when frameDelay is undefined", () => {
+      const frames = createMockFrames();
+      const svg = renderAnimatedSVG(frames, { frameDelay: undefined });
+
+      // Fallback is 60ms, 3 frames = 180ms = 0.18s
+      expect(svg).toContain('dur="0.18s"');
+    });
+
+    test("should handle frameDelay of 0", () => {
+      const frames = createMockFrames();
+      const svg = renderAnimatedSVG(frames, { frameDelay: 0 });
+
+      // 0ms per frame
+      expect(svg).toContain('dur="0.00s"');
+    });
+  });
+
+  describe("edge cases", () => {
+    test("should handle null duration explicitly", () => {
+      const frames = createMockFrames();
+      const svg = renderAnimatedSVG(frames, { duration: null as any });
+
+      // null should be treated as undefined, fall back to frameDelay
+      expect(svg).toContain("<svg");
+    });
+
+    test("should handle undefined duration explicitly", () => {
+      const frames = createMockFrames();
+      const svg = renderAnimatedSVG(frames, { duration: undefined });
+
+      // Should fall back to frameDelay
+      expect(svg).toContain("<svg");
+    });
+
+    test("should handle negative duration", () => {
+      const frames = createMockFrames();
+      const svg = renderAnimatedSVG(frames, { duration: -5 });
+
+      // Negative duration results in negative per-frame duration
+      expect(svg).toContain('dur="-5.00s"');
+    });
+
+    test("should handle fractional frameDelay", () => {
+      const frames = createMockFrames();
+      const svg = renderAnimatedSVG(frames, { frameDelay: 33.333 });
+
+      // 3 frames, 33.333ms each ≈ 100ms = 0.1s
+      expect(svg).toMatch(/dur="0\.1[0-9]+s"/);
+    });
+  });
+});
+
+// ============================================
+// renderSnakeSegments Refactoring Tests
+// ============================================
+
+describe("Renderer - Snake Segment Rendering", () => {
+  describe("renderSnakeSegments function", () => {
+    test("should render head with head color", () => {
+      const grid = createMockGrid();
+      const snake: SnakeState = {
+        segments: [
+          { x: 5, y: 3, direction: "right" },
+          { x: 4, y: 3, direction: "right" },
+          { x: 3, y: 3, direction: "right" },
+        ],
+        direction: "right",
+        length: 3,
+        score: 0,
+      };
+
+      const svg = renderStaticSVG(grid, snake);
+      const headColor = themes["github-dark"].snake.head;
+
+      expect(svg).toContain(`fill="${headColor}"`);
+    });
+
+    test("should render tail with tail color", () => {
+      const grid = createMockGrid();
+      const snake: SnakeState = {
+        segments: [
+          { x: 5, y: 3, direction: "right" },
+          { x: 4, y: 3, direction: "right" },
+          { x: 3, y: 3, direction: "right" },
+        ],
+        direction: "right",
+        length: 3,
+        score: 0,
+      };
+
+      const svg = renderStaticSVG(grid, snake);
+      const tailColor = themes["github-dark"].snake.tail;
+
+      expect(svg).toContain(`fill="${tailColor}"`);
+    });
+
+    test("should render body segments with body color", () => {
+      const grid = createMockGrid();
+      const snake: SnakeState = {
+        segments: [
+          { x: 5, y: 3, direction: "right" },
+          { x: 4, y: 3, direction: "right" },
+          { x: 3, y: 3, direction: "right" },
+          { x: 2, y: 3, direction: "right" },
+        ],
+        direction: "right",
+        length: 4,
+        score: 0,
+      };
+
+      const svg = renderStaticSVG(grid, snake);
+      const bodyColor = themes["github-dark"].snake.body;
+
+      // Should have at least 2 body segments (between head and tail)
+      const bodyMatches = svg.match(new RegExp(`fill="${bodyColor}"`, "g"));
+      expect(bodyMatches).toBeTruthy();
+      expect(bodyMatches!.length).toBeGreaterThanOrEqual(2);
+    });
+
+    test("should render single segment snake with head color", () => {
+      const grid = createMockGrid();
+      const snake: SnakeState = {
+        segments: [{ x: 5, y: 3, direction: "right" }],
+        direction: "right",
+        length: 1,
+        score: 0,
+      };
+
+      const svg = renderStaticSVG(grid, snake);
+      const headColor = themes["github-dark"].snake.head;
+
+      expect(svg).toContain(`fill="${headColor}"`);
+    });
+
+    test("should render two-segment snake with head and tail", () => {
+      const grid = createMockGrid();
+      const snake: SnakeState = {
+        segments: [
+          { x: 5, y: 3, direction: "right" },
+          { x: 4, y: 3, direction: "right" },
+        ],
+        direction: "right",
+        length: 2,
+        score: 0,
+      };
+
+      const svg = renderStaticSVG(grid, snake);
+      const headColor = themes["github-dark"].snake.head;
+      const tailColor = themes["github-dark"].snake.tail;
+
+      expect(svg).toContain(`fill="${headColor}"`);
+      expect(svg).toContain(`fill="${tailColor}"`);
+    });
+
+    test("should position segments correctly based on grid coordinates", () => {
+      const grid = createMockGrid();
+      const snake: SnakeState = {
+        segments: [
+          { x: 0, y: 0, direction: "right" },
+          { x: 1, y: 1, direction: "right" },
+        ],
+        direction: "right",
+        length: 2,
+        score: 0,
+      };
+
+      const svg = renderStaticSVG(grid, snake);
+      const cellSize = 11;
+      const gap = 3;
+
+      // First segment at (0, 0)
+      const x0 = gap + 0 * (cellSize + gap);
+      const y0 = gap + 0 * (cellSize + gap);
+      expect(svg).toContain(`x="${x0}" y="${y0}"`);
+
+      // Second segment at (1, 1)
+      const x1 = gap + 1 * (cellSize + gap);
+      const y1 = gap + 1 * (cellSize + gap);
+      expect(svg).toContain(`x="${x1}" y="${y1}"`);
+    });
+
+    test("should apply rounded corners (rx=2) to all segments", () => {
+      const grid = createMockGrid();
+      const snake = createMockSnake();
+
+      const svg = renderStaticSVG(grid, snake);
+
+      const rxMatches = svg.match(/rx="2"/g);
+      expect(rxMatches).toBeTruthy();
+      expect(rxMatches!.length).toBe(snake.segments.length);
+    });
+
+    test("should render segments in correct order (head first)", () => {
+      const grid = createMockGrid();
+      const snake: SnakeState = {
+        segments: [
+          { x: 5, y: 3, direction: "right" }, // head
+          { x: 4, y: 3, direction: "right" }, // body
+          { x: 3, y: 3, direction: "right" }, // tail
+        ],
+        direction: "right",
+        length: 3,
+        score: 0,
+      };
+
+      const svg = renderStaticSVG(grid, snake);
+      const headColor = themes["github-dark"].snake.head;
+      const tailColor = themes["github-dark"].snake.tail;
+
+      const headIndex = svg.indexOf(`fill="${headColor}"`);
+      const tailIndex = svg.indexOf(`fill="${tailColor}"`);
+
+      // Head should appear before tail in SVG
+      expect(headIndex).toBeLessThan(tailIndex);
+    });
+  });
+
+  describe("glass theme filter attribute", () => {
+    test("should not apply glass filter to non-glass themes", () => {
+      const grid = createMockGrid();
+      const snake = createMockSnake();
+
+      const themes = ["github-dark", "github-light", "ocean", "sunset", "neon-gamer", "cypherpunk"];
+
+      for (const themeName of themes) {
+        const svg = renderStaticSVG(grid, snake, { palette: getTheme(themeName) });
+        expect(svg).not.toContain('filter="url(#glass-glow)"');
+      }
+    });
+  });
+});
