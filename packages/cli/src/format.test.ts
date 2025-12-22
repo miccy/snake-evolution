@@ -191,10 +191,13 @@ describe("validateOutputFormat", () => {
       expect(result).toEqual({ ok: true, normalizedFormat: "svg" });
     });
 
-    test("handles empty string format", () => {
+    test("rejects empty string format", () => {
       const result = validateOutputFormat("", "github-dark");
 
-      expect(result).toEqual({ ok: true, normalizedFormat: "svg" });
+      expect(result.ok).toBe(false);
+      if (!result.ok) {
+        expect(result.reason).toContain('Unsupported format ""');
+      }
     });
 
     test("normalizes format to lowercase", () => {
