@@ -25,11 +25,7 @@ import { simulateSnake } from '@snake-evolution/engine';
 const staticSvg = renderStaticSVG(grid, snake, {
   cellSize: 12,
   gap: 2,
- const staticSvg = renderStaticSVG(grid, snake, {
-   cellSize: 12,
-   gap: 2,
-   palette: 'github-light'
- });
+  palette: 'github-light'
 });
 
 // Animated render
