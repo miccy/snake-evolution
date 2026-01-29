@@ -41,7 +41,7 @@ jobs:
         run: bun run format:check
 
       - name: Type check
-        run: bun run type-check
+        run: bun run typecheck
 
       - name: Run tests
         run: bun test
