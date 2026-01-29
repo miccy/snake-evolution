@@ -251,7 +251,7 @@ async function fetchContributionsHTML(username: string, year?: number): Promise<
   // And strip ~1 year back.
   const oneYearAgo = new Date(now);
   oneYearAgo.setFullYear(now.getFullYear() - 1);
-  oneYearAgo.setDate(oneYearAgo.getDate() - oneYearAgo.getDay()); // Align to previous Sunday
+  oneYearAgo.setUTCDate(oneYearAgo.getUTCDate() - oneYearAgo.getUTCDay()); // Align to previous Sunday (UTC)
   // Use UTC components directly to avoid timezone-induced shifts
   const fromDate = `${oneYearAgo.getUTCFullYear()}-${String(oneYearAgo.getUTCMonth() + 1).padStart(2, "0")}-${String(oneYearAgo.getUTCDate()).padStart(2, "0")}`;
   const toDate = `${now.getUTCFullYear()}-${String(now.getUTCMonth() + 1).padStart(2, "0")}-${String(now.getUTCDate()).padStart(2, "0")}`;
