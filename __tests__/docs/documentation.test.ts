@@ -211,7 +211,6 @@ describe("Documentation Files", () => {
       const docs = [
         "../../README.md",
         "../../.github/CONTRIBUTING.md",
-        "../../.github/CONTRIBUTING.md",
         "../../RELEASE_SETUP.md",
         "../../apps/web/src/content/docs/roadmap.md",
       ];
@@ -231,7 +230,6 @@ describe("Documentation Files", () => {
     test("documentation files should not be too small", () => {
       const docs = [
         { path: "../../README.md", minSize: 2000 },
-        { path: "../../.github/CONTRIBUTING.md", minSize: 3000 },
         { path: "../../.github/CONTRIBUTING.md", minSize: 3000 },
         { path: "../../RELEASE_SETUP.md", minSize: 500 },
         { path: "../../apps/web/src/content/docs/roadmap.md", minSize: 1000 },

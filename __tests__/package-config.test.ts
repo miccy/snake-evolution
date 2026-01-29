@@ -24,7 +24,7 @@ describe("Package Configuration", () => {
       expect(pkg.private).toBe(true);
     });
 
-    test("should specify Node.js >= 22", () => {
+    test("should specify Node.js >= 24", () => {
       expect(pkg.engines).toBeDefined();
       const engines = pkg.engines as Record<string, string>;
       expect(engines.node).toMatch(/>=\s*24/);

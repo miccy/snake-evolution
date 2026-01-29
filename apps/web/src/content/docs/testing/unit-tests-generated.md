@@ -266,4 +266,4 @@ These comprehensive unit tests provide a solid foundation for the codebase chang
 - GitHub parsing: **+253 lines** (new coverage)
 - Renderer: **+327 lines** (new coverage)
 
-**Overall Impact:** From ~100 baseline tests to **250+ total tests** in the project.
+**Overall Impact:** From ~100 baseline tests to **223+ total tests** in the project.

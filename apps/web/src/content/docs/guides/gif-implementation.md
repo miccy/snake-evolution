@@ -83,6 +83,11 @@ export async function renderAnimatedGIF(
   frames: SnakeFrame[],
   options: GifOptions = {}
 ): Promise<Buffer> {
+  // Validate inputs
+  if (!frames || frames.length === 0) {
+    throw new Error("frames must be a non-empty array");
+  }
+
   const {
     width = 847,
     height = 112,
@@ -92,41 +97,65 @@ export async function renderAnimatedGIF(
     ...renderOptions
   } = options;
 
+  if (width <= 0 || height <= 0 || frameDelay <= 0) {
+    throw new Error("width, height, and frameDelay must be positive numbers");
+  }
+
   const gif = GIFEncoder();
   const total = frames.length;
 
-  for (let i = 0; i < frames.length; i++) {
-    const frame = frames[i];
+  try {
+    for (let i = 0; i < frames.length; i++) {
+        const frame = frames[i];
 
-    // Progress callback
-    if (onProgress) onProgress(i + 1, total);
+        // Progress callback
+        if (onProgress) onProgress(i + 1, total);
 
-    // 1. Render static SVG for this frame
-    const svg = renderStaticSVG(frame.grid, frame.snake, renderOptions);
+        try {
+            // 1. Render static SVG for this frame
+            const svg = renderStaticSVG(frame.grid, frame.snake, renderOptions);
 
-    // 2. Convert SVG to RGBA pixels using resvg (WASM)
-    const resvg = new Resvg(svg, {
-      fitTo: { mode: "width", value: width },
-    });
-    const rendered = resvg.render();
-    const pixels = rendered.pixels; // Uint8Array RGBA
-    const actualWidth = rendered.width;
-    const actualHeight = rendered.height;
+            // 2. Convert SVG to RGBA pixels using resvg (WASM)
+            const resvg = new Resvg(svg, {
+              fitTo: { mode: "width", value: width },
+            });
+            const rendered = resvg.render();
+            const pixels = rendered.pixels; // Uint8Array RGBA
+            const actualWidth = rendered.width;
+            const actualHeight = rendered.height;
 
-    // 3. Quantize colors (GIF max 256)
-    const palette = quantize(pixels, 256, { format: "rgba4444" });
-    const indexed = applyPalette(pixels, palette, "rgba4444");
+            // 3. Quantize colors (GIF max 256)
+            const palette = quantize(pixels, 256, { format: "rgba4444" });
+            const indexed = applyPalette(pixels, palette, "rgba4444");
 
-    // 4. Add frame to GIF
-    gif.writeFrame(indexed, actualWidth, actualHeight, {
-      palette,
-      delay: frameDelay,
-      dispose: 2, // restore to background
-    });
+            // 4. Add frame to GIF
+            gif.writeFrame(indexed, actualWidth, actualHeight, {
+              palette,
+              delay: frameDelay,
+              dispose: 2, // restore to background
+            });
+        } catch (err) {
+            // Annotate error with frame index
+            const error = err instanceof Error ? err : new Error(String(err));
+            throw new Error(`Frame ${i} failed: ${error.message}`);
+        }
+    }
+
+    gif.finish();
+    return Buffer.from(gif.bytes());
+  } catch (error) {
+     if (onProgress) {
+        // Optional: signal failure via callback if contract supports it
+     }
+     throw error;
+  } finally {
+    // Ensure cleanup so internal streams are finalized even on error
+    try {
+        // Verify if finish() is safe to call multiple times or check internal state if possible
+        // gifenc's finish() writes the trailer.
+        gif.finish(); 
+    } catch {}
   }
-
-  gif.finish();
-  return Buffer.from(gif.bytes());
 }
 ```
 
@@ -141,12 +170,21 @@ export async function renderAnimatedGIFSampled(
 ): Promise<Buffer> {
   const { sampleRate = 1, ...gifOptions } = options;
 
+  if (sampleRate < 1 || !Number.isInteger(sampleRate)) {
+    throw new Error("sampleRate must be a positive integer");
+  }
+
   if (sampleRate <= 1) {
     return renderAnimatedGIF(frames, gifOptions);
   }
 
   // Sample every Nth frame, adjust delay accordingly
   const sampled = frames.filter((_, i) => i % sampleRate === 0);
+
+  if (sampled.length < 2) {
+    console.warn(`sampleRate ${sampleRate} too high, resulting in only ${sampled.length} frame(s)`);
+  }
+
   const adjustedDelay = (gifOptions.frameDelay || 150) * sampleRate;
 
   return renderAnimatedGIF(sampled, {
