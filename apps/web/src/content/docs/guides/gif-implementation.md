@@ -1,3 +1,8 @@
+---
+title: GIF Implementation Guide
+description: Technical guide for implementing GIF output support.
+---
+
 # GIF Implementation Guide (v1.3.0)
 
 Technical documentation for implementing GIF output format in Snake Evolution.
@@ -49,10 +54,10 @@ Install in `packages/renderer`:
 bun add @resvg/resvg-js gifenc
 ```
 
-| Package | Version | Size | Notes |
-|---------|---------|------|-------|
-| `@resvg/resvg-js` | ^2.6.2 | ~3MB | Rust/WASM, Bun compatible since 0.8.1 |
-| `gifenc` | ^1.0.3 | 9KB | Pure JS, no deps |
+| Package           | Version | Size | Notes                                 |
+| ----------------- | ------- | ---- | ------------------------------------- |
+| `@resvg/resvg-js` | ^2.6.2  | ~3MB | Rust/WASM, Bun compatible since 0.8.1 |
+| `gifenc`          | ^1.0.3  | 9KB  | Pure JS, no deps                      |
 
 ## Implementation
 
@@ -206,10 +211,10 @@ export function validateOutputFormat(format: string, theme: string) {
 ### File Size
 
 | Frames | Raw GIF | With Sampling (2x) |
-|--------|---------|-------------------|
-| 100 | ~300 KB | ~150 KB |
-| 300 | ~800 KB | ~400 KB |
-| 500 | ~1.3 MB | ~650 KB |
+| ------ | ------- | ------------------ |
+| 100    | ~300 KB | ~150 KB            |
+| 300    | ~800 KB | ~400 KB            |
+| 500    | ~1.3 MB | ~650 KB            |
 
 ### Encoding Speed
 
@@ -225,14 +230,14 @@ export function validateOutputFormat(format: string, theme: string) {
 
 ## Why Not Platane's Approach
 
-| Platane (2021) | Snake Evolution (2025) |
-|----------------|------------------------|
-| `node-canvas` | `@resvg/resvg-js` |
-| Native cairo deps | Pure WASM |
-| `gif-encoder-2` | `gifenc` |
-| `gifsicle` binary | Not needed |
-| Complex setup | `bun add` and done |
-| Node.js only | Bun + Node + Edge |
+| Platane (2021)    | Snake Evolution (2025) |
+| ----------------- | ---------------------- |
+| `node-canvas`     | `@resvg/resvg-js`      |
+| Native cairo deps | Pure WASM              |
+| `gif-encoder-2`   | `gifenc`               |
+| `gifsicle` binary | Not needed             |
+| Complex setup     | `bun add` and done     |
+| Node.js only      | Bun + Node + Edge      |
 
 ## Testing
 
@@ -254,12 +259,12 @@ bun test packages/renderer/src/gif.test.ts
 
 Relevant features for GIF implementation:
 
-| Feature | Use |
-|---------|-----|
-| WASM support | resvg-js runs natively |
-| Buffer API | GIF output handling |
-| `Bun.stringWidth` | Progress bar (future) |
-| S3 client | Store GIFs in cloud (API) |
+| Feature           | Use                       |
+| ----------------- | ------------------------- |
+| WASM support      | resvg-js runs natively    |
+| Buffer API        | GIF output handling       |
+| `Bun.stringWidth` | Progress bar (future)     |
+| S3 client         | Store GIFs in cloud (API) |
 
 ## References
 

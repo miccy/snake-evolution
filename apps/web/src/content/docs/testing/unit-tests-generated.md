@@ -1,4 +1,7 @@
-# Comprehensive Unit Tests Generated for Snake Evolution
+---
+title: Unit Tests Generated
+description: Detailed breakdown of unit tests generated for v1.3.0.
+---
 
 ## Summary
 
@@ -164,14 +167,14 @@ Generated **80+ comprehensive unit tests** for all code changes in this branch, 
 
 ## Test Statistics
 
-| Metric | Value |
-|--------|-------|
-| **Total New Tests** | ~80 |
-| **Lines of Test Code Added** | ~885 |
-| **Security Tests** | 20+ |
-| **Edge Case Tests** | 25+ |
-| **Integration Tests** | 15+ |
-| **Files Enhanced** | 4 |
+| Metric                       | Value |
+| ---------------------------- | ----- |
+| **Total New Tests**          | ~80   |
+| **Lines of Test Code Added** | ~885  |
+| **Security Tests**           | 20+   |
+| **Edge Case Tests**          | 25+   |
+| **Integration Tests**        | 15+   |
+| **Files Enhanced**           | 4     |
 
 ---
 
