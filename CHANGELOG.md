@@ -20,15 +20,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `packages/biome-config`, `packages/typescript-config`
   - `apps/api`, `docker`, `scripts`
 
-### Changed
+### Breaking Changes
 
-- **Script Consolidation** - Reduced root package.json scripts from 30 to 21:
-  - `format` + `format:check` merged into `lint` (Biome handles both)
+- **Script & Turbo Task Changes (BREAKING)** - Consolidated root `package.json` scripts and removed Turbo tasks that may be referenced in local workflows and CI/CD pipelines:
+  - `format` + `format:check` merged into `lint` (Biome now handles both formatting and checks)
   - `quality` + `precommit` consolidated into `check`
   - `type-check` renamed to `typecheck`
   - `clean:all` merged into `clean`
-- **Turbo Config** - Cleaned up unused tasks (`test:watch`, `format`, `format:check`)
+  - Removed unused Turbo tasks from `turbo.json`: `test:watch`, `format`, `format:check`
 
+### Changed
 ### Fixed
 
 - Removed deprecated `@types/dompurify` package (dompurify has built-in types)
