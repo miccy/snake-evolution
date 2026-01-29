@@ -1,4 +1,5 @@
 # 📊 Business Plán: Contribution Themes Marketplace
+
 ## Passive Income Platform pro Snake Evolution
 
 > **Autor:** Miccy  
@@ -12,12 +13,15 @@
 ## 🎯 Executive Summary
 
 ### Vize
+
 Vytvořit marketplace kde designers prodávají contribution graph themes a developers je kupují. Ty bereš 30% provizi z každého prodeje. Kombinace Gumroad + ThemeForest pro GitHub contribution vizualizace.
 
 ### One-liner
+
 "Buy and sell contribution graph themes. For Snake Evolution, heatmaps, 3D visualizations, and more."
 
 ### Klíčové metriky (12 měsíců)
+
 ```
 GMV (Gross Merch Value):  $50,000 - $100,000
 Your revenue (30% cut):   $15,000 - $30,000
@@ -30,6 +34,7 @@ Monthly sales:            500 - 1,000 themes
 ### Proč Themes Marketplace je skvělý nápad
 
 **1. Passive Income Model 💰**
+
 ```
 You build platform once →
 Designers upload themes →
@@ -39,6 +44,7 @@ Zero ongoing work after launch
 ```
 
 **2. Network Effects 📈**
+
 ```
 More designers → More themes →
 More choice → More buyers →
@@ -47,6 +53,7 @@ FLYWHEEL EFFECT
 ```
 
 **3. Low Maintenance 🛠️**
+
 ```
 No rendering (designers provide files)
 No customer support (automated)
@@ -57,6 +64,7 @@ Your time: 5-10 hours/week maintenance
 ```
 
 **4. Complements Snake Evolution 🐍**
+
 ```
 Snake users want more themes →
 Direct upsell from Snake →
@@ -67,6 +75,7 @@ Conversion: 5-10% of Snake users
 ```
 
 **5. Extensible Platform 🚀**
+
 ```
 Start: Snake Evolution themes only
 Expand: Heatmap themes, 3D viz, pixel art
@@ -78,6 +87,7 @@ TAM grows with each new format
 ### Konkurenční výhoda
 
 **Žádná přímá konkurence!**
+
 ```
 ThemeForest: Generic templates, not dev-focused
 Gumroad: General marketplace, no niche
@@ -94,6 +104,7 @@ WE OWN THE NICHE: GitHub contribution themes
 ### Total Addressable Market
 
 **Buyer Side (Developers):**
+
 ```
 GitHub users:                   100M
 Active Snake Evolution users:   Target: 100K (Year 1)
@@ -105,6 +116,7 @@ Your cut (30%): $30K revenue
 ```
 
 **Seller Side (Designers):**
+
 ```
 Designers on Dribbble:          12M
 Interested in dev tools:        1% = 120K
@@ -121,6 +133,7 @@ Total themes: 500-1,000
 **Existing Marketplaces (Comparable):**
 
 **Envato ThemeForest:**
+
 ```
 Annual revenue: $200M+
 Items: 50,000+
@@ -132,6 +145,7 @@ Insight: Digital asset marketplaces work!
 ```
 
 **Gumroad:**
+
 ```
 Annual GMV: $500M+
 Creators: 80,000+
@@ -142,6 +156,7 @@ Insight: Creators want marketplaces
 ```
 
 **Creative Market:**
+
 ```
 Annual GMV: $50M+
 Products: 5M+
@@ -153,6 +168,7 @@ Insight: $5-30 sweet spot for digital goods
 ```
 
 **VS Code Marketplace:**
+
 ```
 Extensions: 50,000+
 Users: 20M+
@@ -166,6 +182,7 @@ Insight: Developers pay for tools/themes
 
 > "Marketplaces work when you nail the niche.  
 > GitHub contribution themes = perfect niche:  
+>
 > - Clear use case (Snake, READMEs)  
 > - Passionate buyers (developers)  
 > - Creative sellers (designers)  
@@ -178,6 +195,7 @@ Insight: Developers pay for tools/themes
 ### Core Concept
 
 **Supply Side (Designers):**
+
 ```
 1. Create theme (colors, animations)
 2. Upload to marketplace
@@ -187,6 +205,7 @@ Insight: Developers pay for tools/themes
 ```
 
 **Demand Side (Developers):**
+
 ```
 1. Browse themes (categories, search)
 2. Preview before buying
@@ -196,6 +215,7 @@ Insight: Developers pay for tools/themes
 ```
 
 **Platform (You):**
+
 ```
 1. Host marketplace
 2. Process payments (Stripe)
@@ -207,6 +227,7 @@ Insight: Developers pay for tools/themes
 ### Theme Types (MVP)
 
 **Category 1: Snake Evolution Themes** (Launch focus)
+
 ```
 What:
 - Color schemes for Snake
@@ -218,6 +239,7 @@ Why: Existing Snake users = immediate buyers
 ```
 
 **Category 2: Heatmap Themes** (Month 3)
+
 ```
 What:
 - Color gradients for contribution heatmaps
@@ -228,6 +250,7 @@ Why: Second most popular viz format
 ```
 
 **Category 3: 3D Visualization Themes** (Month 6)
+
 ```
 What:
 - Materials, lighting, camera angles
@@ -238,6 +261,7 @@ Why: Premium, less common, higher price
 ```
 
 **Category 4: Pixel Art Themes** (Month 9)
+
 ```
 What:
 - Sprite sheets, color palettes
@@ -260,6 +284,7 @@ theme-name.zip
 ```
 
 **theme.json example:**
+
 ```json
 {
   "name": "Cyberpunk Neon",
@@ -291,6 +316,7 @@ theme-name.zip
 ### Marketplace Features
 
 **For Buyers:**
+
 ```
 ✅ Browse by category (new, popular, trending)
 ✅ Search by keyword, color, style
@@ -304,6 +330,7 @@ theme-name.zip
 ```
 
 **For Sellers:**
+
 ```
 ✅ Upload themes (drag & drop)
 ✅ Set pricing ($3-50 range)
@@ -316,6 +343,7 @@ theme-name.zip
 ```
 
 **For Platform (You):**
+
 ```
 ✅ Quality review (approve uploads)
 ✅ Handle disputes
@@ -360,6 +388,7 @@ theme-name.zip
 ### Tech Stack
 
 **Frontend:**
+
 ```typescript
 Framework:    Astro 4.x (fast, SEO-friendly)
 UI:           React 19 (interactive islands)
@@ -370,6 +399,7 @@ Images:       Cloudflare Images (optimization)
 ```
 
 **Backend:**
+
 ```typescript
 API:          ElysiaJS (Bun-native)
 Database:     PostgreSQL (Supabase)
@@ -380,6 +410,7 @@ Auth:         GitHub OAuth (via Appwrite)
 ```
 
 **Infrastructure:**
+
 ```
 Hosting:      UpCloud VPS (existing)
 CDN:          Cloudflare (global)
@@ -509,6 +540,7 @@ GET  /api/admin/analytics         // Platform metrics
 ### Payment Flow (Stripe)
 
 **Buyer Checkout:**
+
 ```typescript
 // 1. User clicks "Buy Now" on theme
 async function buyTheme(themeId: string) {
@@ -565,6 +597,7 @@ webhook.on('checkout.session.completed', async (session) => {
 ```
 
 **Seller Payouts (Monthly):**
+
 ```typescript
 // Run on 1st of each month
 async function processMonthlyPayouts() {
@@ -649,6 +682,7 @@ Why 30%?
 ### Pricing Guidelines
 
 **Recommended Price Ranges:**
+
 ```
 Simple themes:        $3-5
 Medium complexity:    $5-8
@@ -663,6 +697,7 @@ Platform commission:  $2.10 per sale
 ### Revenue Projections
 
 **Month 1-3: Soft Launch (Snake themes only)**
+
 ```
 Themes listed:     20 (seed content from you + 5 designers)
 Sales/month:       50 → 100 → 200
@@ -672,6 +707,7 @@ Your cut (30%):    $75 → $150 → $300
 ```
 
 **Month 4-6: Growth (Add heatmap themes)**
+
 ```
 Themes listed:     50 → 100 → 200
 Designers:         10 → 20 → 30
@@ -682,6 +718,7 @@ Your cut (30%):    $720 → $1,080 → $1,440
 ```
 
 **Month 7-12: Scale (Add 3D + pixel themes)**
+
 ```
 Themes listed:     300 → 500 → 800
 Designers:         40 → 60 → 80
@@ -692,6 +729,7 @@ Your cut (30%):    $2,100 → $3,150 → $4,200
 ```
 
 **Month 12 Summary:**
+
 ```
 GMV:              $14,000/month = $168,000/year
 Your revenue:     $4,200/month = $50,400/year
@@ -723,6 +761,7 @@ Margin: 70% (!!) on your 30% cut
 ```
 
 **Scale Economics:**
+
 ```
 At 2,000 sales/month:
 Gross revenue:     $4,200
@@ -747,6 +786,7 @@ Net profit:        $14,700/month 💰
 ### Phase 1: Seed Content (Week 1-2)
 
 **Create 20 seed themes yourself:**
+
 ```
 Why: Need inventory before launch
 How: 
@@ -759,6 +799,7 @@ Cost: $0 (your time)
 ```
 
 **Recruit 5 beta designers:**
+
 ```
 Who: 
 - Designer friends
@@ -779,6 +820,7 @@ Target: 10-15 themes from beta designers
 **Outreach Channels:**
 
 **1. Design Communities**
+
 ```
 Platforms:
 - Dribbble (12M designers)
@@ -795,6 +837,7 @@ Target: 20 designers Month 1, 50 by Month 3
 ```
 
 **2. Developer-Designers**
+
 ```
 People who:
 - Code AND design
@@ -810,6 +853,7 @@ Target: 10-15 dev-designers (high quality)
 ```
 
 **3. Design Schools**
+
 ```
 Partner with:
 - Bootcamps (Designlab, Interaction Design Foundation)
@@ -825,6 +869,7 @@ Target: 5-10 students monthly
 ```
 
 **4. Affiliate Program**
+
 ```
 For existing designers:
 - 10% recurring commission on referrals
@@ -839,6 +884,7 @@ Incentive: Passive income for designers
 **Organic Channels:**
 
 **1. Snake Evolution Integration** 🐍
+
 ```
 In-app prompts:
 "Want more themes? Check marketplace →"
@@ -850,6 +896,7 @@ Expected: 100-500 buyers/month
 ```
 
 **2. Content Marketing**
+
 ```
 Blog posts:
 - "How to monetize your designs"
@@ -866,6 +913,7 @@ Goal: 500 organic visits/month
 ```
 
 **3. Social Proof**
+
 ```
 Showcase:
 - Designer earnings ("$500 in first month!")
@@ -879,6 +927,7 @@ Share: Twitter, LinkedIn, Reddit
 **Paid Channels (Month 4+):**
 
 **4. Twitter Ads**
+
 ```
 Budget: $500/month
 Target: Developers + designers
@@ -894,6 +943,7 @@ ROI: -60% Month 1, +100% Month 3+ (repeat)
 
 **Week 1-2: Seed themes + beta designers**
 **Week 3: Soft launch (existing Snake users only)**
+
 ```
 Email: 1,000 Snake users
 Landing: "New marketplace, 20 themes available"
@@ -903,6 +953,7 @@ Goal: 50 sales, 10 reviews
 ```
 
 **Week 4: Public launch**
+
 ```
 Channels:
 - Product Hunt (Wednesday)
@@ -915,6 +966,7 @@ Goal: 500 visits, 100 sign-ups, 20 sales
 ```
 
 **Month 2-3: Designer acquisition blitz**
+
 ```
 Goal: 50 active designers, 200 themes
 ```
@@ -924,7 +976,9 @@ Goal: 50 active designers, 200 themes
 ## 📊 Success Metrics & KPIs
 
 ### North Star Metric
+
 **GMV (Gross Merchandise Value)**
+
 - Measures marketplace health
 - Includes buyer and seller activity
 - Easy to track and communicate
@@ -932,6 +986,7 @@ Goal: 50 active designers, 200 themes
 ### Key Metrics
 
 **Supply Side (Designers):**
+
 ```
 Active designers:        Target: 100 by Month 12
 Themes listed:           Target: 1,000 by Month 12
@@ -941,6 +996,7 @@ Avg earnings/designer:   $200/month (top sellers)
 ```
 
 **Demand Side (Buyers):**
+
 ```
 Monthly buyers:          Target: 2,000 by Month 12
 Repeat purchase rate:    30% (buy 2+ themes)
@@ -949,6 +1005,7 @@ Lifetime value:          $20 (3 purchases)
 ```
 
 **Platform:**
+
 ```
 Monthly GMV:             Target: $14,000 by Month 12
 Your revenue (30%):      $4,200/month
@@ -960,6 +1017,7 @@ Buyer satisfaction:      8/10+ (NPS)
 ### Health Indicators
 
 **Green Flags ✅:**
+
 ```
 - Designer applications increasing
 - Repeat buyers (30%+)
@@ -969,6 +1027,7 @@ Buyer satisfaction:      8/10+ (NPS)
 ```
 
 **Yellow Flags ⚠️:**
+
 ```
 - Stagnant designer growth
 - Decreasing avg price
@@ -978,6 +1037,7 @@ Buyer satisfaction:      8/10+ (NPS)
 ```
 
 **Red Flags 🚨:**
+
 ```
 - Designer churn (leaving platform)
 - Quality issues (bad reviews)
@@ -993,6 +1053,7 @@ Buyer satisfaction:      8/10+ (NPS)
 ### Theme Approval Process
 
 **Submission Requirements:**
+
 ```
 ✅ Working theme file (tested)
 ✅ Preview GIF/PNG (accurate)
@@ -1003,6 +1064,7 @@ Buyer satisfaction:      8/10+ (NPS)
 ```
 
 **Review Checklist:**
+
 ```
 1. Technical:
    - File format correct
@@ -1024,6 +1086,7 @@ Approval rate: ~80% (iterative feedback)
 ```
 
 **Rejection Reasons:**
+
 ```
 ❌ Low quality (poor design)
 ❌ Plagiarism (copied from others)
@@ -1036,6 +1099,7 @@ Approval rate: ~80% (iterative feedback)
 ### Ongoing Quality Management
 
 **Automated Checks:**
+
 ```
 - File integrity (not corrupted)
 - Size limits (max 5MB)
@@ -1044,6 +1108,7 @@ Approval rate: ~80% (iterative feedback)
 ```
 
 **Community Moderation:**
+
 ```
 - User reports (flag bad themes)
 - Review system (1-5 stars)
@@ -1052,6 +1117,7 @@ Approval rate: ~80% (iterative feedback)
 ```
 
 **Seller Tiers:**
+
 ```
 Bronze:   0-10 sales (standard commission)
 Silver:   10-50 sales (25% commission)
@@ -1068,6 +1134,7 @@ Incentive: Keep selling, earn more
 ### Business Risks
 
 **Risk 1: Not Enough Designers**
+
 ```
 Problem: Only 5-10 designers sign up
 Impact:  Limited theme selection, no flywheel
@@ -1085,6 +1152,7 @@ Status: Mitigated via seed content
 ```
 
 **Risk 2: Low Sales Volume**
+
 ```
 Problem: Developers don't buy themes
 Impact:  Designers leave, marketplace dies
@@ -1102,6 +1170,7 @@ Status: Monitor conversion closely
 ```
 
 **Risk 3: Payment Disputes**
+
 ```
 Problem: Buyers want refunds, sellers complain
 Impact:  Stripe holds funds, reputation damage
@@ -1121,6 +1190,7 @@ Status: Standard practice
 ### Technical Risks
 
 **Risk 4: Copyright Violations**
+
 ```
 Problem: Designer uploads stolen work
 Impact:  DMCA takedowns, legal issues
@@ -1138,6 +1208,7 @@ Status: Preventable with good ToS
 ```
 
 **Risk 5: Theme Doesn't Work**
+
 ```
 Problem: Broken themes, compatibility issues
 Impact:  Bad reviews, refunds, support burden
@@ -1157,6 +1228,7 @@ Status: Quality control process
 ### Market Risks
 
 **Risk 6: No Market for Paid Themes**
+
 ```
 Problem: Developers expect free themes
 Impact:  Zero sales
@@ -1220,6 +1292,7 @@ More themes sold →
 ## 🎯 12-Month Roadmap
 
 ### Month 1-2: MVP Launch
+
 ```
 [ ] Build marketplace (Astro + React)
 [ ] Stripe integration (checkout + Connect)
@@ -1231,6 +1304,7 @@ More themes sold →
 ```
 
 ### Month 3-4: Designer Growth
+
 ```
 [ ] Designer dashboard (analytics)
 [ ] Payout automation
@@ -1241,6 +1315,7 @@ More themes sold →
 ```
 
 ### Month 5-6: Buyer Acquisition
+
 ```
 [ ] Add heatmap theme support
 [ ] Bundle deals
@@ -1251,6 +1326,7 @@ More themes sold →
 ```
 
 ### Month 7-9: Expansion
+
 ```
 [ ] Add 3D visualization themes
 [ ] Mobile app (browse & buy)
@@ -1261,6 +1337,7 @@ More themes sold →
 ```
 
 ### Month 10-12: Optimization
+
 ```
 [ ] A/B testing (conversion optimization)
 [ ] Recommendation engine (AI suggestions)
@@ -1292,6 +1369,7 @@ More themes sold →
 | 12 | $14,000 | $4,200 | $1,000 | $3,200 | $14,265 |
 
 **12-Month Summary:**
+
 ```
 Total GMV:           $78,000
 Your total revenue:  $23,400
@@ -1309,6 +1387,7 @@ Month 7-12: 5 hours/week (optimization)
 ```
 
 **Year 2 Projection:**
+
 ```
 If growth continues at 20%/month:
 Month 24 GMV:       $50,000
@@ -1326,6 +1405,7 @@ Truly passive at this point!
 ### Why Themes Marketplace is Perfect
 
 **1. Lowest Effort**
+
 ```
 Development:  6-8 weeks
 Maintenance:  5 hours/week
@@ -1336,6 +1416,7 @@ Perfect for: Running alongside other projects
 ```
 
 **2. Passive Income**
+
 ```
 Build once →
 Designers create content →
@@ -1345,6 +1426,7 @@ Sleep while making money 💤💰
 ```
 
 **3. Complements Snake Evolution**
+
 ```
 Existing audience:  Instant buyers
 Cross-promotion:    Easy integration
@@ -1355,6 +1437,7 @@ Conversion:         5-10% of Snake users
 ```
 
 **4. Network Effects**
+
 ```
 More themes → More buyers →
 More buyers → More sellers →
@@ -1364,6 +1447,7 @@ Hard to replicate after head start
 ```
 
 **5. High Margins**
+
 ```
 COGS:          ~$0.63/sale
 Commission:    $2.10/sale
@@ -1422,6 +1506,7 @@ Cross-promotion = faster growth
 ### When to Build
 
 **Option A: Build Immediately (Week 1-8)**
+
 ```
 Pros:
 ✅ Fastest to revenue
@@ -1434,6 +1519,7 @@ Week 7-8: Launch with Snake v1.3
 ```
 
 **Option B: After DevCard (Month 6-8)**
+
 ```
 Pros:
 ✅ More mature Snake audience
@@ -1446,6 +1532,7 @@ Launch marketplace Month 8
 ```
 
 **Recommendation: Option A** 🚀
+
 ```
 Why: Lowest effort, fastest to passive income
 Can build while Snake is stabilizing

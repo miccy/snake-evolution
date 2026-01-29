@@ -1,5 +1,11 @@
 # @snake-evolution/cli
 
+## 1.3.0
+
+### Minor Changes
+
+- feat: Implemented matching 12-month rolling contribution window. Updated Node requirements to >=24. Overhauled documentation.
+
 ## 1.2.4
 
 ### Security

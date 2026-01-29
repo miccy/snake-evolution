@@ -19,7 +19,7 @@
     "build:cli": "turbo run build --filter=@snake-evolution/cli",
     "test": "turbo run test",
     "lint": "biome check . && markdownlint-cli2 '*.md' 'docs/**/*.md' '.github/**/*.md' 'apps/*/src/**/*.md' 'apps/*/*.md' 'packages/*/*.md' 'packages/*/src/**/*.md' 'docker/*.md' 'scripts/*.md' '__tests__/*.md' --config .markdownlint.jsonc",
-    "lint:fix": "biome check --fix --write . && markdownlint-cli2 --fix '*.md' 'docs/**/*.md' '.github/**/*.md' 'apps/*/src/**/*.md' 'apps/*/*.md' 'packages/*/*.md' 'packages/*/src/**/*.md' 'docker/*.md' 'scripts/*.md' '__tests__/*.md' --config .markdownlint.jsonc",
+    "lint:fix": "biome check --write . && markdownlint-cli2 --fix '*.md' 'docs/**/*.md' '.github/**/*.md' 'apps/*/src/**/*.md' 'apps/*/*.md' 'packages/*/*.md' 'packages/*/src/**/*.md' 'docker/*.md' 'scripts/*.md' '__tests__/*.md' --config .markdownlint.jsonc",
     "typecheck": "tsc --noEmit && turbo run type-check",
     "check": "bun run lint && bun run typecheck",
     "fix": "bun run lint:fix",

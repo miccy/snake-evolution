@@ -1,4 +1,5 @@
 # 📊 Business Plán: Dev Tools Portfolio
+
 ## Quick-Win Strategie pro Pasivní Příjem
 
 > **Autor:** Miccy  
@@ -11,9 +12,11 @@
 ## 🎯 Executive Summary
 
 ### Vize
+
 Vytvořit portfolio 6-8 developer tools s freemium modelem, které generují $30K-50K MRR do 24 měsíců. Každý tool řeší specifický pain point v GitHub ekosystému s focus na vizualizaci, analytics a personal branding.
 
 ### Klíčové metriky (24 měsíců)
+
 ```
 MRR Target:        $30,000 - $50,000
 ARR Target:        $360,000 - $600,000
@@ -24,12 +27,14 @@ Gross Margin:      70% - 80%
 ```
 
 ### Strategie
+
 1. **Phase 1 (Q1 2025):** Dokončit Snake Evolution jako foundation
 2. **Phase 2 (Q2 2025):** Launch 3 quick-win tools paralelně
 3. **Phase 3 (Q3-Q4 2025):** Scale existující + 2-3 nové
 4. **Phase 4 (2026):** Bundle offering + enterprise features
 
 ### Konkurenční výhoda
+
 - **Execution speed:** Bun + modern stack = rychlý development
 - **Shared infrastructure:** Monorepo, Evolu, Appwrite napříč tools
 - **Ethical positioning:** "Real data only" vs manipulation tools
@@ -41,6 +46,7 @@ Gross Margin:      70% - 80%
 ## 📈 Market Analysis
 
 ### Total Addressable Market (TAM)
+
 ```
 GitHub Users:                100M+
 Active developers:           25M
@@ -53,13 +59,16 @@ TAM Value:
 ```
 
 ### Market Trends
+
 ✅ **Growth drivers:**
+
 - Remote work = portfolio importance ↑
 - Developer hiring crisis = differentiation needed
 - Personal branding = career accelerator
 - Open source sustainability = new income streams
 
 ⚠️ **Risks:**
+
 - GitHub native features improving
 - AI tools disruption
 - Economic downturn = budget cuts
@@ -67,21 +76,25 @@ TAM Value:
 ### Competitive Landscape
 
 **Segment 1: Profile Visualization**
+
 - **gitfiti** (8.3K ⭐) - Pixel art, playful
 - **github-contributions-chart** (5.5K ⭐) - Static images
 - **Snake Evolution** - Our entry point
 
 **Segment 2: Analytics**
+
 - **GitHub Insights** - Free but basic
 - **Orbit/Common Room** - Enterprise ($500+/mo)
 - **GAP:** No mid-market solution ($10-30/mo)
 
 **Segment 3: Portfolio Tools**
+
 - **GitHub Pages** - DIY, technical
 - **Wix/Squarespace** - Generic, not dev-focused
 - **GAP:** One-click dev portfolios
 
 ### Key Insight
+>
 > "Existují miliony developerů co chtějí vypadat profesionálně,  
 > ale současné tools jsou buď příliš drahé, nebo příliš složité.  
 > Prostor pro mid-market developer tools je WIDE OPEN."
@@ -93,13 +106,17 @@ TAM Value:
 ## Product Overview
 
 ### Název
+
 **GitMetrics** (nebo **DevAnalytics**, **ProfilePulse**)
 
 ### One-liner
+
 "Google Analytics pro tvůj GitHub profil - track growth, optimize visibility, get hired faster."
 
 ### Problem Statement
+
 Developers neví:
+
 - Kdo navštěvuje jejich profil
 - Které projekty přitahují pozornost
 - Kdy je best time to post
@@ -109,7 +126,9 @@ Developers neví:
 GitHub native insights jsou super basic - jen stars a views, žádná deeper analytics.
 
 ### Solution
+
 Real-time analytics dashboard pro GitHub profil s:
+
 - **Profile views tracking** - kdo, odkud, kdy
 - **Follower analytics** - growth rate, demographics
 - **Repository insights** - který repo je star, traffic sources
@@ -119,6 +138,7 @@ Real-time analytics dashboard pro GitHub profil s:
 - **Export reports** - PDF/CSV pro recruiter meetings
 
 ### Unique Value Proposition
+>
 > "Víš kolik lidí navštíví tvůj GitHub každý den?  
 > My ano. A ukážeme ti jak ho udělat 10x zajímavější."
 
@@ -129,6 +149,7 @@ Real-time analytics dashboard pro GitHub profil s:
 ### Core Features (MVP - 6 týdnů)
 
 **1. Dashboard Overview**
+
 ```
 Today's Stats:
 - Profile views: 847 (+12% vs yesterday)
@@ -143,6 +164,7 @@ Quick insights:
 ```
 
 **2. Profile Analytics**
+
 ```
 Views over time:
 [Line chart - last 30 days]
@@ -158,6 +180,7 @@ Prediction: 1,000 followers by March 2025
 ```
 
 **3. Repository Insights**
+
 ```
 Top Performers:
 1. snake-evolution (847 views, 23 stars this week)
@@ -172,6 +195,7 @@ Traffic sources per repo:
 ```
 
 **4. Engagement Tracking**
+
 ```
 Your activity impact:
 - Issues opened: 12 (6 resolved)
@@ -183,6 +207,7 @@ Engagement rate: 8.4% (above average 5.2%)
 ```
 
 **5. Best Time Recommendations**
+
 ```
 Optimal posting times (based on your audience):
 🌅 Best: Tuesday 14:00-16:00 UTC
@@ -194,6 +219,7 @@ Mon-Fri: 9am-5pm EST
 ```
 
 **6. Competitor Tracking** (Premium)
+
 ```
 Compare with:
 - @competitor1 (similar niche)
@@ -213,6 +239,7 @@ Gap analysis:
 ```
 
 **7. Reports Export**
+
 ```
 Generate report:
 - Time period: Last 30 days
@@ -225,6 +252,7 @@ Use case: Show recruiters, portfolio updates, personal tracking
 ### Premium Features (Phase 2)
 
 **8. Automated Insights**
+
 ```
 Weekly email digest:
 "Hey Miccy! 📊
@@ -239,6 +267,7 @@ Smart alerts:
 ```
 
 **9. Portfolio Optimization**
+
 ```
 Profile Health Score: 72/100
 
@@ -255,6 +284,7 @@ Auto-fix available for sponsors:
 ```
 
 **10. API Access**
+
 ```
 Webhook integrations:
 - Slack notifications (new follower, milestone)
@@ -299,6 +329,7 @@ GET /api/v1/insights/recommendations
 ### Tech Stack
 
 **Frontend:**
+
 ```
 - Framework: Astro 4.x
 - UI: React 19 + TailwindCSS 4
@@ -308,6 +339,7 @@ GET /api/v1/insights/recommendations
 ```
 
 **Backend:**
+
 ```
 - API: ElysiaJS (Bun-native, type-safe)
 - Database: PostgreSQL + TimescaleDB extension
@@ -317,6 +349,7 @@ GET /api/v1/insights/recommendations
 ```
 
 **Infrastructure:**
+
 ```
 - Hosting: UpCloud VPS (existující infra)
 - CDN: Cloudflare
@@ -327,6 +360,7 @@ GET /api/v1/insights/recommendations
 ### Data Collection Strategy
 
 **Phase 1: GitHub API Only**
+
 ```typescript
 // Cron job every 6 hours
 async function collectMetrics(username: string) {
@@ -354,6 +388,7 @@ async function collectMetrics(username: string) {
 ```
 
 **Phase 2: Browser Extension** (optional)
+
 ```
 Chrome/Firefox extension to track:
 - Real profile views (client-side)
@@ -443,6 +478,7 @@ GET  /api/admin/metrics                   // Platform analytics
 **Primary Personas:**
 
 **1. Junior Developer (60% of market)**
+
 ```
 Demographics:
 - Age: 22-28
@@ -461,6 +497,7 @@ Value prop:
 ```
 
 **2. Freelance Developer (25%)**
+
 ```
 Demographics:
 - Age: 28-40
@@ -479,6 +516,7 @@ Value prop:
 ```
 
 **3. Developer Advocate (10%)**
+
 ```
 Demographics:
 - Age: 30-45
@@ -497,6 +535,7 @@ Value prop:
 ```
 
 **4. Engineering Manager (5%)**
+
 ```
 Demographics:
 - Age: 35-50
@@ -518,6 +557,7 @@ Value prop:
 **Phase 1: Organic (Month 1-3)**
 
 **1. Product Hunt Launch**
+
 ```
 Timeline: Week 8 after MVP
 Strategy:
@@ -533,6 +573,7 @@ Pre-launch:
 ```
 
 **2. Content Marketing**
+
 ```
 Blog posts (dev.to, Medium, own blog):
 - "I tracked my GitHub profile for 30 days. Here's what I learned."
@@ -550,6 +591,7 @@ Goal: 10,000 organic visits/month by Month 3
 ```
 
 **3. Community Building**
+
 ```
 Reddit:
 - r/github (200K members)
@@ -571,6 +613,7 @@ Goal: 5,000 engaged followers by Month 3
 ```
 
 **4. Free Widget/Badge**
+
 ```html
 <!-- Embeddable badge for README -->
 ![GitHub Analytics](https://gitmetrics.dev/badge/miccy)
@@ -587,6 +630,7 @@ Goal: 1,000 embedded badges = 1,000 free users = funnel
 **Phase 2: Paid (Month 4-6)**
 
 **5. Twitter/X Ads**
+
 ```
 Budget: $1,000/month
 Target: Developers, tech recruiters
@@ -604,6 +648,7 @@ Expected:
 ```
 
 **6. Developer Influencers**
+
 ```
 Outreach to:
 - Tech YouTubers (10K-100K subs)
@@ -619,6 +664,7 @@ Target: 5 influencers, 50K combined reach
 ```
 
 **7. Job Boards Partnership**
+
 ```
 Partner with:
 - AngelList
@@ -636,6 +682,7 @@ Goal: 5,000 sign-ups from job seekers
 ### Launch Timeline
 
 **Week 1-6: Build MVP**
+
 ```
 Week 1-2: Core dashboard + GitHub API integration
 Week 3-4: Analytics engine + charts
@@ -644,6 +691,7 @@ Week 6: Polish, testing, documentation
 ```
 
 **Week 7: Pre-launch**
+
 ```
 - Beta test with 50 users
 - Fix bugs
@@ -652,6 +700,7 @@ Week 6: Polish, testing, documentation
 ```
 
 **Week 8: Launch Day**
+
 ```
 Monday:
 - Product Hunt submit (12:01am PST)
@@ -668,6 +717,7 @@ Goal: Top 5 Product of the Day
 ```
 
 **Week 9-12: Post-launch Growth**
+
 ```
 - Weekly content (blog posts, videos)
 - User feedback integration
@@ -747,6 +797,7 @@ Goal: Top 5 Product of the Day
 ### Revenue Projections
 
 **Month 1-3 (Launch → PMF)**
+
 ```
 Free users:    500 → 1,500 → 3,000
 Pro:           5 → 20 → 50 ($60 → $240 → $600)
@@ -757,6 +808,7 @@ Total MRR:     $60 → $310 → $1,075
 ```
 
 **Month 4-6 (Growth)**
+
 ```
 Free users:    5,000 → 8,000 → 12,000
 Pro:           100 → 200 → 300 ($1,200 → $2,400 → $3,600)
@@ -767,6 +819,7 @@ Total MRR:     $2,150 → $4,775 → $7,750
 ```
 
 **Month 7-12 (Scale)**
+
 ```
 Free users:    15,000 → 25,000 → 40,000
 Pro:           400 → 600 → 800 ($4,800 → $7,200 → $9,600)
@@ -777,6 +830,7 @@ Total MRR:     $11,025 → $15,200 → $20,850
 ```
 
 **Year 1 Summary:**
+
 ```
 Month 12 MRR:      $20,850
 Month 12 ARR:      $250,200
@@ -815,6 +869,7 @@ Net:         55%
 ```
 
 **Pro rata na Month 12:**
+
 ```
 MRR:              $20,850
 Annual:           $250,200
@@ -842,6 +897,7 @@ Tvůj příjem:      $11,467/měsíc 🎉
 ### Year 2 (Měsíc 13-24)
 
 **Growth assumptions:**
+
 - 50% user growth (60K users)
 - 3% conversion (1,800 paid)
 - Premium mix improvement (more Team/Enterprise)
@@ -855,6 +911,7 @@ Tvůj příjem:      $11,467/měsíc 🎉
 | Net profit | $170K | $240K | $320K | $420K |
 
 **Year 2 Annual:**
+
 ```
 ARR:              $720,000
 Net profit:       $420,000
@@ -890,6 +947,7 @@ Break-even: Month 3
 ### Technical Risks
 
 **Risk 1: GitHub API Rate Limits**
+
 ```
 Problem: GitHub API limits = 5,000 requests/hour
 Impact:  Can't scale beyond 500 users without throttling
@@ -907,6 +965,7 @@ Status: Mitigated
 ```
 
 **Risk 2: Data Accuracy**
+
 ```
 Problem: GitHub doesn't expose real profile views
 Impact:  Estimates might be inaccurate
@@ -923,6 +982,7 @@ Status: Accepted (market standard)
 ```
 
 **Risk 3: Performance at Scale**
+
 ```
 Problem: TimescaleDB queries slow with 100K+ users
 Impact:  Dashboard becomes sluggish
@@ -942,6 +1002,7 @@ Status: Monitored
 ### Business Risks
 
 **Risk 4: GitHub Native Features**
+
 ```
 Problem: GitHub adds native analytics
 Impact:  Our product becomes obsolete
@@ -961,6 +1022,7 @@ Status: Strategic differentiation
 ```
 
 **Risk 5: Low Conversion Rates**
+
 ```
 Problem: Free users don't convert to paid
 Impact:  Revenue < projections
@@ -979,6 +1041,7 @@ Status: Continuous optimization
 ```
 
 **Risk 6: Competition**
+
 ```
 Problem: Big player (Orbit, etc) launches cheap tier
 Impact:  We can't compete on brand
@@ -998,6 +1061,7 @@ Status: Differentiation strategy
 ### Market Risks
 
 **Risk 7: Economic Downturn**
+
 ```
 Problem: Developers cut subscriptions
 Impact:  Churn increases, growth slows
@@ -1015,6 +1079,7 @@ Status: Monitored
 ```
 
 **Risk 8: AI Disruption**
+
 ```
 Problem: AI tools make profile optimization automatic
 Impact:  Less need for analytics dashboard
@@ -1037,12 +1102,14 @@ Status: Feature roadmap
 ### Month 1-3: MVP & Launch
 
 **Key Milestones:**
+
 - [ ] Week 6: MVP complete
 - [ ] Week 7: 50 beta users
 - [ ] Week 8: Product Hunt launch
 - [ ] Week 12: 3,000 free users
 
 **KPIs:**
+
 ```
 Users:           3,000 free, 50 paid
 MRR:             $1,000
@@ -1054,11 +1121,13 @@ Product Hunt:    Top 5 (goal)
 ### Month 4-6: Product-Market Fit
 
 **Key Milestones:**
+
 - [ ] Month 4: 5,000 users
 - [ ] Month 5: First enterprise customer
 - [ ] Month 6: Profitable ($5K MRR, $3K costs)
 
 **KPIs:**
+
 ```
 Users:           12,000 free, 300 paid
 MRR:             $7,500
@@ -1070,11 +1139,13 @@ NPS:             40+ (good)
 ### Month 7-12: Scale
 
 **Key Milestones:**
+
 - [ ] Month 8: 20,000 users
 - [ ] Month 10: $15K MRR
 - [ ] Month 12: $20K MRR, profitable
 
 **KPIs:**
+
 ```
 Users:           40,000 free, 970 paid
 MRR:             $20,850
@@ -1090,12 +1161,14 @@ Net Margin:      55%
 ### Year 2: Growth & Expansion
 
 **Key Milestones:**
+
 - [ ] Q1: Launch API access
 - [ ] Q2: Multi-platform (GitLab, Bitbucket)
 - [ ] Q3: Mobile app (React Native)
 - [ ] Q4: $60K MRR
 
 **KPIs:**
+
 ```
 Users:           60,000 free, 1,800 paid
 MRR:             $60,000
@@ -1111,6 +1184,7 @@ Team size:       3 (you + 2 contractors)
 ### Phase 1: Solo (Month 1-6)
 
 **You (Miccy):**
+
 - Development (80%)
 - Marketing (10%)
 - Support (10%)
@@ -1118,6 +1192,7 @@ Team size:       3 (you + 2 contractors)
 **Time commitment:** 60-80 hours/week
 
 **Tools:**
+
 - Development: Cursor, GitHub Copilot
 - Design: v0.dev, Figma
 - Marketing: Buffer, Canva
@@ -1126,6 +1201,7 @@ Team size:       3 (you + 2 contractors)
 ### Phase 2: Small team (Month 7-12)
 
 **Hire 1: Part-time Marketer** (Month 6)
+
 ```
 Role: Content creation, community management
 Hours: 20 hours/week
@@ -1134,6 +1210,7 @@ Goal: 2x user acquisition
 ```
 
 **Hire 2: Part-time Developer** (Month 9)
+
 ```
 Role: Features, bug fixes, code review
 Hours: 20 hours/week
@@ -1146,6 +1223,7 @@ Goal: Free up your time for strategy
 ### Phase 3: Scaling (Year 2)
 
 **Hire 3: Full-time Developer** (Month 15)
+
 ```
 Role: Lead development, architecture
 Salary: $6,000/month
@@ -1153,6 +1231,7 @@ Goal: Faster feature velocity
 ```
 
 **Hire 4: Customer Success** (Month 18)
+
 ```
 Role: Onboarding, support, retention
 Salary: $4,000/month
@@ -1171,6 +1250,7 @@ Goal: Reduce churn, increase expansions
 ### Options
 
 **Option 1: Lifestyle Business** ✅ (Recommended)
+
 ```
 Keep growing organically
 MRR: $50K-100K
@@ -1192,6 +1272,7 @@ Cons:
 ```
 
 **Option 2: Acquisition**
+
 ```
 Sell to:
 - GitHub (integrate natively)
@@ -1209,6 +1290,7 @@ Probability: Medium
 ```
 
 **Option 3: VC Growth**
+
 ```
 Raise: Seed $1-2M
 Goal: 10x growth
@@ -1317,6 +1399,7 @@ growth trajectory and community impact.
 | **API Access** | ✅ Pro+ | ❌ No | ✅ Yes | ✅ Yes |
 
 **Our advantage:** 
+
 - 40x cheaper than enterprise tools
 - 10x better than free GitHub Insights
 - Developer-first (not marketing tool)
@@ -1366,6 +1449,7 @@ Reward:     High
 **Decision:** Start development? 🚀
 
 Next steps:
+
 1. Validate with 10 potential users (interviews)
 2. Build landing page + waitlist (Week 1)
 3. Start MVP development (Week 2-6)

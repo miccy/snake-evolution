@@ -1,4 +1,5 @@
 # 📊 Business Plán: DevCard
+
 ## Animated Developer Business Cards
 
 > **Autor:** Miccy  
@@ -11,12 +12,15 @@
 ## 🎯 Executive Summary
 
 ### Vize
+
 Vytvořit "Canva pro developer business cards" - tool který generuje animované vizitky/karty z GitHub profilu, optimalizované pro email signatures, LinkedIn headers, conference badges, a video call backgrounds.
 
 ### One-liner
+
 "Turn your GitHub profile into an animated business card. Perfect for email signatures, LinkedIn, and conference badges."
 
 ### Klíčové metriky (18 měsíců)
+
 ```
 MRR Target:        $25,000 - $40,000
 ARR Target:        $300,000 - $480,000
@@ -29,6 +33,7 @@ Gross Margin:      80% - 85%
 ### Proč DevCard vyhrává
 
 **1. Viral Loop 🔄**
+
 ```
 User creates card → Adds to email signature → 
 100 people see it daily → 5 click "Made with DevCard" → 
@@ -36,6 +41,7 @@ New users → Repeat
 ```
 
 **2. Multiple Use Cases 🎯**
+
 - Email signatures (každý developer má email)
 - LinkedIn headers (200M+ professionals)
 - Conference badges (tisíce eventů ročně)
@@ -44,6 +50,7 @@ New users → Repeat
 - Social media cards
 
 **3. Higher Price Point 💰**
+
 ```
 Email signature tools: $7-15/mo
 Business card services: $10-20/mo
@@ -52,6 +59,7 @@ Lower than competitors, higher perceived value
 ```
 
 **4. B2B Potential 🏢**
+
 ```
 Dev teams want unified branding
 Conference organizers need badges
@@ -63,6 +71,7 @@ Enterprise: $200+/mo (unlimited)
 ```
 
 ### Konkurenční výhoda
+
 - **Speed:** 1-click generation (vs 30min Canva design)
 - **Automation:** Live data from GitHub (always fresh)
 - **Developer-first:** Not generic, built FOR developers
@@ -76,6 +85,7 @@ Enterprise: $200+/mo (unlimited)
 ### Total Addressable Market (TAM)
 
 **Developer Market:**
+
 ```
 Global developers:           25M
 Active GitHub users:         100M
@@ -87,6 +97,7 @@ TAM Value:
 ```
 
 **Conference/Event Market:**
+
 ```
 Tech conferences/year:       5,000+
 Avg attendees:              500
@@ -97,6 +108,7 @@ Recurring @ $20/event:      $100K/year (500 organizers)
 ```
 
 **B2B Market:**
+
 ```
 Tech companies:             50,000
 Avg dev team size:          20
@@ -112,6 +124,7 @@ Teams wanting branding:     10% = 5,000
 ✅ **Growth Drivers:**
 
 **1. Remote Work Revolution**
+
 ```
 Pre-2020: In-person meetings, physical cards
 Post-2020: 70% remote, digital everything
@@ -119,6 +132,7 @@ Result: Email signatures = new business card
 ```
 
 **2. Personal Branding Boom**
+
 ```
 LinkedIn engagement: +50% YoY
 Developer influencers: Growing fast
@@ -127,6 +141,7 @@ Result: Developers invest in presence
 ```
 
 **3. Email Renaissance**
+
 ```
 Newsletters: Peak popularity
 Cold outreach: Standard practice
@@ -135,6 +150,7 @@ Result: Email signatures matter again
 ```
 
 **4. Conference Comeback**
+
 ```
 2024: Conferences returning
 Virtual + hybrid events: Standard
@@ -143,6 +159,7 @@ Result: Need for digital identity
 ```
 
 ⚠️ **Headwinds:**
+
 - Email declining for Gen Z (but not B2B)
 - Video replacing text (opportunity: video cards!)
 - AI avatars competition
@@ -152,6 +169,7 @@ Result: Need for digital identity
 **Direct Competitors:**
 
 **1. WiseStamp (Email Signatures)**
+
 ```
 Founded: 2008
 Users: 1M+
@@ -163,6 +181,7 @@ Cons: Generic (not dev-focused), outdated UI
 ```
 
 **2. Exclaimer (Enterprise)**
+
 ```
 Founded: 2001
 Customers: 50M users managed
@@ -174,6 +193,7 @@ Cons: Expensive, complex, no consumer tier
 ```
 
 **3. Canva (DIY Design)**
+
 ```
 Valuation: $40B
 Users: 100M+
@@ -186,12 +206,14 @@ Cons: Generic, manual updates, not automated
 **Indirect Competitors:**
 
 **4. LinkedIn (Free Headers)**
+
 ```
 Pros: Native, free
 Cons: Static only, limited customization
 ```
 
 **5. Email Signature Rescue**
+
 ```
 Users: 50K
 Pricing: $8-20/mo
@@ -252,6 +274,7 @@ Cons: No automation, no dev focus
 ### Use Cases (MVP)
 
 **1. Email Signature** 🔥 (Primary)
+
 ```html
 <!-- User copies this snippet -->
 <img src="https://devcard.dev/cards/miccy.gif" 
@@ -266,6 +289,7 @@ Features:
 ```
 
 **2. LinkedIn Header** 💼
+
 ```
 Export: 1584x396px PNG (LinkedIn banner size)
 Content:
@@ -277,6 +301,7 @@ Content:
 ```
 
 **3. Conference Badge** 🎫
+
 ```
 Export: Printable PDF or PNG
 Content:
@@ -288,6 +313,7 @@ Content:
 ```
 
 **4. Video Call Background** 📹
+
 ```
 Export: 1920x1080 MP4 loop
 Content:
@@ -298,6 +324,7 @@ Content:
 ```
 
 **5. Portfolio Header** 🌐
+
 ```
 Export: Responsive SVG
 Content:
@@ -310,6 +337,7 @@ Content:
 ### Templates (Launch with 20)
 
 **Category 1: Professional (5 templates)**
+
 ```
 - Minimal White: Clean, corporate
 - Dark Elegant: Modern, sleek
@@ -319,6 +347,7 @@ Content:
 ```
 
 **Category 2: Tech/Gaming (5 templates)**
+
 ```
 - Terminal: ASCII art style
 - Matrix: Green code rain
@@ -328,6 +357,7 @@ Content:
 ```
 
 **Category 3: Colorful/Fun (5 templates)**
+
 ```
 - Gradient Mesh: Vibrant colors
 - Glassmorphism: iOS-style blur
@@ -337,6 +367,7 @@ Content:
 ```
 
 **Category 4: Minimalist (5 templates)**
+
 ```
 - Brutalist: Raw, bold
 - Wireframe: Sketch style
@@ -375,6 +406,7 @@ Manual input (optional):
 ### Animations (GIF Export)
 
 **Subtle animations for email:**
+
 ```
 1. Stats counter (odometer effect)
 2. Tech stack icons (gentle pulse)
@@ -389,6 +421,7 @@ File size: <500KB (critical for email)
 ```
 
 **Dynamic animations for video:**
+
 ```
 1. Name typewriter effect
 2. Stats appear sequentially
@@ -436,6 +469,7 @@ Resolution: 1080p or 4K
 ### Tech Stack
 
 **Frontend:**
+
 ```typescript
 Framework:     Astro 4.x (SSG + Islands)
 UI:            React 19 (interactive islands)
@@ -446,6 +480,7 @@ Preview:       Canvas API (real-time render)
 ```
 
 **Backend:**
+
 ```typescript
 API:           ElysiaJS (Bun-native)
 Database:      PostgreSQL (user data, cards)
@@ -456,6 +491,7 @@ CDN:           Cloudflare (global distribution)
 ```
 
 **Rendering:**
+
 ```typescript
 Browser:       Puppeteer (headless Chrome)
 GIF:           gifencoder + canvas
@@ -526,6 +562,7 @@ async function processCardJob(job) {
 **Solutions:**
 
 **1. Aggressive Caching**
+
 ```typescript
 // Cache strategy
 GitHub data:   1 hour (rarely changes)
@@ -537,6 +574,7 @@ Template HTML: Forever (CDN edge)
 ```
 
 **2. Pre-generation**
+
 ```typescript
 // For popular templates, pre-generate during off-peak
 async function preGeneratePopular() {
@@ -553,6 +591,7 @@ async function preGeneratePopular() {
 ```
 
 **3. Queue Priority**
+
 ```typescript
 // Paid users: High priority (process immediately)
 // Free users: Low priority (batched)
@@ -563,6 +602,7 @@ queue.add('generate', job, {
 ```
 
 **4. Lightweight Formats**
+
 ```typescript
 // GIF optimization
 - 10 fps (not 30)
@@ -753,6 +793,7 @@ POST /api/webhooks/stripe                 // Payments
 ### Revenue Projections
 
 **Month 1-3: Soft Launch**
+
 ```
 Free users:     500 → 2,000 → 5,000
 Pro:            10 → 50 → 150 ($90 → $450 → $1,350)
@@ -763,6 +804,7 @@ Total MRR:      $90 → $610 → $2,000
 ```
 
 **Month 4-6: Product Hunt → Growth**
+
 ```
 Free users:     10,000 → 20,000 → 35,000
 Pro:            400 → 800 → 1,200 ($3,600 → $7,200 → $10,800)
@@ -774,6 +816,7 @@ Total MRR:      $5,250 → $10,500 → $16,600
 ```
 
 **Month 7-12: Scale**
+
 ```
 Free users:     50K → 80K → 120K
 Pro:            1,800 → 2,500 → 3,500 ($16,200 → $22,500 → $31,500)
@@ -787,6 +830,7 @@ Total MRR:      $26,200 → $37,000 → $52,500
 **Month 12 ARR:** $630,000 🎉
 
 **Month 13-18: Mature Growth**
+
 ```
 Pro:            4,500 @ $9 = $40,500
 Team:           250 @ $30 = $7,500
@@ -829,6 +873,7 @@ Net:            60%
 ```
 
 **Month 18 financials:**
+
 ```
 MRR:            $67,000
 ARR:            $804,000
@@ -846,6 +891,7 @@ Tvůj příjem:    ~$40K/měsíc 🚀
 ### Target Audiences
 
 **Primary: Individual Developers (70%)**
+
 ```
 Profile:
 - Age: 25-40
@@ -870,6 +916,7 @@ Acquisition:
 ```
 
 **Secondary: Dev Teams (20%)**
+
 ```
 Profile:
 - Team size: 5-50 developers
@@ -893,6 +940,7 @@ Acquisition:
 ```
 
 **Tertiary: Conference Organizers (10%)**
+
 ```
 Profile:
 - Event size: 100-5,000 attendees
@@ -1112,6 +1160,7 @@ Target: 20 ambassadors by Month 6
 ### Costs Breakdown
 
 **Fixed Costs (Monthly):**
+
 ```
 Hosting (UpCloud VPS):        $200
 Storage (Cloudflare R2):      $50
@@ -1126,6 +1175,7 @@ Total Fixed:                  $620/month
 ```
 
 **Variable Costs:**
+
 ```
 Rendering (per 1,000 cards):  $5
 Storage (per 1,000 cards):    $2
@@ -1140,6 +1190,7 @@ Total Variable:               $80/month
 ```
 
 **Marketing Costs:**
+
 ```
 Month 1-3:  $0 (bootstrap)
 Month 4-6:  $2,000/mo (paid ads)
@@ -1148,6 +1199,7 @@ Month 13+:  $6,000/mo (growth)
 ```
 
 **Team Costs:**
+
 ```
 Month 1-6:  Just you (sweat equity)
 Month 7:    +Designer ($2K/mo, part-time)
@@ -1183,12 +1235,14 @@ Total payroll by Month 18: $9K/mo
 **Break-even:** Month 3 (profitable after)
 
 **Key Milestones:**
+
 - Month 3: Break-even ($2K MRR)
 - Month 6: $10K profit/month
 - Month 12: $40K profit/month, $200K cumulative
 - Month 18: $50K profit/month, $500K cumulative
 
 **Tvůj net income (Month 18):**
+
 ```
 MRR:                $67,000
 Costs:              $17,500
@@ -1203,7 +1257,9 @@ Your take-home:     ~$40K-45K/month 💰
 ## 🎯 Success Metrics & KPIs
 
 ### North Star Metric
+
 **Weekly Active Cards Generated**
+
 - Measures product usage
 - Correlates with revenue
 - Easy to track
@@ -1211,6 +1267,7 @@ Your take-home:     ~$40K-45K/month 💰
 ### Key Metrics by Phase
 
 **Month 1-3: Product-Market Fit**
+
 ```
 Waitlist sign-ups:       2,000+
 Beta users:              100+
@@ -1222,6 +1279,7 @@ User satisfaction:       8/10+
 ```
 
 **Month 4-6: Growth**
+
 ```
 Free users:              35,000+
 Paid customers:          1,200+
@@ -1234,6 +1292,7 @@ LTV:                     $150+
 ```
 
 **Month 7-12: Scale**
+
 ```
 Free users:              120,000+
 Paid customers:          3,500+
@@ -1246,6 +1305,7 @@ LTV:CAC ratio:           10:1+
 ```
 
 **Month 13-18: Mature**
+
 ```
 Free users:              200,000+
 Paid customers:          5,000+
@@ -1259,6 +1319,7 @@ Brand awareness:         Top 3 in category
 ### Health Metrics
 
 **Product Health:**
+
 ```
 Daily Active Users (DAU):         Track engagement
 Cards created/user/month:         Usage depth
@@ -1270,6 +1331,7 @@ Generation time:                  <30 seconds
 ```
 
 **Business Health:**
+
 ```
 MRR growth rate:                  Target: 30%+ monthly (early)
 Customer churn:                   Target: <3% monthly
@@ -1280,6 +1342,7 @@ Gross margin:                     Target: 80%+
 ```
 
 **Marketing Health:**
+
 ```
 Organic traffic growth:           Target: 20%+ monthly
 Email open rate:                  Target: 35%+
@@ -1296,6 +1359,7 @@ Brand search volume:              Track "devcard" searches
 ### Technical Risks
 
 **Risk 1: Generation Speed**
+
 ```
 Problem: Puppeteer slow (30s+ per card)
 Impact:  Poor UX, high server costs
@@ -1313,6 +1377,7 @@ Status: Manageable
 ```
 
 **Risk 2: Email Client Compatibility**
+
 ```
 Problem: Some clients block GIFs or images
 Impact:  User complaints, bad experience
@@ -1329,6 +1394,7 @@ Status: Accepted
 ```
 
 **Risk 3: GitHub API Limits**
+
 ```
 Problem: 5,000 req/hour limit
 Impact:  Can't scale to 100K users
@@ -1347,6 +1413,7 @@ Status: Mitigated
 ### Business Risks
 
 **Risk 4: Low Conversion (Free → Paid)**
+
 ```
 Problem: Users stick to free tier
 Impact:  Revenue < projections
@@ -1365,6 +1432,7 @@ Status: Continuous testing
 ```
 
 **Risk 5: Competition from Canva**
+
 ```
 Problem: Canva adds "GitHub card" template
 Impact:  They have 100M users, we have 0
@@ -1382,6 +1450,7 @@ Status: Speed to market critical
 ```
 
 **Risk 6: Email Signature Tools Add Feature**
+
 ```
 Problem: WiseStamp adds GitHub integration
 Impact:  Direct competition
@@ -1401,6 +1470,7 @@ Status: Differentiate early
 ### Market Risks
 
 **Risk 7: Email Decline**
+
 ```
 Problem: Gen Z doesn't use email
 Impact:  Smaller TAM
@@ -1417,6 +1487,7 @@ Status: Not concerned
 ```
 
 **Risk 8: Fake Profiles / Abuse**
+
 ```
 Problem: People create fake GitHub cards
 Impact:  Brand damage, ethical concerns
@@ -1444,12 +1515,14 @@ Status: Monitored
 **Tagline:** "Your GitHub profile. Beautifully animated."
 
 **Brand Values:**
+
 - **Developer-first:** We speak your language
 - **Speed:** 60 seconds from idea to export
 - **Quality:** No compromises on design
 - **Fun:** Serious work, playful execution
 
 **Visual Identity:**
+
 ```
 Primary color:   #3B82F6 (Blue 500 - trust, tech)
 Secondary:       #8B5CF6 (Purple 500 - creative)
@@ -1464,6 +1537,7 @@ Code:            JetBrains Mono (developer vibes)
 ```
 
 **Logo:**
+
 ```
 Icon: Stylized business card with "</>" symbol
 Style: Minimal, geometric, works in monochrome
@@ -1473,6 +1547,7 @@ Variants: Full color, white, black, icon only
 ### Marketing Assets
 
 **Screenshots (10+):**
+
 1. Landing hero (preview generator)
 2. Template gallery (20 options)
 3. Customization UI (colors, text)
@@ -1485,6 +1560,7 @@ Variants: Full color, white, black, icon only
 10. Mobile responsive views
 
 **Demo Video (60 seconds):**
+
 ```
 00:00-00:05  Hook: "Boring email signature?" (bad example)
 00:05-00:15  Solution: "DevCard makes it easy" (demo)
@@ -1501,6 +1577,7 @@ Variants: Full color, white, black, icon only
 ### Phase 1: MVP (Week 1-8)
 
 **Week 1-2: Core Infrastructure**
+
 ```
 [ ] Astro site setup
 [ ] GitHub OAuth
@@ -1510,6 +1587,7 @@ Variants: Full color, white, black, icon only
 ```
 
 **Week 3-4: Card Generation**
+
 ```
 [ ] Puppeteer integration
 [ ] GIF encoder
@@ -1519,6 +1597,7 @@ Variants: Full color, white, black, icon only
 ```
 
 **Week 5-6: User Features**
+
 ```
 [ ] Save/load cards
 [ ] Customization UI
@@ -1528,6 +1607,7 @@ Variants: Full color, white, black, icon only
 ```
 
 **Week 7: Polish & Testing**
+
 ```
 [ ] UI/UX refinement
 [ ] Mobile responsive
@@ -1536,6 +1616,7 @@ Variants: Full color, white, black, icon only
 ```
 
 **Week 8: Launch Prep**
+
 ```
 [ ] Landing page polish
 [ ] Product Hunt assets
@@ -1547,6 +1628,7 @@ Variants: Full color, white, black, icon only
 ### Phase 2: Growth Features (Week 9-12)
 
 **Week 9-10:**
+
 ```
 [ ] 15 more templates (total: 20)
 [ ] MP4 video export
@@ -1555,6 +1637,7 @@ Variants: Full color, white, black, icon only
 ```
 
 **Week 11-12:**
+
 ```
 [ ] Team tier features
 [ ] API access (basic)
@@ -1652,6 +1735,7 @@ Repeat
 ### Phase 4 (Month 7-12)
 
 **1. Template Marketplace**
+
 ```
 - Users design & submit templates
 - Approval process (quality control)
@@ -1664,6 +1748,7 @@ Revenue: Passive income from marketplace
 ```
 
 **2. AI-Powered Recommendations**
+
 ```
 - AI suggests template based on GitHub activity
 - "You're a Python dev, try Terminal theme!"
@@ -1675,6 +1760,7 @@ Tech: OpenAI API or local LLM
 ```
 
 **3. Advanced Animations**
+
 ```
 - Particle effects
 - 3D card flips
@@ -1686,6 +1772,7 @@ Format: MP4 required (not GIF)
 ```
 
 **4. Integrations**
+
 ```
 - Zapier: Auto-update on GitHub event
 - Make: Workflow automation
@@ -1697,6 +1784,7 @@ Format: MP4 required (not GIF)
 ### Phase 5 (Year 2)
 
 **5. Mobile App**
+
 ```
 Platform: React Native (iOS + Android)
 Features:
@@ -1710,6 +1798,7 @@ Monetization: Same tiers + App Store commission
 ```
 
 **6. QR Code Integration**
+
 ```
 - Embed QR code in card
 - Customizable (portfolio, LinkedIn, etc)
@@ -1719,6 +1808,7 @@ Monetization: Same tiers + App Store commission
 ```
 
 **7. Multi-Platform Support**
+
 ```
 Expand beyond GitHub:
 - GitLab profiles
@@ -1731,6 +1821,7 @@ One unified card for all platforms
 ```
 
 **8. Video Backgrounds Pack**
+
 ```
 - Zoom backgrounds featuring your card
 - Teams backgrounds
@@ -1748,6 +1839,7 @@ Pricing: $5/pack or free with Pro
 ### Why We'll Win Long-term
 
 **1. Developer Community**
+
 ```
 Build genuine relationships:
 - Active Discord server
@@ -1760,6 +1852,7 @@ Moat: Community loyalty trumps features
 ```
 
 **2. Template Network Effects**
+
 ```
 More users → more templates shared →
 Better templates → attracts more users →
@@ -1770,6 +1863,7 @@ Competitors can't copy community creativity
 ```
 
 **3. Distribution Advantage**
+
 ```
 Every user becomes billboard:
 - Email signature (100 impressions/day)
@@ -1781,6 +1875,7 @@ Moat: Built-in distribution channel
 ```
 
 **4. Data & Insights**
+
 ```
 Unique data from millions of cards:
 - Which templates convert best
@@ -1792,6 +1887,7 @@ Moat: Data compounds over time
 ```
 
 **5. Brand Association**
+
 ```
 "DevCard" becomes verb:
 "Did you devcard your email yet?"
@@ -1831,6 +1927,7 @@ Cons:
 **Potential Acquirers:**
 
 **Canva ($40B valuation)**
+
 ```
 Rationale: Add developer segment
 Price: 5-8x ARR
@@ -1841,6 +1938,7 @@ At $800K ARR = $4M - $6.4M exit
 ```
 
 **Microsoft (LinkedIn/GitHub)**
+
 ```
 Rationale: Native GitHub integration
 Price: 8-10x ARR
@@ -1851,6 +1949,7 @@ At $2M ARR = $16M - $20M exit
 ```
 
 **Email Signature Companies (WiseStamp, Exclaimer)**
+
 ```
 Rationale: Add developer product
 Price: 4-6x ARR
@@ -1861,6 +1960,7 @@ At $600K ARR = $2.4M - $3.6M exit
 ```
 
 **Developer Tool Companies (GitLens, JetBrains)**
+
 ```
 Rationale: Portfolio expansion
 Price: 6-8x ARR
@@ -1913,6 +2013,7 @@ Expected exit: $5M-8M
 ### Why DevCard is a Winner
 
 **1. Clear Value Prop**
+
 ```
 Before: Boring text email signature
 After:  Animated, professional, auto-updating card
@@ -1922,6 +2023,7 @@ Value: Obvious, immediate
 ```
 
 **2. Viral Growth**
+
 ```
 Built-in distribution:
 - Watermark in free tier
@@ -1933,6 +2035,7 @@ Growth: Exponential
 ```
 
 **3. Multiple Revenue Streams**
+
 ```
 - Individual subscriptions ($9/mo)
 - Team plans ($30/mo)
@@ -1944,6 +2047,7 @@ Diversified = stable
 ```
 
 **4. Reasonable Effort**
+
 ```
 MVP: 8 weeks
 Maintenance: Low after launch
@@ -1954,6 +2058,7 @@ Time to $50K MRR: 12-18 months
 ```
 
 **5. High Margins**
+
 ```
 COGS: 15% (rendering, storage)
 Gross: 85%
@@ -1963,6 +2068,7 @@ More profitable than most SaaS
 ```
 
 **6. Multiple Exit Paths**
+
 ```
 Lifestyle: $40K-60K/month
 Acquisition: $5M-10M
@@ -2003,6 +2109,7 @@ Confidence:       8.5/10 ⭐
 ### Next Steps
 
 **Week 1:**
+
 ```
 [ ] Validate with 20 developers (interviews)
 [ ] Design 5 template mockups
@@ -2011,6 +2118,7 @@ Confidence:       8.5/10 ⭐
 ```
 
 **Week 2-7:**
+
 ```
 [ ] Build MVP (core features)
 [ ] Beta test with 50 users
@@ -2019,6 +2127,7 @@ Confidence:       8.5/10 ⭐
 ```
 
 **Week 8:**
+
 ```
 [ ] Product Hunt launch
 [ ] Content blitz (blog, video, social)
@@ -2033,24 +2142,28 @@ Confidence:       8.5/10 ⭐
 DevCard je **perfektní druhý projekt** po Snake Evolution:
 
 ✅ **Synergies:**
+
 - Stejný tech stack (Astro, React, Bun)
 - Podobná monetizace (freemium)
 - Využíváš zkušenosti z Snake
 - Cross-promotion možnosti
 
 ✅ **Market Timing:**
+
 - Remote work = digital identity důležitější
 - Personal branding = peak popularity
 - No strong competitor in dev niche
 - Email signatures = underserved market
 
 ✅ **Execution:**
+
 - Rychlý MVP (8 týdnů)
 - Viral loop built-in
 - Nízké maintenance
 - High margins
 
 ✅ **Revenue Potential:**
+
 - $40K/month net by Month 18
 - Realistic, achievable
 - Multiple revenue streams

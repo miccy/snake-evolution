@@ -93,9 +93,28 @@ async function fetchContributionsGraphQL(
     }
   `;
 
-  const targetYear = year ?? new Date().getFullYear();
-  const from = `${targetYear}-01-01T00:00:00Z`;
-  const to = `${targetYear}-12-31T23:59:59Z`;
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const targetYear = year ?? currentYear;
+
+  let from: string;
+  let to: string;
+
+  if (targetYear === currentYear) {
+    // Rolling year: last 12 months ending today
+    to = now.toISOString();
+    const oneYearAgo = new Date(now);
+    oneYearAgo.setFullYear(now.getFullYear() - 1);
+
+    // Adjust to start on Sunday for cleaner graph?
+    // GitHub usually shows exactly 1 year or 53 weeks.
+    // Let's just do exact 1 year for now, the renderer handles the grid.
+    from = oneYearAgo.toISOString();
+  } else {
+    // Calendar year: Jan 1 to Dec 31
+    from = `${targetYear}-01-01T00:00:00Z`;
+    to = `${targetYear}-12-31T23:59:59Z`;
+  }
 
   const response = await fetch(GITHUB_GRAPHQL_URL, {
     method: "POST",
@@ -157,8 +176,21 @@ function levelToNumber(level: ContributionDay["contributionLevel"]): 0 | 1 | 2 |
 // ============================================
 
 async function fetchContributionsHTML(username: string, year?: number): Promise<ContributionGrid> {
-  const targetYear = year ?? new Date().getFullYear();
-  const url = `https://github.com/users/${username}/contributions?from=${targetYear}-01-01&to=${targetYear}-12-31`;
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const targetYear = year ?? currentYear;
+
+  let url: string;
+
+  if (targetYear === currentYear) {
+    const toDate = now.toISOString().split("T")[0];
+    const oneYearAgo = new Date(now);
+    oneYearAgo.setFullYear(now.getFullYear() - 1);
+    const fromDate = oneYearAgo.toISOString().split("T")[0];
+    url = `https://github.com/users/${username}/contributions?from=${fromDate}&to=${toDate}`;
+  } else {
+    url = `https://github.com/users/${username}/contributions?from=${targetYear}-01-01&to=${targetYear}-12-31`;
+  }
 
   const response = await fetch(url, {
     headers: {
