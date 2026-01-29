@@ -21,6 +21,14 @@
       "outputs": [],
       "cache": true
     },
+    "format": {
+      "outputs": [],
+      "cache": true
+    },
+    "format:check": {
+      "outputs": [],
+      "cache": true
+    },
     "lint:fix": {
       "outputs": [],
       "cache": false

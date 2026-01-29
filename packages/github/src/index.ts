@@ -278,10 +278,10 @@ async function fetchContributionsHTML(username: string, year?: number): Promise<
 
   // Find the day of week of the first day using UTC to avoid timezone shifts
   const [y, m, d] = rollingDays[0].date.split("-").map(Number);
-  const firstDayOfWeek = new Date(Date.UTC(y, m - 1, d)).getUTCDay(); // 0 = Sunday
+  const startDayOfWeek = new Date(Date.UTC(y, m - 1, d)).getUTCDay(); // 0 = Sunday
 
   // Pad beginning if not Sunday
-  for (let i = 0; i < firstDayOfWeek; i++) {
+  for (let i = 0; i < startDayOfWeek; i++) {
     currentWeek.push({ date: "", count: 0, level: 0 });
   }
 

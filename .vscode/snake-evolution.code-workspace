@@ -35,18 +35,6 @@
     {
       "name": "⚡ apps/api",
       "path": "../apps/api"
-    },
-    {
-      "name": "|___📚 KNOWLEDGE",
-      "path": "../../snake-knowledge"
-    },
-    {
-      "name": "|___🪦 SNAKE (legacy)",
-      "path": "../../contributions-devouring-snake"
-    },
-    {
-      "name": "ALL...",
-      "path": "../../"
     }
   ],
   "extensions": {
