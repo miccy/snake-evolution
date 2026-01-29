@@ -161,6 +161,7 @@ export async function renderAnimatedGIFSampled(
 **File:** `packages/cli/src/index.ts`
 
 ```typescript
+import { writeFileSync } from "node:fs";
 import { renderAnimatedGIF } from "@snake-evolution/renderer";
 
 // In generate action:
@@ -225,6 +226,7 @@ export function validateOutputFormat(format: string, theme: string) {
 - Total: ~5-10 seconds for typical animation
 
 ### Memory
+
 - Hold one frame in memory at a time
 - ~4 bytes per pixel × 847 × 112 = ~370 KB per frame
 - GIF encoder streams, doesn't buffer all frames
@@ -256,7 +258,7 @@ bun run snake generate -u octocat -f gif -o glass.gif -t glass
 bun test packages/renderer/src/gif.test.ts
 ```
 
-## Bun 1.3.5 Features
+## Bun 1.3.7 Features
 
 Relevant features for GIF implementation:
 
@@ -271,4 +273,4 @@ Relevant features for GIF implementation:
 
 - [resvg-js on npm](https://www.npmjs.com/package/@resvg/resvg-js)
 - [gifenc on GitHub](https://github.com/mattdesl/gifenc)
-- [Bun 1.3.5 release notes](https://bun.sh/blog/bun-v1.3.5)
+- [Bun 1.3.7 release notes](https://bun.sh/blog/bun-v1.3.7)

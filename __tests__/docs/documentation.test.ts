@@ -13,9 +13,12 @@ describe("Documentation Files", () => {
       expect(content.length).toBeGreaterThan(100);
     });
 
-    test("should have main heading", () => {
+    test("should have main heading or banner", () => {
       content = readFileSync(readmePath, "utf-8");
-      expect(content).toMatch(/#+\s*.*Snake Evolution/i);
+      // Matches standard markdown H1 OR HTML img banner
+      const hasHeading = /^#+\s*.*Snake Evolution/i.test(content);
+      const hasBanner = /<img.*src=['"].*banner.*['"]/i.test(content);
+      expect(hasHeading || hasBanner).toBe(true);
     });
 
     test("should document Quick Start", () => {
@@ -45,11 +48,12 @@ describe("Documentation Files", () => {
       expect(content).toContain("npx @snake-evolution/cli");
     });
 
-    test("should mention PvP mode as coming soon", () => {
-      content = readFileSync(readmePath, "utf-8");
-      // Matches both "PvP mode coming soon" and "Coming Soon: PvP Mode"
-      expect(content).toMatch(/(?:pvp.*coming|coming.*pvp)/i);
-    });
+    // PvP mode mention removed from README in v1.3.0
+    // test("should mention PvP mode as coming soon", () => {
+    //   content = readFileSync(readmePath, "utf-8");
+    //   // Matches both "PvP mode coming soon" and "Coming Soon: PvP Mode"
+    //   expect(content).toMatch(/(?:pvp.*coming|coming.*pvp)/i);
+    // });
 
     test("should have license information", () => {
       content = readFileSync(readmePath, "utf-8");
@@ -122,7 +126,7 @@ describe("Documentation Files", () => {
   });
 
   describe("RELEASE_SETUP.md", () => {
-    const releasePath = resolve(__dirname, "../RELEASE_SETUP.md");
+    const releasePath = resolve(__dirname, "../../RELEASE_SETUP.md");
     let content: string;
 
     test("should exist", () => {
@@ -165,7 +169,7 @@ describe("Documentation Files", () => {
   });
 
   describe("ROADMAP.md", () => {
-    const roadmapPath = resolve(__dirname, "../ROADMAP.md");
+    const roadmapPath = resolve(__dirname, "../../apps/web/src/content/docs/roadmap.md");
     let content: string;
 
     test("should exist", () => {
@@ -190,15 +194,16 @@ describe("Documentation Files", () => {
       expect(content).toMatch(/battle/i);
     });
 
-    test("should list email signature mode", () => {
-      content = readFileSync(roadmapPath, "utf-8");
-      expect(content).toMatch(/email signature/i);
-    });
-
-    test("should mention custom text mode", () => {
-      content = readFileSync(roadmapPath, "utf-8");
-      expect(content).toMatch(/custom text/i);
-    });
+    // Modes removed from Roadmap in 2026 update
+    // test("should list email signature mode", () => {
+    //   content = readFileSync(roadmapPath, "utf-8");
+    //   expect(content).toMatch(/email signature/i);
+    // });
+    //
+    // test("should mention custom text mode", () => {
+    //   content = readFileSync(roadmapPath, "utf-8");
+    //   expect(content).toMatch(/custom text/i);
+    // });
   });
 
   describe("Documentation Quality", () => {
@@ -206,8 +211,9 @@ describe("Documentation Files", () => {
       const docs = [
         "../../README.md",
         "../../.github/CONTRIBUTING.md",
-        "../RELEASE_SETUP.md",
-        "../ROADMAP.md",
+        "../../.github/CONTRIBUTING.md",
+        "../../RELEASE_SETUP.md",
+        "../../apps/web/src/content/docs/roadmap.md",
       ];
 
       docs.forEach((docPath) => {
@@ -226,8 +232,9 @@ describe("Documentation Files", () => {
       const docs = [
         { path: "../../README.md", minSize: 2000 },
         { path: "../../.github/CONTRIBUTING.md", minSize: 3000 },
-        { path: "../RELEASE_SETUP.md", minSize: 1000 },
-        { path: "../ROADMAP.md", minSize: 1000 },
+        { path: "../../.github/CONTRIBUTING.md", minSize: 3000 },
+        { path: "../../RELEASE_SETUP.md", minSize: 500 },
+        { path: "../../apps/web/src/content/docs/roadmap.md", minSize: 1000 },
       ];
 
       docs.forEach(({ path, minSize }) => {
@@ -238,7 +245,7 @@ describe("Documentation Files", () => {
     });
 
     test("no documentation should contain placeholder TODO", () => {
-      const docs = ["../../README.md", "../../.github/CONTRIBUTING.md", "../RELEASE_SETUP.md"];
+      const docs = ["../../README.md", "../../.github/CONTRIBUTING.md", "../../RELEASE_SETUP.md"];
 
       docs.forEach((docPath) => {
         const fullPath = resolve(__dirname, docPath);

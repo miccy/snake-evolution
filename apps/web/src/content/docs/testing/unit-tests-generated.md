@@ -181,8 +181,8 @@ Generated **104+ comprehensive unit tests** for all code changes in this branch,
 ## Running Tests
 
 ```bash
-# Run all tests in the repository
-cd /home/jailuser/git
+# Run all tests (from the repository root)
+cd <repo-root>
 bun test
 
 # Run specific package tests

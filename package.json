@@ -30,6 +30,7 @@
     "reinstall": "bun run clean && bun install",
     "snake": "bun run packages/cli/src/index.ts",
     "generate": "bun run packages/cli/src/index.ts generate",
+    "quality": "bun run lint:fix && bun run format && bun run typecheck && bun run test && bun run packages/cli/src/index.ts generate -u miccy -t github-dark -o dist/smoke-check.svg",
     "changeset": "changeset",
     "version": "changeset version",
     "release": "changeset publish"

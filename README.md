@@ -87,6 +87,7 @@ Add this into your README.md
 ```markdown
 ![GitHub Dark](./assets/examples/github-dark.svg)
 ```
+
 ### HTML in Markdown
 
 Add this into your README.md for centered image with dark/light mode support

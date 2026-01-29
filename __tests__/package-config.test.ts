@@ -27,7 +27,7 @@ describe("Package Configuration", () => {
     test("should specify Node.js >= 22", () => {
       expect(pkg.engines).toBeDefined();
       const engines = pkg.engines as Record<string, string>;
-      expect(engines.node).toMatch(/>=\s*22/);
+      expect(engines.node).toMatch(/>=\s*24/);
     });
 
     test("should specify Bun >= 1.3.0", () => {
@@ -196,7 +196,7 @@ describe("Package Configuration", () => {
       expect(pkg.engines).toBeDefined();
       const engines = pkg.engines as Record<string, string>;
 
-      expect(engines.node).toMatch(/>=\s*22/);
+      expect(engines.node).toMatch(/>=\s*24/);
     });
   });
 });

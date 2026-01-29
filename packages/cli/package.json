@@ -44,7 +44,7 @@
     "@snake-evolution/github": "workspace:*",
     "@snake-evolution/renderer": "workspace:*",
     "@snake-evolution/types": "workspace:*",
-    "@types/node": "^25.1.0",
+    "@types/node": "^24.0.0",
     "commander": "^14.0.2"
   },
   "engines": {

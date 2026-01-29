@@ -203,9 +203,23 @@ async function fetchContributionsHTML(username: string, year?: number): Promise<
   }
 
   // For rolling year (current), fetch this year AND last year
+  // Use try/catch for previous year to handle new users gracefully
   const [currentGrid, prevGrid] = await Promise.all([
     fetchYear(username, currentYear),
-    fetchYear(username, currentYear - 1),
+    fetchYear(username, currentYear - 1).catch((error) => {
+      // Only swallow 404s (User not found) or "Not Found" errors
+      // Propagate other errors (rate limits, network issues, etc.)
+      const msg = error instanceof Error ? error.message : String(error);
+      if (msg.includes("User not found") || msg.includes("404")) {
+        return {
+          weeks: [],
+          totalContributions: 0,
+          year: currentYear - 1,
+          username,
+        } as ContributionGrid;
+      }
+      throw error;
+    }),
   ]);
 
   // Merge logic
@@ -262,9 +276,9 @@ async function fetchContributionsHTML(username: string, year?: number): Promise<
     };
   }
 
-  // Find the day of week of the first day
-  const firstDayObj = new Date(rollingDays[0].date);
-  const firstDayOfWeek = firstDayObj.getDay(); // 0 = Sunday
+  // Find the day of week of the first day using UTC to avoid timezone shifts
+  const [y, m, d] = rollingDays[0].date.split("-").map(Number);
+  const firstDayOfWeek = new Date(Date.UTC(y, m - 1, d)).getUTCDay(); // 0 = Sunday
 
   // Pad beginning if not Sunday
   for (let i = 0; i < firstDayOfWeek; i++) {
@@ -347,8 +361,9 @@ function parseContributionCalendar(html: string, username: string, year: number)
 
   // Build grid with Sunday alignment
   if (days.length > 0) {
-    const firstDate = new Date(days[0].date);
-    const dayOfWeek = firstDate.getDay(); // 0 = Sunday
+    // Parse date in UTC to ensure consistent day of week
+    const [y, m, d] = days[0].date.split("-").map(Number);
+    const dayOfWeek = new Date(Date.UTC(y, m - 1, d)).getUTCDay(); // 0 = Sunday
 
     // Pad beginning
     for (let i = 0; i < dayOfWeek; i++) {

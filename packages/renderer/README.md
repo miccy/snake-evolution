@@ -6,7 +6,7 @@ SVG renderer for Snake Evolution. Generates static and animated SVG images from 
 
 - 🖼️ **Static SVG** – Single-frame renders
 - 🎬 **Animated SVG** – SMIL-based animations (like Platane's original)
-- 🎨 **Theming** – Multiple color palettes (GitHub, Ocean, Synthwave, CypherPunk)
+- 🎨 **Theming** – 7 built-in palettes including GitHub Light/Dark, Ocean, Neon Gamer, and Cypherpunk
 - ⚡ **Performant** – Optimized for GitHub profile embedding
 
 ## Installation
