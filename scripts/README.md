@@ -29,7 +29,7 @@ chmod +x scripts/setup-mac.sh
 
 **After running:**
 
-1. Open http://localhost for Appwrite
+1. Open http://localhost:80 for Appwrite
 2. Create account and project
 3. Add API key to `.env.local`
 4. Run `bun dev`

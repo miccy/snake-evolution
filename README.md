@@ -29,7 +29,7 @@
 - **🤖 GitHub Action** - Automated daily updates for your profile.
 - **🗓️ Rolling Year** - Always shows the last 12 months of contributions.
 
-## 🚀 Usage
+## 🚀 Quick Start
 
 ### GitHub Action (Recommended)
 
@@ -85,9 +85,8 @@ npx @snake-evolution/cli@latest generate -u YOUR_USERNAME
 Add this into your README.md
 
 ```markdown
-!![GitHub Dark](./assets/examples/github-dark.svg)
+![GitHub Dark](./assets/examples/github-dark.svg)
 ```
-
 ### HTML in Markdown
 
 Add this into your README.md for centered image with dark/light mode support

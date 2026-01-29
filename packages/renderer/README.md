@@ -38,21 +38,23 @@ const animatedSvg = renderAnimatedSVG(frames, {
 
 ## API
 
-| Function | Description |
-|----------|-------------|
-| `renderStaticSVG(grid, snake, options)` | Render single frame |
-| `renderAnimatedSVG(frames, options)` | Render animated SVG |
-| `renderGridSVG(grid, snake, options)` | ⚠️ Deprecated – use `renderStaticSVG` |
+| Function                                | Description                          |
+| --------------------------------------- | ------------------------------------ |
+| `renderStaticSVG(grid, snake, options)` | Render single frame                  |
+| `renderAnimatedSVG(frames, options)`    | Render animated SVG                  |
+| `renderGridSVG(grid, snake, options)`   | ⚠️ Deprecated – use `renderStaticSVG` |
 
 ## Available Themes
 
-| Theme | Description |
-|-------|-------------|
-| `github` | Classic GitHub green |
-| `ocean` | Blue ocean waves |
-| `synthwave` | Retro neon purple/pink |
-| `cypherpunk` | Blue/magenta cyberpunk |
-| `glass` | Glassmorphism (GIF only, v1.1+) |
+| Theme          | Description                     |
+| -------------- | ------------------------------- |
+| `github-light` | GitHub's default light theme    |
+| `github-dark`  | GitHub's dark mode              |
+| `ocean`        | Cool blue ocean tones           |
+| `sunset`       | Warm sunset vibes               |
+| `neon-gamer`   | Vibrant neon purple/green       |
+| `cypherpunk`   | Blue/magenta cyberpunk          |
+| `glass`        | Glassmorphism (GIF only, v1.1+) |
 
 ## Related Packages
 

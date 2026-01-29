@@ -5,7 +5,7 @@ description: Strategic roadmap and vision for Snake Evolution.
 
 # 🗺️ Snake Evolution Roadmap
 
-> **Updated:** January 2025
+> **Updated:** January 2026
 > **Strategic Focus:** Ethical positioning + Interactive playground + Monetization
 
 ## 🎯 Vision
@@ -109,6 +109,7 @@ Snake Evolution:    ✨ Real data + Gamification + Customization ✨
 > First to eat all contributions (or highest score) wins.
 
 **Game Modes:**
+
 1. **Quick Match** (3 rounds)
 2. **Ranked** (ELO rating)
 3. **Team Battle** (2v2)

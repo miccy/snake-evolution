@@ -69,7 +69,7 @@ snake-evolution/
 ## Verify Installation
 
 ```bash
-# Run all quality checks (lint + typecheck)
+# Run all quality checks (lint + format + typecheck)
 bun run check
 
 # Or run tests too

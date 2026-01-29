@@ -7,7 +7,7 @@ description: Technical guide for implementing GIF output support.
 
 Technical documentation for implementing GIF output format in Snake Evolution.
 
-> **Status:** Planned for v1.3.0 (January 2025)
+> **Status:** Planned for v1.3.0 (January 2026)
 > **Research date:** December 22, 2025
 
 ## Overview
@@ -110,13 +110,15 @@ export async function renderAnimatedGIF(
     });
     const rendered = resvg.render();
     const pixels = rendered.pixels; // Uint8Array RGBA
+    const actualWidth = rendered.width;
+    const actualHeight = rendered.height;
 
     // 3. Quantize colors (GIF max 256)
     const palette = quantize(pixels, 256, { format: "rgba4444" });
     const indexed = applyPalette(pixels, palette, "rgba4444");
 
     // 4. Add frame to GIF
-    gif.writeFrame(indexed, width, height, {
+    gif.writeFrame(indexed, actualWidth, actualHeight, {
       palette,
       delay: frameDelay,
       dispose: 2, // restore to background
@@ -223,9 +225,8 @@ export function validateOutputFormat(format: string, theme: string) {
 - Total: ~5-10 seconds for typical animation
 
 ### Memory
-
 - Hold one frame in memory at a time
-- ~4 bytes per pixel × 847 × 112 = ~380 KB per frame
+- ~4 bytes per pixel × 847 × 112 = ~370 KB per frame
 - GIF encoder streams, doesn't buffer all frames
 
 ## Why Not Platane's Approach
