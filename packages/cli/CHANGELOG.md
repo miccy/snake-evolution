@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- feat: Implemented matching 12-month rolling contribution window. Updated Node requirements to >=24. Overhauled documentation.
+- feat: Implemented matching 12-month rolling contribution window. Updated Node requirements to >=24.0.0. Added support for GIF sampling to reduce file size. Overhauled documentation.
 
 ## 1.2.4
 

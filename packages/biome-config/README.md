@@ -6,8 +6,6 @@ Shared [Biome](https://biomejs.dev/) configuration for the Snake Evolution monor
 
 Extend this configuration in your package's `biome.json`:
 
-
-
 ## What's Included
 
 - **Linting** – TypeScript-aware rules
