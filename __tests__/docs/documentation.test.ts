@@ -15,10 +15,11 @@ describe("Documentation Files", () => {
 
     test("should have main heading or banner", () => {
       content = readFileSync(readmePath, "utf-8");
-      // Matches standard markdown H1 OR HTML img banner
-      const hasHeading = /^#+\s*.*Snake Evolution/i.test(content);
+      // Matches standard markdown H1 (# Title) OR HTML h1 tag
+      const hasHeading = /^#\s+.*Snake Evolution/i.test(content);
+      const hasHtmlHeading = /<h1.*>.*Snake Evolution.*<\/h1>/i.test(content);
       const hasBanner = /<img.*src=['"].*banner.*['"]/i.test(content);
-      expect(hasHeading || hasBanner).toBe(true);
+      expect(hasHeading || hasHtmlHeading || hasBanner).toBe(true);
     });
 
     test("should document Quick Start", () => {

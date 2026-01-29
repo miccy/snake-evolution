@@ -27,7 +27,7 @@ description: Strategic roadmap and vision for Snake Evolution.
 
 ```text
 gitfiti (2012):     Pixel art, playful, 8.3K ⭐
-github-activity:    Fake automation, 3.7K ⭐, SKETCHY
+github-activity:    Fake automation, 3.7K ⭐, manipulation tool
 Snake Evolution:    ✨ Real data + Gamification + Customization ✨
                     TARGET: 10K ⭐ in 6 months
 ```

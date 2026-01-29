@@ -89,6 +89,18 @@ function renderSnakeSegments(snake: SnakeState, opts: RenderOptions): string {
       const cellX = gap + segment.x * (cellSize + gap);
       const cellY = gap + segment.y * (cellSize + gap);
 
+      // Tapering logic matchin renderAnimatedSVG
+      const snakeLen = snake.segments.length;
+      const positionRatio = i / Math.max(1, snakeLen - 1); // 0 = head, 1 = tail
+
+      // Size: head is 1.3x, tail is 0.7x
+      const sizeMultiplier = i === 0 ? 1.3 : 1.0 - positionRatio * 0.3;
+      const segSize = Math.round(cellSize * sizeMultiplier);
+      const offset = (cellSize - segSize) / 2;
+
+      // Opacity: head is 1, fades to 0.5 at tail
+      const opacity = i === 0 ? 1 : 1 - positionRatio * 0.5;
+
       let color: string;
       if (i === 0) {
         color = palette.snake.head;
@@ -98,8 +110,10 @@ function renderSnakeSegments(snake: SnakeState, opts: RenderOptions): string {
         color = palette.snake.body;
       }
 
+      const rx = i === 0 ? 4 : 2; // Head more rounded
       const filterAttr = isGlass ? ' filter="url(#glass-glow)"' : "";
-      return `<rect x="${cellX}" y="${cellY}" width="${cellSize}" height="${cellSize}" fill="${color}" rx="2"${filterAttr}/>`;
+
+      return `<rect x="${cellX + offset}" y="${cellY + offset}" width="${segSize}" height="${segSize}" fill="${color}" rx="${rx}" opacity="${opacity.toFixed(2)}"${filterAttr}/>`;
     })
     .join("");
 }

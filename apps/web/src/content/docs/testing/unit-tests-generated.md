@@ -181,8 +181,7 @@ Generated **104+ comprehensive unit tests** for all code changes in this branch,
 ## Running Tests
 
 ```bash
-# Run all tests (from the repository root)
-cd <repo-root>
+# Run all tests from the repository root
 bun test
 
 # Run specific package tests

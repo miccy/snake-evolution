@@ -60,7 +60,7 @@ jobs:
             dist/snake-ocean.svg?palette=ocean
 
       - name: Push to Output Branch
-        uses: crazy-max/ghaction-github-pages@v3.1.0
+        uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
           build_dir: dist
