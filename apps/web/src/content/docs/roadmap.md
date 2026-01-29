@@ -49,7 +49,7 @@ Snake Evolution:    ✨ Real data + Gamification + Customization ✨
 
 ### Priority 1: GIF Implementation
 
-**Status:** Shipping in v1.3.0
+**Status:** ✅ Shipped in v1.3.0
 
 - ✅ Glass theme fully supported
 - ✅ CLI `--format gif` option

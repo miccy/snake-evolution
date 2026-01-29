@@ -103,6 +103,7 @@ export async function renderAnimatedGIF(
 
   const gif = GIFEncoder();
   const total = frames.length;
+  let finished = false;
 
   try {
     for (let i = 0; i < frames.length; i++) {
@@ -142,19 +143,23 @@ export async function renderAnimatedGIF(
     }
 
     gif.finish();
+    finished = true;
     return Buffer.from(gif.bytes());
   } catch (error) {
      if (onProgress) {
-        // Optional: signal failure via callback if contract supports it
+        // Signal failure if callback supports error payload, or just log
+        // console.error("GIF encoding failed:", error);
      }
      throw error;
   } finally {
     // Ensure cleanup so internal streams are finalized even on error
-    try {
-        // Verify if finish() is safe to call multiple times or check internal state if possible
-        // gifenc's finish() writes the trailer.
-        gif.finish(); 
-    } catch {}
+    if (!finished) {
+        try {
+            gif.finish(); 
+        } catch (cleanupError) {
+            console.warn("Failed to cleanup GIF encoder:", cleanupError);
+        }
+    }
   }
 }
 ```
