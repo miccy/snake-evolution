@@ -103,11 +103,11 @@ async function fetchContributionsGraphQL(
   if (targetYear === currentYear) {
     // Rolling year: last 12 months ending today
     // Align start date to Sunday to ensure full weeks in the grid
-    to = now.toISOString();
+    to = `${now.getUTCFullYear()}-${String(now.getUTCMonth() + 1).padStart(2, "0")}-${String(now.getUTCDate()).padStart(2, "0")}T23:59:59Z`;
     const oneYearAgo = new Date(now);
     oneYearAgo.setFullYear(now.getFullYear() - 1);
-    oneYearAgo.setDate(oneYearAgo.getDate() - oneYearAgo.getDay()); // Align to previous Sunday
-    from = oneYearAgo.toISOString();
+    oneYearAgo.setUTCDate(oneYearAgo.getUTCDate() - oneYearAgo.getUTCDay()); // Align to previous Sunday (UTC)
+    from = `${oneYearAgo.getUTCFullYear()}-${String(oneYearAgo.getUTCMonth() + 1).padStart(2, "0")}-${String(oneYearAgo.getUTCDate()).padStart(2, "0")}T00:00:00Z`;
   } else {
     // Calendar year: Jan 1 to Dec 31
     from = `${targetYear}-01-01T00:00:00Z`;
