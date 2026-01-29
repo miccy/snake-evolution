@@ -12,12 +12,14 @@
 ## 📍 Current Position (v1.2.4)
 
 ### Market Context
+
 - **18,000+ GitHub stars** on contribution manipulation tools
 - **5,500+ stars** on legitimate visualization tools
 - **Growing demand** for profile customization
 - **Hiring managers** increasingly skeptical of fake graphs
 
 ### Our Opportunity
+
 ```
 gitfiti (2012):     Pixel art, playful, 8.3K ⭐
 github-activity:    Fake automation, 3.7K ⭐, SKETCHY
@@ -26,6 +28,7 @@ Snake Evolution:    ✨ Real data + Gamification + Customization ✨
 ```
 
 ### What's Live ✅
+
 - CLI tool (`npx @snake-evolution/cli@latest`)
 - GitHub Action (marketplace)
 - 7 themes (6 SVG + Glass theme for GIF)
@@ -33,6 +36,7 @@ Snake Evolution:    ✨ Real data + Gamification + Customization ✨
 - Monorepo architecture
 
 ### Critical Gaps 🚨
+
 - ❌ GIF output (80% ready, not shipped)
 - ❌ Interactive playground
 - ❌ Ethical positioning in marketing
@@ -46,9 +50,11 @@ Snake Evolution:    ✨ Real data + Gamification + Customization ✨
 **Goal:** Ship GIF, complete v1 vision, establish ethical positioning
 
 ### Priority 1: GIF Implementation (Week 1)
+
 **Status:** 80% complete, needs final push
 
 **Tasks:**
+
 - [ ] Complete `packages/renderer/src/gif.ts` integration
 - [ ] Test Glass theme rendering with blur effects
 - [ ] CLI `--format gif` option working
@@ -57,12 +63,14 @@ Snake Evolution:    ✨ Real data + Gamification + Customization ✨
 - [ ] File size optimization (<1MB)
 
 **Success Metrics:**
+
 - Glass theme renders correctly
 - GIF generation time <5s
 - File size <1MB for full year
 - Zero regressions in SVG output
 
 **Acceptance Criteria:**
+
 ```bash
 # These must work:
 npx @snake-evolution/cli generate -u octocat --format gif
@@ -84,6 +92,7 @@ npx @snake-evolution/cli generate -u octocat -t glass --format gif
 **A) README.md Updates:**
 
 Add prominent badge section:
+
 ```markdown
 ## ✅ The Ethical Choice
 
@@ -121,6 +130,7 @@ New:
 > hiring managers. No fake commits, no manipulation, just fun."
 
 **Success Metrics:**
+
 - Trust indicators in README
 - "Ethical" mentioned prominently
 - Comparison table vs manipulation tools
@@ -162,6 +172,7 @@ export default function PlaygroundPreview() {
 ```
 
 **Success Metrics:**
+
 - Live preview working
 - Color customization functional
 - Download generates actual files
@@ -176,6 +187,7 @@ export default function PlaygroundPreview() {
 ### Week 1-2: Core Playground
 
 **Features:**
+
 - [ ] **Username autocomplete** - GitHub API integration
 - [ ] **Theme selector** - All 7 themes + custom
 - [ ] **Color picker UI** - HSL sliders for each element:
@@ -197,12 +209,14 @@ export default function PlaygroundPreview() {
   - Share link
 
 **Technical Stack:**
+
 - Astro + React islands
 - TailwindCSS 4 for UI
 - Canvas API for preview
 - Web Workers for heavy computation
 
 **Success Metrics:**
+
 - Preview update <100ms
 - Smooth 60fps animations
 - Mobile responsive
@@ -231,12 +245,14 @@ const schema = {
 ```
 
 **Features:**
+
 - [ ] Save custom themes locally
 - [ ] Theme history (last 10)
 - [ ] Export/import themes
 - [ ] Offline-capable playground
 
 **Why Evolu:**
+
 - Privacy-first (data stays local)
 - Works offline
 - No auth required for basic usage
@@ -247,6 +263,7 @@ const schema = {
 **Community Showcase:**
 
 **Features:**
+
 - [ ] Submit snake to public gallery
 - [ ] Browse community snakes
 - [ ] Upvote/favorite system
@@ -256,6 +273,7 @@ const schema = {
 **Backend: Appwrite**
 
 Collections:
+
 ```
 snakes:
   - id
@@ -275,6 +293,7 @@ votes:
 ```
 
 **Social Features:**
+
 - [ ] "Snake of the Week" badge
 - [ ] Share to Twitter with OG image
 - [ ] Embed code for blogs
@@ -287,6 +306,7 @@ votes:
 **Goal:** Sustainable income to fund development
 
 ### Free Tier
+
 ✅ All current features
 ✅ 7 pre-built themes
 ✅ Basic color customization
@@ -296,6 +316,7 @@ votes:
 ### Sponsor Tier ($5/month)
 
 **Exclusive Features:**
+
 - 🎨 **Unlimited custom themes** - Save unlimited themes
 - 🌈 **Advanced color editor** - HSL/gradient controls
 - ⚡ **Priority rendering** - Skip queue (when web service)
@@ -313,6 +334,7 @@ votes:
 **A) GitHub Sponsors Setup**
 
 Tiers:
+
 ```yaml
 $5/month - Supporter:
   - Sponsor badge
@@ -352,12 +374,14 @@ if (tier === 'free') {
 **C) Marketing Page**
 
 `/pricing`:
+
 - Compare tiers
 - Testimonials from sponsors
 - "Support open source" messaging
 - Clear value proposition
 
 **Success Metrics:**
+
 - 20 sponsors by end of Q1
 - $100 MRR (Monthly Recurring Revenue)
 - 5% conversion rate (free → sponsor)
@@ -375,6 +399,7 @@ if (tier === 'free') {
 > First to eat all contributions (or highest score) wins.
 
 **Rounds System:**
+
 ```
 Round 1: Normal speed, 3 min limit
 Round 2: 1.5x speed, 2 min limit
@@ -383,6 +408,7 @@ Finals: 3x speed, 30 sec limit
 ```
 
 **Power-ups with Cooldowns:**
+
 - 🔄 **Shrink** (10s cooldown) - Lose 3 body segments
 - ⚡ **Speed Boost** (20s cooldown) - 2x speed for 5s
 - 🌀 **Teleport** (30s cooldown) - Random safe position
@@ -390,6 +416,7 @@ Finals: 3x speed, 30 sec limit
 - 🎯 **Vision** (15s cooldown) - Highlight highest value squares
 
 **Scoring:**
+
 ```javascript
 base_points = contribution_level (1-5)
 round_multiplier = [1, 1.5, 2, 3, 5][current_round]
@@ -428,6 +455,7 @@ setInterval(() => {
 ```
 
 **Latency Optimization:**
+
 - Client-side prediction
 - Server reconciliation
 - Rollback on desync
@@ -453,6 +481,7 @@ async function aiMove(difficulty: Difficulty) {
 ```
 
 **Anti-Cheat:**
+
 - Server-authoritative movement
 - Input validation
 - Rate limiting
@@ -461,6 +490,7 @@ async function aiMove(difficulty: Difficulty) {
 ### Leaderboards
 
 **Categories:**
+
 - Global (all time)
 - Weekly
 - Monthly
@@ -468,6 +498,7 @@ async function aiMove(difficulty: Difficulty) {
 - By company
 
 **Rewards:**
+
 - Top 10: Special badge
 - Top 100: Custom title
 - Monthly winner: Featured on homepage
@@ -490,6 +521,7 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 ### Revised Milestones
 
 **Q1 2025 Goals:**
+
 - ✅ Ship v1.3.0 with GIF (Jan 15)
 - ✅ Launch interactive playground (Feb 1)
 - ✅ Ethical positioning complete (Feb 1)
@@ -499,12 +531,14 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 - 🎯 **20 GitHub Sponsors**
 
 **Q2 2025 Goals:**
+
 - Premium tier launched
 - 50+ sponsors
 - 1,000+ community themes
 - Featured on GitHub Explore
 
 **Q3-Q4 2025 Goals:**
+
 - PvP beta → full release
 - 10,000+ stars
 - 500+ sponsors
@@ -550,6 +584,7 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 ### Direct Competitors
 
 **Platane/snk (Original):**
+
 - ✅ 7K+ stars, established
 - ✅ Simple, works well
 - ❌ No customization
@@ -557,6 +592,7 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 - ❌ No community features
 
 **Our Advantages:**
+
 - ✅ Full color customization
 - ✅ Growing snake mechanic
 - ✅ Interactive playground
@@ -564,12 +600,14 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 - ✅ Premium features
 
 **github-contributions-chart (5.5K stars):**
+
 - ✅ Shows full history
 - ❌ Static image only
 - ❌ No animation
 - ❌ No customization
 
 **Our Advantages:**
+
 - ✅ Animated (way cooler)
 - ✅ Interactive
 - ✅ Gamification
@@ -577,10 +615,12 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 ### Manipulation Tools (TO AVOID)
 
 **gitfiti (8.3K stars):**
+
 - Category: Playful pixel art
 - Ethics: Gray area, but clearly art
 
 **github-activity-generator (3.7K stars):**
+
 - Category: Fake activity
 - Ethics: Sketchy, against ToS
 
@@ -596,6 +636,7 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 
 **Risk:** GIF rendering too slow
 **Mitigation:** 
+
 - Benchmark early
 - Frame sampling
 - Web Workers
@@ -603,12 +644,14 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 
 **Risk:** Playground performance on mobile
 **Mitigation:**
+
 - Progressive enhancement
 - Reduced quality mode
 - Service Worker caching
 
 **Risk:** Appwrite cost at scale
 **Mitigation:**
+
 - Self-hosted option
 - Cloudflare CDN
 - Aggressive caching
@@ -617,6 +660,7 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 
 **Risk:** Low sponsor conversion
 **Mitigation:**
+
 - Clear value proposition
 - Social proof (testimonials)
 - Trial period (7 days)
@@ -624,6 +668,7 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 
 **Risk:** Comparison to "fake activity" tools
 **Mitigation:**
+
 - Aggressive ethical positioning
 - Clear differentiation
 - Trust indicators
@@ -631,6 +676,7 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 
 **Risk:** Competition from forks
 **Mitigation:**
+
 - Keep innovating (playground, PvP)
 - Build community moat
 - Premium features
@@ -643,6 +689,7 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 ### Content Marketing
 
 **Blog Posts:**
+
 1. "Why I Built Snake Evolution (And Why It's Ethical)"
 2. "Behind the Scenes: How Snake Pathfinding Works"
 3. "The Problem with GitHub Contribution Manipulation"
@@ -650,12 +697,14 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 5. "Building a Local-First App with Evolu"
 
 **Videos:**
+
 1. Product demo (60s)
 2. Playground tutorial (5 min)
 3. "Ethical vs Fake" comparison (3 min)
 4. Theme creation tutorial (10 min)
 
 **Social Media:**
+
 - Twitter: Daily snake showcases
 - Dev.to: Technical deep dives
 - Reddit: r/github, r/programming
@@ -664,6 +713,7 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 ### Community Building
 
 **Discord Server:**
+
 - #showcase - User snakes
 - #themes - Theme sharing
 - #support - Help channel
@@ -671,12 +721,14 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 - #dev - Development updates
 
 **GitHub Discussions:**
+
 - Ideas & Feature Requests
 - Show & Tell
 - Q&A
 - Announcements
 
 **Events:**
+
 - Weekly "Snake of the Week"
 - Monthly theme contest
 - Quarterly PvP tournament (when ready)
@@ -688,6 +740,7 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 ### Before v2.0
 
 **High Priority:**
+
 - [ ] Reduce bundle size (400KB → <300KB)
 - [ ] Add error boundaries in React
 - [ ] Implement proper logging
@@ -695,12 +748,14 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 - [ ] Write integration tests
 
 **Medium Priority:**
+
 - [ ] Refactor engine to use Web Workers
 - [ ] Implement caching layer
 - [ ] Optimize SVG output
 - [ ] Add analytics (privacy-friendly)
 
 **Low Priority:**
+
 - [ ] Migrate to Biome 2.0 when stable
 - [ ] Update to latest Astro
 - [ ] Consolidate types package
@@ -712,6 +767,7 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 ### Before v2.0 Launch
 
 **User Docs:**
+
 - [ ] Getting started guide
 - [ ] Playground tutorial
 - [ ] Theme creation guide
@@ -720,12 +776,14 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 - [ ] Video tutorials
 
 **Developer Docs:**
+
 - [ ] Architecture overview
 - [ ] Contributing guide
 - [ ] Theme development
 - [ ] Plugin system (future)
 
 **Marketing:**
+
 - [ ] Press kit
 - [ ] Brand guidelines
 - [ ] Screenshots library
@@ -738,21 +796,25 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 ### Before Starting v1.3
 
 **Decision 1: GIF vs SVG Default**
+
 - Option A: Keep SVG as default (backward compatible)
 - Option B: Make GIF default (better compatibility)
 - **Recommendation:** Keep SVG, add clear GIF benefits messaging
 
 **Decision 2: Color Customization Scope**
+
 - Option A: Full HSL control (complex UI)
 - Option B: Preset palettes + limited tweaking
 - **Recommendation:** Start with B, add A for sponsors
 
 **Decision 3: Monetization Timing**
+
 - Option A: Launch with v2.0 (February)
 - Option B: Wait until v2.1 (March/April)
 - **Recommendation:** Launch with v2.0, gives time to iterate
 
 **Decision 4: Evolu vs Traditional DB**
+
 - Option A: Full Evolu (learning curve, offline-first)
 - Option B: Hybrid (Appwrite for public, Evolu for local)
 - **Recommendation:** Hybrid approach
@@ -764,6 +826,7 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 ### Weekly Check-ins
 
 **Metrics to Track:**
+
 - npm downloads (weekly)
 - GitHub stars (daily)
 - Action usage (weekly)
@@ -773,6 +836,7 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 ### Monthly Reviews
 
 **Questions:**
+
 1. Are we hitting milestones?
 2. What's working / not working?
 3. Should we pivot anything?
@@ -782,6 +846,7 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 ### Quarterly Planning
 
 **Focus:**
+
 - Review Q roadmap
 - Adjust based on learnings
 - Plan next Q priorities
@@ -792,6 +857,7 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 ## 💡 Future Ideas (Post v3.0)
 
 **Parking Lot:**
+
 - Email signature mode (animated GIF)
 - Custom text mode ("your-name.dev" eaten by snake)
 - Mobile app (React Native)
@@ -816,6 +882,7 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 ### Tech Stack Summary
 
 **Current:**
+
 - Runtime: Bun 1.3.5
 - Monorepo: Turborepo
 - Language: TypeScript 5.9
@@ -823,6 +890,7 @@ v3.1.0  📋  Q4 2025    - PvP full release + tournaments
 - Testing: Vitest
 
 **Planned (v2.0+):**
+
 - Frontend: Astro + React 19
 - Styling: TailwindCSS 4
 - Database: Evolu (local) + Appwrite (cloud)
