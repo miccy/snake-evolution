@@ -265,4 +265,4 @@ These comprehensive tests provide:
 - **Regression prevention** for future changes
 - **Clear examples** of API usage
 
-Total test count increased from ~100 to ~250+ tests, with focus on practical scenarios and edge cases.
+Total test count increased from ~100 to 223 tests, with focus on practical scenarios and edge cases.

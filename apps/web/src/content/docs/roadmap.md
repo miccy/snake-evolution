@@ -124,5 +124,7 @@ v1.3.0  ✅  Jan 2026   - GIF + Ethical positioning + Color preview
 v1.4.0  📋  Feb 2026   - Performance optimization + bug fixes
 v2.0.0  📋  Mar 2026   - Full playground launch
 v2.1.0  📋  Apr 2026   - Gallery + social features
-v3.0.0  📋  Q3 2026    - PvP Mode beta
+v3.0.0  📋  Q2-Q3 2026 - PvP Mode beta
+
+> **Note:** Phase 2.5 (Monetization) runs in parallel to v2.x releases, starting Q1 2026.
 ```
