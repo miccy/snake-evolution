@@ -170,5 +170,5 @@ Original snake concept by [Platane](https://github.com/Platane) 🙏
 
 <div align="center">
   <p>🛠 Maintained by <a href="https://github.com/miccy">@miccy</a> with 💙</p>
-  <p>© 2026 <a href="https://github.com/enterprises/ownCTRL">ownCTRL™</a></p>
+  <p>© 2026 <a href="https://github.com/miccy">Miccy</a></p>
 </div>
