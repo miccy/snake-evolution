@@ -29,7 +29,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `clean:all` merged into `clean`
   - Removed unused Turbo tasks from `turbo.json`: `test:watch`, `format`, `format:check`
 
+
 ### Changed
+
+_No changes in this category for this release._
+
 ### Fixed
 
 - Removed deprecated `@types/dompurify` package (dompurify has built-in types)
