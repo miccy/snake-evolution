@@ -89,7 +89,7 @@ function renderSnakeSegments(snake: SnakeState, opts: RenderOptions): string {
       const cellX = gap + segment.x * (cellSize + gap);
       const cellY = gap + segment.y * (cellSize + gap);
 
-      // Tapering logic matchin renderAnimatedSVG
+      // Tapering logic matching renderAnimatedSVG
       const snakeLen = snake.segments.length;
       const positionRatio = i / Math.max(1, snakeLen - 1); // 0 = head, 1 = tail
 
