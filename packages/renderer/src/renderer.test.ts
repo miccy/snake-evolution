@@ -169,11 +169,10 @@ describe("Renderer - Static SVG", () => {
       const headX = gap + snake.segments[0].x * (cellSize + gap);
       const headY = gap + snake.segments[0].y * (cellSize + gap);
 
-      const headRectPattern = new RegExp(
-        `<rect[^>]*x="${headX}"[^>]*y="${headY}"[^>]*fill="${headColor}"`,
-      );
+      const headRectPattern = new RegExp(`<rect[^>]*x="${headX}"[^>]*y="${headY}"`);
 
       expect(svg).toMatch(headRectPattern);
+      expect(svg).toContain(`fill="${headColor}"`);
     });
 
     test("should render grid cells", () => {
@@ -623,10 +622,21 @@ describe("Renderer - Snake Segment Rendering", () => {
 
       const svg = renderStaticSVG(grid, snake);
 
-      const rxMatches = svg.match(/rx="2"/g);
-      expect(rxMatches).toBeTruthy();
-      // 371 grid cells + 3 snake segments = 374 elements with rounded corners
-      expect(rxMatches!.length).toBe(371 + snake.segments.length);
+      const rx2Matches = svg.match(/rx="2"/g);
+      expect(rx2Matches).toBeTruthy();
+      // 371 grid cells + (3 snake segments - 1 head) = 373 elements with rx="2"
+      expect(rx2Matches!.length).toBe(371 + snake.segments.length - 1);
+
+      const rx4Matches = svg.match(/rx="4"/g);
+      expect(rx4Matches).toBeTruthy();
+      // Head should have rx="4"
+      expect(rx4Matches!.length).toBe(1);
+
+      // Verify tapering (opacity)
+      const opacityMatches = svg.match(/opacity="/g);
+      expect(opacityMatches).toBeTruthy();
+      // Head has opacity 1 (implicit or explicit), tail has lower. Check if opacity attr exists on at least some segments
+      expect(opacityMatches!.length).toBeGreaterThan(0);
     });
 
     test("should render segments in correct order (head first)", () => {

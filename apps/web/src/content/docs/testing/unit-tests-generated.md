@@ -1,8 +1,11 @@
-# Comprehensive Unit Tests Generated for Snake Evolution
+---
+title: Unit Tests Generated
+description: Detailed breakdown of unit tests generated for v1.3.0.
+---
 
 ## Summary
 
-Generated **80+ comprehensive unit tests** for all code changes in this branch, with a strong bias for action to ensure thorough coverage of edge cases, security concerns, and real-world scenarios.
+Generated **104+ comprehensive unit tests** for all code changes in this branch, with a strong bias for action to ensure thorough coverage of edge cases, security concerns, and real-world scenarios.
 
 ## Files Modified/Created
 
@@ -164,22 +167,21 @@ Generated **80+ comprehensive unit tests** for all code changes in this branch, 
 
 ## Test Statistics
 
-| Metric | Value |
-|--------|-------|
-| **Total New Tests** | ~80 |
-| **Lines of Test Code Added** | ~885 |
-| **Security Tests** | 20+ |
-| **Edge Case Tests** | 25+ |
-| **Integration Tests** | 15+ |
-| **Files Enhanced** | 4 |
+| Metric                       | Value |
+| ---------------------------- | ----- |
+| **Total New Tests**          | 104+  |
+| **Lines of Test Code Added** | 1,188 |
+| **Security Tests**           | 20+   |
+| **Edge Case Tests**          | 25+   |
+| **Integration Tests**        | 15+   |
+| **Files Enhanced**           | 4     |
 
 ---
 
 ## Running Tests
 
 ```bash
-# Run all tests in the repository
-cd /home/jailuser/git
+# Run all tests from the repository root
 bun test
 
 # Run specific package tests
@@ -254,7 +256,7 @@ Comprehensive validation:
 
 ## Conclusion
 
-These comprehensive unit tests provide a solid foundation for the codebase changes. With **80+ new tests** covering happy paths, edge cases, security concerns, and real-world scenarios, the code is well-protected against regressions and provides clear documentation of expected behavior.
+These comprehensive unit tests provide a solid foundation for the codebase changes. With **104+ new tests** covering happy paths, edge cases, security concerns, and real-world scenarios, the code is well-protected against regressions and provides clear documentation of expected behavior.
 
 **Total Test Coverage Increase:**
 
@@ -263,4 +265,4 @@ These comprehensive unit tests provide a solid foundation for the codebase chang
 - GitHub parsing: **+253 lines** (new coverage)
 - Renderer: **+327 lines** (new coverage)
 
-**Overall Impact:** From ~100 baseline tests to **250+ total tests** in the project.
+**Overall Impact:** From ~100 baseline tests to **223+ total tests** in the project.

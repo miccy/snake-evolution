@@ -42,6 +42,13 @@ reviews:
   # Auto-generate PR title following Conventional Commits
   auto_title_instructions: "Generate the PR title following the Conventional Commits specification (e.g., 'feat:', 'fix:', 'chore:', 'docs:'). Keep it concise and descriptive."
 
+  # Path-specific instructions for generated content
+  path_instructions:
+    - path: "docs/testing/**"
+      instructions: "Place all test documentation, summaries, and generated test reports here."
+    - path: "*.md"
+      instructions: "Root-level markdown files should only contain essential project documentation (README, CHANGELOG, etc.). Generated documentation belongs in docs/."
+
 chat:
   # Enable conversational bot on PRs
   auto_reply: true

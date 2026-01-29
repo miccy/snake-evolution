@@ -1,32 +1,36 @@
 {
   "folders": [
     {
-      "name": "🐍 root",
+      "name": "|___🐍 SNAKE",
       "path": ".."
     },
     {
-      "name": "📦 packages/cli",
+      "name": "      |___🌐 WEB",
+      "path": "../apps/web"
+    },
+    {
+      "name": "      |___⚡ API",
+      "path": "../apps/api"
+    },
+    {
+      "name": "      |___📦 CLI",
       "path": "../packages/cli"
     },
     {
-      "name": "📦 packages/engine",
+      "name": "      |___📦 ENGINE",
       "path": "../packages/engine"
     },
     {
-      "name": "📦 packages/renderer",
+      "name": "      |___📦 RENDER",
       "path": "../packages/renderer"
     },
     {
-      "name": "📦 packages/github",
+      "name": "      |___📦 GITHUB",
       "path": "../packages/github"
     },
     {
-      "name": "📦 packages/types",
+      "name": "      |___📦 TYPES",
       "path": "../packages/types"
-    },
-    {
-      "name": "🌐 apps/web",
-      "path": "../apps/web"
     },
     {
       "name": "⚡ apps/api",

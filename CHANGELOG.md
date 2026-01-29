@@ -13,10 +13,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **SVG Sanitization** - Replaced fragile regex-based sanitization with `isomorphic-dompurify` for robust, isomorphic SVG sanitization in both browser and server environments
 - **ReDoS Fix** - Fixed polynomial regex vulnerability by replacing with O(1) string checks
 
+### Added
+
+- **README Files** - Added professional README.md documentation to all packages and directories:
+  - `packages/engine`, `packages/renderer`, `packages/github`, `packages/types`, `packages/ui`
+  - `packages/biome-config`, `packages/typescript-config`
+  - `apps/api`, `docker`, `scripts`
+
+### Breaking Changes
+
+- **Script & Turbo Task Changes (BREAKING)** - Consolidated root `package.json` scripts and removed Turbo tasks that may be referenced in local workflows and CI/CD pipelines:
+  - `format` + `format:check` merged into `lint` (Biome now handles both formatting and checks)
+  - `quality` + `precommit` consolidated into `check`
+  - `type-check` renamed to `typecheck`
+  - `clean:all` merged into `clean`
+  - Removed unused Turbo tasks from `turbo.json`: `test:watch`, `format`, `format:check`
+
+
+### Changed
+
+_No changes in this category for this release._
+
 ### Fixed
 
 - Removed deprecated `@types/dompurify` package (dompurify has built-in types)
 - Fixed test for empty format string to correctly expect "svg" default
+- Removed duplicate `SECURITY.md` from root (using `.github/SECURITY.md`)
 
 ### Removed
 

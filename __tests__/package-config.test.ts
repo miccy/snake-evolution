@@ -24,10 +24,10 @@ describe("Package Configuration", () => {
       expect(pkg.private).toBe(true);
     });
 
-    test("should specify Node.js >= 22", () => {
+    test("should specify Node.js >= 24", () => {
       expect(pkg.engines).toBeDefined();
       const engines = pkg.engines as Record<string, string>;
-      expect(engines.node).toMatch(/>=\s*22/);
+      expect(engines.node).toMatch(/>=\s*24/);
     });
 
     test("should specify Bun >= 1.3.0", () => {
@@ -44,19 +44,18 @@ describe("Package Configuration", () => {
       expect(scripts.build).toBeDefined();
       expect(scripts.test).toBeDefined();
       expect(scripts.lint).toBeDefined();
-      expect(scripts.format).toBeDefined();
-      expect(scripts["type-check"]).toBeDefined();
-      expect(scripts.quality).toBeDefined();
+      expect(scripts.typecheck).toBeDefined();
+      expect(scripts.check).toBeDefined();
+      expect(scripts.fix).toBeDefined();
     });
 
-    test("quality script should run all checks", () => {
+    test("check script should run lint and typecheck", () => {
       expect(pkg.scripts).toBeDefined();
       const scripts = pkg.scripts as Record<string, string>;
-      const qualityScript = scripts.quality;
+      const checkScript = scripts.check;
 
-      // Quality script should run check (which includes lint, format, type-check) and test
-      expect(qualityScript).toContain("check");
-      expect(qualityScript).toContain("test");
+      expect(checkScript).toContain("lint");
+      expect(checkScript).toContain("typecheck");
     });
 
     test("should use turbo for monorepo tasks", () => {
@@ -197,7 +196,7 @@ describe("Package Configuration", () => {
       expect(pkg.engines).toBeDefined();
       const engines = pkg.engines as Record<string, string>;
 
-      expect(engines.node).toMatch(/>=\s*22/);
+      expect(engines.node).toMatch(/>=\s*24/);
     });
   });
 });
