@@ -9,7 +9,8 @@ export default defineConfig({
   site: "https://snake-evolution.dev",
   vite: {
     plugins: [
-      /** @type {import("vite").PluginOption} */ (tailwindcss()),
+      // @ts-expect-error
+      tailwindcss(),
     ],
   },
   integrations: [
