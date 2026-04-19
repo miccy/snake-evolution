@@ -18,6 +18,7 @@
     "declarationMap": true,
     "noEmit": true,
     "types": ["bun"],
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
       "@snake-evolution/types": ["./packages/types/src"],
