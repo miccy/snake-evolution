@@ -8,7 +8,10 @@ import { defineConfig } from "astro/config";
 export default defineConfig({
   site: "https://snake-evolution.dev",
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [
+      // @ts-expect-error
+      tailwindcss(),
+    ],
   },
   integrations: [
     starlight({
