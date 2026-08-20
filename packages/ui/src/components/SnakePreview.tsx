@@ -4,20 +4,13 @@ import { sanitizeSvgContent } from "../utils/sanitizeSvg";
 export interface SnakePreviewProps {
   svgContent: string;
   className?: string;
-  /**
-   * Render raw SVG without sanitization. For trusted, internal-only content.
-   */
-  unsafe?: boolean;
 }
 
 /**
  * Displays provided SVG markup after sanitization to avoid XSS in previews.
  */
-export function SnakePreview({ svgContent, className = "", unsafe = false }: SnakePreviewProps) {
-  const safeSvg = useMemo(
-    () => (unsafe ? svgContent : sanitizeSvgContent(svgContent)),
-    [svgContent, unsafe],
-  );
+export function SnakePreview({ svgContent, className = "" }: SnakePreviewProps) {
+  const safeSvg = useMemo(() => sanitizeSvgContent(svgContent), [svgContent]);
 
   return (
     <div

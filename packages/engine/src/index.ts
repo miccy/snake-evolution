@@ -126,8 +126,12 @@ export function isInBounds(grid: ContributionGrid, pos: Position): boolean {
  * @param excludeTail - if true, exclude tail segment (it will move away next turn)
  */
 export function snakeOccupies(snake: SnakeState, pos: Position, excludeTail = false): boolean {
-  const segments = excludeTail ? snake.segments.slice(0, -1) : snake.segments;
-  return segments.some((seg) => seg.x === pos.x && seg.y === pos.y);
+  const limit = excludeTail ? snake.segments.length - 1 : snake.segments.length;
+  for (let i = 0; i < limit; i++) {
+    const seg = snake.segments[i];
+    if (seg.x === pos.x && seg.y === pos.y) return true;
+  }
+  return false;
 }
 
 // ============================================
@@ -167,13 +171,24 @@ function oppositeDirection(dir: Direction): Direction {
  * Prioritizes: level 4 > 3 > 2 > 1 (makes animation more dynamic)
  * Returns null if no path exists
  */
+function getOccupiedSet(snake: SnakeState, excludeTail = false): Set<number> {
+  const set = new Set<number>();
+  const limit = excludeTail ? snake.segments.length - 1 : snake.segments.length;
+  for (let i = 0; i < limit; i++) {
+    const seg = snake.segments[i];
+    set.add((seg.x << 10) | seg.y);
+  }
+  return set;
+}
+
 export function findNextDirection(grid: ContributionGrid, snake: SnakeState): Direction | null {
   const head = snake.segments[0];
   const currentDir = snake.direction;
+  const occupiedSet = getOccupiedSet(snake, true);
 
   // Try each level from highest to lowest
   for (let targetLevel = 4; targetLevel >= 1; targetLevel--) {
-    const result = findPathToLevel(grid, snake, head, currentDir, targetLevel);
+    const result = findPathToLevel(grid, snake, head, currentDir, targetLevel, occupiedSet);
     if (result) return result;
   }
 
@@ -201,10 +216,10 @@ function findPathToLevel(
   head: Position,
   currentDir: Direction,
   targetLevel: number,
+  occupiedSet: Set<number>,
 ): Direction | null {
   const queue: Array<{ pos: Position; firstDir: Direction | null; dist: number }> = [];
-  const visited = new Set<string>();
-  const key = (p: Position) => `${p.x},${p.y}`;
+  const visited = new Set<number>();
 
   // Start from neighbors of head
   for (const dir of DIRECTIONS) {
@@ -214,15 +229,17 @@ function findPathToLevel(
     const nextPos = { x: head.x + delta.x, y: head.y + delta.y };
 
     if (!isInBounds(grid, nextPos)) continue;
-    if (snakeOccupies(snake, nextPos, true)) continue;
+    const key = (nextPos.x << 10) | nextPos.y;
+    if (occupiedSet.has(key)) continue;
 
     queue.push({ pos: nextPos, firstDir: dir, dist: 1 });
-    visited.add(key(nextPos));
+    visited.add(key);
   }
 
+  let queueHead = 0;
   // BFS loop
-  while (queue.length > 0) {
-    const current = queue.shift()!;
+  while (queueHead < queue.length) {
+    const current = queue[queueHead++]!;
 
     // Found a contribution of target level!
     const level = getContributionLevel(grid, current.pos);
@@ -234,13 +251,13 @@ function findPathToLevel(
     for (const dir of DIRECTIONS) {
       const delta = directionDelta(dir);
       const nextPos = { x: current.pos.x + delta.x, y: current.pos.y + delta.y };
-      const k = key(nextPos);
+      const key = (nextPos.x << 10) | nextPos.y;
 
       if (!isInBounds(grid, nextPos)) continue;
-      if (visited.has(k)) continue;
-      if (snakeOccupies(snake, nextPos, true)) continue;
+      if (visited.has(key)) continue;
+      if (occupiedSet.has(key)) continue;
 
-      visited.add(k);
+      visited.add(key);
       queue.push({ pos: nextPos, firstDir: current.firstDir, dist: current.dist + 1 });
     }
   }

@@ -46,14 +46,19 @@ docker compose down -v
 
 ## Configuration
 
-Default credentials (development only):
+Credentials can be configured via environment variables or a `.env` file in the `docker` directory.
 
-| Service | User | Password |
-|---------|------|----------|
-| MariaDB | `user` | `password` |
-| MariaDB Root | `root` | `rootpassword` |
+### Environment Variables
 
-> ⚠️ **Warning**: Change these credentials for any non-local deployment!
+| Variable | Description | Default (development only) |
+|----------|-------------|----------------------------|
+| `APP_DB_USER` | MariaDB database user | `user` |
+| `APP_DB_PASS` | MariaDB database password | `password` |
+| `MYSQL_ROOT_PASSWORD` | MariaDB root user password | `rootpassword` |
+| `APP_DB_SCHEMA` | Database schema name | `appwrite` |
+| `APP_OPENSSL_KEY_V1` | Secret key for Appwrite encryption | `your-secret-key` |
+
+> ⚠️ **Warning**: Default credentials are intended for local development only. Always override these environment variables for production or staging deployments!
 
 ## Related
 

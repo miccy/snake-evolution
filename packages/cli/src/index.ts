@@ -27,7 +27,7 @@ program
   .option("-o, --output <path>", "Output file path", "snake.svg")
   .option(
     "-t, --theme <theme>",
-    "Theme name (github-light, github-dark, ocean, sunset, neon-gamer, cypherpunk, glass)",
+    "Theme name (use 'snake themes' to list available themes)",
     "github-dark",
   )
   .option("-f, --format <format>", "Output format (svg only for now)", "svg")
