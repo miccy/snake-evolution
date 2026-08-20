@@ -21,16 +21,16 @@ services:
       - _APP_ENV=development
       - _APP_LOCALE=en
       - _APP_OPTIONS_ABUSE=disabled
-      - _APP_OPENSSL_KEY_V1=${APPWRITE_SECRET_KEY}
+      - _APP_OPENSSL_KEY_V1=${APP_OPENSSL_KEY_V1:-your-secret-key}
       - _APP_DOMAIN=localhost
       - _APP_DOMAIN_TARGET=localhost
       - _APP_REDIS_HOST=redis
       - _APP_REDIS_PORT=6379
       - _APP_DB_HOST=mariadb
       - _APP_DB_PORT=3306
-      - _APP_DB_SCHEMA=appwrite
-      - _APP_DB_USER=user
-      - _APP_DB_PASS=password
+      - _APP_DB_SCHEMA=${APP_DB_SCHEMA:-appwrite}
+      - _APP_DB_USER=${APP_DB_USER:-user}
+      - _APP_DB_PASS=${APP_DB_PASS:-password}
       - _APP_SMTP_HOST=maildev
       - _APP_SMTP_PORT=1025
     depends_on:
@@ -45,10 +45,10 @@ services:
     volumes:
       - mariadb-data:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=rootpassword
-      - MYSQL_DATABASE=appwrite
-      - MYSQL_USER=user
-      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-rootpassword}
+      - MYSQL_DATABASE=${APP_DB_SCHEMA:-appwrite}
+      - MYSQL_USER=${APP_DB_USER:-user}
+      - MYSQL_PASSWORD=${APP_DB_PASS:-password}
     command: --max-allowed-packet=128MB
 
   # Redis for caching and queues
