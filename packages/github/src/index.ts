@@ -242,9 +242,13 @@ async function fetchContributionsHTML(username: string, year?: number): Promise<
   allDays.sort((a, b) => a.date.localeCompare(b.date));
 
   // 3. Remove duplicates (overlap at year boundary?)
-  const uniqueDays = allDays.filter(
-    (day, index, self) => index === self.findIndex((d) => d.date === day.date),
-  );
+  const uniqueDaysMap = new Map<string, GitHubContribution>();
+  for (const day of allDays) {
+    if (!uniqueDaysMap.has(day.date)) {
+      uniqueDaysMap.set(day.date, day);
+    }
+  }
+  const uniqueDays = Array.from(uniqueDaysMap.values());
 
   // 4. Slice last 365 days (approx 53 weeks)
   // We want the graph to end TODAY.
@@ -326,36 +330,32 @@ function parseContributionCalendar(html: string, username: string, year: number)
   let currentWeek: GitHubContribution[] = [];
   let totalContributions = 0;
 
-  // Match all contribution day cells
-  // GitHub uses: <td ... data-date="2025-01-01" data-count="4" data-level="3" ...>
-  // We use a robust regex that captures date, count (optional), and level
-  const dayPattern =
-    /<td[^>]*data-date="(\d{4}-\d{2}-\d{2})"[^>]*?(?:data-count="(\d+)"[^>]*?)?data-level="(-?\d+)"[^>]*>/g;
-  const days: Array<{ date: string; level: number; count?: number }> = [];
+  // We use a two-step parsing pattern to avoid complex ReDoS-vulnerable regular expressions
+  const daysMap = new Map<string, { date: string; level: number; count?: number }>();
 
-  for (const match of html.matchAll(dayPattern)) {
-    days.push({
-      date: match[1],
-      level: Number.parseInt(match[3], 10),
-      count: match[2] ? Number.parseInt(match[2], 10) : undefined,
-    });
-  }
+  // First isolate td tags
+  const tdPattern = /<td[^>]+>/g;
+  for (const match of html.matchAll(tdPattern)) {
+    const tdContent = match[0];
 
-  // Also try the alternate pattern (data-level before data-date)
-  const altPattern =
-    /<td[^>]*data-level="(-?\d+)"[^>]*?(?:data-count="(\d+)"[^>]*?)?data-date="(\d{4}-\d{2}-\d{2})"[^>]*>/g;
-  for (const match of html.matchAll(altPattern)) {
-    // Avoid duplicates
-    // Capturing groups: 1=level, 2=count(opt), 3=date
-    const date = match[3];
-    if (!days.some((d) => d.date === date)) {
-      days.push({
-        date,
-        level: Number.parseInt(match[1], 10),
-        count: match[2] ? Number.parseInt(match[2], 10) : undefined,
-      });
+    // Extract individual attributes using simple non-nested regexes
+    const dateMatch = /data-date="(\d{4}-\d{2}-\d{2})"/.exec(tdContent);
+    const levelMatch = /data-level="(-?\d+)"/.exec(tdContent);
+    const countMatch = /data-count="(\d+)"/.exec(tdContent);
+
+    if (dateMatch && levelMatch) {
+      const date = dateMatch[1];
+      if (!daysMap.has(date)) {
+        daysMap.set(date, {
+          date,
+          level: Number.parseInt(levelMatch[1], 10),
+          count: countMatch ? Number.parseInt(countMatch[1], 10) : undefined,
+        });
+      }
     }
   }
+
+  const days = Array.from(daysMap.values());
 
   // Sort
   days.sort((a, b) => a.date.localeCompare(b.date));
