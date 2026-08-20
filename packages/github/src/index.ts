@@ -183,47 +183,49 @@ export function parseContributionCalendar(
   let currentWeek: GitHubContribution[] = [];
   let totalContributions = 0;
 
-  // Match all contribution day cells
-  // GitHub uses: <td ... data-date="2025-01-01" data-count="4" data-level="3" ...>
-  // We use a robust regex that captures date, count (optional), and level
-  const dayPattern =
-    /<td[^>]*data-date="(\d{4}-\d{2}-\d{2})"[^>]*?(?:data-count="(\d+)"[^>]*?)?data-level="(-?\d+)"[^>]*>/g;
-  const days: Array<{ date: string; level: number; count?: number }> = [];
-  const seenDates = new Set<string>();
+  // Extremely safe split-based parsing to avoid any ReDoS possibilities
+  const daysMap = new Map<string, { date: string; level: number; count?: number }>();
 
-  for (const match of html.matchAll(dayPattern)) {
-    const date = match[1];
-    days.push({
-      date,
-      level: Number.parseInt(match[3], 10),
-      count: match[2] ? Number.parseInt(match[2], 10) : undefined,
-    });
-    seenDates.add(date);
-  }
+  // Split the HTML by '<td' to isolate table cells, which avoids regex backtracking on large documents
+  const tdChunks = html.split("<td");
 
-  // Also try the alternate pattern (data-level before data-date)
-  const altPattern =
-    /<td[^>]*data-level="(-?\d+)"[^>]*?(?:data-count="(\d+)"[^>]*?)?data-date="(\d{4}-\d{2}-\d{2})"[^>]*>/g;
-  for (const match of html.matchAll(altPattern)) {
-    // Avoid duplicates
-    // Capturing groups: 1=level, 2=count(opt), 3=date
-    const date = match[3];
-    if (!seenDates.has(date)) {
-      days.push({
-        date,
-        level: Number.parseInt(match[1], 10),
-        count: match[2] ? Number.parseInt(match[2], 10) : undefined,
-      });
-      seenDates.add(date);
+  for (let i = 1; i < tdChunks.length; i++) {
+    const chunk = tdChunks[i];
+
+    // Only process chunks that are actually data cells (contain data-date)
+    if (!chunk.includes("data-date=")) continue;
+
+    // Extract date (safe regex on a small substring)
+    const dateMatch = /data-date="(\d{4}-\d{2}-\d{2})"/.exec(chunk);
+    if (!dateMatch) continue;
+
+    const date = dateMatch[1];
+
+    // Extract level
+    const levelMatch = /data-level="(-?\d+)"/.exec(chunk);
+    if (!levelMatch) continue;
+
+    const level = Number.parseInt(levelMatch[1], 10);
+
+    // Extract optional count
+    let count: number | undefined;
+    const countMatch = /data-count="(\d+)"/.exec(chunk);
+    if (countMatch) {
+      count = Number.parseInt(countMatch[1], 10);
+    }
+
+    if (!daysMap.has(date)) {
+      daysMap.set(date, { date, level, count });
     }
   }
+
+  const days = Array.from(daysMap.values());
 
   // Sort
   days.sort((a, b) => a.date.localeCompare(b.date));
 
   // Build grid with Sunday alignment
   if (days.length > 0) {
-    // Parse date in UTC to ensure consistent day of week
     const [y, m, d] = days[0].date.split("-").map(Number);
     const dayOfWeek = new Date(Date.UTC(y, m - 1, d)).getUTCDay(); // 0 = Sunday
 
