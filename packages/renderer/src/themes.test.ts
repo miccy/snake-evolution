@@ -1,6 +1,18 @@
 import { describe, expect, test } from "bun:test";
 import type { ColorPalette, GlassTheme } from "./themes";
-import { getGlassFilterDefs, getTheme, githubDark, glass, isGlassTheme } from "./themes";
+import {
+  cypherpunk,
+  getGlassFilterDefs,
+  getTheme,
+  githubDark,
+  githubLight,
+  glass,
+  isGlassTheme,
+  neonGamer,
+  ocean,
+  sunset,
+  themes,
+} from "./themes";
 
 describe("Themes", () => {
   describe("isGlassTheme", () => {
@@ -22,8 +34,23 @@ describe("Themes", () => {
       expect(isGlassTheme(customGlass)).toBe(true);
     });
 
-    test("should return false for github-dark theme", () => {
+    test("should return false for all built-in non-glass themes", () => {
+      expect(isGlassTheme(githubLight)).toBe(false);
       expect(isGlassTheme(githubDark)).toBe(false);
+      expect(isGlassTheme(ocean)).toBe(false);
+      expect(isGlassTheme(sunset)).toBe(false);
+      expect(isGlassTheme(neonGamer)).toBe(false);
+      expect(isGlassTheme(cypherpunk)).toBe(false);
+    });
+
+    test("should return true only for glass theme in themes registry", () => {
+      for (const [key, theme] of Object.entries(themes)) {
+        if (key === "glass") {
+          expect(isGlassTheme(theme)).toBe(true);
+        } else {
+          expect(isGlassTheme(theme)).toBe(false);
+        }
+      }
     });
 
     test("should return false for a regular palette without glass property", () => {
