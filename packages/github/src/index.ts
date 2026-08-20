@@ -240,18 +240,6 @@ export function parseContributionCalendar(
     const count = day.count ?? contributionCountFromLevel(level);
 
     totalContributions += count;
-
-    // Fill any gap so the weekday column always matches the real date
-    const [dy, dm, dd] = day.date.split("-").map(Number);
-    const targetDayOfWeek = new Date(Date.UTC(dy, dm - 1, dd)).getUTCDay();
-    while (currentWeek.length !== targetDayOfWeek) {
-      currentWeek.push({ date: "", count: 0, level: 0 });
-      if (currentWeek.length === 7) {
-        weeks.push(currentWeek);
-        currentWeek = [];
-      }
-    }
-
     currentWeek.push({
       date: day.date,
       count,
