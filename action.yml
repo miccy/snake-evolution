@@ -30,6 +30,21 @@ inputs:
     required: false
     default: ''  # Current year if empty
 
+  frame_delay:
+    description: 'Delay between frames in ms (default: 60)'
+    required: false
+    default: '60'
+
+  max_length:
+    description: 'Maximum snake length (0 = auto)'
+    required: false
+    default: '0'
+
+  grow_every:
+    description: 'Grow 1 segment every N contributions (0 = auto)'
+    required: false
+    default: '0'
+
 outputs:
   svg_path:
     description: 'Path to generated SVG file'
@@ -59,6 +74,9 @@ runs:
         YEAR="${{ inputs.year }}"
         USERNAME="${{ inputs.github_user_name }}"
         TOKEN="${{ inputs.github_token }}"
+        FRAME_DELAY="${{ inputs.frame_delay }}"
+        MAX_LENGTH="${{ inputs.max_length }}"
+        GROW_EVERY="${{ inputs.grow_every }}"
         ACTION_PATH="${{ github.action_path }}"
         WORKSPACE="${{ github.workspace }}"
 
@@ -74,6 +92,18 @@ runs:
 
         if [ -n "$TOKEN" ]; then
           CMD_BASE+=( --token "$TOKEN" )
+        fi
+
+        if [ -n "$FRAME_DELAY" ]; then
+          CMD_BASE+=( --frame-delay "$FRAME_DELAY" )
+        fi
+
+        if [ -n "$MAX_LENGTH" ]; then
+          CMD_BASE+=( --max-length "$MAX_LENGTH" )
+        fi
+
+        if [ -n "$GROW_EVERY" ]; then
+          CMD_BASE+=( --grow-every "$GROW_EVERY" )
         fi
 
         FIRST_OUTPUT=""

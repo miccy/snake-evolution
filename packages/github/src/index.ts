@@ -337,12 +337,13 @@ async function fetchContributionsHTML(username: string, year?: number): Promise<
   allDays.sort((a, b) => a.date.localeCompare(b.date));
 
   // 3. Remove duplicates (overlap at year boundary?)
-  const seenDates = new Set<string>();
-  const uniqueDays = allDays.filter((day) => {
-    if (seenDates.has(day.date)) return false;
-    seenDates.add(day.date);
-    return true;
-  });
+  const uniqueDaysMap = new Map<string, GitHubContribution>();
+  for (const day of allDays) {
+    if (!uniqueDaysMap.has(day.date)) {
+      uniqueDaysMap.set(day.date, day);
+    }
+  }
+  const uniqueDays = Array.from(uniqueDaysMap.values());
 
   // 4. Slice last 365 days (approx 53 weeks)
   // We want the graph to end TODAY.
@@ -417,6 +418,86 @@ async function fetchContributionsHTML(username: string, year?: number): Promise<
 function contributionCountFromLevel(level: number): number {
   if (level <= 0) return 0;
   return level * 3;
+}
+
+function parseContributionCalendar(html: string, username: string, year: number): ContributionGrid {
+  const weeks: GitHubContribution[][] = [];
+  let currentWeek: GitHubContribution[] = [];
+  let totalContributions = 0;
+
+  // We use a two-step parsing pattern to avoid complex ReDoS-vulnerable regular expressions
+  const daysMap = new Map<string, { date: string; level: number; count?: number }>();
+
+  // First isolate td tags
+  const tdPattern = /<td[^>]+>/g;
+  for (const match of html.matchAll(tdPattern)) {
+    const tdContent = match[0];
+
+    // Extract individual attributes using simple non-nested regexes
+    const dateMatch = /data-date="(\d{4}-\d{2}-\d{2})"/.exec(tdContent);
+    const levelMatch = /data-level="(-?\d+)"/.exec(tdContent);
+    const countMatch = /data-count="(\d+)"/.exec(tdContent);
+
+    if (dateMatch && levelMatch) {
+      const date = dateMatch[1];
+      if (!daysMap.has(date)) {
+        daysMap.set(date, {
+          date,
+          level: Number.parseInt(levelMatch[1], 10),
+          count: countMatch ? Number.parseInt(countMatch[1], 10) : undefined,
+        });
+      }
+    }
+  }
+
+  const days = Array.from(daysMap.values());
+
+  // Sort
+  days.sort((a, b) => a.date.localeCompare(b.date));
+
+  // Build grid with Sunday alignment
+  if (days.length > 0) {
+    // Parse date in UTC to ensure consistent day of week
+    const [y, m, d] = days[0].date.split("-").map(Number);
+    const dayOfWeek = new Date(Date.UTC(y, m - 1, d)).getUTCDay(); // 0 = Sunday
+
+    // Pad beginning
+    for (let i = 0; i < dayOfWeek; i++) {
+      currentWeek.push({ date: "", count: 0, level: 0 });
+    }
+  }
+
+  for (const day of days) {
+    const level = Math.max(0, Math.min(4, day.level)) as 0 | 1 | 2 | 3 | 4;
+    const count = day.count ?? contributionCountFromLevel(level);
+
+    totalContributions += count;
+    currentWeek.push({
+      date: day.date,
+      count,
+      level,
+    });
+
+    if (currentWeek.length === 7) {
+      weeks.push(currentWeek);
+      currentWeek = [];
+    }
+  }
+
+  if (currentWeek.length > 0) {
+    // Pad end
+    while (currentWeek.length < 7) {
+      currentWeek.push({ date: "", count: 0, level: 0 });
+    }
+    weeks.push(currentWeek);
+  }
+
+  return {
+    username,
+    year,
+    totalContributions,
+    weeks,
+  };
 }
 
 // ============================================

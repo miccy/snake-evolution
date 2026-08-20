@@ -220,9 +220,10 @@ function findPathToLevel(
     visited.add(key(nextPos));
   }
 
+  let queueHead = 0;
   // BFS loop
-  while (queue.length > 0) {
-    const current = queue.shift()!;
+  while (queueHead < queue.length) {
+    const current = queue[queueHead++]!;
 
     // Found a contribution of target level!
     const level = getContributionLevel(grid, current.pos);

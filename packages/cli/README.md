@@ -47,28 +47,30 @@ snake themes
 
 ## CLI Options
 
-| Option | Description | Default |
-|--------|-------------|---------|
-| `-u, --username <name>` | GitHub username | *required* |
-| `-o, --output <path>` | Output file path | `snake.svg` |
-| `-t, --theme <name>` | Color theme | `github-dark` |
-| `-y, --year <year>` | Year to generate | current year |
-| `-f, --format <format>` | Output format (svg only; GIF not supported yet) | `svg` |
-| `--static` | Generate static SVG (no animation) | `false` |
-| `--frame-delay <ms>` | Delay between frames | `150` |
-| `--token <token>` | GitHub token for higher rate limits | - |
+| Option                  | Description                                     | Default       |
+| ----------------------- | ----------------------------------------------- | ------------- |
+| `-u, --username <name>` | GitHub username                                 | *required*    |
+| `-o, --output <path>`   | Output file path                                | `snake.svg`   |
+| `-t, --theme <name>`    | Color theme                                     | `github-dark` |
+| `-y, --year <year>`     | Year to generate                                | current year  |
+| `-f, --format <format>` | Output format (svg only; GIF not supported yet) | `svg`         |
+| `--static`              | Generate static SVG (no animation)              | `false`       |
+| `--frame-delay <ms>`    | Delay between frames                            | `60`          |
+| `--max-length <n>`      | Maximum snake length (0 = auto)                 | `0`           |
+| `--grow-every <n>`      | Grow 1 segment every N contributions (0 = auto) | `0`           |
+| `--token <token>`       | GitHub token for higher rate limits             | -             |
 
 ## Available Themes
 
-| Theme | Description |
-|-------|-------------|
-| `github-dark` | GitHub's dark mode (default) |
-| `github-light` | Classic GitHub light theme |
-| `ocean` | Cool blue ocean tones |
-| `sunset` | Warm sunset vibes |
-| `neon-gamer` | Vibrant neon purple/green |
-| `cypherpunk` | Blue/magenta cyberpunk vibes |
-| `glass` | Planned liquid glass effect (blocked until GIF output is available) |
+| Theme          | Description                                                         |
+| -------------- | ------------------------------------------------------------------- |
+| `github-dark`  | GitHub's dark mode (default)                                        |
+| `github-light` | Classic GitHub light theme                                          |
+| `ocean`        | Cool blue ocean tones                                               |
+| `sunset`       | Warm sunset vibes                                                   |
+| `neon-gamer`   | Vibrant neon purple/green                                           |
+| `cypherpunk`   | Blue/magenta cyberpunk vibes                                        |
+| `glass`        | Planned liquid glass effect (blocked until GIF output is available) |
 
 ## Examples
 
@@ -186,7 +188,7 @@ snake generate -u YOUR_USERNAME -t cypherpunk -o snake.svg
 
 ## Version
 
-Current version: **1.2.3**
+Current version: **1.3.0**
 
 ## License
 
