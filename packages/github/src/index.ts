@@ -173,6 +173,101 @@ function levelToNumber(level: ContributionDay["contributionLevel"]): 0 | 1 | 2 |
 // HTML Scraping (public, no auth)
 // ============================================
 
+/** @internal */
+export function parseContributionCalendar(
+  html: string,
+  username: string,
+  year: number,
+): ContributionGrid {
+  const weeks: GitHubContribution[][] = [];
+  let currentWeek: GitHubContribution[] = [];
+  let totalContributions = 0;
+
+  // Extremely safe split-based parsing to avoid any ReDoS possibilities
+  const daysMap = new Map<string, { date: string; level: number; count?: number }>();
+
+  // Split the HTML by '<td' to isolate table cells, which avoids regex backtracking on large documents
+  const tdChunks = html.split("<td");
+
+  for (let i = 1; i < tdChunks.length; i++) {
+    const chunk = tdChunks[i];
+
+    // Only process chunks that are actually data cells (contain data-date)
+    if (!chunk.includes("data-date=")) continue;
+
+    // Extract date (safe regex on a small substring)
+    const dateMatch = /data-date="(\d{4}-\d{2}-\d{2})"/.exec(chunk);
+    if (!dateMatch) continue;
+
+    const date = dateMatch[1];
+
+    // Extract level
+    const levelMatch = /data-level="(-?\d+)"/.exec(chunk);
+    if (!levelMatch) continue;
+
+    const level = Number.parseInt(levelMatch[1], 10);
+
+    // Extract optional count
+    let count: number | undefined;
+    const countMatch = /data-count="(\d+)"/.exec(chunk);
+    if (countMatch) {
+      count = Number.parseInt(countMatch[1], 10);
+    }
+
+    if (!daysMap.has(date)) {
+      daysMap.set(date, { date, level, count });
+    }
+  }
+
+  const days = Array.from(daysMap.values());
+
+  // Sort
+  days.sort((a, b) => a.date.localeCompare(b.date));
+
+  // Build grid with Sunday alignment
+  if (days.length > 0) {
+    const [y, m, d] = days[0].date.split("-").map(Number);
+    const dayOfWeek = new Date(Date.UTC(y, m - 1, d)).getUTCDay(); // 0 = Sunday
+
+    // Pad beginning
+    for (let i = 0; i < dayOfWeek; i++) {
+      currentWeek.push({ date: "", count: 0, level: 0 });
+    }
+  }
+
+  for (const day of days) {
+    const level = Math.max(0, Math.min(4, day.level)) as 0 | 1 | 2 | 3 | 4;
+    const count = day.count ?? contributionCountFromLevel(level);
+
+    totalContributions += count;
+    currentWeek.push({
+      date: day.date,
+      count,
+      level,
+    });
+
+    if (currentWeek.length === 7) {
+      weeks.push(currentWeek);
+      currentWeek = [];
+    }
+  }
+
+  if (currentWeek.length > 0) {
+    // Pad end
+    while (currentWeek.length < 7) {
+      currentWeek.push({ date: "", count: 0, level: 0 });
+    }
+    weeks.push(currentWeek);
+  }
+
+  return {
+    username,
+    year,
+    totalContributions,
+    weeks,
+  };
+}
+
 // Helper to fetch a specific calendar year
 async function fetchYear(username: string, year: number): Promise<ContributionGrid> {
   const url = `https://github.com/users/${username}/contributions?from=${year}-01-01&to=${year}-12-31`;

@@ -64,6 +64,37 @@ Snake Evolution:    ✨ Real data + Gamification + Customization ✨
 
 ---
 
+## 🔧 Phase 1.5: v1.4.0 - Performance & Multi-Format (February 2026)
+
+**Goal:** Modernize image generation, add new output formats
+
+### Priority 1: Sharp Integration
+
+**Status:** 📋 Planned
+
+- [ ] Integrate Sharp (libvips) for image encoding
+- [ ] 3-5x faster GIF generation
+- [ ] Add WebP animated output
+- [ ] Add AVIF output (future-ready)
+
+### Priority 2: Bun 1.3.8 Upgrade
+
+**Status:** 📋 Planned
+
+- [ ] Upgrade to Bun 1.3.8+
+- [ ] Replace npm deps with Bun native APIs
+- [ ] Performance improvements (Buffer, async/await)
+
+### Expected Results
+
+| Metric         | Before   | After           |
+| -------------- | -------- | --------------- |
+| GIF generation | ~500ms   | ~100ms          |
+| New formats    | GIF only | GIF, WebP, AVIF |
+| Dependencies   | N        | N - X           |
+
+---
+
 ## 🎨 Phase 2: v2.0 - Interactive Web Platform (Q1 2026)
 
 **Goal:** Full-featured playground with save/share functionality
@@ -121,7 +152,7 @@ Snake Evolution:    ✨ Real data + Gamification + Customization ✨
 ```text
 v1.2.4  ✅  Dec 2025   - Basic functionality
 v1.3.0  ✅  Jan 2026   - GIF + Ethical positioning + Color preview
-v1.4.0  📋  Feb 2026   - Performance optimization + bug fixes
+v1.4.0  📋  Feb 2026   - Sharp integration + WebP/AVIF + Bun 1.3.8
 v2.0.0  📋  Mar 2026   - Full playground launch
 v2.1.0  📋  Apr 2026   - Gallery + social features
 v3.0.0  📋  Q2-Q3 2026 - PvP Mode beta
