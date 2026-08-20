@@ -8,7 +8,20 @@ branding:
 inputs:
   github_user_name:
     description: 'GitHub username to generate snake for'
-    required: true
+    required: false
+
+  gitlab_user_name:
+    description: 'GitLab username to generate snake for'
+    required: false
+
+  forgejo_user_name:
+    description: 'Forgejo username to generate snake for'
+    required: false
+
+  forgejo_url:
+    description: 'Forgejo instance URL'
+    required: false
+    default: 'https://codeberg.org'
 
   github_token:
     description: 'GitHub token for API access (optional, uses public scraping if not provided)'
@@ -58,6 +71,9 @@ runs:
         THEME="${{ inputs.theme }}"
         YEAR="${{ inputs.year }}"
         USERNAME="${{ inputs.github_user_name }}"
+        GITLAB_USER="${{ inputs.gitlab_user_name }}"
+        FORGEJO_USER="${{ inputs.forgejo_user_name }}"
+        FORGEJO_URL="${{ inputs.forgejo_url }}"
         TOKEN="${{ inputs.github_token }}"
         ACTION_PATH="${{ github.action_path }}"
         WORKSPACE="${{ github.workspace }}"
@@ -66,7 +82,19 @@ runs:
         mapfile -t OUTPUTS <<< "$(printf '%s\n' "$OUTPUTS_RAW" | tr ',' '\n')"
 
         # Base CLI command (run from action path)
-        CMD_BASE=(bun run "${ACTION_PATH}/packages/cli/src/index.ts" generate -u "$USERNAME")
+        CMD_BASE=(bun run "${ACTION_PATH}/packages/cli/src/index.ts" generate)
+
+        if [ -n "$USERNAME" ]; then
+          CMD_BASE+=( -u "$USERNAME" )
+        fi
+
+        if [ -n "$GITLAB_USER" ]; then
+          CMD_BASE+=( --gitlab "$GITLAB_USER" )
+        fi
+
+        if [ -n "$FORGEJO_USER" ]; then
+          CMD_BASE+=( --forgejo "$FORGEJO_USER" --forgejo-url "$FORGEJO_URL" )
+        fi
 
         if [ -n "$YEAR" ]; then
           CMD_BASE+=( -y "$YEAR" )

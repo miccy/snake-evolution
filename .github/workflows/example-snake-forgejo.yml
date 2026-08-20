@@ -1,0 +1,39 @@
+# Example workflow to generate contribution snake for Forgejo on GitHub Actions
+# Copy this to your repository's .github/workflows/ folder
+
+name: Generate Snake (Forgejo)
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Generate Snake Animation
+        uses: miccy/snake-evolution@v1
+        with:
+          forgejo_user_name: 'your-forgejo-username'
+          forgejo_url: 'https://codeberg.org'
+          outputs: dist/snake-forgejo.svg
+          theme: github-dark
+
+      - name: Push to Output Branch
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: output
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
