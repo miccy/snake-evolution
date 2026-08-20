@@ -10,9 +10,9 @@ import type {
 import type { GlassTheme } from "./themes";
 import { getGlassFilterDefs, getTheme, isGlassTheme, themes } from "./themes";
 
+export type { GlassTheme };
 // Re-export themes
 export { getTheme, isGlassTheme, themes };
-export type { GlassTheme };
 
 // ============================================
 // Rendering Constants

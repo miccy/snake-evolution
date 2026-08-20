@@ -173,6 +173,101 @@ function levelToNumber(level: ContributionDay["contributionLevel"]): 0 | 1 | 2 |
 // HTML Scraping (public, no auth)
 // ============================================
 
+/** @internal */
+export function parseContributionCalendar(
+  html: string,
+  username: string,
+  year: number,
+): ContributionGrid {
+  const weeks: GitHubContribution[][] = [];
+  let currentWeek: GitHubContribution[] = [];
+  let totalContributions = 0;
+
+  // Extremely safe split-based parsing to avoid any ReDoS possibilities
+  const daysMap = new Map<string, { date: string; level: number; count?: number }>();
+
+  // Split the HTML by '<td' to isolate table cells, which avoids regex backtracking on large documents
+  const tdChunks = html.split("<td");
+
+  for (let i = 1; i < tdChunks.length; i++) {
+    const chunk = tdChunks[i];
+
+    // Only process chunks that are actually data cells (contain data-date)
+    if (!chunk.includes("data-date=")) continue;
+
+    // Extract date (safe regex on a small substring)
+    const dateMatch = /data-date="(\d{4}-\d{2}-\d{2})"/.exec(chunk);
+    if (!dateMatch) continue;
+
+    const date = dateMatch[1];
+
+    // Extract level
+    const levelMatch = /data-level="(-?\d+)"/.exec(chunk);
+    if (!levelMatch) continue;
+
+    const level = Number.parseInt(levelMatch[1], 10);
+
+    // Extract optional count
+    let count: number | undefined;
+    const countMatch = /data-count="(\d+)"/.exec(chunk);
+    if (countMatch) {
+      count = Number.parseInt(countMatch[1], 10);
+    }
+
+    if (!daysMap.has(date)) {
+      daysMap.set(date, { date, level, count });
+    }
+  }
+
+  const days = Array.from(daysMap.values());
+
+  // Sort
+  days.sort((a, b) => a.date.localeCompare(b.date));
+
+  // Build grid with Sunday alignment
+  if (days.length > 0) {
+    const [y, m, d] = days[0].date.split("-").map(Number);
+    const dayOfWeek = new Date(Date.UTC(y, m - 1, d)).getUTCDay(); // 0 = Sunday
+
+    // Pad beginning
+    for (let i = 0; i < dayOfWeek; i++) {
+      currentWeek.push({ date: "", count: 0, level: 0 });
+    }
+  }
+
+  for (const day of days) {
+    const level = Math.max(0, Math.min(4, day.level)) as 0 | 1 | 2 | 3 | 4;
+    const count = day.count ?? contributionCountFromLevel(level);
+
+    totalContributions += count;
+    currentWeek.push({
+      date: day.date,
+      count,
+      level,
+    });
+
+    if (currentWeek.length === 7) {
+      weeks.push(currentWeek);
+      currentWeek = [];
+    }
+  }
+
+  if (currentWeek.length > 0) {
+    // Pad end
+    while (currentWeek.length < 7) {
+      currentWeek.push({ date: "", count: 0, level: 0 });
+    }
+    weeks.push(currentWeek);
+  }
+
+  return {
+    username,
+    year,
+    totalContributions,
+    weeks,
+  };
+}
+
 // Helper to fetch a specific calendar year
 async function fetchYear(username: string, year: number): Promise<ContributionGrid> {
   const url = `https://github.com/users/${username}/contributions?from=${year}-01-01&to=${year}-12-31`;
@@ -242,9 +337,12 @@ async function fetchContributionsHTML(username: string, year?: number): Promise<
   allDays.sort((a, b) => a.date.localeCompare(b.date));
 
   // 3. Remove duplicates (overlap at year boundary?)
-  const uniqueDays = allDays.filter(
-    (day, index, self) => index === self.findIndex((d) => d.date === day.date),
-  );
+  const seenDates = new Set<string>();
+  const uniqueDays = allDays.filter((day) => {
+    if (seenDates.has(day.date)) return false;
+    seenDates.add(day.date);
+    return true;
+  });
 
   // 4. Slice last 365 days (approx 53 weeks)
   // We want the graph to end TODAY.
@@ -319,90 +417,6 @@ async function fetchContributionsHTML(username: string, year?: number): Promise<
 function contributionCountFromLevel(level: number): number {
   if (level <= 0) return 0;
   return level * 3;
-}
-
-function parseContributionCalendar(html: string, username: string, year: number): ContributionGrid {
-  const weeks: GitHubContribution[][] = [];
-  let currentWeek: GitHubContribution[] = [];
-  let totalContributions = 0;
-
-  // Match all contribution day cells
-  // GitHub uses: <td ... data-date="2025-01-01" data-count="4" data-level="3" ...>
-  // We use a robust regex that captures date, count (optional), and level
-  const dayPattern =
-    /<td[^>]*data-date="(\d{4}-\d{2}-\d{2})"[^>]*?(?:data-count="(\d+)"[^>]*?)?data-level="(-?\d+)"[^>]*>/g;
-  const days: Array<{ date: string; level: number; count?: number }> = [];
-
-  for (const match of html.matchAll(dayPattern)) {
-    days.push({
-      date: match[1],
-      level: Number.parseInt(match[3], 10),
-      count: match[2] ? Number.parseInt(match[2], 10) : undefined,
-    });
-  }
-
-  // Also try the alternate pattern (data-level before data-date)
-  const altPattern =
-    /<td[^>]*data-level="(-?\d+)"[^>]*?(?:data-count="(\d+)"[^>]*?)?data-date="(\d{4}-\d{2}-\d{2})"[^>]*>/g;
-  for (const match of html.matchAll(altPattern)) {
-    // Avoid duplicates
-    // Capturing groups: 1=level, 2=count(opt), 3=date
-    const date = match[3];
-    if (!days.some((d) => d.date === date)) {
-      days.push({
-        date,
-        level: Number.parseInt(match[1], 10),
-        count: match[2] ? Number.parseInt(match[2], 10) : undefined,
-      });
-    }
-  }
-
-  // Sort
-  days.sort((a, b) => a.date.localeCompare(b.date));
-
-  // Build grid with Sunday alignment
-  if (days.length > 0) {
-    // Parse date in UTC to ensure consistent day of week
-    const [y, m, d] = days[0].date.split("-").map(Number);
-    const dayOfWeek = new Date(Date.UTC(y, m - 1, d)).getUTCDay(); // 0 = Sunday
-
-    // Pad beginning
-    for (let i = 0; i < dayOfWeek; i++) {
-      currentWeek.push({ date: "", count: 0, level: 0 });
-    }
-  }
-
-  for (const day of days) {
-    const level = Math.max(0, Math.min(4, day.level)) as 0 | 1 | 2 | 3 | 4;
-    const count = day.count ?? contributionCountFromLevel(level);
-
-    totalContributions += count;
-    currentWeek.push({
-      date: day.date,
-      count,
-      level,
-    });
-
-    if (currentWeek.length === 7) {
-      weeks.push(currentWeek);
-      currentWeek = [];
-    }
-  }
-
-  if (currentWeek.length > 0) {
-    // Pad end
-    while (currentWeek.length < 7) {
-      currentWeek.push({ date: "", count: 0, level: 0 });
-    }
-    weeks.push(currentWeek);
-  }
-
-  return {
-    username,
-    year,
-    totalContributions,
-    weeks,
-  };
 }
 
 // ============================================
