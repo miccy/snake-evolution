@@ -21,7 +21,7 @@ services:
       - _APP_ENV=development
       - _APP_LOCALE=en
       - _APP_OPTIONS_ABUSE=disabled
-      - _APP_OPENSSL_KEY_V1=your-secret-key
+      - _APP_OPENSSL_KEY_V1=${APPWRITE_SECRET_KEY}
       - _APP_DOMAIN=localhost
       - _APP_DOMAIN_TARGET=localhost
       - _APP_REDIS_HOST=redis
