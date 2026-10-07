@@ -1,0 +1,30 @@
+image: node:22-bookworm
+
+variables:
+  BUN_VERSION: "1.3.7"
+
+stages:
+  - build
+  - test
+
+before_script:
+  - apt-get update && apt-get install -y curl unzip
+  - curl -fsSL https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
+  - export PATH="$HOME/.bun/bin:$PATH"
+  - bun install --frozen-lockfile
+
+build:
+  stage: build
+  script:
+    - bun run build
+  artifacts:
+    paths:
+      - "dist/"
+      - "apps/*/dist/"
+      - "packages/*/dist/"
+
+test:
+  stage: test
+  script:
+    - bun run check
+    - bun run test
